@@ -1,0 +1,12 @@
+# SwiftLint 규칙 파일
+
+# 적용받지 않을 규칙
+disabled_rules:
+- vertical_whitespace # 공백 라인 수 제한
+- trailing_newline # 공백 라인 수를 1개로 제한
+- force_unwrapping # '!' 언래핑 사용 제한
+- line_length # 라인 길이 제한
+- identifier_name
+
+  # 개인적으로 추가할만한 것
+- trailing_whitespace #주석처리한 코드 아래의 탭(4스페이스)에도 경고 띄움
