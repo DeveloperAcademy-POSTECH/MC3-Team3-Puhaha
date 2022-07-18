@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		551CD2DE28850A800037487D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CD2DD28850A800037487D /* SignInViewController.swift */; };
+		551CD2E128850C6A0037487D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E028850C6A0037487D /* FirebaseAnalytics */; };
+		551CD2E328850C6A0037487D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E228850C6A0037487D /* FirebaseAuth */; };
+		551CD2E528850C6A0037487D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E428850C6A0037487D /* FirebaseFirestore */; };
 		CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F965C287FA66C00783324 /* AppDelegate.swift */; };
 		CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F965E287FA66C00783324 /* SceneDelegate.swift */; };
 		CE9F9661287FA66C00783324 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F9660287FA66C00783324 /* ViewController.swift */; };
@@ -15,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		551CD2DD28850A800037487D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		CE9F9659287FA66C00783324 /* Puhaha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puhaha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9F965C287FA66C00783324 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9F965E287FA66C00783324 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,6 +34,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				551CD2E128850C6A0037487D /* FirebaseAnalytics in Frameworks */,
+				551CD2E328850C6A0037487D /* FirebaseAuth in Frameworks */,
+				551CD2E528850C6A0037487D /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +68,7 @@
 				CE9F965C287FA66C00783324 /* AppDelegate.swift */,
 				CE9F965E287FA66C00783324 /* SceneDelegate.swift */,
 				CE9F9660287FA66C00783324 /* ViewController.swift */,
+				551CD2DD28850A800037487D /* SignInViewController.swift */,
 				CE9F9665287FA66F00783324 /* Assets.xcassets */,
 				CE9F966A287FA66F00783324 /* Info.plist */,
 				CE9F9673287FA8A600783324 /* .swiftlint.yml */,
@@ -105,6 +114,11 @@
 			dependencies = (
 			);
 			name = Puhaha;
+			packageProductDependencies = (
+				551CD2E028850C6A0037487D /* FirebaseAnalytics */,
+				551CD2E228850C6A0037487D /* FirebaseAuth */,
+				551CD2E428850C6A0037487D /* FirebaseFirestore */,
+			);
 			productName = Puhaha;
 			productReference = CE9F9659287FA66C00783324 /* Puhaha.app */;
 			productType = "com.apple.product-type.application";
@@ -133,6 +147,9 @@
 				Base,
 			);
 			mainGroup = CE9F9650287FA66C00783324;
+			packageReferences = (
+				551CD2DF28850C6A0037487D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = CE9F965A287FA66C00783324 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -179,6 +196,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				551CD2DE28850A800037487D /* SignInViewController.swift in Sources */,
 				CE9F9661287FA66C00783324 /* ViewController.swift in Sources */,
 				CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */,
 				CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */,
@@ -378,6 +396,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		551CD2DF28850C6A0037487D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		551CD2E028850C6A0037487D /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 551CD2DF28850C6A0037487D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		551CD2E228850C6A0037487D /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 551CD2DF28850C6A0037487D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		551CD2E428850C6A0037487D /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 551CD2DF28850C6A0037487D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CE9F9651287FA66C00783324 /* Project object */;
 }
