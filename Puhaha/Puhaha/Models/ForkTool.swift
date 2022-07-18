@@ -20,8 +20,12 @@ struct ForkTool {
     var color: UIColor
 }
 
-let dummyData = [
-    ForkTool(tool: Tool.Fork, color: UIColor(rgb: 0x6A94D1)),
-    ForkTool(tool: Tool.Fork, color: UIColor(rgb: 0x6A94D1)),
-    ForkTool(tool: Tool.Fork, color: UIColor(rgb: 0x6A94D1))
-]
+#if DEBUG
+extension ForkTool {
+    static var dummyData: [ForkTool] = [
+        ForkTool(tool: Tool.Fork, color: UIColor(rgb: 0x6A94D1)),
+        ForkTool(tool: Tool.Fork, color: UIColor(rgb: 0x6A94D1)),
+        ForkTool(tool: Tool.Fork, color: UIColor(rgb: 0x6A94D1))
+    ]
+}
+#endif
