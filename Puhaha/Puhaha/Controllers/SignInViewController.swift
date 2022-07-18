@@ -39,8 +39,13 @@ class SignInViewController: UIViewController {
         button.setTitle("애플로 가입하기", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = .lightGray
+        button.addTarget(self, action: #selector(appleLoginButtonTapped), for: .touchUpInside) // 눌렸을 때 함수를 인식하도록
         return button
     }()
+    
+    @objc func appleLoginButtonTapped() {
+        startSignInWithAppleFlow()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -156,14 +161,12 @@ extension SignInViewController {
                 if remainingLength == 0 {
                     return
                 }
-                
                 if random < charset.count {
                     result.append(charset[Int(random)])
                     remainingLength -= 1
                 }
             }
-        }
-        
+        }        
         return result
     }
 }
