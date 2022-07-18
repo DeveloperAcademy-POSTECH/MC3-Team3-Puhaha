@@ -70,7 +70,6 @@
 				CE9F965C287FA66C00783324 /* AppDelegate.swift */,
 				CE9F965E287FA66C00783324 /* SceneDelegate.swift */,
 				CE9F9660287FA66C00783324 /* ViewController.swift */,
-				551CD2DD28850A800037487D /* SignInViewController.swift */,
 				CE9F9665287FA66F00783324 /* Assets.xcassets */,
 				55AA34AE2885282B00C2D6D6 /* GoogleService-Info.plist */,
 				CE9F966A287FA66F00783324 /* Info.plist */,
@@ -89,6 +88,7 @@
 		CE9F9671287FA68C00783324 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				551CD2DD28850A800037487D /* SignInViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
