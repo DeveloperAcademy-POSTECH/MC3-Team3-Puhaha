@@ -18,7 +18,6 @@ class CameraViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         presentCamera()
-
     }
     
     private var cameraImageView: UIImageView = {
@@ -37,6 +36,7 @@ class CameraViewController: UIViewController {
         cameraImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
     }
     
+    /// 카메라 촬영화면을 모달로 띄우는 함수
     private func presentCamera() {
         let cameraPickerController = UIImagePickerController()
         cameraPickerController.sourceType = .camera
