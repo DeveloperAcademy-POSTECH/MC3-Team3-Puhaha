@@ -14,7 +14,11 @@ class CameraViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(cameraImageView)
         configureConstraints()
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        presentCamera()
+
     }
     
     private var cameraImageView: UIImageView = {
@@ -31,5 +35,26 @@ class CameraViewController: UIViewController {
         cameraImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         cameraImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         cameraImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+    }
+    
+    private func presentCamera() {
+        let cameraPickerController = UIImagePickerController()
+        cameraPickerController.sourceType = .camera
+        cameraPickerController.allowsEditing = true
+        cameraPickerController.delegate = self
+        present(cameraPickerController, animated: true)
+    }
+}
+
+extension CameraViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        picker.dismiss(animated: true)
+        
+        guard let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage else {
+            print("no image found")
+            return
+        }
+        
+        print(image.size)
     }
 }
