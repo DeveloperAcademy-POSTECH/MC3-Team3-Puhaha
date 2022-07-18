@@ -22,6 +22,7 @@
 /* Begin PBXFileReference section */
 		551CD2DD28850A800037487D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		55AA34AE2885282B00C2D6D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		55AA34B228854CB800C2D6D6 /* Puhaha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puhaha.entitlements; sourceTree = "<group>"; };
 		CE9F9659287FA66C00783324 /* Puhaha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puhaha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9F965C287FA66C00783324 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9F965E287FA66C00783324 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +65,7 @@
 		CE9F965B287FA66C00783324 /* Puhaha */ = {
 			isa = PBXGroup;
 			children = (
+				55AA34B228854CB800C2D6D6 /* Puhaha.entitlements */,
 				CE9F9672287FA69400783324 /* Models */,
 				CE9F9671287FA68C00783324 /* Controllers */,
 				CE9F9670287FA67B00783324 /* Views */,
@@ -329,9 +331,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Puhaha/Puhaha.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 744MUUC77P;
+				DEVELOPMENT_TEAM = NHPUW6MZCU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Puhaha/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -356,9 +359,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Puhaha/Puhaha.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 744MUUC77P;
+				DEVELOPMENT_TEAM = NHPUW6MZCU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Puhaha/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
