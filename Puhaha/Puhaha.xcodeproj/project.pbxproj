@@ -12,6 +12,8 @@
 		551CD2E328850C6A0037487D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E228850C6A0037487D /* FirebaseAuth */; };
 		551CD2E528850C6A0037487D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E428850C6A0037487D /* FirebaseFirestore */; };
 		55AA34AF2885282B00C2D6D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55AA34AE2885282B00C2D6D6 /* GoogleService-Info.plist */; };
+		A419810E288508EC00CCFDBA /* ForkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A419810C288508EC00CCFDBA /* ForkTool.swift */; };
+		A419810F288508EC00CCFDBA /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A419810D288508EC00CCFDBA /* UIColor+Extension.swift */; };
 		CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F965C287FA66C00783324 /* AppDelegate.swift */; };
 		CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F965E287FA66C00783324 /* SceneDelegate.swift */; };
 		CE9F9661287FA66C00783324 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F9660287FA66C00783324 /* ViewController.swift */; };
@@ -23,6 +25,8 @@
 		551CD2DD28850A800037487D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		55AA34AE2885282B00C2D6D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		55AA34B228854CB800C2D6D6 /* Puhaha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puhaha.entitlements; sourceTree = "<group>"; };
+		A419810C288508EC00CCFDBA /* ForkTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForkTool.swift; sourceTree = "<group>"; };
+		A419810D288508EC00CCFDBA /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		CE9F9659287FA66C00783324 /* Puhaha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puhaha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9F965C287FA66C00783324 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9F965E287FA66C00783324 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +50,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A4198110288508FA00CCFDBA /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				A41981112885090300CCFDBA /* Extensioon */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		A41981112885090300CCFDBA /* Extensioon */ = {
+			isa = PBXGroup;
+			children = (
+				A419810D288508EC00CCFDBA /* UIColor+Extension.swift */,
+			);
+			path = Extensioon;
+			sourceTree = "<group>";
+		};
 		CE9F9650287FA66C00783324 = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				55AA34B228854CB800C2D6D6 /* Puhaha.entitlements */,
+				A4198110288508FA00CCFDBA /* Global */,
 				CE9F9672287FA69400783324 /* Models */,
 				CE9F9671287FA68C00783324 /* Controllers */,
 				CE9F9670287FA67B00783324 /* Views */,
@@ -98,6 +119,7 @@
 		CE9F9672287FA69400783324 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A419810C288508EC00CCFDBA /* ForkTool.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -204,8 +226,10 @@
 			files = (
 				551CD2DE28850A800037487D /* SignInViewController.swift in Sources */,
 				CE9F9661287FA66C00783324 /* ViewController.swift in Sources */,
+				A419810E288508EC00CCFDBA /* ForkTool.swift in Sources */,
 				CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */,
 				CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */,
+				A419810F288508EC00CCFDBA /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
