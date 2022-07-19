@@ -25,7 +25,8 @@ class SignInViewController: UIViewController {
     
     private let emailLoginButton: CustomedLoginButton = {
         let button = CustomedLoginButton()
-        button.setImage(UIImage(systemName: "mail"), for: .normal)
+        button.setImage(UIImage(systemName: "envelope"), for: .normal)
+        button.tintColor = UIColor.black
         button.setTitle("이메일로 가입하기", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         return button
@@ -34,6 +35,7 @@ class SignInViewController: UIViewController {
     private var appleLoginButton: UIButton = {
         let button = CustomedLoginButton()
         button.setImage(UIImage(systemName: "applelogo")?.withTintColor(.black), for: .normal)
+        button.tintColor = UIColor.black
         button.setTitle("애플로 가입하기", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         
@@ -78,7 +80,7 @@ class SignInViewController: UIViewController {
 extension SignInViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         // ASAuthorizationController (as = AuthenticationServices 약자)
-        // ASAuthorizationController를 통해 애플에 요청 -> appleIDToken, idTokenString 받아 -> credential (과정 구글과 동일)
+        // ASAuthorizationController를 통해 애플에 요청 -> appleIDToken, idTokenString 받아 -> credential
         
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             // nonce : 암호화 된 임의의 난수, 단 한번만 사용 가능한 값, 암호화 통신에 보통 사용
