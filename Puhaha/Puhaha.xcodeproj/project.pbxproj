@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A419810E288508EC00CCFDBA /* ForkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A419810C288508EC00CCFDBA /* ForkTool.swift */; };
 		A419810F288508EC00CCFDBA /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A419810D288508EC00CCFDBA /* UIColor+Extension.swift */; };
+		BF7F911728852FA5009D3809 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F911628852FA5009D3809 /* CameraViewController.swift */; };
+		BF7F91192886530A009D3809 /* ActionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F91182886530A009D3809 /* ActionSheetView.swift */; };
 		CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F965C287FA66C00783324 /* AppDelegate.swift */; };
 		CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F965E287FA66C00783324 /* SceneDelegate.swift */; };
 		CE9F9661287FA66C00783324 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F9660287FA66C00783324 /* ViewController.swift */; };
@@ -19,6 +21,8 @@
 /* Begin PBXFileReference section */
 		A419810C288508EC00CCFDBA /* ForkTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForkTool.swift; sourceTree = "<group>"; };
 		A419810D288508EC00CCFDBA /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		BF7F911628852FA5009D3809 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		BF7F91182886530A009D3809 /* ActionSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetView.swift; sourceTree = "<group>"; };
 		CE9F9659287FA66C00783324 /* Puhaha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puhaha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9F965C287FA66C00783324 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9F965E287FA66C00783324 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +95,8 @@
 		CE9F9670287FA67B00783324 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BF7F911628852FA5009D3809 /* CameraViewController.swift */,
+				BF7F91182886530A009D3809 /* ActionSheetView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -206,6 +212,8 @@
 				CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */,
 				CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */,
 				A419810F288508EC00CCFDBA /* UIColor+Extension.swift in Sources */,
+				BF7F911728852FA5009D3809 /* CameraViewController.swift in Sources */,
+				BF7F91192886530A009D3809 /* ActionSheetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,7 +341,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 744MUUC77P;
+				DEVELOPMENT_TEAM = D9CAJN27UH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Puhaha/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -360,7 +368,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 744MUUC77P;
+				DEVELOPMENT_TEAM = D9CAJN27UH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Puhaha/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
