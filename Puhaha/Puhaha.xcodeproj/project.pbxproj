@@ -64,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				A419810D288508EC00CCFDBA /* UIColor+Extension.swift */,
+				55599E3B2886362900C05E81 /* CustomedLoginButton.swift */,
 			);
 			path = Extensioon;
 			sourceTree = "<group>";
@@ -114,7 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				551CD2DD28850A800037487D /* SignInViewController.swift */,
-				55599E3B2886362900C05E81 /* CustomedLoginButton.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
