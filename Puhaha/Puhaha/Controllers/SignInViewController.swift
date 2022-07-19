@@ -32,7 +32,7 @@ class SignInViewController: UIViewController {
         return button
     }()
     
-    private var appleLoginButton: UIButton = {
+    private let appleLoginButton: UIButton = {
         let button = CustomedLoginButton()
         button.setImage(UIImage(systemName: "applelogo")?.withTintColor(.black), for: .normal)
         button.tintColor = UIColor.black
@@ -45,10 +45,6 @@ class SignInViewController: UIViewController {
                          // 눌렸을 때 함수를 인식하도록
         return button
     }()
-    
-    @objc func appleLoginButtonTapped() {
-        startSignInWithAppleFlow()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +69,12 @@ class SignInViewController: UIViewController {
         
         appleLoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         appleLoginButton.topAnchor.constraint(equalTo: emailLoginButton.bottomAnchor, constant: 50).isActive = true
+    }
+}
+
+extension SignInViewController {
+    @objc func appleLoginButtonTapped() {
+        startSignInWithAppleFlow()
     }
 }
 
