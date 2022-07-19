@@ -23,23 +23,24 @@ class SignInViewController: UIViewController {
       return label
     }()
     
-    private let emailLoginButton: UIButton = {
-        let button = UIButton()
+    private let emailLoginButton: CustomedLoginButton = {
+        let button = CustomedLoginButton()
         button.setImage(UIImage(systemName: "mail"), for: .normal)
         button.setTitle("이메일로 가입하기", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.backgroundColor = .lightGray
-        button.layer.cornerRadius = 10
+        button.setTitleColor(UIColor.black, for: .normal)
         return button
     }()
     
-    private let appleLoginButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "applelogo"), for: .normal)
+    private var appleLoginButton: UIButton = {
+        let button = CustomedLoginButton()
+        button.setImage(UIImage(systemName: "applelogo")?.withTintColor(.black), for: .normal)
         button.setTitle("애플로 가입하기", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.backgroundColor = .lightGray
-        button.addTarget(self, action: #selector(appleLoginButtonTapped), for: .touchUpInside) // 눌렸을 때 함수를 인식하도록
+        button.setTitleColor(UIColor.black, for: .normal)
+        
+        button.addTarget(self,
+                         action: #selector(appleLoginButtonTapped),
+                         for: .touchUpInside)
+                         // 눌렸을 때 함수를 인식하도록
         return button
     }()
     
@@ -49,11 +50,11 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        
-        view.addSubview(titleLabel)
-        view.addSubview(emailLoginButton)
-        view.addSubview(appleLoginButton)
+        view.backgroundColor = .white        
+
+        [titleLabel, emailLoginButton, appleLoginButton].forEach {
+            view.addSubview($0)
+        }
         configureConstraints()
     }
     
@@ -73,15 +74,14 @@ class SignInViewController: UIViewController {
     }
 }
 
+// Apple Login 관련 코드
 extension SignInViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         // ASAuthorizationController (as = AuthenticationServices 약자)
         // ASAuthorizationController를 통해 애플에 요청 -> appleIDToken, idTokenString 받아 -> credential (과정 구글과 동일)
         
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            
             // nonce : 암호화 된 임의의 난수, 단 한번만 사용 가능한 값, 암호화 통신에 보통 사용
-            
             guard let nonce = currentNonce else {
                 fatalError("Invalid state: A login callback was received, but no login request was sent.")
             }
@@ -101,23 +101,14 @@ extension SignInViewController: ASAuthorizationControllerDelegate {
                     print("Error Apple sign in: %@", error)
                     return
                 }
-                // User is signed in to Firebase with Apple.
-
-                // Main 화면으로 보내기 -> 스토리보드 사용 안 함 -> main View Controller로 보내는 코드로 수정 need
-//                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-//                let mainViewController = storyboard.instantiateViewController(identifier: "MainViewController")
-//                mainViewController.modalPresentationStyle = .fullScreen
-//                self.navigationController?.show(mainViewController, sender: nil)
             }
         }
     }
 }
 
-
 extension SignInViewController {
     func startSignInWithAppleFlow() {
-        // 이 request에 넌스가 포함되어 릴레이 공격 방지, 암호화
-        let nonce = randomNonceString()
+        let nonce = randomNonceString() // 이 request에 nonce가 포함되어 릴레이 공격 방지, 암호화
         currentNonce = nonce
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
@@ -136,7 +127,6 @@ extension SignInViewController {
         let hashString = hashedData.compactMap {
             return String(format: "%02x", $0)
         }.joined()
-        
         return hashString
     }
     
@@ -166,7 +156,7 @@ extension SignInViewController {
                     remainingLength -= 1
                 }
             }
-        }        
+        }
         return result
     }
 }
@@ -176,4 +166,3 @@ extension SignInViewController : ASAuthorizationControllerPresentationContextPro
         return self.view.window!
     }
 }
-

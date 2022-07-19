@@ -11,6 +11,7 @@
 		551CD2E128850C6A0037487D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E028850C6A0037487D /* FirebaseAnalytics */; };
 		551CD2E328850C6A0037487D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E228850C6A0037487D /* FirebaseAuth */; };
 		551CD2E528850C6A0037487D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E428850C6A0037487D /* FirebaseFirestore */; };
+		55599E3C2886362900C05E81 /* CustomedLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55599E3B2886362900C05E81 /* CustomedLoginButton.swift */; };
 		55AA34AF2885282B00C2D6D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55AA34AE2885282B00C2D6D6 /* GoogleService-Info.plist */; };
 		CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F965C287FA66C00783324 /* AppDelegate.swift */; };
 		CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F965E287FA66C00783324 /* SceneDelegate.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		551CD2DD28850A800037487D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		55599E3B2886362900C05E81 /* CustomedLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomedLoginButton.swift; sourceTree = "<group>"; };
 		55AA34AE2885282B00C2D6D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		55AA34B228854CB800C2D6D6 /* Puhaha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puhaha.entitlements; sourceTree = "<group>"; };
 		CE9F9659287FA66C00783324 /* Puhaha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puhaha.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				551CD2DD28850A800037487D /* SignInViewController.swift */,
+				55599E3B2886362900C05E81 /* CustomedLoginButton.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55599E3C2886362900C05E81 /* CustomedLoginButton.swift in Sources */,
 				551CD2DE28850A800037487D /* SignInViewController.swift in Sources */,
 				CE9F9661287FA66C00783324 /* ViewController.swift in Sources */,
 				CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */,
