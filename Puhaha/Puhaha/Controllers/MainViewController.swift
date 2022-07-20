@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UITabBarController {
+class MainViewController: UIViewController {
     var meals: [Meal] = Meal.sampleMeals
     var familyMembers: [Family] = Family.sampleFamilyMemebers
     
@@ -140,10 +140,14 @@ extension MainViewController: UICollectionViewDataSource {
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FamilyFilterCollectionViewCell", for: indexPath) as? FamilyFilterCollectionViewCell else { return UICollectionViewCell() }
-            cell.layer.cornerRadius = 18
-            cell.backgroundColor = .lightGray
+            cell.layer.cornerRadius = 16
             
             let family = self.familyMembers[indexPath.row]
+            if family.isSelected {
+                cell.backgroundColor = UIColor(named: "MainColor")
+            } else {
+                cell.backgroundColor = UIColor(named: "LightGray")
+            }
             cell.configure(with: family)
             
             return cell
