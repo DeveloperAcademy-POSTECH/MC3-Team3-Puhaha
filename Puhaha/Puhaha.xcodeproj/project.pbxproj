@@ -17,6 +17,8 @@
 		CE73297D28865C8800CA87F1 /* MealCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73297C28865C8800CA87F1 /* MealCollectionViewCell.swift */; };
 		CE73297F28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73297E28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift */; };
 		CE73298128869FA300CA87F1 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73298028869FA300CA87F1 /* Family.swift */; };
+		CE9D233B28877E1F00D53332 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D233A28877E1F00D53332 /* MainTabViewController.swift */; };
+		CE9D233D28877F7100D53332 /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D233C28877F7100D53332 /* StatisticViewController.swift */; };
 		CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F965C287FA66C00783324 /* AppDelegate.swift */; };
 		CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F965E287FA66C00783324 /* SceneDelegate.swift */; };
 		CE9F9661287FA66C00783324 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F9660287FA66C00783324 /* ViewController.swift */; };
@@ -35,6 +37,8 @@
 		CE73297C28865C8800CA87F1 /* MealCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE73297E28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyFilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE73298028869FA300CA87F1 /* Family.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Family.swift; sourceTree = "<group>"; };
+		CE9D233A28877E1F00D53332 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
+		CE9D233C28877F7100D53332 /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
 		CE9F9659287FA66C00783324 /* Puhaha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puhaha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9F965C287FA66C00783324 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9F965E287FA66C00783324 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				A419810D288508EC00CCFDBA /* UIColor+Extension.swift */,
+				CE558B1C288530BC00E98909 /* Date+Today.swift */,
 			);
 			path = Extensioon;
 			sourceTree = "<group>";
@@ -118,6 +123,8 @@
 			children = (
 				CE558B182885304500E98909 /* MainViewController.swift */,
 				CE558B1A2885305500E98909 /* CameraViewController.swift */,
+				CE9D233A28877E1F00D53332 /* MainTabViewController.swift */,
+				CE9D233C28877F7100D53332 /* StatisticViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -128,7 +135,6 @@
 				A419810C288508EC00CCFDBA /* ForkTool.swift */,
 				CE558B1428852DF800E98909 /* Tag.swift */,
 				CE558B1628852DFB00E98909 /* Meal.swift */,
-				CE558B1C288530BC00E98909 /* Date+Today.swift */,
 				CE73298028869FA300CA87F1 /* Family.swift */,
 			);
 			path = Models;
@@ -228,8 +234,10 @@
 				CE73297D28865C8800CA87F1 /* MealCollectionViewCell.swift in Sources */,
 				CE558B1528852DF800E98909 /* Tag.swift in Sources */,
 				CE9F9661287FA66C00783324 /* ViewController.swift in Sources */,
+				CE9D233D28877F7100D53332 /* StatisticViewController.swift in Sources */,
 				CE558B1728852DFB00E98909 /* Meal.swift in Sources */,
 				CE558B1D288530BC00E98909 /* Date+Today.swift in Sources */,
+				CE9D233B28877E1F00D53332 /* MainTabViewController.swift in Sources */,
 				A419810E288508EC00CCFDBA /* ForkTool.swift in Sources */,
 				CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */,
 				CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */,
