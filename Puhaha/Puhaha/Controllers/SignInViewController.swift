@@ -17,10 +17,20 @@ class SignInViewController: UIViewController {
     
     private let titleLabel: UILabel = {
       let label = UILabel()
-      label.text = "🍚 밥 먹언?"
+      label.text = "밥 먹언?"
       label.textColor = .black
-      label.font = .systemFont(ofSize: 32, weight: .regular)
+      label.font = .systemFont(ofSize: 40, weight: .ultraLight)
       return label
+    }()
+    
+    private let guidingTextLabel: UILabel = {
+       let label = UILabel()
+        label.text = "간편하게 로그인하고 다양한 서비스를 이용해보세요"
+        label.font = .systemFont(ofSize: 22, weight: .regular)
+        label.textAlignment = .center
+        label.textColor = .black
+        label.numberOfLines = 0
+        return label
     }()
     
     private let emailLoginButton: CustomedLoginButton = {
@@ -29,15 +39,17 @@ class SignInViewController: UIViewController {
         button.tintColor = UIColor.black
         button.setTitle("이메일로 가입하기", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
+        button.backgroundColor = UIColor.white
         return button
     }()
     
-    private let appleLoginButton: UIButton = {
+    private let appleLoginButton: CustomedLoginButton = {
         let button = CustomedLoginButton()
         button.setImage(UIImage(systemName: "applelogo")?.withTintColor(.black), for: .normal)
         button.tintColor = UIColor.black
         button.setTitle("애플로 가입하기", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
+        button.backgroundColor = UIColor.white
         
         button.addTarget(self,
                          action: #selector(appleLoginButtonTapped),
@@ -48,9 +60,9 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white        
+        view.backgroundColor = .systemYellow
 
-        [titleLabel, emailLoginButton, appleLoginButton].forEach {
+        [titleLabel, guidingTextLabel, emailLoginButton, appleLoginButton].forEach {
             view.addSubview($0)
         }
         configureConstraints()
@@ -58,17 +70,22 @@ class SignInViewController: UIViewController {
     
     private func configureConstraints() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        guidingTextLabel.translatesAutoresizingMaskIntoConstraints = false
         emailLoginButton.translatesAutoresizingMaskIntoConstraints = false
         appleLoginButton.translatesAutoresizingMaskIntoConstraints = false
         
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 380).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 250).isActive = true
+        
+        guidingTextLabel.widthAnchor.constraint(equalToConstant: 250).isActive = true
+        guidingTextLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        guidingTextLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30).isActive = true
         
         emailLoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        emailLoginButton.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 100).isActive = true
+        emailLoginButton.topAnchor.constraint(equalTo: guidingTextLabel.bottomAnchor, constant: 100).isActive = true
         
         appleLoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        appleLoginButton.topAnchor.constraint(equalTo: emailLoginButton.bottomAnchor, constant: 50).isActive = true
+        appleLoginButton.topAnchor.constraint(equalTo: emailLoginButton.bottomAnchor, constant: 22).isActive = true
     }
 }
 
