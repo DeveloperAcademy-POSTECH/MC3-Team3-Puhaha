@@ -23,13 +23,18 @@ class FamilyFilterCollectionViewCell: UICollectionViewCell {
     }
     
     private var userIcon: UIImageView = {
-        let imageView: UIImageView = UIImageView()
+        let imageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 31, height: 31))
+        imageView.sizeToFit()
+        imageView.layer.cornerRadius = 16
+        imageView.layer.masksToBounds = true
+        imageView.backgroundColor = .white
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     private var familyNameLabel: UILabel = {
         let label: UILabel = UILabel()
+        label.sizeToFit()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -40,10 +45,13 @@ class FamilyFilterCollectionViewCell: UICollectionViewCell {
     }
     
     private func setConstraints() {
-        userIcon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        userIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        userIcon.topAnchor.constraint(equalTo: topAnchor, constant: 1).isActive = true
+        userIcon.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -1).isActive = true
+        userIcon.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 1).isActive = true
+        userIcon.trailingAnchor.constraint(equalTo: leadingAnchor, constant: 31).isActive = true
         
-        familyNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        familyNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 32 / 3).isActive = true
         familyNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
 }
+
