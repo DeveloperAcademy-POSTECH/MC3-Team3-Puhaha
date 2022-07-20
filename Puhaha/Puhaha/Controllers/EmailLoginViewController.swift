@@ -14,26 +14,29 @@ class EmailLoginViewController: UIViewController {
     private let emailLabel: UILabel = {
         let label = UILabel()
         label.text = "이메일 주소"
+        label.font = .systemFont(ofSize: 30, weight: .regular)
         return label
     }()
     
     private let passwordLabel: UILabel = {
         let label = UILabel()
         label.text = "비밀번호"
+        label.font = .systemFont(ofSize: 30, weight: .regular)
         return label
     }()
     
     private var emailTextField: UITextField = {
         let textField = UITextField()
-        textField.textColor = .white
-        textField.backgroundColor = .lightGray
+        textField.textColor = .black
+        textField.backgroundColor = .clear
         return textField
     }()
     
     private var passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.textColor = .white
-        textField.backgroundColor = .lightGray
+        textField.textColor = .black
+        textField.backgroundColor = .clear
+        textField.isSecureTextEntry = true
         return textField
     }()
     
@@ -45,7 +48,7 @@ class EmailLoginViewController: UIViewController {
     
     private let nextButton: CustomedLoginButton = {
         let button = CustomedLoginButton()
-        button.setImage(UIImage(systemName: "mail")?.withTintColor(.black), for: .normal)
+        button.setImage(UIImage(systemName: "envelope")?.withTintColor(.black), for: .normal)
         button.tintColor = UIColor.black
         button.setTitle("로그인", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
@@ -59,7 +62,7 @@ class EmailLoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow
+        view.backgroundColor = .white
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
@@ -117,21 +120,28 @@ class EmailLoginViewController: UIViewController {
         errorMessageLabel.translatesAutoresizingMaskIntoConstraints = false
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         
+        emailLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
         emailLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         emailLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
         
+        emailTextField.widthAnchor.constraint(equalToConstant: 300).isActive = true
         emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 20).isActive = true
         
+        passwordLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
         passwordLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         passwordLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 50).isActive = true
         
+        passwordTextField.widthAnchor.constraint(equalToConstant: 300).isActive = true
         passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         passwordTextField.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor, constant: 20).isActive = true
         
+        errorMessageLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
         errorMessageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         errorMessageLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 30).isActive = true
         
+        nextButton.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        nextButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         nextButton.topAnchor.constraint(equalTo: errorMessageLabel.bottomAnchor, constant: 50).isActive = true
     }
