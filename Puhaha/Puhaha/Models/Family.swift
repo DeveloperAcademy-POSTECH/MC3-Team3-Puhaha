@@ -10,18 +10,18 @@ import UIKit
 struct Family {
     var name: String
     var userIcon: UIImage
+    var isSelected: Bool = false
 }
 
 #if DEBUG
 extension Family {
     static var sampleFamilyMemebers = [
-        Family(name: "모두", userIcon: UIImage(named: "icon-tab-bar-table")!),
-        Family(name: "아빠", userIcon: UIImage(systemName: "circle")!),
-        Family(name: "엄마", userIcon: UIImage(systemName: "circle")!),
-        Family(name: "할머니", userIcon: UIImage(systemName: "circle")!),
-        Family(name: "언니", userIcon: UIImage(systemName: "circle")!),
-        Family(name: "오빠", userIcon: UIImage(systemName: "circle")!),
-        Family(name: "나", userIcon: UIImage(systemName: "circle")!)
+        Family(name: "모두", userIcon: UIImage(named: "IconEveryoneFilter")!, isSelected: true),
+        Family(name: "콜리", userIcon: UIImage(named: "Colli")!),
+        Family(name: "키", userIcon: UIImage(named: "Key")!, isSelected: true),
+        Family(name: "레나", userIcon: UIImage(named: "Lena")!),
+        Family(name: "티모", userIcon: UIImage(named: "Teemo")!),
+        Family(name: "우기", userIcon: UIImage(named: "Woogy")!)
     ]
 }
 #endif
