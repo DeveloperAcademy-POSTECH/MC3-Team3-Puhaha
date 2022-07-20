@@ -35,29 +35,25 @@ class SignInViewController: UIViewController {
     
     private let emailLoginButton: CustomedLoginButton = {
         let button = CustomedLoginButton()
-        button.setImage(UIImage(systemName: "envelope"), for: .normal)
+        button.setImage(UIImage(systemName: "envelope.fill"), for: .normal)
         button.tintColor = UIColor.black
+        button.backgroundColor = UIColor.white
         button.setTitle("이메일로 가입하기", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
-        button.backgroundColor = UIColor.white
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
         return button
     }()
     
-    private let appleLoginButton: CustomedLoginButton = {
-        let button = CustomedLoginButton()
-        button.setImage(UIImage(systemName: "applelogo")?.withTintColor(.black), for: .normal)
-        button.tintColor = UIColor.black
-        button.setTitle("애플로 가입하기", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.backgroundColor = UIColor.white
-        
+    private let appleLoginButton: ASAuthorizationAppleIDButton = {
+        let button = ASAuthorizationAppleIDButton(type: .default, style: .white)
+        button.widthAnchor.constraint(equalToConstant: 338).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 57).isActive = true
         button.addTarget(self,
                          action: #selector(appleLoginButtonTapped),
                          for: .touchUpInside)
-                         // 눌렸을 때 함수를 인식하도록
         return button
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemYellow
@@ -66,6 +62,11 @@ class SignInViewController: UIViewController {
             view.addSubview($0)
         }
         configureConstraints()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        emailLoginButton.setInsets(forContentPadding: .zero, imageTitlePadding: 5)
     }
     
     private func configureConstraints() {
@@ -185,5 +186,25 @@ extension SignInViewController {
 extension SignInViewController : ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
+    }
+}
+
+extension UIButton {
+    func setInsets(
+        forContentPadding contentPadding: UIEdgeInsets,
+        imageTitlePadding: CGFloat
+    ) {
+        self.contentEdgeInsets = UIEdgeInsets(
+            top: contentPadding.top,
+            left: contentPadding.left,
+            bottom: contentPadding.bottom,
+            right: contentPadding.right + imageTitlePadding
+        )
+        self.titleEdgeInsets = UIEdgeInsets(
+            top: 0,
+            left: imageTitlePadding,
+            bottom: 0,
+            right: -imageTitlePadding
+        )
     }
 }
