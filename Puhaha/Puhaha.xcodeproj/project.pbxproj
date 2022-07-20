@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		551CD2DE28850A800037487D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CD2DD28850A800037487D /* SignInViewController.swift */; };
+		551CD2E128850C6A0037487D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E028850C6A0037487D /* FirebaseAnalytics */; };
+		551CD2E328850C6A0037487D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E228850C6A0037487D /* FirebaseAuth */; };
+		551CD2E528850C6A0037487D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E428850C6A0037487D /* FirebaseFirestore */; };
+		55599E3C2886362900C05E81 /* CustomedLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55599E3B2886362900C05E81 /* CustomedLoginButton.swift */; };
+		55AA34AF2885282B00C2D6D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55AA34AE2885282B00C2D6D6 /* GoogleService-Info.plist */; };
 		A419810E288508EC00CCFDBA /* ForkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A419810C288508EC00CCFDBA /* ForkTool.swift */; };
 		A419810F288508EC00CCFDBA /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A419810D288508EC00CCFDBA /* UIColor+Extension.swift */; };
 		CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F965C287FA66C00783324 /* AppDelegate.swift */; };
@@ -17,6 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		551CD2DD28850A800037487D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		55599E3B2886362900C05E81 /* CustomedLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomedLoginButton.swift; sourceTree = "<group>"; };
+		55AA34AE2885282B00C2D6D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		55AA34B228854CB800C2D6D6 /* Puhaha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puhaha.entitlements; sourceTree = "<group>"; };
 		A419810C288508EC00CCFDBA /* ForkTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForkTool.swift; sourceTree = "<group>"; };
 		A419810D288508EC00CCFDBA /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		CE9F9659287FA66C00783324 /* Puhaha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puhaha.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -33,6 +43,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				551CD2E128850C6A0037487D /* FirebaseAnalytics in Frameworks */,
+				551CD2E328850C6A0037487D /* FirebaseAuth in Frameworks */,
+				551CD2E528850C6A0037487D /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				A419810D288508EC00CCFDBA /* UIColor+Extension.swift */,
+				55599E3B2886362900C05E81 /* CustomedLoginButton.swift */,
 			);
 			path = Extensioon;
 			sourceTree = "<group>";
@@ -74,6 +88,7 @@
 		CE9F965B287FA66C00783324 /* Puhaha */ = {
 			isa = PBXGroup;
 			children = (
+				55AA34B228854CB800C2D6D6 /* Puhaha.entitlements */,
 				A4198110288508FA00CCFDBA /* Global */,
 				CE9F9672287FA69400783324 /* Models */,
 				CE9F9671287FA68C00783324 /* Controllers */,
@@ -82,6 +97,7 @@
 				CE9F965E287FA66C00783324 /* SceneDelegate.swift */,
 				CE9F9660287FA66C00783324 /* ViewController.swift */,
 				CE9F9665287FA66F00783324 /* Assets.xcassets */,
+				55AA34AE2885282B00C2D6D6 /* GoogleService-Info.plist */,
 				CE9F966A287FA66F00783324 /* Info.plist */,
 				CE9F9673287FA8A600783324 /* .swiftlint.yml */,
 			);
@@ -98,6 +114,7 @@
 		CE9F9671287FA68C00783324 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				551CD2DD28850A800037487D /* SignInViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -127,6 +144,11 @@
 			dependencies = (
 			);
 			name = Puhaha;
+			packageProductDependencies = (
+				551CD2E028850C6A0037487D /* FirebaseAnalytics */,
+				551CD2E228850C6A0037487D /* FirebaseAuth */,
+				551CD2E428850C6A0037487D /* FirebaseFirestore */,
+			);
 			productName = Puhaha;
 			productReference = CE9F9659287FA66C00783324 /* Puhaha.app */;
 			productType = "com.apple.product-type.application";
@@ -155,6 +177,9 @@
 				Base,
 			);
 			mainGroup = CE9F9650287FA66C00783324;
+			packageReferences = (
+				551CD2DF28850C6A0037487D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = CE9F965A287FA66C00783324 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -171,6 +196,7 @@
 			files = (
 				CE9F9674287FA8A600783324 /* .swiftlint.yml in Resources */,
 				CE9F9666287FA66F00783324 /* Assets.xcassets in Resources */,
+				55AA34AF2885282B00C2D6D6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +227,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55599E3C2886362900C05E81 /* CustomedLoginButton.swift in Sources */,
+				551CD2DE28850A800037487D /* SignInViewController.swift in Sources */,
 				CE9F9661287FA66C00783324 /* ViewController.swift in Sources */,
 				A419810E288508EC00CCFDBA /* ForkTool.swift in Sources */,
 				CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */,
@@ -331,9 +359,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Puhaha/Puhaha.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 744MUUC77P;
+				DEVELOPMENT_TEAM = NHPUW6MZCU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Puhaha/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -358,9 +387,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Puhaha/Puhaha.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 744MUUC77P;
+				DEVELOPMENT_TEAM = NHPUW6MZCU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Puhaha/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -402,6 +432,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		551CD2DF28850C6A0037487D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		551CD2E028850C6A0037487D /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 551CD2DF28850C6A0037487D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		551CD2E228850C6A0037487D /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 551CD2DF28850C6A0037487D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		551CD2E428850C6A0037487D /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 551CD2DF28850C6A0037487D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CE9F9651287FA66C00783324 /* Project object */;
 }

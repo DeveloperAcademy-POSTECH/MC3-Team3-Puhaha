@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = ViewController() // ViewController() 대신에 원하는 View file 작성
+        window?.rootViewController = SignInViewController() // ViewController() 대신에 원하는 View file 작성
         window?.makeKeyAndVisible()
         
     }
