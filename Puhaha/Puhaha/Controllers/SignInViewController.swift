@@ -41,6 +41,9 @@ class SignInViewController: UIViewController {
         button.setTitle("이메일로 가입하기", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
+        button.addTarget(self,
+                         action: #selector(goToEmailLoginViewController),
+                         for: .touchUpInside)
         return button
     }()
     
@@ -94,6 +97,14 @@ extension SignInViewController {
     @objc func appleLoginButtonTapped() {
         startSignInWithAppleFlow()
     }
+}
+
+extension SignInViewController {
+    @objc fileprivate func goToEmailLoginViewController() {
+        let controller = EmailLoginViewController()
+        controller.modalPresentationStyle = .fullScreen
+        present(controller, animated: false, completion: nil)
+     }
 }
 
 // Apple Login 관련 코드
