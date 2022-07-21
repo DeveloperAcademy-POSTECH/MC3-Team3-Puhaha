@@ -11,7 +11,6 @@
 		551CD2E128850C6A0037487D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E028850C6A0037487D /* FirebaseAnalytics */; };
 		551CD2E328850C6A0037487D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E228850C6A0037487D /* FirebaseAuth */; };
 		551CD2E528850C6A0037487D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E428850C6A0037487D /* FirebaseFirestore */; };
-		552EDFC6288794F00062DB50 /* EmailLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552EDFC5288794F00062DB50 /* EmailLoginViewController.swift */; };
 		555951DF28879DB100B4BE91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 555951DE28879DB100B4BE91 /* GoogleService-Info.plist */; };
 		55599E3C2886362900C05E81 /* CustomedLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55599E3B2886362900C05E81 /* CustomedLoginButton.swift */; };
 		A419810E288508EC00CCFDBA /* ForkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A419810C288508EC00CCFDBA /* ForkTool.swift */; };
@@ -27,7 +26,6 @@
 
 /* Begin PBXFileReference section */
 		551CD2DD28850A800037487D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		552EDFC5288794F00062DB50 /* EmailLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginViewController.swift; sourceTree = "<group>"; };
 		555951DE28879DB100B4BE91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		55599E3B2886362900C05E81 /* CustomedLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomedLoginButton.swift; sourceTree = "<group>"; };
 		55AA34B228854CB800C2D6D6 /* Puhaha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puhaha.entitlements; sourceTree = "<group>"; };
@@ -123,7 +121,6 @@
 			isa = PBXGroup;
 			children = (
 				551CD2DD28850A800037487D /* SignInViewController.swift */,
-				552EDFC5288794F00062DB50 /* EmailLoginViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -241,7 +238,6 @@
 				CE9F9661287FA66C00783324 /* ViewController.swift in Sources */,
 				A419810E288508EC00CCFDBA /* ForkTool.swift in Sources */,
 				CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */,
-				552EDFC6288794F00062DB50 /* EmailLoginViewController.swift in Sources */,
 				CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */,
 				A419810F288508EC00CCFDBA /* UIColor+Extension.swift in Sources */,
 				BF7F911728852FA5009D3809 /* CameraViewController.swift in Sources */,

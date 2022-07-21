@@ -32,21 +32,7 @@ class SignInViewController: UIViewController {
         label.numberOfLines = 0
         return label
     }()
-    
-    private let emailLoginButton: CustomedLoginButton = {
-        let button = CustomedLoginButton()
-        button.setImage(UIImage(systemName: "envelope.fill"), for: .normal)
-        button.tintColor = UIColor.black
-        button.backgroundColor = UIColor.white
-        button.setTitle("이메일로 가입하기", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
-        button.addTarget(self,
-                         action: #selector(goToEmailLoginViewController),
-                         for: .touchUpInside)
-        return button
-    }()
-    
+
     private let appleLoginButton: ASAuthorizationAppleIDButton = {
         let button = ASAuthorizationAppleIDButton(type: .default, style: .white)
         button.widthAnchor.constraint(equalToConstant: 338).isActive = true
@@ -61,21 +47,15 @@ class SignInViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemYellow
 
-        [titleLabel, guidingTextLabel, emailLoginButton, appleLoginButton].forEach {
+        [titleLabel, guidingTextLabel, appleLoginButton].forEach {
             view.addSubview($0)
         }
         configureConstraints()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        emailLoginButton.setInsets(forContentPadding: .zero, imageTitlePadding: 5)
-    }
-    
     private func configureConstraints() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         guidingTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        emailLoginButton.translatesAutoresizingMaskIntoConstraints = false
         appleLoginButton.translatesAutoresizingMaskIntoConstraints = false
         
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -84,12 +64,9 @@ class SignInViewController: UIViewController {
         guidingTextLabel.widthAnchor.constraint(equalToConstant: 250).isActive = true
         guidingTextLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         guidingTextLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30).isActive = true
-        
-        emailLoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        emailLoginButton.topAnchor.constraint(equalTo: guidingTextLabel.bottomAnchor, constant: 100).isActive = true
-        
+
         appleLoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        appleLoginButton.topAnchor.constraint(equalTo: emailLoginButton.bottomAnchor, constant: 22).isActive = true
+        appleLoginButton.topAnchor.constraint(equalTo: guidingTextLabel.bottomAnchor, constant: 100).isActive = true
     }
 }
 
@@ -97,14 +74,6 @@ extension SignInViewController {
     @objc func appleLoginButtonTapped() {
         startSignInWithAppleFlow()
     }
-}
-
-extension SignInViewController {
-    @objc fileprivate func goToEmailLoginViewController() {
-        let controller = EmailLoginViewController()
-        controller.modalPresentationStyle = .fullScreen
-        present(controller, animated: false, completion: nil)
-     }
 }
 
 // Apple Login 관련 코드
@@ -126,9 +95,7 @@ extension SignInViewController: ASAuthorizationControllerDelegate {
                 print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
                 return
             }
-            
             let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
-            
             Auth.auth().signIn(with: credential) { authResult, error in
                 if let error = error {
                     print("Error Apple sign in: %@", error)
@@ -197,25 +164,5 @@ extension SignInViewController {
 extension SignInViewController : ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
-    }
-}
-
-extension UIButton {
-    func setInsets(
-        forContentPadding contentPadding: UIEdgeInsets,
-        imageTitlePadding: CGFloat
-    ) {
-        self.contentEdgeInsets = UIEdgeInsets(
-            top: contentPadding.top,
-            left: contentPadding.left,
-            bottom: contentPadding.bottom,
-            right: contentPadding.right + imageTitlePadding
-        )
-        self.titleEdgeInsets = UIEdgeInsets(
-            top: 0,
-            left: imageTitlePadding,
-            bottom: 0,
-            right: -imageTitlePadding
-        )
     }
 }
