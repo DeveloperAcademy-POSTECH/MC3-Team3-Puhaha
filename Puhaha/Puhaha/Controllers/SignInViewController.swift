@@ -64,7 +64,7 @@ class SignInViewController: UIViewController {
         
         guidingTextLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.65).isActive = true
         guidingTextLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        guidingTextLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: view.bounds.height * 0.05).isActive = true
+        guidingTextLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: view.bounds.height * 0.02).isActive = true
 
         appleLoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         appleLoginButton.topAnchor.constraint(equalTo: guidingTextLabel.bottomAnchor, constant: view.bounds.height * 0.15).isActive = true
@@ -162,28 +162,31 @@ extension SignInViewController {
     }
 }
 
-extension SignInViewController : ASAuthorizationControllerPresentationContextProviding {
+extension SignInViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
     }
 }
 
 extension UILabel {
-    // label의 줄 간격을 조정하는 함수
     func setLineHeight(lineHeight: CGFloat) {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 1.0
         paragraphStyle.lineHeightMultiple = lineHeight
         paragraphStyle.alignment = self.textAlignment
 
-        let attrString = NSMutableAttributedString()
+        let mutableAttributedString = NSMutableAttributedString()
         if (self.attributedText != nil) {
-            attrString.append(self.attributedText!)
+            mutableAttributedString.append(self.attributedText ?? NSMutableAttributedString() )
         } else {
-            attrString.append(NSMutableAttributedString(string: self.text!))
-            attrString.addAttribute(NSAttributedString.Key.font, value: self.font, range: NSMakeRange(0, attrString.length))
+            mutableAttributedString.append(NSMutableAttributedString(string: self.text ?? ""))
+            mutableAttributedString.addAttribute(NSAttributedString.Key.font,
+                                          value: self.font,
+                                          range: NSMakeRange(0, mutableAttributedString.length))
         }
-        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
-        self.attributedText = attrString
+        mutableAttributedString.addAttribute(NSAttributedString.Key.paragraphStyle,
+                                      value: paragraphStyle,
+                                      range: NSMakeRange(0, mutableAttributedString.length))
+        self.attributedText = mutableAttributedString
     }
 }
