@@ -24,12 +24,13 @@ class SignInViewController: UIViewController {
     }()
     
     private let guidingTextLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "간편하게 로그인하고 다양한 서비스를 이용해보세요"
         label.font = .systemFont(ofSize: 22, weight: .regular)
         label.textAlignment = .center
         label.textColor = .black
-        label.numberOfLines = 0
+        label.numberOfLines = 2
+        label.setLineHeight(lineHeight: 1.52)
         return label
     }()
 
@@ -45,7 +46,7 @@ class SignInViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemYellow
+        view.backgroundColor = toolColors[3]
 
         [titleLabel, guidingTextLabel, appleLoginButton].forEach {
             view.addSubview($0)
@@ -59,14 +60,14 @@ class SignInViewController: UIViewController {
         appleLoginButton.translatesAutoresizingMaskIntoConstraints = false
         
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 250).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.3).isActive = true
         
-        guidingTextLabel.widthAnchor.constraint(equalToConstant: 250).isActive = true
+        guidingTextLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.65).isActive = true
         guidingTextLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        guidingTextLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30).isActive = true
+        guidingTextLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: view.bounds.height * 0.05).isActive = true
 
         appleLoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        appleLoginButton.topAnchor.constraint(equalTo: guidingTextLabel.bottomAnchor, constant: 100).isActive = true
+        appleLoginButton.topAnchor.constraint(equalTo: guidingTextLabel.bottomAnchor, constant: view.bounds.height * 0.15).isActive = true
     }
 }
 
@@ -164,5 +165,25 @@ extension SignInViewController {
 extension SignInViewController : ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
+    }
+}
+
+extension UILabel {
+    // label의 줄 간격을 조정하는 함수
+    func setLineHeight(lineHeight: CGFloat) {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 1.0
+        paragraphStyle.lineHeightMultiple = lineHeight
+        paragraphStyle.alignment = self.textAlignment
+
+        let attrString = NSMutableAttributedString()
+        if (self.attributedText != nil) {
+            attrString.append(self.attributedText!)
+        } else {
+            attrString.append(NSMutableAttributedString(string: self.text!))
+            attrString.addAttribute(NSAttributedString.Key.font, value: self.font, range: NSMakeRange(0, attrString.length))
+        }
+        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+        self.attributedText = attrString
     }
 }
