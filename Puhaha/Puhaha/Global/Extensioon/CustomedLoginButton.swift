@@ -10,9 +10,8 @@ import UIKit
 class CustomedLoginButton: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.backgroundColor = UIColor.clear
         self.layer.cornerRadius = 5.0
-        self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.black.cgColor        
+        self.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.05).isActive = true
+        self.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.8).isActive = true
     }
 }

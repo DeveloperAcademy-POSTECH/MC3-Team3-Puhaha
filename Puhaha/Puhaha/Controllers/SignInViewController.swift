@@ -17,40 +17,38 @@ class SignInViewController: UIViewController {
     
     private let titleLabel: UILabel = {
       let label = UILabel()
-      label.text = "🍚 밥 먹언?"
+      label.text = "밥 먹언?"
       label.textColor = .black
-      label.font = .systemFont(ofSize: 32, weight: .regular)
+      label.font = .systemFont(ofSize: 40, weight: .ultraLight)
       return label
     }()
     
-    private let emailLoginButton: CustomedLoginButton = {
-        let button = CustomedLoginButton()
-        button.setImage(UIImage(systemName: "envelope"), for: .normal)
-        button.tintColor = UIColor.black
-        button.setTitle("이메일로 가입하기", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        return button
+    private let guidingTextLabel: UILabel = {
+        let label = UILabel()
+        label.text = "간편하게 로그인하고 다양한 서비스를 이용해보세요"
+        label.font = .systemFont(ofSize: 22, weight: .regular)
+        label.textAlignment = .center
+        label.textColor = .black
+        label.numberOfLines = 2
+        label.setLineHeight(lineHeight: 1.52)
+        return label
     }()
-    
-    private let appleLoginButton: UIButton = {
-        let button = CustomedLoginButton()
-        button.setImage(UIImage(systemName: "applelogo")?.withTintColor(.black), for: .normal)
-        button.tintColor = UIColor.black
-        button.setTitle("애플로 가입하기", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        
+
+    private let appleLoginButton: ASAuthorizationAppleIDButton = {
+        let button = ASAuthorizationAppleIDButton(type: .default, style: .white)
+        button.widthAnchor.constraint(equalToConstant: 338).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 57).isActive = true
         button.addTarget(self,
                          action: #selector(appleLoginButtonTapped),
                          for: .touchUpInside)
-                         // 눌렸을 때 함수를 인식하도록
         return button
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white        
+        view.backgroundColor = toolColors[3]
 
-        [titleLabel, emailLoginButton, appleLoginButton].forEach {
+        [titleLabel, guidingTextLabel, appleLoginButton].forEach {
             view.addSubview($0)
         }
         configureConstraints()
@@ -58,17 +56,18 @@ class SignInViewController: UIViewController {
     
     private func configureConstraints() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        emailLoginButton.translatesAutoresizingMaskIntoConstraints = false
+        guidingTextLabel.translatesAutoresizingMaskIntoConstraints = false
         appleLoginButton.translatesAutoresizingMaskIntoConstraints = false
         
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 380).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.3).isActive = true
         
-        emailLoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        emailLoginButton.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 100).isActive = true
-        
+        guidingTextLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.65).isActive = true
+        guidingTextLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        guidingTextLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: view.bounds.height * 0.02).isActive = true
+
         appleLoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        appleLoginButton.topAnchor.constraint(equalTo: emailLoginButton.bottomAnchor, constant: 50).isActive = true
+        appleLoginButton.topAnchor.constraint(equalTo: guidingTextLabel.bottomAnchor, constant: view.bounds.height * 0.15).isActive = true
     }
 }
 
@@ -97,9 +96,7 @@ extension SignInViewController: ASAuthorizationControllerDelegate {
                 print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
                 return
             }
-            
             let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
-            
             Auth.auth().signIn(with: credential) { authResult, error in
                 if let error = error {
                     print("Error Apple sign in: %@", error)
@@ -165,8 +162,31 @@ extension SignInViewController {
     }
 }
 
-extension SignInViewController : ASAuthorizationControllerPresentationContextProviding {
+extension SignInViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
+    }
+}
+
+extension UILabel {
+    func setLineHeight(lineHeight: CGFloat) {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 1.0
+        paragraphStyle.lineHeightMultiple = lineHeight
+        paragraphStyle.alignment = self.textAlignment
+
+        let mutableAttributedString = NSMutableAttributedString()
+        if (self.attributedText != nil) {
+            mutableAttributedString.append(self.attributedText ?? NSMutableAttributedString() )
+        } else {
+            mutableAttributedString.append(NSMutableAttributedString(string: self.text ?? ""))
+            mutableAttributedString.addAttribute(NSAttributedString.Key.font,
+                                          value: self.font,
+                                          range: NSMakeRange(0, mutableAttributedString.length))
+        }
+        mutableAttributedString.addAttribute(NSAttributedString.Key.paragraphStyle,
+                                      value: paragraphStyle,
+                                      range: NSMakeRange(0, mutableAttributedString.length))
+        self.attributedText = mutableAttributedString
     }
 }
