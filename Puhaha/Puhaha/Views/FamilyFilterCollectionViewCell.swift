@@ -45,13 +45,15 @@ class FamilyFilterCollectionViewCell: UICollectionViewCell {
     }
     
     private func setConstraints() {
-        userIcon.topAnchor.constraint(equalTo: topAnchor, constant: 1).isActive = true
-        userIcon.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -1).isActive = true
-        userIcon.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 1).isActive = true
-        userIcon.trailingAnchor.constraint(equalTo: leadingAnchor, constant: 31).isActive = true
-        
-        familyNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 32 / 3).isActive = true
-        familyNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            userIcon.topAnchor.constraint(equalTo: topAnchor, constant: 1),
+            userIcon.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -1),
+            userIcon.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 1),
+            userIcon.trailingAnchor.constraint(equalTo: leadingAnchor, constant: 31),
+            
+            familyNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 32 / 3),
+            familyNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
     }
 }
 

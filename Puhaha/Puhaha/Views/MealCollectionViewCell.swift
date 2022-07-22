@@ -91,57 +91,32 @@ class MealCollectionViewCell: UICollectionViewCell {
         userNameLabel.text = meal.userName
         userIconImageView.image = meal.userIcon
         
-        if meal.tag[0].content != "" {
-            firstTagLabel.text = "#\(meal.tag[0].content)"
-            firstTagLabel.backgroundColor = meal.tag[0].tagColor
-        }
-        
-        if meal.tag[1].content != "" {
-            secondTagLabel.text = "#\(meal.tag[1].content)"
-            secondTagLabel.backgroundColor = meal.tag[1].tagColor
-        }
-        if meal.tag[2].content != "" {
-            thirdTagLabel.text = "#\(meal.tag[2].content)"
-            thirdTagLabel.backgroundColor = meal.tag[2].tagColor
-        }
+        firstTagLabel.setTextAndBackgroundColor(tag: meal.tag[0])
+        secondTagLabel.setTextAndBackgroundColor(tag: meal.tag[1])
+        thirdTagLabel.setTextAndBackgroundColor(tag: meal.tag[2])
     }
     
     private func setConstraints() {
-        mealImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        mealImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        mealImageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        mealImageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        
-        gradation.topAnchor.constraint(equalTo: topAnchor, constant: 221).isActive = true
-        gradation.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        gradation.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        gradation.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        
-        userNameLabel.topAnchor.constraint(equalTo: gradation.topAnchor, constant: 18).isActive = true
-        userNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18).isActive = true
-
-        userIconImageView.topAnchor.constraint(equalTo: userNameLabel.topAnchor).isActive = true
-        userIconImageView.leadingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -94).isActive = true
-        userIconImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -28).isActive = true
-        userIconImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -88).isActive = true
-        
-        tagStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 22).isActive = true
-        tagStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30).isActive = true
-    }
-}
-
-extension UIImageView {
-    func setTranparentGradientImage(startColor: UIColor, middleColor: UIColor, endColor: UIColor) {
-        let gradient: CAGradientLayer = {
-            let layout = CAGradientLayer()
-            layout.colors = [endColor.cgColor, startColor.cgColor, startColor.cgColor]
-            layout.frame = self.frame
-            layout.locations = [0.0, 0.25, 1.0]
-            layout.startPoint = CGPoint(x: 0.0, y: 0.0)
-            layout.endPoint = CGPoint(x: 0.0, y: 2.0)
+        NSLayoutConstraint.activate([
+            mealImageView.topAnchor.constraint(equalTo: topAnchor),
+            mealImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            mealImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            mealImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            return layout
-        }()
-        self.layer.insertSublayer(gradient, at: 1)
+            gradation.topAnchor.constraint(equalTo: topAnchor, constant: contentView.bounds.height / 2.49),
+            gradation.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            gradation.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            gradation.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            
+            userNameLabel.topAnchor.constraint(equalTo: gradation.bottomAnchor, constant: -(contentView.bounds.height / 3.34)),
+            userNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
+            
+            userIconImageView.centerYAnchor.constraint(equalTo: userNameLabel.centerYAnchor),
+            userIconImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18),
+            
+            tagStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            tagStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            tagStack.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: contentView.bounds.height / 17.67)
+        ])
     }
 }

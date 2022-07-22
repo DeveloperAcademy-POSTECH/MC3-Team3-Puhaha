@@ -28,8 +28,10 @@ class StatisticViewController: UIViewController {
     }()
     
     func setConstraints() {
-        mainLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        mainLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            mainLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            mainLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
 

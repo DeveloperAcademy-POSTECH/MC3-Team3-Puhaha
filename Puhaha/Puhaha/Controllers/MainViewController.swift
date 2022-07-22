@@ -91,30 +91,34 @@ class MainViewController: UIViewController {
     
     func setConstraints() {
         todayDateLabel.translatesAutoresizingMaskIntoConstraints = false
-        todayDateLabel.topAnchor.constraint(equalTo: super.view.topAnchor, constant: 59).isActive = true
-        todayDateLabel.leadingAnchor.constraint(equalTo: super.view.leadingAnchor, constant: 25).isActive = true
-        
         settingButton.translatesAutoresizingMaskIntoConstraints = false
-        settingButton.centerYAnchor.constraint(equalTo: todayDateLabel.centerYAnchor).isActive = true
-        settingButton.trailingAnchor.constraint(equalTo: super.view.trailingAnchor, constant: -16).isActive = true
-        
         plusButton.translatesAutoresizingMaskIntoConstraints = false
-        plusButton.centerYAnchor.constraint(equalTo: todayDateLabel.centerYAnchor).isActive = true
-        plusButton.trailingAnchor.constraint(equalTo: settingButton.leadingAnchor, constant: -15).isActive = true
-        
         tableLabel.translatesAutoresizingMaskIntoConstraints = false
-        tableLabel.topAnchor.constraint(equalTo: todayDateLabel.bottomAnchor, constant: 91).isActive = true
-        tableLabel.leadingAnchor.constraint(equalTo: super.view.leadingAnchor, constant: 25).isActive = true
         
-        mealCollectionView.topAnchor.constraint(equalTo: tableLabel.bottomAnchor).isActive = true
-        mealCollectionView.bottomAnchor.constraint(equalTo: super.view.bottomAnchor, constant: -130).isActive = true
-        mealCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        mealCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        
-        familyFilterCollectionView.topAnchor.constraint(equalTo: todayDateLabel.bottomAnchor, constant: 20).isActive = true
-        familyFilterCollectionView.bottomAnchor.constraint(equalTo: tableLabel.topAnchor, constant: -39).isActive = true
-        familyFilterCollectionView.leadingAnchor.constraint(equalTo: super.view.leadingAnchor).isActive = true
-        familyFilterCollectionView.trailingAnchor.constraint(equalTo: super.view.trailingAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            todayDateLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            todayDateLabel.leadingAnchor.constraint(equalTo: super.view.leadingAnchor, constant: 22),
+            
+            settingButton.centerYAnchor.constraint(equalTo: todayDateLabel.centerYAnchor),
+            settingButton.trailingAnchor.constraint(equalTo: super.view.trailingAnchor, constant: -22),
+            
+            plusButton.centerYAnchor.constraint(equalTo: todayDateLabel.centerYAnchor),
+            plusButton.trailingAnchor.constraint(equalTo: settingButton.leadingAnchor, constant: -20),
+            
+            tableLabel.topAnchor.constraint(equalTo: todayDateLabel.bottomAnchor, constant: 91),
+            tableLabel.leadingAnchor.constraint(equalTo: super.view.leadingAnchor, constant: 25),
+            
+            mealCollectionView.topAnchor.constraint(equalTo: tableLabel.bottomAnchor),
+            mealCollectionView.bottomAnchor.constraint(equalTo: super.view.bottomAnchor, constant: -(UIScreen.main
+                .bounds.height / 6.48)),
+            mealCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            mealCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            
+            familyFilterCollectionView.topAnchor.constraint(equalTo: todayDateLabel.bottomAnchor, constant: 20),
+            familyFilterCollectionView.bottomAnchor.constraint(equalTo: tableLabel.topAnchor, constant: -39),
+            familyFilterCollectionView.leadingAnchor.constraint(equalTo: super.view.leadingAnchor),
+            familyFilterCollectionView.trailingAnchor.constraint(equalTo: super.view.trailingAnchor)
+        ])
     }
 
 }
