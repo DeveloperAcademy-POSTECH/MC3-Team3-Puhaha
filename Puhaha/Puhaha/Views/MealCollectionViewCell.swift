@@ -30,6 +30,7 @@ class MealCollectionViewCell: UICollectionViewCell {
         var imageView: UIImageView = UIImageView()
         imageView.layer.zPosition = -1
         imageView.contentMode = .scaleAspectFill
+        imageView.sizeToFit()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()

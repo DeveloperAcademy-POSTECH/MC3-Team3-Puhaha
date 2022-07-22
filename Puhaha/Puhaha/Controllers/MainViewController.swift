@@ -40,7 +40,7 @@ class MainViewController: UIViewController {
     private var plusButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "plus.circle"), for: .normal)
-        button.sizeThatFits(CGSize(width: 27, height: 27))
+        button.sizeThatFits(CGSize(width: 28, height: 28))
         button.tintColor = .black
         return button
     }()
@@ -48,7 +48,7 @@ class MainViewController: UIViewController {
     private var settingButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "gearshape"), for: .normal)
-        button.sizeThatFits(CGSize(width: 27, height: 27))
+        button.sizeThatFits(CGSize(width: 28, height: 28))
         button.tintColor = .black
         return button
     }()
@@ -68,7 +68,7 @@ class MainViewController: UIViewController {
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(MealCollectionViewCell.self, forCellWithReuseIdentifier: "MealCollectionViewCell")
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 32, bottom: 0, right: 32)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 22, bottom: 0, right: 22)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
         
@@ -79,10 +79,11 @@ class MainViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         
         layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 16
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(FamilyFilterCollectionViewCell.self, forCellWithReuseIdentifier: "FamilyFilterCollectionViewCell")
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 25)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 22, bottom: 0, right: 22)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
         
@@ -163,9 +164,9 @@ extension MainViewController: UICollectionViewDataSource {
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == mealCollectionView {
-            return CGSize(width: 209, height: 424)
+            return CGSize(width: UIScreen.main.bounds.width / 1.86, height: UIScreen.main.bounds.height / 2)
         } else {
-            return CGSize(width: 91, height: 32)
+            return CGSize(width: 50 + 15 * familyMembers[indexPath.row].name.count, height: 32)
         }
     }
 }
