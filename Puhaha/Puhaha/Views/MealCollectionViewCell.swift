@@ -8,6 +8,7 @@
 import UIKit
 
 class MealCollectionViewCell: UICollectionViewCell {
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -51,31 +52,15 @@ class MealCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    var firstTagLabel: UILabel = {
-        var label: UILabel = UILabel()
-        label.textColor = .white
-        label.layer.cornerRadius = 20
-        return label
-    }()
-    var secondTagLabel: UILabel = {
-        var label: UILabel = UILabel()
-        label.textColor = .white
-        label.layer.cornerRadius = 20
-        return label
-    }()
-    var thirdTagLabel: UILabel = {
-        var label: UILabel = UILabel()
-        label.textColor = .white
-        label.layer.cornerRadius = 20
-        return label
-    }()
+    var firstTagLabel = TagLabel()
+    var secondTagLabel = TagLabel()
+    var thirdTagLabel = TagLabel()
     
     var tagStack: UIStackView = {
         var stackView: UIStackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 6
         stackView.alignment = .fill
-        stackView.distribution = .equalSpacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
