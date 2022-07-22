@@ -81,8 +81,8 @@ class MealCollectionViewCell: UICollectionViewCell {
     }()
     
     var gradation: UIImageView = {
-        var imageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 209, height: 254))
-        imageView.setTranparentGradientImage(startColor: UIColor(named: "GradientStartColor")!, middleColor: UIColor(named: "GradientMiddleColor")!, endColor: UIColor(named: "tranparent")!)
+        var imageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width / 1.86, height: UIScreen.main.bounds.height / 3.32))
+        imageView.image = UIImage(named: "GradientImage")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
