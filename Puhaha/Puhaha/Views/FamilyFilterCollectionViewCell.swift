@@ -42,6 +42,11 @@ class FamilyFilterCollectionViewCell: UICollectionViewCell {
     func configure(with family: Family) {
         userIcon.image = family.userIcon
         familyNameLabel.text = family.name
+        if family.isSelected {
+            backgroundColor = UIColor(named: "MainColor")
+        } else {
+            backgroundColor = UIColor(named: "FilterBackgroundUnselectedLightGray")
+        }
     }
     
     private func setConstraints() {
