@@ -141,7 +141,7 @@ extension MainViewController: UICollectionViewDataSource {
             cell.layer.masksToBounds = true
             
             let meal = self.meals[indexPath.row]
-            cell.configure(with: meal)
+            cell.configureMealCard(with: meal)
             
             return cell
         } else {

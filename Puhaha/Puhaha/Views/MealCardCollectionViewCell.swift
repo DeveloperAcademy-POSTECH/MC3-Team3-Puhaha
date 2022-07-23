@@ -62,7 +62,7 @@ class MealCardCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    func configure(with meal: Meal) {
+    func configureMealCard(with meal: Meal) {
         mealImageView.image = meal.mealImage
         userNameLabel.text = meal.userName
         userIconImageView.image = meal.userIcon
