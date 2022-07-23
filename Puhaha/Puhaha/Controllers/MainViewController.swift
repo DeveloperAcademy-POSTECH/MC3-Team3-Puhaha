@@ -15,13 +15,13 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        [todayDateLabel, plusButton, settingButton, tableLabel, mealCollectionView, familyFilterCollectionView].forEach {
+        [todayDateLabel, plusButton, settingButton, tableLabel, mealCardCollectionView, familyFilterCollectionView].forEach {
             view.addSubview($0)
         }
         
         setConstraints()
-        mealCollectionView.delegate = self
-        mealCollectionView.dataSource = self
+        mealCardCollectionView.delegate = self
+        mealCardCollectionView.dataSource = self
         
         familyFilterCollectionView.delegate = self
         familyFilterCollectionView.dataSource = self
@@ -60,16 +60,15 @@ class MainViewController: UIViewController {
         return label
     }()
     
-    private var mealCollectionView: UICollectionView = {
+    private var mealCardCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 32
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(MealCollectionViewCell.self, forCellWithReuseIdentifier: "MealCollectionViewCell")
+        collectionView.register(MealCardCollectionViewCell.self, forCellWithReuseIdentifier: MealCardCollectionViewCell.identifier)
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 22, bottom: 0, right: 22)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
         
         return collectionView
@@ -82,9 +81,8 @@ class MainViewController: UIViewController {
         layout.minimumLineSpacing = 16
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(FamilyFilterCollectionViewCell.self, forCellWithReuseIdentifier: "FamilyFilterCollectionViewCell")
+        collectionView.register(FamilyFilterCollectionViewCell.self, forCellWithReuseIdentifier: FamilyFilterCollectionViewCell.identifier)
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 22, bottom: 0, right: 22)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
         
         return collectionView
@@ -95,6 +93,9 @@ class MainViewController: UIViewController {
         settingButton.translatesAutoresizingMaskIntoConstraints = false
         plusButton.translatesAutoresizingMaskIntoConstraints = false
         tableLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        mealCardCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        familyFilterCollectionView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             todayDateLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -109,11 +110,11 @@ class MainViewController: UIViewController {
             tableLabel.topAnchor.constraint(equalTo: todayDateLabel.bottomAnchor, constant: 91),
             tableLabel.leadingAnchor.constraint(equalTo: super.view.leadingAnchor, constant: 25),
             
-            mealCollectionView.topAnchor.constraint(equalTo: tableLabel.bottomAnchor),
-            mealCollectionView.bottomAnchor.constraint(equalTo: super.view.bottomAnchor, constant: -(UIScreen.main
+            mealCardCollectionView.topAnchor.constraint(equalTo: tableLabel.bottomAnchor),
+            mealCardCollectionView.bottomAnchor.constraint(equalTo: super.view.bottomAnchor, constant: -(UIScreen.main
                 .bounds.height / 6.48)),
-            mealCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            mealCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            mealCardCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            mealCardCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             
             familyFilterCollectionView.topAnchor.constraint(equalTo: todayDateLabel.bottomAnchor, constant: 20),
             familyFilterCollectionView.bottomAnchor.constraint(equalTo: tableLabel.topAnchor, constant: -39),
@@ -126,7 +127,7 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == mealCollectionView {
+        if collectionView == mealCardCollectionView {
             return meals.count
         } else {
             return familyMembers.count
@@ -134,8 +135,8 @@ extension MainViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == mealCollectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MealCollectionViewCell", for: indexPath) as? MealCollectionViewCell else { return UICollectionViewCell() }
+        if collectionView == mealCardCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MealCardCollectionViewCell.identifier, for: indexPath) as? MealCardCollectionViewCell else { return UICollectionViewCell() }
             cell.layer.cornerRadius = 33
             cell.layer.masksToBounds = true
             
@@ -144,22 +145,21 @@ extension MainViewController: UICollectionViewDataSource {
             
             return cell
         } else {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FamilyFilterCollectionViewCell", for: indexPath) as? FamilyFilterCollectionViewCell else { return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FamilyFilterCollectionViewCell.identifier, for: indexPath) as? FamilyFilterCollectionViewCell else { return UICollectionViewCell() }
             cell.layer.cornerRadius = 16
             cell.layer.masksToBounds = true
             
             let family = self.familyMembers[indexPath.row]
-            cell.configure(with: family)
+            cell.configureFilterCell(with: family)
             
             return cell
         }
-        
     }
 }
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == mealCollectionView {
+        if collectionView == mealCardCollectionView {
             return CGSize(width: UIScreen.main.bounds.width / 1.86, height: UIScreen.main.bounds.height / 2)
         } else {
             return CGSize(width: 50 + 15 * familyMembers[indexPath.row].name.count, height: 32)

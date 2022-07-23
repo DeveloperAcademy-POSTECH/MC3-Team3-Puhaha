@@ -1,5 +1,5 @@
 //
-//  MealCollectionViewCell.swift
+//  MealCardCollectionViewCell.swift
 //  Puhaha
 //
 //  Created by JiwKang on 2022/07/19.
@@ -7,14 +7,11 @@
 
 import UIKit
 
-class MealCollectionViewCell: UICollectionViewCell {
+class MealCardCollectionViewCell: UICollectionViewCell {
+    static let identifier: String = "MealCardCollectionViewCell"
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        [firstTagLabel, secondTagLabel, thirdTagLabel].forEach {
-            tagStack.addArrangedSubview($0)
-        }
         
         [gradation, mealImageView, userNameLabel, userIconImageView, tagStack].forEach {
             addSubview($0)
@@ -32,7 +29,6 @@ class MealCollectionViewCell: UICollectionViewCell {
         imageView.layer.zPosition = -1
         imageView.contentMode = .scaleAspectFill
         imageView.sizeToFit()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -40,7 +36,6 @@ class MealCollectionViewCell: UICollectionViewCell {
         var label: UILabel = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 40)
         label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -48,27 +43,22 @@ class MealCollectionViewCell: UICollectionViewCell {
         var imageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 48, height: 48))
         imageView.contentMode = .scaleAspectFit
         imageView.sizeToFit()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    var firstTagLabel = TagLabel()
-    var secondTagLabel = TagLabel()
-    var thirdTagLabel = TagLabel()
+    var tagLabels: [TagLabel] = []
     
     var tagStack: UIStackView = {
         var stackView: UIStackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 6
         stackView.alignment = .fill
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
     var gradation: UIImageView = {
         var imageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width / 1.86, height: UIScreen.main.bounds.height / 3.32))
         imageView.image = UIImage(named: "GradientImage")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -77,12 +67,24 @@ class MealCollectionViewCell: UICollectionViewCell {
         userNameLabel.text = meal.userName
         userIconImageView.image = meal.userIcon
         
-        firstTagLabel.setTextAndBackgroundColor(tag: meal.tag[0])
-        secondTagLabel.setTextAndBackgroundColor(tag: meal.tag[1])
-        thirdTagLabel.setTextAndBackgroundColor(tag: meal.tag[2])
+        for tag in meal.tags {
+            let tagLabel = TagLabel()
+            tagLabel.setTextAndBackgroundColor(tag: tag)
+            tagLabels.append(tagLabel)
+        }
+        
+        tagLabels.forEach {
+            tagStack.addArrangedSubview($0)
+        }
     }
     
     private func setConstraints() {
+        mealImageView.translatesAutoresizingMaskIntoConstraints = false
+        userNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        userIconImageView.translatesAutoresizingMaskIntoConstraints = false
+        tagStack.translatesAutoresizingMaskIntoConstraints = false
+        gradation.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             mealImageView.topAnchor.constraint(equalTo: topAnchor),
             mealImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
