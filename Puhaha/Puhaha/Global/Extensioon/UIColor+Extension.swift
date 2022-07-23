@@ -40,27 +40,27 @@ extension UIColor {
 // MARK: 임의로 넣은 값이라 수정 필요
 extension UIColor {
 
-    static var bobRed: UIColor {
+    static var customRed: UIColor {
         return UIColor(rgb: 0xE86334)
         // 다홍색
     }
     
-    static var bobPurple: UIColor {
+    static var customPurple: UIColor {
         return UIColor(rgb: 0x7B65FF)
         // 보라색
     }
     
-    static var bobBlue: UIColor {
+    static var customBlue: UIColor {
         return UIColor(rgb: 0x6A94D1)
         // 파란색
     }
     
-    static var bobYellow: UIColor {
+    static var customYellow: UIColor {
         return UIColor(rgb: 0xFFCC1E)
         // 노란색
     }
     
-    static var bobBlack: UIColor {
+    static var customBlack: UIColor {
         return UIColor(rgb: 0x2C213A)
         // 검은색
     }
@@ -68,6 +68,6 @@ extension UIColor {
 
 #if DEBUG
 
-let toolColors = [UIColor.bobRed, UIColor.bobBlue, UIColor.bobYellow, UIColor.bobBlack, UIColor.bobPurple]
+let toolColors = [UIColor.customRed, UIColor.customBlue, UIColor.customYellow, UIColor.customBlack, UIColor.customPurple]
 
 #endif
