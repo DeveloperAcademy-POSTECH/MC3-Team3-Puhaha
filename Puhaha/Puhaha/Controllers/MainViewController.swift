@@ -9,7 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     var meals: [Meal] = Meal.sampleMeals
-    var familyMembers: [Family] = Family.sampleFamilyMemebers
+    var familyMembers: [Family] = Family.sampleFamilyMembers
     
     override func viewDidLoad() {
         super.viewDidLoad()

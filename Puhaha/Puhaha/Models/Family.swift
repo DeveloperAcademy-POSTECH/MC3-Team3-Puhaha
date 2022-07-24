@@ -15,7 +15,7 @@ struct Family {
 
 #if DEBUG
 extension Family {
-    static var sampleFamilyMemebers = [
+    static var sampleFamilyMembers = [
         Family(name: "모두", userIcon: UIImage(named: "IconEveryoneFilter")!, isSelected: true),
         Family(name: "콜리", userIcon: UIImage(named: "Colli")!),
         Family(name: "키", userIcon: UIImage(named: "Key")!),
