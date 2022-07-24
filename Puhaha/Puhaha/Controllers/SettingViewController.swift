@@ -39,6 +39,18 @@ class SettingViewController: UIViewController {
         
         view.addSubview(self.tableView)
     }
+    
+    @objc func showAccountSetting(sender: UIButton) {
+        let accountSettingViewController = UINavigationController(rootViewController: AccountSettingViewController())
+        self.navigationController?.pushViewController(accountSettingViewController, animated: true)
+    }
+}
+
+class TableViewCell: UITableViewCell {
+    let cellButton: UIBarButtonItem = {
+        let button = UIBarButtonItem()
+        return button
+    }()
 }
 
 extension SettingViewController: UITableViewDelegate {
@@ -60,6 +72,7 @@ extension SettingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sectionTableViewCell", for: indexPath)
+        
         if indexPath.section == 0 {
             cell.textLabel?.text = "\(myInfoSettingList[indexPath.row])"
         } else if indexPath.section == 1 {
@@ -68,5 +81,15 @@ extension SettingViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "sectionTableViewCell", for: indexPath) as? TableViewCell
+        else { fatalError("Unable to create cell") }
+        
+        if cell.textLabel?.text == "계정 설정" {
+            cell.cellButton.target = self
+            cell.cellButton.action = #selector(showAccountSetting)
+        }
     }
 }
