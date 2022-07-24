@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "icon-tab-bar-statistic.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
