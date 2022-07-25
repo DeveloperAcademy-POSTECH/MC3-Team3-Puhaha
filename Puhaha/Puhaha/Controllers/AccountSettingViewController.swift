@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
-class AccountSettingViewController: UIViewController {
+class AccountSettingViewController: UIViewController, UITableViewDelegate {
     private let SettingSections: [String] = ["이름 변경", "로그아웃", "탈퇴하기"]
     
     lazy var tableView: UITableView = {
@@ -27,22 +29,16 @@ class AccountSettingViewController: UIViewController {
     }()
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return SettingSections[section]
+        return String("")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         
+        self.navigationItem.title = "계정 설정"
         view.addSubview(self.tableView)
     }
-}
-
-extension AccountSettingViewController: UITableViewDelegate {
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-//    section 이름 없애는 과정 필요
 }
 
 extension AccountSettingViewController: UITableViewDataSource {
@@ -54,5 +50,22 @@ extension AccountSettingViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sectionTableViewCell", for: indexPath)
         cell.textLabel?.text = "\(SettingSections[indexPath.row])"
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        
+        if cell?.textLabel?.text == "로그아웃" {
+            let firebaseAuth = Auth.auth()
+
+            do {
+                try firebaseAuth.signOut()
+                self.navigationController?.popToRootViewController(animated: true)
+                // main으로 돌아가도록 재설정
+                
+            } catch let signOutError as NSError {
+                print("ERROR: signout \(signOutError.localizedDescription)")
+            }
+        }
     }
 }
