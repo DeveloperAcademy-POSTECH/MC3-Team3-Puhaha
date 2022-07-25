@@ -9,54 +9,23 @@ import Foundation
 import UIKit
 
 enum Tool {
-    case Fork       // 포크
     case Spoon      // 숟가락
+    case Fork       // 포크
     case Whisk      // 거품기
     case Spatula    // 뒤집개
 }
 
-class PokeTool {
+struct ForkTool {
     var tool: Tool
     var color: UIColor
-    
-    init(tool: Tool, color: UIColor) {
-        self.tool = tool
-        self.color = color
-    }
-    
-    func toolToString() -> String {
-        switch tool {
-        case Tool.Fork:
-            return "Fork"
-        case Tool.Spoon:
-            return "Spoon"
-        case Tool.Whisk:
-            return "Whisk"
-        default:
-            return "Spatula"
-        }
-    }
-    
-    func toolToInt() -> Int {
-        switch tool {
-        case Tool.Fork:
-            return 0
-        case Tool.Spoon:
-            return 1
-        case Tool.Whisk:
-            return 2
-        default:
-            return 3
-        }
-    }
 }
 
 #if DEBUG
-// 더미데이터입니다 빠밤
-extension PokeTool {
-    static var dummyData = PokeTool(tool: Tool.Fork, color: UIColor.customBlue)
+extension ForkTool {
+    static var dummyData: [ForkTool] = [
+        ForkTool(tool: Tool.Fork, color: UIColor(rgb: 0x6A94D1)),
+        ForkTool(tool: Tool.Fork, color: UIColor(rgb: 0x6A94D1)),
+        ForkTool(tool: Tool.Fork, color: UIColor(rgb: 0x6A94D1))
+    ]
 }
-
-let toolImages = [UIImage(systemName: "cloud"), UIImage(systemName: "bookmark"), UIImage(systemName: "heart"), UIImage(systemName: "message")]
-
 #endif
