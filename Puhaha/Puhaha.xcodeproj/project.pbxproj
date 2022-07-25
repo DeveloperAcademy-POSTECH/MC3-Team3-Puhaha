@@ -15,13 +15,23 @@
 		55599E3C2886362900C05E81 /* CustomedLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55599E3B2886362900C05E81 /* CustomedLoginButton.swift */; };
 		A419810E288508EC00CCFDBA /* ForkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A419810C288508EC00CCFDBA /* ForkTool.swift */; };
 		A419810F288508EC00CCFDBA /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A419810D288508EC00CCFDBA /* UIColor+Extension.swift */; };
-		BF7F911728852FA5009D3809 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F911628852FA5009D3809 /* CameraViewController.swift */; };
 		BF7F91192886530A009D3809 /* ActionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F91182886530A009D3809 /* ActionSheetView.swift */; };
+		CE46B5702888DB3D0074DEF0 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE46B56F2888DB3D0074DEF0 /* TagLabel.swift */; };
+		CE558B1528852DF800E98909 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE558B1428852DF800E98909 /* Tag.swift */; };
+		CE558B1728852DFB00E98909 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE558B1628852DFB00E98909 /* Meal.swift */; };
+		CE558B192885304500E98909 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE558B182885304500E98909 /* MainViewController.swift */; };
+		CE558B1D288530BC00E98909 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE558B1C288530BC00E98909 /* Date+Today.swift */; };
+		CE73297D28865C8800CA87F1 /* MealCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73297C28865C8800CA87F1 /* MealCardCollectionViewCell.swift */; };
+		CE73297F28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73297E28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift */; };
+		CE73298128869FA300CA87F1 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73298028869FA300CA87F1 /* Family.swift */; };
+		CE9D233B28877E1F00D53332 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D233A28877E1F00D53332 /* MainTabViewController.swift */; };
+		CE9D233D28877F7100D53332 /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D233C28877F7100D53332 /* StatisticViewController.swift */; };
 		CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F965C287FA66C00783324 /* AppDelegate.swift */; };
 		CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F965E287FA66C00783324 /* SceneDelegate.swift */; };
 		CE9F9661287FA66C00783324 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F9660287FA66C00783324 /* ViewController.swift */; };
 		CE9F9666287FA66F00783324 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9F9665287FA66F00783324 /* Assets.xcassets */; };
 		CE9F9674287FA8A600783324 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE9F9673287FA8A600783324 /* .swiftlint.yml */; };
+		CEC362D8288ACDE40037CBCE /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC362D7288ACDE40037CBCE /* CameraViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,8 +41,17 @@
 		55AA34B228854CB800C2D6D6 /* Puhaha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puhaha.entitlements; sourceTree = "<group>"; };
 		A419810C288508EC00CCFDBA /* ForkTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForkTool.swift; sourceTree = "<group>"; };
 		A419810D288508EC00CCFDBA /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		BF7F911628852FA5009D3809 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		BF7F91182886530A009D3809 /* ActionSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetView.swift; sourceTree = "<group>"; };
+		CE46B56F2888DB3D0074DEF0 /* TagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLabel.swift; sourceTree = "<group>"; };
+		CE558B1428852DF800E98909 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		CE558B1628852DFB00E98909 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		CE558B182885304500E98909 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		CE558B1C288530BC00E98909 /* Date+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Today.swift"; sourceTree = "<group>"; };
+		CE73297C28865C8800CA87F1 /* MealCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		CE73297E28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyFilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		CE73298028869FA300CA87F1 /* Family.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Family.swift; sourceTree = "<group>"; };
+		CE9D233A28877E1F00D53332 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
+		CE9D233C28877F7100D53332 /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
 		CE9F9659287FA66C00783324 /* Puhaha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puhaha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9F965C287FA66C00783324 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9F965E287FA66C00783324 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +59,7 @@
 		CE9F9665287FA66F00783324 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE9F966A287FA66F00783324 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE9F9673287FA8A600783324 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		CEC362D7288ACDE40037CBCE /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +79,7 @@
 		A4198110288508FA00CCFDBA /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				CE46B56E2888DB230074DEF0 /* UIViews */,
 				A41981112885090300CCFDBA /* Extensioon */,
 			);
 			path = Global;
@@ -68,9 +89,18 @@
 			isa = PBXGroup;
 			children = (
 				A419810D288508EC00CCFDBA /* UIColor+Extension.swift */,
+				CE558B1C288530BC00E98909 /* Date+Today.swift */,
 				55599E3B2886362900C05E81 /* CustomedLoginButton.swift */,
 			);
 			path = Extensioon;
+			sourceTree = "<group>";
+		};
+		CE46B56E2888DB230074DEF0 /* UIViews */ = {
+			isa = PBXGroup;
+			children = (
+				CE46B56F2888DB3D0074DEF0 /* TagLabel.swift */,
+			);
+			path = UIViews;
 			sourceTree = "<group>";
 		};
 		CE9F9650287FA66C00783324 = {
@@ -111,7 +141,8 @@
 		CE9F9670287FA67B00783324 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				BF7F911628852FA5009D3809 /* CameraViewController.swift */,
+				CE73297C28865C8800CA87F1 /* MealCardCollectionViewCell.swift */,
+				CE73297E28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift */,
 				BF7F91182886530A009D3809 /* ActionSheetView.swift */,
 			);
 			path = Views;
@@ -120,7 +151,11 @@
 		CE9F9671287FA68C00783324 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CEC362D7288ACDE40037CBCE /* CameraViewController.swift */,
 				551CD2DD28850A800037487D /* SignInViewController.swift */,
+				CE558B182885304500E98909 /* MainViewController.swift */,
+				CE9D233A28877E1F00D53332 /* MainTabViewController.swift */,
+				CE9D233C28877F7100D53332 /* StatisticViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -129,6 +164,9 @@
 			isa = PBXGroup;
 			children = (
 				A419810C288508EC00CCFDBA /* ForkTool.swift */,
+				CE558B1428852DF800E98909 /* Tag.swift */,
+				CE558B1628852DFB00E98909 /* Meal.swift */,
+				CE73298028869FA300CA87F1 /* Family.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -235,13 +273,23 @@
 			files = (
 				55599E3C2886362900C05E81 /* CustomedLoginButton.swift in Sources */,
 				551CD2DE28850A800037487D /* SignInViewController.swift in Sources */,
+				CE73297D28865C8800CA87F1 /* MealCardCollectionViewCell.swift in Sources */,
+				CE46B5702888DB3D0074DEF0 /* TagLabel.swift in Sources */,
+				CE558B1528852DF800E98909 /* Tag.swift in Sources */,
 				CE9F9661287FA66C00783324 /* ViewController.swift in Sources */,
+				CE9D233D28877F7100D53332 /* StatisticViewController.swift in Sources */,
+				CE558B1728852DFB00E98909 /* Meal.swift in Sources */,
+				CE558B1D288530BC00E98909 /* Date+Today.swift in Sources */,
+				CE9D233B28877E1F00D53332 /* MainTabViewController.swift in Sources */,
 				A419810E288508EC00CCFDBA /* ForkTool.swift in Sources */,
 				CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */,
 				CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */,
 				A419810F288508EC00CCFDBA /* UIColor+Extension.swift in Sources */,
-				BF7F911728852FA5009D3809 /* CameraViewController.swift in Sources */,
 				BF7F91192886530A009D3809 /* ActionSheetView.swift in Sources */,
+				CE73298128869FA300CA87F1 /* Family.swift in Sources */,
+				CEC362D8288ACDE40037CBCE /* CameraViewController.swift in Sources */,
+				CE558B192885304500E98909 /* MainViewController.swift in Sources */,
+				CE73297F28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,9 +418,10 @@
 				CODE_SIGN_ENTITLEMENTS = Puhaha/Puhaha.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NHPUW6MZCU;
+				DEVELOPMENT_TEAM = 744MUUC77P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Puhaha/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 사용권한을 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -382,7 +431,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.anjian.Puhaha;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anjian.mc3.puhaha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -398,9 +447,10 @@
 				CODE_SIGN_ENTITLEMENTS = Puhaha/Puhaha.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D9CAJN27UH;
+				DEVELOPMENT_TEAM = 744MUUC77P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Puhaha/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 사용권한을 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -410,7 +460,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.anjian.Puhaha;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anjian.mc3.puhaha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
