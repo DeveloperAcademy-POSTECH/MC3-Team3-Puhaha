@@ -9,7 +9,7 @@ import UIKit
 
 class SettingViewController: UIViewController {
     
-    private let SettingSections: [String] = ["내 정보 편집", "그룹원 관리"]
+    private let settingSections: [String] = ["내 정보 편집", "그룹원 관리"]
     private let myInfoSettingList: [String] = ["계정 설정", "도구 편집"]
     private let familySettingList: [String] = ["식구 추가"]
     
@@ -24,25 +24,22 @@ class SettingViewController: UIViewController {
                                                                height: displayHeight - barHeight))
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "sectionTableViewCell")
+        
         tableView.dataSource = self
         tableView.delegate = self
         return tableView
     }()
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return SettingSections[section]
+        return settingSections[section]
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         
+        self.navigationItem.title = "설정"
         view.addSubview(self.tableView)
-    }
-    
-    @objc func showAccountSetting(sender: UIButton) {
-        let accountSettingViewController = UINavigationController(rootViewController: AccountSettingViewController())
-        self.navigationController?.pushViewController(accountSettingViewController, animated: true)
     }
 }
 
@@ -55,7 +52,7 @@ class TableViewCell: UITableViewCell {
 
 extension SettingViewController: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return SettingSections.count
+        return settingSections.count
     }
 }
 
@@ -69,10 +66,10 @@ extension SettingViewController: UITableViewDataSource {
             return 0
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sectionTableViewCell", for: indexPath)
-        
+
         if indexPath.section == 0 {
             cell.textLabel?.text = "\(myInfoSettingList[indexPath.row])"
         } else if indexPath.section == 1 {
@@ -82,14 +79,13 @@ extension SettingViewController: UITableViewDataSource {
         }
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "sectionTableViewCell", for: indexPath) as? TableViewCell
-        else { fatalError("Unable to create cell") }
+        let cell = tableView.cellForRow(at: indexPath)
         
-        if cell.textLabel?.text == "계정 설정" {
-            cell.cellButton.target = self
-            cell.cellButton.action = #selector(showAccountSetting)
+        if cell?.textLabel?.text == "계정 설정" {
+            let accountSettingViewController = AccountSettingViewController()
+            self.navigationController?.pushViewController(accountSettingViewController, animated: true)
         }
     }
 }
