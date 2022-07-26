@@ -246,7 +246,7 @@ class PokeToolCustomizingViewController: UIViewController {
         configureConstraints()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDone))
-
+        
     }
     
     @objc func didTapDone() {
@@ -255,29 +255,28 @@ class PokeToolCustomizingViewController: UIViewController {
     }
     
     private func configureConstraints() {
-        
-        var constraints = [NSLayoutConstraint]()
-        
-        constraints.append(forkCustomView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor))
-        constraints.append(forkCustomView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 12))
-        constraints.append(forkCustomView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -12))
-        constraints.append(forkCustomView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor))
-        
-        constraints.append(sceneView.widthAnchor.constraint(equalTo: forkCustomView.widthAnchor, multiplier: 1))
-        constraints.append(sceneView.heightAnchor.constraint(equalTo: forkCustomView.heightAnchor, multiplier: 0.5))
-        constraints.append(sceneView.topAnchor.constraint(equalTo: forkCustomView.topAnchor))
-        
-        constraints.append(colorButtonsStackView.topAnchor.constraint(equalTo: styleButtonsStackView.bottomAnchor, constant: 32))
-        constraints.append(colorButtonsStackView.leadingAnchor.constraint(equalTo: forkCustomView.leadingAnchor))
-        
-        constraints.append(colorButtonsStackView.widthAnchor.constraint(equalTo: forkCustomView.widthAnchor, multiplier: 1))
-        constraints.append(colorButtonsStackView.heightAnchor.constraint(equalTo: forkCustomView.heightAnchor, multiplier: 0.2))
-        
-        constraints.append(styleButtonsStackView.topAnchor.constraint(equalTo: sceneView.bottomAnchor))
-        constraints.append(styleButtonsStackView.widthAnchor.constraint(equalTo: forkCustomView.widthAnchor, multiplier: 1))
-        constraints.append(styleButtonsStackView.heightAnchor.constraint(equalTo: forkCustomView.heightAnchor, multiplier: 0.25))
-        
-        NSLayoutConstraint.activate(constraints)
+
+        NSLayoutConstraint.activate([
+            
+            forkCustomView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            forkCustomView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 12),
+            forkCustomView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -12),
+            forkCustomView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            sceneView.widthAnchor.constraint(equalTo: forkCustomView.widthAnchor, multiplier: 1),
+            sceneView.heightAnchor.constraint(equalTo: forkCustomView.heightAnchor, multiplier: 0.5),
+            sceneView.topAnchor.constraint(equalTo: forkCustomView.topAnchor),
+            
+            colorButtonsStackView.topAnchor.constraint(equalTo: styleButtonsStackView.bottomAnchor, constant: 32),
+            colorButtonsStackView.leadingAnchor.constraint(equalTo: forkCustomView.leadingAnchor),
+            
+            colorButtonsStackView.widthAnchor.constraint(equalTo: forkCustomView.widthAnchor, multiplier: 1),
+            colorButtonsStackView.heightAnchor.constraint(equalTo: forkCustomView.heightAnchor, multiplier: 0.2),
+            
+            styleButtonsStackView.topAnchor.constraint(equalTo: sceneView.bottomAnchor),
+            styleButtonsStackView.widthAnchor.constraint(equalTo: forkCustomView.widthAnchor, multiplier: 1),
+            styleButtonsStackView.heightAnchor.constraint(equalTo: forkCustomView.heightAnchor, multiplier: 0.25)
+        ])
     }
     
     private func willRenderSelectedToolOnly() {
@@ -304,7 +303,7 @@ class PokeToolCustomizingViewController: UIViewController {
             sample.tool = Tool.Fork
             willHideBorders(view: styleButtonsStackView)
             willRenderSelectedToolOnly()
-                        
+            
         case UIImage(systemName: "bookmark") :
             sample.tool = Tool.Spoon
             willHideBorders(view: styleButtonsStackView)
