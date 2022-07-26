@@ -104,12 +104,12 @@ class PokeToolCustomizingViewController: UIViewController {
         buttonsStackView.distribution = .fillEqually
         buttonsStackView.spacing = 16
         
-        for i in 0..<toolImages.count {
+        for toolImageIndex in 0..<toolImages.count {
             let button = UIButton()
-            button.setImage(toolImages[i], for: .normal)
+            button.setImage(toolImages[toolImageIndex], for: .normal)
             button.backgroundColor = UIColor.customLightGray
             button.layer.borderColor = UIColor.customBlack.cgColor
-            button.layer.borderWidth = { sample.toolToInt() == i ? 2 : 0 }()
+            button.layer.borderWidth = { sample.toolToInt() == toolImageIndex ? 2 : 0 }()
             
             // Button Action
             button.addTarget(self, action: #selector(styleButtonPressed(_ :)), for: .touchUpInside)
@@ -175,14 +175,14 @@ class PokeToolCustomizingViewController: UIViewController {
         
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        for i in 0..<toolColors.count {
+        for toolImageIndex in 0..<toolColors.count {
             
             let button = UIButton(type: .custom)
             button.layer.cornerRadius = 30
             button.layer.masksToBounds = true
             button.clipsToBounds = true
-            button.backgroundColor = toolColors[i]
-            button.layer.borderWidth = { sample.color == toolColors[i] ? 2 : 0 }()
+            button.backgroundColor = toolColors[toolImageIndex]
+            button.layer.borderWidth = { sample.color == toolColors[toolImageIndex] ? 2 : 0 }()
             button.layer.borderColor = UIColor.customBlack.cgColor
             
             // Button Action
@@ -236,15 +236,25 @@ class PokeToolCustomizingViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
+        title = "찌르기 도구"
+        
         view.addSubview(forkCustomView)
         forkCustomView.addSubview(sceneView)
         forkCustomView.addSubview(styleButtonsStackView)
         forkCustomView.addSubview(colorButtonsStackView)
         
-        addConstraints()
+        configureConstraints()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDone))
+
     }
     
-    private func addConstraints() {
+    @objc func didTapDone() {
+        // container에 지금 오브젝트의 값을 저장합니다.
+        // 무엇을? 툴타입 & 색상 정보를.
+    }
+    
+    private func configureConstraints() {
         
         var constraints = [NSLayoutConstraint]()
         
