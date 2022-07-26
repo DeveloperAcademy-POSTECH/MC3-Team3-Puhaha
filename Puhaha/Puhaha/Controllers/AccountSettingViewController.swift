@@ -9,11 +9,11 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class AccountSettingViewController: UIViewController, UITableViewDelegate {
+class AccountSettingViewController: UIViewController {
     private let SettingSections: [String] = ["이름 변경", "로그아웃", "탈퇴하기"]
     
     lazy var tableView: UITableView = {
-        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
+        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height * 3
         let displayWidth: CGFloat = self.view.frame.width
         let displayHeight: CGFloat = self.view.frame.height
         
@@ -41,6 +41,12 @@ class AccountSettingViewController: UIViewController, UITableViewDelegate {
     }
 }
 
+extension AccountSettingViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 55
+    }
+}
+
 extension AccountSettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return SettingSections.count
@@ -61,7 +67,7 @@ extension AccountSettingViewController: UITableViewDataSource {
             do {
                 try firebaseAuth.signOut()
                 self.navigationController?.popToRootViewController(animated: true)
-                // main으로 돌아가도록 재설정
+                // TODO: main으로 돌아가도록 재설정
                 
             } catch let signOutError as NSError {
                 print("ERROR: signout \(signOutError.localizedDescription)")

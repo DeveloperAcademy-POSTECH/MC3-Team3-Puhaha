@@ -14,7 +14,7 @@ class SettingViewController: UIViewController {
     private let familySettingList: [String] = ["식구 추가"]
     
     lazy var tableView: UITableView = {
-        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
+        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height * 3
         let displayWidth: CGFloat = self.view.frame.width
         let displayHeight: CGFloat = self.view.frame.height
         
@@ -23,8 +23,9 @@ class SettingViewController: UIViewController {
                                                                width: displayWidth,
                                                                height: displayHeight - barHeight))
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "sectionTableViewCell")
+        tableView.backgroundColor = UIColor(red: 0.961, green: 0.961, blue: 0.961, alpha: 1)
         
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "sectionTableViewCell")
         tableView.dataSource = self
         tableView.delegate = self
         return tableView
@@ -32,6 +33,10 @@ class SettingViewController: UIViewController {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return settingSections[section]
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60
     }
     
     override func viewDidLoad() {
@@ -43,16 +48,13 @@ class SettingViewController: UIViewController {
     }
 }
 
-class TableViewCell: UITableViewCell {
-    let cellButton: UIBarButtonItem = {
-        let button = UIBarButtonItem()
-        return button
-    }()
-}
-
 extension SettingViewController: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return settingSections.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 55
     }
 }
 
@@ -87,5 +89,7 @@ extension SettingViewController: UITableViewDataSource {
             let accountSettingViewController = AccountSettingViewController()
             self.navigationController?.pushViewController(accountSettingViewController, animated: true)
         }
+        
+        // TODO: 도구 편집, 식구추가 뷰 연결
     }
 }
