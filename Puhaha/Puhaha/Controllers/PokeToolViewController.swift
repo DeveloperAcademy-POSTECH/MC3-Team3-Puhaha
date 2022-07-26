@@ -32,7 +32,6 @@ class PokeToolCustomizingViewController: UIViewController {
         let sceneInsideSceneView = SCNScene(named: "Tools.scn")
         
         // 모든 도구 오브젝트들을 숨깁니다.
-        
         sceneInsideSceneView?.rootNode.childNode(withName: "Spoon", recursively: true)?.isHidden = true
         sceneInsideSceneView?.rootNode.childNode(withName: "Fork", recursively: true)?.isHidden = true
         sceneInsideSceneView?.rootNode.childNode(withName: "Whisk", recursively: true)?.isHidden = true
@@ -249,26 +248,21 @@ class PokeToolCustomizingViewController: UIViewController {
         
         var constraints = [NSLayoutConstraint]()
         
-        // MARK: forkCustomView의 Autolayout Constraints
         constraints.append(forkCustomView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor))
         constraints.append(forkCustomView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 12))
         constraints.append(forkCustomView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -12))
         constraints.append(forkCustomView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor))
         
-        // MARK: sceneView의 Autolayout Constraints
-        
         constraints.append(sceneView.widthAnchor.constraint(equalTo: forkCustomView.widthAnchor, multiplier: 1))
         constraints.append(sceneView.heightAnchor.constraint(equalTo: forkCustomView.heightAnchor, multiplier: 0.5))
         constraints.append(sceneView.topAnchor.constraint(equalTo: forkCustomView.topAnchor))
         
-        // MARK: colorButtonsStackView의 Autolayout Constraints
         constraints.append(colorButtonsStackView.topAnchor.constraint(equalTo: styleButtonsStackView.bottomAnchor, constant: 32))
         constraints.append(colorButtonsStackView.leadingAnchor.constraint(equalTo: forkCustomView.leadingAnchor))
         
         constraints.append(colorButtonsStackView.widthAnchor.constraint(equalTo: forkCustomView.widthAnchor, multiplier: 1))
         constraints.append(colorButtonsStackView.heightAnchor.constraint(equalTo: forkCustomView.heightAnchor, multiplier: 0.2))
         
-        // MARK: styleButtonsStackView의 Autolayout Constraints
         constraints.append(styleButtonsStackView.topAnchor.constraint(equalTo: sceneView.bottomAnchor))
         constraints.append(styleButtonsStackView.widthAnchor.constraint(equalTo: forkCustomView.widthAnchor, multiplier: 1))
         constraints.append(styleButtonsStackView.heightAnchor.constraint(equalTo: forkCustomView.heightAnchor, multiplier: 0.25))
@@ -288,7 +282,6 @@ class PokeToolCustomizingViewController: UIViewController {
         root?.childNode(withName: sample.toolToString(), recursively: true)?.isHidden = false
     }
     
-    // MARK: Style Button Pressed Function
     @objc func styleButtonPressed(_ sender: UIButton) {
         
         // 클릭된 버튼에 따라서
@@ -322,12 +315,11 @@ class PokeToolCustomizingViewController: UIViewController {
         sender.layer.borderWidth = 2
     }
     
-    // MARK: Color Button Pressed Function
     @objc func colorButtonPressed(_ sender: UIButton) {
         
         willHideBorders(view: colorButtonsStackView)
         
-        // Set every material color to selected color
+        // 모든 Material의 색상을 선택된 색상으로 설정
         sceneView.scene?.rootNode.childNode(withName: "Fork", recursively: true)?.geometry?.firstMaterial?.diffuse.contents = sender.backgroundColor
         sceneView.scene?.rootNode.childNode(withName: "Spoon", recursively: true)?.geometry?.firstMaterial?.diffuse.contents = sender.backgroundColor
         sceneView.scene?.rootNode.childNode(withName: "Whisk", recursively: true)?.geometry?.firstMaterial?.diffuse.contents = sender.backgroundColor
@@ -341,7 +333,6 @@ class PokeToolCustomizingViewController: UIViewController {
         for buttonView in view.subviews.last!.subviews {
             buttonView.layer.borderWidth = 0
         }
-        
     }
 }
 
