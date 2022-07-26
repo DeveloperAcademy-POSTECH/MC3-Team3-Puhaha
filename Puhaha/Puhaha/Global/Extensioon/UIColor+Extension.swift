@@ -67,6 +67,7 @@ extension UIColor {
     /// 옅은 회색
     static var customLightGray: UIColor {
         return UIColor(rgb: 0xD9D9D9)
+
     }
 }
 
