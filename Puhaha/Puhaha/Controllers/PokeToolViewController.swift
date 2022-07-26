@@ -87,9 +87,7 @@ class PokeToolCustomizingViewController: UIViewController {
     private let styleButtonsStackView: UIStackView = {
         
         // 구분선을 만듭니다.
-        let divider = UIView()
-        divider.backgroundColor = UIColor.customLightGray
-        divider.translatesAutoresizingMaskIntoConstraints = false
+        let divider = UIHorizontalDividerView(height: 2, color: UIColor.customLightGray)
         
         // 그룹명을 표시해주는 라벨을 만듭니다.
         let label = UILabel()
@@ -136,7 +134,6 @@ class PokeToolCustomizingViewController: UIViewController {
             
             // divider
             divider.topAnchor.constraint(equalTo: stackView.topAnchor),
-            divider.heightAnchor.constraint(equalToConstant: 2),
             divider.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             
             // label
@@ -157,10 +154,8 @@ class PokeToolCustomizingViewController: UIViewController {
     // MARK: stack of colored buttons View 선언
     private let colorButtonsStackView: UIStackView = {
         
-        let divider = UIView()
-        divider.backgroundColor = UIColor.customLightGray
-        divider.translatesAutoresizingMaskIntoConstraints = false
-        
+        let divider = UIHorizontalDividerView(height: 2, color: UIColor.customLightGray)
+                
         let label = UILabel()
         label.text = " 색상"
         label.textColor = .black
@@ -209,11 +204,11 @@ class PokeToolCustomizingViewController: UIViewController {
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
+        
         // StackView 속 label뷰가 차지하는 비율, buttonStackView가 차지하는 비율을 정해줍니다.
         NSLayoutConstraint.activate([
             // divider
             divider.topAnchor.constraint(equalTo: stackView.topAnchor),
-            divider.heightAnchor.constraint(equalToConstant: 2),
             divider.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             
             // label

@@ -14,6 +14,7 @@
 		555951DF28879DB100B4BE91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 555951DE28879DB100B4BE91 /* GoogleService-Info.plist */; };
 		55599E3C2886362900C05E81 /* CustomedLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55599E3B2886362900C05E81 /* CustomedLoginButton.swift */; };
 		A40C3F5F2890048B004465D5 /* PokeToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40C3F5E2890048B004465D5 /* PokeToolViewController.swift */; };
+		A40C3F61289012D9004465D5 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40C3F60289012D9004465D5 /* DividerView.swift */; };
 		A419810F288508EC00CCFDBA /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A419810D288508EC00CCFDBA /* UIColor+Extension.swift */; };
 		A48C939B288F747100BA09EF /* PokingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48C939A288F747100BA09EF /* PokingTool.swift */; };
 		A48C93A7288F74D500BA09EF /* BigFork.scn in Resources */ = {isa = PBXBuildFile; fileRef = A48C939F288F74D500BA09EF /* BigFork.scn */; };
@@ -49,6 +50,7 @@
 		55599E3B2886362900C05E81 /* CustomedLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomedLoginButton.swift; sourceTree = "<group>"; };
 		55AA34B228854CB800C2D6D6 /* Puhaha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puhaha.entitlements; sourceTree = "<group>"; };
 		A40C3F5E2890048B004465D5 /* PokeToolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokeToolViewController.swift; sourceTree = "<group>"; };
+		A40C3F60289012D9004465D5 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 		A419810D288508EC00CCFDBA /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		A48C939A288F747100BA09EF /* PokingTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokingTool.swift; sourceTree = "<group>"; };
 		A48C939F288F74D500BA09EF /* BigFork.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = BigFork.scn; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				CE73297C28865C8800CA87F1 /* MealCardCollectionViewCell.swift */,
 				CE73297E28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift */,
 				BF7F91182886530A009D3809 /* ActionSheetView.swift */,
+				A40C3F60289012D9004465D5 /* DividerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */,
 				A419810F288508EC00CCFDBA /* UIColor+Extension.swift in Sources */,
 				BF7F91192886530A009D3809 /* ActionSheetView.swift in Sources */,
+				A40C3F61289012D9004465D5 /* DividerView.swift in Sources */,
 				CE73298128869FA300CA87F1 /* Family.swift in Sources */,
 				CEC362D8288ACDE40037CBCE /* CameraViewController.swift in Sources */,
 				CE558B192885304500E98909 /* MainViewController.swift in Sources */,
