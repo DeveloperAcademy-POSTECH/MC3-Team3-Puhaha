@@ -10,20 +10,6 @@ import UIKit
 class MealCardCollectionViewCell: UICollectionViewCell {
     static let identifier: String = "MealCardCollectionViewCell"
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        [gradation, mealImageView, userNameLabel, userIconImageView, tagStack].forEach {
-            addSubview($0)
-        }
-        
-        setConstraints()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     var mealImageView: UIImageView = {
         var imageView: UIImageView = UIImageView()
         imageView.layer.zPosition = -1
@@ -48,23 +34,56 @@ class MealCardCollectionViewCell: UICollectionViewCell {
     
     var tagLabels: [TagLabel] = []
     
-    var tagStack: UIStackView = {
-        var stackView: UIStackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 6
-        stackView.alignment = .fill
-        return stackView
-    }()
+    var mealDetailTagStackView: UIStackView!
     
-    var gradation: UIImageView = {
+    var gradient: UIImageView = {
         var imageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width / 1.86, height: UIScreen.main.bounds.height / 3.32))
         imageView.image = UIImage(named: "GradientImage")
         return imageView
     }()
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        mealDetailTagStackView = {
+            let stackView: UIStackView = UIStackView()
+            stackView.axis = .horizontal
+            stackView.spacing = 6
+            stackView.alignment = .fill
+            return stackView
+        }()
+        
+        layer.cornerRadius = 33
+        layer.masksToBounds = true
+        
+        [gradient, mealImageView, userNameLabel, userIconImageView, mealDetailTagStackView].forEach {
+            addSubview($0)
+        }
+        
+        setConstraints()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        mealDetailTagStackView = {
+            let stackView: UIStackView = UIStackView()
+            stackView.axis = .horizontal
+            stackView.spacing = 6
+            stackView.alignment = .fill
+            return stackView
+        }()
+        
+        tagLabels = []
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func configureMealCard(with meal: Meal) {
         mealImageView.image = meal.mealImage
-        userNameLabel.text = meal.userName
+        userNameLabel.text = meal.uploadUser
         userIconImageView.image = meal.userIcon
         
         for tag in meal.tags {
@@ -74,7 +93,7 @@ class MealCardCollectionViewCell: UICollectionViewCell {
         }
         
         tagLabels.forEach {
-            tagStack.addArrangedSubview($0)
+            mealDetailTagStackView.addArrangedSubview($0)
         }
     }
     
@@ -82,8 +101,8 @@ class MealCardCollectionViewCell: UICollectionViewCell {
         mealImageView.translatesAutoresizingMaskIntoConstraints = false
         userNameLabel.translatesAutoresizingMaskIntoConstraints = false
         userIconImageView.translatesAutoresizingMaskIntoConstraints = false
-        tagStack.translatesAutoresizingMaskIntoConstraints = false
-        gradation.translatesAutoresizingMaskIntoConstraints = false
+        mealDetailTagStackView.translatesAutoresizingMaskIntoConstraints = false
+        gradient.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             mealImageView.topAnchor.constraint(equalTo: topAnchor),
@@ -91,20 +110,20 @@ class MealCardCollectionViewCell: UICollectionViewCell {
             mealImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             mealImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            gradation.topAnchor.constraint(equalTo: topAnchor, constant: contentView.bounds.height / 2.49),
-            gradation.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            gradation.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            gradation.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            gradient.topAnchor.constraint(equalTo: topAnchor, constant: contentView.bounds.height / 2.49),
+            gradient.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            gradient.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            gradient.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
-            userNameLabel.topAnchor.constraint(equalTo: gradation.bottomAnchor, constant: -(contentView.bounds.height / 3.34)),
+            userNameLabel.topAnchor.constraint(equalTo: gradient.bottomAnchor, constant: -(contentView.bounds.height / 3.34)),
             userNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
             
             userIconImageView.centerYAnchor.constraint(equalTo: userNameLabel.centerYAnchor),
             userIconImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18),
             
-            tagStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            tagStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-            tagStack.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: contentView.bounds.height / 17.67)
+            mealDetailTagStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            mealDetailTagStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            mealDetailTagStackView.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: contentView.bounds.height / 17.67)
         ])
     }
 }

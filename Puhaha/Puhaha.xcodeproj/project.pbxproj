@@ -25,6 +25,7 @@
 		CE5B4F68288E7C6A00111ACC /* ReactionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B4F66288E7C6A00111ACC /* ReactionCollectionViewCell.swift */; };
 		CE5B4F6C288E7C8B00111ACC /* Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B4F6B288E7C8B00111ACC /* Reaction.swift */; };
 		CE5B4F6E288E7C9D00111ACC /* MealDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B4F6D288E7C9D00111ACC /* MealDetailViewController.swift */; };
+		CE718850288E849D002CF653 /* EmptyMealCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71884F288E849D002CF653 /* EmptyMealCardView.swift */; };
 		CE73297D28865C8800CA87F1 /* MealCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73297C28865C8800CA87F1 /* MealCardCollectionViewCell.swift */; };
 		CE73297F28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73297E28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift */; };
 		CE73298128869FA300CA87F1 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73298028869FA300CA87F1 /* Family.swift */; };
@@ -51,6 +52,7 @@
 		CE558B1628852DFB00E98909 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		CE558B182885304500E98909 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		CE558B1C288530BC00E98909 /* Date+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Today.swift"; sourceTree = "<group>"; };
+		CE71884F288E849D002CF653 /* EmptyMealCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyMealCardView.swift; sourceTree = "<group>"; };
 		CE5B4F65288E7C6A00111ACC /* ReactionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionView.swift; sourceTree = "<group>"; };
 		CE5B4F66288E7C6A00111ACC /* ReactionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE5B4F6B288E7C8B00111ACC /* Reaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reaction.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			children = (
 				CE5B4F66288E7C6A00111ACC /* ReactionCollectionViewCell.swift */,
 				CE5B4F65288E7C6A00111ACC /* ReactionView.swift */,
+				CE71884F288E849D002CF653 /* EmptyMealCardView.swift */,
 				CE73297C28865C8800CA87F1 /* MealCardCollectionViewCell.swift */,
 				CE73297E28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift */,
 				BF7F91182886530A009D3809 /* ActionSheetView.swift */,
@@ -284,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55599E3C2886362900C05E81 /* CustomedLoginButton.swift in Sources */,
+				CE718850288E849D002CF653 /* EmptyMealCardView.swift in Sources */,
 				551CD2DE28850A800037487D /* SignInViewController.swift in Sources */,
 				CE5B4F6E288E7C9D00111ACC /* MealDetailViewController.swift in Sources */,
 				CE73297D28865C8800CA87F1 /* MealCardCollectionViewCell.swift in Sources */,
