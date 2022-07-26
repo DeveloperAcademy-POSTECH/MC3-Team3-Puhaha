@@ -5,7 +5,7 @@
 //  Created by JiwKang on 2022/07/18.
 //
 
-import UIKit
+import UIKit.UIColor
 
 struct Tag {
     let content: String

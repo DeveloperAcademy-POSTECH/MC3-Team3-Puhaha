@@ -16,15 +16,15 @@ extension Date {
     }
     
     var timeText: String {
-        let timeText = formatted(.dateTime.hour(.defaultDigits(amPM: .omitted)).minute())
-        let dateAndTimeFormat = NSLocalizedString("%@", comment: "Time format string")
-        return String(format: dateAndTimeFormat, timeText)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh시 mm분"
+        return dateFormatter.string(from: self)
     }
     
     var ampm: String {
-        let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "a"
-        return dateFormatter.string(from: currentDate)
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        return dateFormatter.string(from: self)
     }
 }

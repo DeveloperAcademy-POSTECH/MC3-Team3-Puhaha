@@ -28,7 +28,7 @@ class ReactionView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        [reactionEmojiImageButton].forEach {
+        [reactionEmojiImageButton, reactedUserNameLabel].forEach {
             addSubview($0)
         }
         
@@ -48,8 +48,6 @@ class ReactionView: UIView {
     }
 
     private func setConstraints() {
-//        reactionEmojiImageButton.translatesAutoresizingMaskIntoConstraints = false
-
         NSLayoutConstraint.activate([
             reactionEmojiImageButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             reactionEmojiImageButton.topAnchor.constraint(equalTo: topAnchor)

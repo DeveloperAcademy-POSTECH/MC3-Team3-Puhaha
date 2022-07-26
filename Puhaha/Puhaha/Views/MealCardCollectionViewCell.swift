@@ -69,7 +69,7 @@ class MealCardCollectionViewCell: UICollectionViewCell {
         
         for tag in meal.tags {
             let tagLabel = TagLabel()
-            tagLabel.setTextAndBackgroundColor(tag: tag)
+            tagLabel.setTextAndBackgroundColor(tag: tag, fontSize: 10)
             tagLabels.append(tagLabel)
         }
         

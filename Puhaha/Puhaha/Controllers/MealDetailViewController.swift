@@ -12,6 +12,7 @@ class MealDetailViewController: UIViewController {
     #if DEBUG
     let tags: [Tag] = Tag.sampleTag
     let reactions: [Reaction?] = Reaction.sampleReaction
+    let uploadedTime: Date = Date() // 현재 오늘의 날짜를 가져오지만 추후 뷰 연결 시 받아 오는 것으로 바꿀 것
     #endif
     
     private let mealImageView: UIImageView = {
@@ -28,18 +29,16 @@ class MealDetailViewController: UIViewController {
     }()
     
     private let uploadedTimeLabel: UILabel = {
-        let date = Date()
         let label: UILabel = UILabel()
         label.numberOfLines = 2
-        label.text = "\(date.ampm)\n\(date.timeText)"
         label.font = UIFont.boldSystemFont(ofSize: 50)
         label.textColor = .white
         return label
     }()
     
-    var tagLabels: [TagLabel] = []
+    private var tagLabels: [TagLabel] = []
     
-    var tagStack: UIStackView = {
+    private var tagStack: UIStackView = {
         var stackView: UIStackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 14
@@ -72,6 +71,8 @@ class MealDetailViewController: UIViewController {
             view.addSubview($0)
         }
         
+        uploadedTimeLabel.text = "\(uploadedTime.ampm)\n\(uploadedTime.timeText)"
+        
         for tag in tags {
             let tagLabel = TagLabel()
             tagLabel.setTextAndBackgroundColor(tag: tag, fontSize: 16)
@@ -85,7 +86,7 @@ class MealDetailViewController: UIViewController {
         setConstraints()
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         mealImageView.translatesAutoresizingMaskIntoConstraints = false
         gradient.translatesAutoresizingMaskIntoConstraints = false
         uploadedTimeLabel.translatesAutoresizingMaskIntoConstraints = false

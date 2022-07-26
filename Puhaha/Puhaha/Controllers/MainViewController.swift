@@ -31,7 +31,7 @@ class MainViewController: UIViewController {
         var todayDate = Date.now
         
         let label = UILabel()
-        label.text = todayDate.dayAndTimeText
+        label.text = todayDate.dayText
         label.font = UIFont.boldSystemFont(ofSize: 28)
         
         return label
