@@ -28,10 +28,16 @@ class MealDetailViewController: UIViewController {
         return imageView
     }()
     
+    private let uploadedMeridianLabel: UILabel = {
+        let label: UILabel = UILabel()
+        label.font = UIFont.systemFont(ofSize: 50, weight: .semibold)
+        label.textColor = .white
+        return label
+    }()
+    
     private let uploadedTimeLabel: UILabel = {
         let label: UILabel = UILabel()
-        label.numberOfLines = 2
-        label.font = UIFont.boldSystemFont(ofSize: 50)
+        label.font = UIFont.systemFont(ofSize: 50, weight: .semibold)
         label.textColor = .white
         return label
     }()
@@ -75,12 +81,13 @@ class MealDetailViewController: UIViewController {
         reactionCollectionView.delegate = self
         reactionCollectionView.dataSource = self
         
-        [mealImageView, gradient, uploadedTimeLabel, mealDetailTagStackView, reactionCollectionView].forEach {
+        [mealImageView, gradient, uploadedMeridianLabel, uploadedTimeLabel, mealDetailTagStackView, reactionCollectionView].forEach {
             view.addSubview($0)
         }
         
         mealImageView.image = meal.mealImage
-        uploadedTimeLabel.text = "\(uploadedTime.ampm)\n\(uploadedTime.timeText)"
+        uploadedMeridianLabel.text = uploadedTime.ampm
+        uploadedTimeLabel.text = uploadedTime.timeText
         
         for tag in tags {
             let tagLabel = TagLabel()
@@ -98,6 +105,7 @@ class MealDetailViewController: UIViewController {
     private func setConstraints() {
         mealImageView.translatesAutoresizingMaskIntoConstraints = false
         gradient.translatesAutoresizingMaskIntoConstraints = false
+        uploadedMeridianLabel.translatesAutoresizingMaskIntoConstraints = false
         uploadedTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         mealDetailTagStackView.translatesAutoresizingMaskIntoConstraints = false
         reactionCollectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -112,6 +120,8 @@ class MealDetailViewController: UIViewController {
             gradient.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             gradient.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
+            uploadedMeridianLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 34),
+            uploadedMeridianLabel.bottomAnchor.constraint(equalTo: uploadedTimeLabel.topAnchor),
             uploadedTimeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 34),
             uploadedTimeLabel.bottomAnchor.constraint(equalTo: mealDetailTagStackView.topAnchor, constant: -26),
             

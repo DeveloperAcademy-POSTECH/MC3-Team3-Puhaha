@@ -8,8 +8,8 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    private var filter: String = ""
-    private var selectedCellIndex: Int = 0
+    var filter: String = ""
+    var selectedCellIndex: Int = 0
     
     var meals: [Meal] = Meal.sampleMeals
     var familyMembers: [Family] = Family.sampleFamilyMembers
@@ -70,20 +70,20 @@ class MainViewController: UIViewController {
         return button
     }()
     
-    private var tableLabel: UILabel = {
+    var tableLabel: UILabel = {
         let label = UILabel()
         label.text = "오늘의 식탁"
         label.font = UIFont.boldSystemFont(ofSize: 24)
         return label
     }()
     
-    private let emptyMealCardView: EmptyMealCardView = {
+    let emptyMealCardView: EmptyMealCardView = {
         let view: EmptyMealCardView = EmptyMealCardView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         view.layer.zPosition = 10
         return view
     }()
     
-    private var mealCardCollectionView: UICollectionView = {
+    var mealCardCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
         layout.scrollDirection = .horizontal
@@ -97,7 +97,7 @@ class MainViewController: UIViewController {
         return collectionView
     }()
     
-    private var familyFilterCollectionView: UICollectionView = {
+    var familyFilterCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
         layout.scrollDirection = .horizontal
@@ -153,59 +153,6 @@ class MainViewController: UIViewController {
         ])
     }
 
-}
-
-extension MainViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == mealCardCollectionView {
-            return meals.count
-        } else {
-            return familyMembers.count
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == mealCardCollectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MealCardCollectionViewCell.identifier, for: indexPath) as? MealCardCollectionViewCell else { return UICollectionViewCell() }
-            
-            let meal = self.meals[indexPath.row]
-            cell.configureMealCard(with: meal)
-            
-            return cell
-        } else {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FamilyFilterCollectionViewCell.identifier, for: indexPath) as? FamilyFilterCollectionViewCell else { return UICollectionViewCell() }
-            
-            let family = self.familyMembers[indexPath.row]
-            cell.configureFilterCell(with: family)
-            
-            return cell
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == mealCardCollectionView {
-            let mealDetailViewController = MealDetailViewController()
-            mealDetailViewController.meal = meals[indexPath.row]
-            navigationController?.pushViewController(mealDetailViewController, animated: true)
-        } else {
-            filter = familyMembers[indexPath.row].name
-            familyMembers[selectedCellIndex].isSelected = false
-            selectedCellIndex = indexPath.row
-            tableLabel.text = "\(filter)의 식탁"
-            if filter == "모두" {
-                meals = Meal.sampleMeals
-                familyMembers[indexPath.row].isSelected = true
-            } else {
-                meals = Meal.sampleMeals.filter { $0.uploadUser == filter }
-                familyMembers[indexPath.row].isSelected = true
-            }
-            mealCardCollectionView.reloadData()
-            familyFilterCollectionView.reloadData()
-            
-            mealCardViewHidden()
-        }
-    }
-    
     func mealCardViewHidden() {
         if meals.isEmpty {
             emptyMealCardView.isHidden = false
@@ -213,16 +160,6 @@ extension MainViewController: UICollectionViewDataSource {
         } else {
             emptyMealCardView.isHidden = true
             mealCardCollectionView.isHidden = false
-        }
-    }
-}
-
-extension MainViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == mealCardCollectionView {
-            return CGSize(width: UIScreen.main.bounds.width / 1.86, height: UIScreen.main.bounds.height / 2)
-        } else {
-            return CGSize(width: 50 + 15 * familyMembers[indexPath.row].name.count, height: 32)
         }
     }
 }
