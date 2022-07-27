@@ -40,11 +40,11 @@ class ActionSheetView: UIViewController {
         if let button = sender as? UIButton {
             let sheet = UIAlertController(title: "식사 업로드하기", message: nil, preferredStyle: .actionSheet)
             let takePhoto = UIAlertAction(title: "사진 촬영하기", style: .default) {
-                (action: UIAlertAction) in
+                (_: UIAlertAction) in
                 self.presentCamera()
             }
             let chooseLibarary = UIAlertAction(title: "라이브러리에서 선택하기", style: .default) {
-                (action: UIAlertAction) in
+                (_: UIAlertAction) in
                 self.selectPhotos()
             }
             let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
@@ -79,9 +79,14 @@ class ActionSheetView: UIViewController {
         if let itemProvider = iterator?.next(), itemProvider.canLoadObject(ofClass: UIImage.self) {
             let previousImage = imageView.image
             itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
-                DispatchQueue.main.async {
-                    guard let self = self, let image = image as? UIImage, self.imageView.image == previousImage else { return }
-                    self.imageView.image = image
+                if error == nil {
+                    DispatchQueue.main.async {
+                        guard let self = self, let image = image as? UIImage,
+                                self.imageView.image == previousImage else { return }
+                        self.imageView.image = image
+                    }
+                } else {
+                    print("image load failed: \(String(describing: error))")
                 }
             }
         }
@@ -101,7 +106,7 @@ extension ActionSheetView: PHPickerViewControllerDelegate {
         picker.dismiss(animated: true)
         
         if let itemProvider = results.first?.itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
-            itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+            itemProvider.loadObject(ofClass: UIImage.self) { _, _ in
                 
                 self.itemProviders = results.map(\.itemProvider)
                 self.iterator = self.itemProviders.makeIterator()
