@@ -66,13 +66,14 @@ extension UIColor {
     
     /// 옅은 회색
     static var customLightGray: UIColor {
-        return UIColor(rgb: 0xD9D9D9)
+        return UIColor(rgb: 0xEFEFEF)
 
     }
+    
 }
 
 #if DEBUG
 
-let toolColors = [UIColor.customLightGray, UIColor.customBlue, UIColor.customYellow, UIColor.customBlack, UIColor.customPurple]
+let toolColors = [UIColor.darkGray, UIColor.customBlue, UIColor.customYellow, UIColor.customBlack, UIColor.customPurple]
 
 #endif
