@@ -261,12 +261,12 @@ class PokeToolCustomizingViewController: UIViewController {
         
         switch sender.imageView!.image {
             
-        case UIImage(systemName: "cloud") :
+        case UIImage(systemName: "cloud"):
             sample.tool = Tool.Fork
             willHideBorders(view: styleButtonsStackView)
             willRenderSelectedToolOnly()
             
-        case UIImage(systemName: "bookmark") :
+        case UIImage(systemName: "bookmark"):
             sample.tool = Tool.Spoon
             willHideBorders(view: styleButtonsStackView)
             willRenderSelectedToolOnly()
