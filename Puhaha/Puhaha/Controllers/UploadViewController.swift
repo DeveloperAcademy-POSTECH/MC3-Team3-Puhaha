@@ -203,18 +203,18 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
         
         switch collectionView {
         case tagTimeContentCollectionView:
-            cell.contentLabel.text = tagContentsArray[0].tagContents[indexPath.row]
-            cell.layer.borderColor = toolColors[1].cgColor
+            cell.contentLabel.text = tagContentsArray[0].tagContents[indexPath.row].content
+            cell.layer.borderColor = tagContentsArray[0].tagContents[indexPath.row].backgroundColor.cgColor
             print(tagContentsArray[0].tagContents[indexPath.row])
             
         case tagMenuContentCollectionView:
-            cell.contentLabel.text = tagContentsArray[1].tagContents[indexPath.row]
-            cell.layer.borderColor = toolColors[2].cgColor
+            cell.contentLabel.text = tagContentsArray[1].tagContents[indexPath.row].content
+            cell.layer.borderColor = tagContentsArray[1].tagContents[indexPath.row].backgroundColor.cgColor
             print(tagContentsArray[1].tagContents[indexPath.row])
         
         case tagEmotionContentCollectionView:
-            cell.contentLabel.text = tagContentsArray[2].tagContents[indexPath.row]
-            cell.layer.borderColor = UIColor(red: 71, green: 151, blue: 131).cgColor
+            cell.contentLabel.text = tagContentsArray[2].tagContents[indexPath.row].content
+            cell.layer.borderColor = tagContentsArray[2].tagContents[indexPath.row].backgroundColor.cgColor
             print(tagContentsArray[2].tagContents[indexPath.row])
             
         default:
