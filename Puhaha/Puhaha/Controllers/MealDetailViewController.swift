@@ -8,6 +8,7 @@
 import UIKit
 
 class MealDetailViewController: UIViewController {
+    var meal: Meal!
     
     #if DEBUG
     let tags: [Tag] = Tag.sampleTag
@@ -18,7 +19,6 @@ class MealDetailViewController: UIViewController {
     private let mealImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage(named: "MealImage3")
         return imageView
     }()
     
@@ -42,7 +42,6 @@ class MealDetailViewController: UIViewController {
         var stackView: UIStackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 14
-        stackView.alignment = .fill
         return stackView
     }()
     
@@ -61,8 +60,17 @@ class MealDetailViewController: UIViewController {
         return collectionView
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.backItem?.title = ""
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.layer.masksToBounds = true
         
         reactionCollectionView.delegate = self
         reactionCollectionView.dataSource = self
@@ -71,6 +79,7 @@ class MealDetailViewController: UIViewController {
             view.addSubview($0)
         }
         
+        mealImageView.image = meal.mealImage
         uploadedTimeLabel.text = "\(uploadedTime.ampm)\n\(uploadedTime.timeText)"
         
         for tag in tags {
@@ -104,16 +113,16 @@ class MealDetailViewController: UIViewController {
             gradient.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             uploadedTimeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 34),
-            uploadedTimeLabel.topAnchor.constraint(equalTo: super.view.topAnchor, constant: UIScreen.main.bounds.height / 1.65),
+            uploadedTimeLabel.bottomAnchor.constraint(equalTo: tagStack.topAnchor, constant: -26),
             
             tagStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 38),
             tagStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -38),
-            tagStack.topAnchor.constraint(equalTo: uploadedTimeLabel.bottomAnchor, constant: 26),
+            tagStack.bottomAnchor.constraint(equalTo: reactionCollectionView.topAnchor),
             
             reactionCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             reactionCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            reactionCollectionView.topAnchor.constraint(equalTo: tagStack.bottomAnchor, constant: 30),
-            reactionCollectionView.bottomAnchor.constraint(equalTo: tagStack.bottomAnchor, constant: 125)
+            reactionCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -(UIScreen.main.bounds.height / 25.57 + 95)),
+            reactionCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: UIScreen.main.bounds.height / 25.57)
         ])
     }
 }

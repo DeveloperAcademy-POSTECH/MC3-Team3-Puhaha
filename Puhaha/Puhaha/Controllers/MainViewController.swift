@@ -8,9 +8,17 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    var meals: [Meal] = Meal.sampleMeals
+    private var filter: String = ""
+    private var selectedCellIndex: Int = 0
     
+    var meals: [Meal] = Meal.sampleMeals
     var familyMembers: [Family] = Family.sampleFamilyMembers
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+
+        tabBarController?.navigationController?.isNavigationBarHidden = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -171,6 +179,40 @@ extension MainViewController: UICollectionViewDataSource {
             cell.configureFilterCell(with: family)
             
             return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == mealCardCollectionView {
+            let mealDetailViewController = MealDetailViewController()
+            mealDetailViewController.meal = meals[indexPath.row]
+            navigationController?.pushViewController(mealDetailViewController, animated: true)
+        } else {
+            filter = familyMembers[indexPath.row].name
+            familyMembers[selectedCellIndex].isSelected = false
+            selectedCellIndex = indexPath.row
+            tableLabel.text = "\(filter)의 식탁"
+            if filter == "모두" {
+                meals = Meal.sampleMeals
+                familyMembers[indexPath.row].isSelected = true
+            } else {
+                meals = Meal.sampleMeals.filter { $0.uploadUser == filter }
+                familyMembers[indexPath.row].isSelected = true
+            }
+            mealCardCollectionView.reloadData()
+            familyFilterCollectionView.reloadData()
+            
+            mealCardViewHidden()
+        }
+    }
+    
+    func mealCardViewHidden() {
+        if meals.isEmpty {
+            emptyMealCardView.isHidden = false
+            mealCardCollectionView.isHidden = true
+        } else {
+            emptyMealCardView.isHidden = true
+            mealCardCollectionView.isHidden = false
         }
     }
 }
