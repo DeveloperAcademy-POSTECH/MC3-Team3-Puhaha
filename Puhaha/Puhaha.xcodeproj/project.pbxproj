@@ -16,6 +16,9 @@
 		A419810E288508EC00CCFDBA /* ForkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A419810C288508EC00CCFDBA /* ForkTool.swift */; };
 		A419810F288508EC00CCFDBA /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A419810D288508EC00CCFDBA /* UIColor+Extension.swift */; };
 		BF7F91192886530A009D3809 /* ActionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F91182886530A009D3809 /* ActionSheetView.swift */; };
+		BF8C5FA9288E5EE0002BF0BD /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FA8288E5EDF002BF0BD /* UploadViewController.swift */; };
+		BF8C5FAD288E655B002BF0BD /* TagContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FAC288E655B002BF0BD /* TagContentCollectionViewCell.swift */; };
+		BF8C5FAF288E6B21002BF0BD /* UploadTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FAE288E6B21002BF0BD /* UploadTag.swift */; };
 		CE46B5702888DB3D0074DEF0 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE46B56F2888DB3D0074DEF0 /* TagLabel.swift */; };
 		CE558B1528852DF800E98909 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE558B1428852DF800E98909 /* Tag.swift */; };
 		CE558B1728852DFB00E98909 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE558B1628852DFB00E98909 /* Meal.swift */; };
@@ -47,6 +50,9 @@
 		A419810C288508EC00CCFDBA /* ForkTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForkTool.swift; sourceTree = "<group>"; };
 		A419810D288508EC00CCFDBA /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		BF7F91182886530A009D3809 /* ActionSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetView.swift; sourceTree = "<group>"; };
+		BF8C5FA8288E5EDF002BF0BD /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
+		BF8C5FAC288E655B002BF0BD /* TagContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagContentCollectionViewCell.swift; sourceTree = "<group>"; };
+		BF8C5FAE288E6B21002BF0BD /* UploadTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTag.swift; sourceTree = "<group>"; };
 		CE46B56F2888DB3D0074DEF0 /* TagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLabel.swift; sourceTree = "<group>"; };
 		CE558B1428852DF800E98909 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		CE558B1628852DFB00E98909 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
@@ -157,6 +163,7 @@
 				CE73297C28865C8800CA87F1 /* MealCardCollectionViewCell.swift */,
 				CE73297E28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift */,
 				BF7F91182886530A009D3809 /* ActionSheetView.swift */,
+				BF8C5FAC288E655B002BF0BD /* TagContentCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -166,6 +173,7 @@
 			children = (
 				CE5B4F6D288E7C9D00111ACC /* MealDetailViewController.swift */,
 				CEC362D7288ACDE40037CBCE /* CameraViewController.swift */,
+				BF8C5FA8288E5EDF002BF0BD /* UploadViewController.swift */,
 				551CD2DD28850A800037487D /* SignInViewController.swift */,
 				CE558B182885304500E98909 /* MainViewController.swift */,
 				CE9D233A28877E1F00D53332 /* MainTabViewController.swift */,
@@ -181,6 +189,7 @@
 				CE558B1428852DF800E98909 /* Tag.swift */,
 				CE558B1628852DFB00E98909 /* Meal.swift */,
 				CE73298028869FA300CA87F1 /* Family.swift */,
+				BF8C5FAE288E6B21002BF0BD /* UploadTag.swift */,
 				CE5B4F6B288E7C8B00111ACC /* Reaction.swift */,
 			);
 			path = Models;
@@ -287,18 +296,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				55599E3C2886362900C05E81 /* CustomedLoginButton.swift in Sources */,
+				BF8C5FA9288E5EE0002BF0BD /* UploadViewController.swift in Sources */,
 				CE718850288E849D002CF653 /* EmptyMealCardView.swift in Sources */,
 				551CD2DE28850A800037487D /* SignInViewController.swift in Sources */,
 				CE5B4F6E288E7C9D00111ACC /* MealDetailViewController.swift in Sources */,
 				CE73297D28865C8800CA87F1 /* MealCardCollectionViewCell.swift in Sources */,
 				CE46B5702888DB3D0074DEF0 /* TagLabel.swift in Sources */,
 				CE558B1528852DF800E98909 /* Tag.swift in Sources */,
+				BF8C5FAF288E6B21002BF0BD /* UploadTag.swift in Sources */,
 				CE9F9661287FA66C00783324 /* ViewController.swift in Sources */,
 				CE9D233D28877F7100D53332 /* StatisticViewController.swift in Sources */,
 				CE558B1728852DFB00E98909 /* Meal.swift in Sources */,
 				CE558B1D288530BC00E98909 /* Date+Today.swift in Sources */,
 				CE5B4F67288E7C6A00111ACC /* ReactionView.swift in Sources */,
 				CE9D233B28877E1F00D53332 /* MainTabViewController.swift in Sources */,
+				BF8C5FAD288E655B002BF0BD /* TagContentCollectionViewCell.swift in Sources */,
 				A419810E288508EC00CCFDBA /* ForkTool.swift in Sources */,
 				CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */,
 				CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */,
@@ -480,7 +492,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.anjian.mc3.puhaha;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anjian.Puhahaa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

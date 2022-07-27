@@ -15,9 +15,7 @@ class CameraViewController: UIViewController {
         view.addSubview(cameraImageView)
         configureConstraints()
     }
-    
-    
-    
+
     override func viewDidAppear(_ animated: Bool) {
         presentCamera()
     }
@@ -56,7 +54,6 @@ extension CameraViewController: UINavigationControllerDelegate, UIImagePickerCon
             print("no image found")
             return
         }
-        
         print(image.size)
     }
 }
