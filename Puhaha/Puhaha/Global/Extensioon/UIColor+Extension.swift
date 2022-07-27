@@ -58,18 +58,21 @@ extension UIColor {
     static var customYellow: UIColor {
         return UIColor(rgb: 0xFFCC1E)
     }
-
+    
+    /// 초록색
+    static var customGreen: UIColor {
+        return UIColor(rgb: 0x479783)
+    }
+    
     /// 검은색
     static var customBlack: UIColor {
         return UIColor(rgb: 0x2C213A)
     }
-    
+
     /// 옅은 회색
     static var customLightGray: UIColor {
         return UIColor(rgb: 0xEFEFEF)
-
     }
-    
 }
 
 #if DEBUG
