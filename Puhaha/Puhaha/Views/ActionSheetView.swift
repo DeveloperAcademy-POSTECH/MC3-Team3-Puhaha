@@ -78,10 +78,15 @@ class ActionSheetView: UIViewController {
     private func displayNextImage() {
         if let itemProvider = iterator?.next(), itemProvider.canLoadObject(ofClass: UIImage.self) {
             let previousImage = imageView.image
-            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, _ in
-                DispatchQueue.main.async {
-                    guard let self = self, let image = image as? UIImage, self.imageView.image == previousImage else { return }
-                    self.imageView.image = image
+            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                if error == nil {
+                    DispatchQueue.main.async {
+                        guard let self = self, let image = image as? UIImage,
+                                self.imageView.image == previousImage else { return }
+                        self.imageView.image = image
+                    }
+                } else {
+                    print("image load failed: \(String(describing: error))")
                 }
             }
         }
