@@ -10,7 +10,7 @@ import Firebase
 import FirebaseAuth
 
 class AccountSettingViewController: UIViewController {
-    private let SettingSections: [String] = ["이름 변경", "로그아웃", "탈퇴하기"]
+    private let SettingSectionNames: [String] = ["이름 변경", "로그아웃", "탈퇴하기"]
     
     lazy var tableView: UITableView = {
         let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height * 3
@@ -49,12 +49,12 @@ extension AccountSettingViewController: UITableViewDelegate {
 
 extension AccountSettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return SettingSections.count
+        return SettingSectionNames.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sectionTableViewCell", for: indexPath)
-        cell.textLabel?.text = "\(SettingSections[indexPath.row])"
+        cell.textLabel?.text = SettingSectionNames[indexPath.row]
         return cell
     }
     
