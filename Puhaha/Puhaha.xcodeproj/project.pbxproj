@@ -52,6 +52,7 @@
 		CE9F9666287FA66F00783324 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9F9665287FA66F00783324 /* Assets.xcassets */; };
 		CE9F9674287FA8A600783324 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE9F9673287FA8A600783324 /* .swiftlint.yml */; };
 		CEC362D8288ACDE40037CBCE /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC362D7288ACDE40037CBCE /* CameraViewController.swift */; };
+		CEF62DA62891A58F00ED0481 /* CreateFamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF62DA52891A58F00ED0481 /* CreateFamilyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		CE9F966A287FA66F00783324 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE9F9673287FA8A600783324 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		CEC362D7288ACDE40037CBCE /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		CEF62DA52891A58F00ED0481 /* CreateFamilyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFamilyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +224,7 @@
 				CE558B182885304500E98909 /* MainViewController.swift */,
 				CE9D233A28877E1F00D53332 /* MainTabViewController.swift */,
 				CE9D233C28877F7100D53332 /* StatisticViewController.swift */
+				CEF62DA52891A58F00ED0481 /* CreateFamilyViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF62DA62891A58F00ED0481 /* CreateFamilyViewController.swift in Sources */,
 				55599E3C2886362900C05E81 /* CustomedLoginButton.swift in Sources */,
 				BF8C5FA9288E5EE0002BF0BD /* UploadViewController.swift in Sources */,
 				CE718850288E849D002CF653 /* EmptyMealCardView.swift in Sources */,
