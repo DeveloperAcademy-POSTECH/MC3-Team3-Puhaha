@@ -71,7 +71,7 @@ class PokeToolCustomizingViewController: UIViewController {
         let label = willReturnGroupLabel(labelName: "종류")
         
         // 스택 뷰를 만들고 그 안에 버튼들을 모아둡니다.
-        let buttonsStackView = UIStackView(arrangedSubviews: [])
+        let buttonsStackView = UIStackView()
         buttonsStackView.distribution = .fillEqually
         buttonsStackView.spacing = 16
         
@@ -105,16 +105,13 @@ class PokeToolCustomizingViewController: UIViewController {
         // StackView 속 label뷰가 차지하는 비율, buttonStackView가 차지하는 비율을 정해줍니다.
         NSLayoutConstraint.activate([
             
-            // divider
             divider.topAnchor.constraint(equalTo: stackView.topAnchor),
             divider.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             
-            // label
             label.topAnchor.constraint(equalTo: divider.bottomAnchor, constant: 10),
             label.heightAnchor.constraint(equalToConstant: 24),
             label.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             
-            // buttonStackView
             buttonsStackView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 18),
             buttonsStackView.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.6),
             buttonsStackView.widthAnchor.constraint(equalTo: stackView.widthAnchor)
@@ -131,7 +128,7 @@ class PokeToolCustomizingViewController: UIViewController {
         
         let label = willReturnGroupLabel(labelName: "색상")
         
-        let buttonsStackView = UIStackView(arrangedSubviews: [])
+        let buttonsStackView = UIStackView()
         buttonsStackView.distribution = .equalSpacing
         buttonsStackView.spacing = 16
         buttonsStackView.alignment = .center
@@ -175,16 +172,13 @@ class PokeToolCustomizingViewController: UIViewController {
         
         // StackView 속 label뷰가 차지하는 비율, buttonStackView가 차지하는 비율을 정해줍니다.
         NSLayoutConstraint.activate([
-            // divider
             divider.topAnchor.constraint(equalTo: stackView.topAnchor),
             divider.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             
-            // label
             label.topAnchor.constraint(equalTo: divider.bottomAnchor, constant: 10),
             label.heightAnchor.constraint(equalToConstant: 24),
             label.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             
-            // buttonStackView
             buttonsStackView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 18),
             buttonsStackView.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.6),
             buttonsStackView.widthAnchor.constraint(equalTo: stackView.widthAnchor)
