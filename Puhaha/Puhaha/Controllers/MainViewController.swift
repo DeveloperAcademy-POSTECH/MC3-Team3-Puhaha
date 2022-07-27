@@ -9,14 +9,23 @@ import UIKit
 
 class MainViewController: UIViewController {
     var meals: [Meal] = Meal.sampleMeals
+    
     var familyMembers: [Family] = Family.sampleFamilyMembers
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        [todayDateLabel, plusButton, settingButton, tableLabel, mealCardCollectionView, familyFilterCollectionView].forEach {
+        [todayDateLabel, plusButton, settingButton, tableLabel, emptyMealCardView, mealCardCollectionView, familyFilterCollectionView].forEach {
             view.addSubview($0)
+        }
+        
+        if meals.isEmpty {
+            emptyMealCardView.isHidden = false
+            mealCardCollectionView.isHidden = true
+        } else {
+            emptyMealCardView.isHidden = true
+            mealCardCollectionView.isHidden = false
         }
         
         setConstraints()
@@ -31,7 +40,7 @@ class MainViewController: UIViewController {
         var todayDate = Date.now
         
         let label = UILabel()
-        label.text = todayDate.dayAndTimeText
+        label.text = todayDate.dayText
         label.font = UIFont.boldSystemFont(ofSize: 28)
         
         return label
@@ -58,6 +67,12 @@ class MainViewController: UIViewController {
         label.text = "오늘의 식탁"
         label.font = UIFont.boldSystemFont(ofSize: 24)
         return label
+    }()
+    
+    private let emptyMealCardView: EmptyMealCardView = {
+        let view: EmptyMealCardView = EmptyMealCardView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        view.layer.zPosition = 10
+        return view
     }()
     
     private var mealCardCollectionView: UICollectionView = {
@@ -94,6 +109,7 @@ class MainViewController: UIViewController {
         plusButton.translatesAutoresizingMaskIntoConstraints = false
         tableLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        emptyMealCardView.translatesAutoresizingMaskIntoConstraints = false
         mealCardCollectionView.translatesAutoresizingMaskIntoConstraints = false
         familyFilterCollectionView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -109,6 +125,12 @@ class MainViewController: UIViewController {
             
             tableLabel.topAnchor.constraint(equalTo: todayDateLabel.bottomAnchor, constant: 91),
             tableLabel.leadingAnchor.constraint(equalTo: super.view.leadingAnchor, constant: 25),
+            
+            emptyMealCardView.topAnchor.constraint(equalTo: tableLabel.bottomAnchor),
+            emptyMealCardView.bottomAnchor.constraint(equalTo: super.view.bottomAnchor, constant: -(UIScreen.main
+                .bounds.height / 6.48)),
+            emptyMealCardView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            emptyMealCardView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             
             mealCardCollectionView.topAnchor.constraint(equalTo: tableLabel.bottomAnchor),
             mealCardCollectionView.bottomAnchor.constraint(equalTo: super.view.bottomAnchor, constant: -(UIScreen.main
@@ -137,8 +159,6 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == mealCardCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MealCardCollectionViewCell.identifier, for: indexPath) as? MealCardCollectionViewCell else { return UICollectionViewCell() }
-            cell.layer.cornerRadius = 33
-            cell.layer.masksToBounds = true
             
             let meal = self.meals[indexPath.row]
             cell.configureMealCard(with: meal)
@@ -146,8 +166,6 @@ extension MainViewController: UICollectionViewDataSource {
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FamilyFilterCollectionViewCell.identifier, for: indexPath) as? FamilyFilterCollectionViewCell else { return UICollectionViewCell() }
-            cell.layer.cornerRadius = 16
-            cell.layer.masksToBounds = true
             
             let family = self.familyMembers[indexPath.row]
             cell.configureFilterCell(with: family)
