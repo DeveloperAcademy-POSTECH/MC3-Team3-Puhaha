@@ -38,7 +38,7 @@ class MealDetailViewController: UIViewController {
     
     private var tagLabels: [TagLabel] = []
     
-    private var tagStack: UIStackView = {
+    private var mealDetailTagStackView: UIStackView = {
         var stackView: UIStackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 14
@@ -75,7 +75,7 @@ class MealDetailViewController: UIViewController {
         reactionCollectionView.delegate = self
         reactionCollectionView.dataSource = self
         
-        [mealImageView, gradient, uploadedTimeLabel, tagStack, reactionCollectionView].forEach {
+        [mealImageView, gradient, uploadedTimeLabel, mealDetailTagStackView, reactionCollectionView].forEach {
             view.addSubview($0)
         }
         
@@ -89,7 +89,7 @@ class MealDetailViewController: UIViewController {
         }
         
         tagLabels.forEach {
-            tagStack.addArrangedSubview($0)
+            mealDetailTagStackView.addArrangedSubview($0)
         }
         
         setConstraints()
@@ -99,7 +99,7 @@ class MealDetailViewController: UIViewController {
         mealImageView.translatesAutoresizingMaskIntoConstraints = false
         gradient.translatesAutoresizingMaskIntoConstraints = false
         uploadedTimeLabel.translatesAutoresizingMaskIntoConstraints = false
-        tagStack.translatesAutoresizingMaskIntoConstraints = false
+        mealDetailTagStackView.translatesAutoresizingMaskIntoConstraints = false
         reactionCollectionView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -113,11 +113,11 @@ class MealDetailViewController: UIViewController {
             gradient.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             uploadedTimeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 34),
-            uploadedTimeLabel.bottomAnchor.constraint(equalTo: tagStack.topAnchor, constant: -26),
+            uploadedTimeLabel.bottomAnchor.constraint(equalTo: mealDetailTagStackView.topAnchor, constant: -26),
             
-            tagStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 38),
-            tagStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -38),
-            tagStack.bottomAnchor.constraint(equalTo: reactionCollectionView.topAnchor),
+            mealDetailTagStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 38),
+            mealDetailTagStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -38),
+            mealDetailTagStackView.bottomAnchor.constraint(equalTo: reactionCollectionView.topAnchor),
             
             reactionCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             reactionCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
