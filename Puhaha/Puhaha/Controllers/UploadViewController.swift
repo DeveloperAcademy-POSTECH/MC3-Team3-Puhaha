@@ -196,23 +196,26 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
 
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagContentCollectionViewCell.reuseIdentifier, for: indexPath) as? TagContentCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.contentLabel.textColor = toolColors[4]
+        cell.contentLabel.textColor = UIColor.customBlack
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 16
         cell.layer.masksToBounds = true
         
         switch collectionView {
         case tagTimeContentCollectionView:
+            cell.contentLabel.textColor = .black
             cell.contentLabel.text = tagContentsArray[0].tagContents[indexPath.row].content
             cell.layer.borderColor = tagContentsArray[0].tagContents[indexPath.row].backgroundColor.cgColor
             print(tagContentsArray[0].tagContents[indexPath.row])
             
         case tagMenuContentCollectionView:
+            cell.contentLabel.textColor = .black
             cell.contentLabel.text = tagContentsArray[1].tagContents[indexPath.row].content
             cell.layer.borderColor = tagContentsArray[1].tagContents[indexPath.row].backgroundColor.cgColor
             print(tagContentsArray[1].tagContents[indexPath.row])
         
         case tagEmotionContentCollectionView:
+            cell.contentLabel.textColor = .black
             cell.contentLabel.text = tagContentsArray[2].tagContents[indexPath.row].content
             cell.layer.borderColor = tagContentsArray[2].tagContents[indexPath.row].backgroundColor.cgColor
             print(tagContentsArray[2].tagContents[indexPath.row])
@@ -233,5 +236,52 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
         default:
             return CGSize(width: 0, height: 0)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? TagContentCollectionViewCell {
+            
+            switch collectionView {
+            case tagTimeContentCollectionView:
+                cell.contentLabel.textColor = .white
+                cell.layer.backgroundColor = tagContentsArray[0].tagContents[indexPath.row].backgroundColor.cgColor
+                
+            case tagMenuContentCollectionView:
+                cell.contentLabel.textColor = .white
+                cell.layer.backgroundColor = tagContentsArray[1].tagContents[indexPath.row].backgroundColor.cgColor
+                print(tagContentsArray[1].tagContents[indexPath.row])
+            
+            case tagEmotionContentCollectionView:
+                cell.contentLabel.textColor = .white
+                cell.layer.backgroundColor = tagContentsArray[2].tagContents[indexPath.row].backgroundColor.cgColor
+                print(tagContentsArray[2].tagContents[indexPath.row])
+                
+            default:
+                break
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? TagContentCollectionViewCell {
+            switch collectionView {
+            case tagTimeContentCollectionView, tagMenuContentCollectionView, tagEmotionContentCollectionView:
+                cell.backgroundColor = .white
+                cell.contentLabel.textColor = .black
+            default:
+                break
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            if cell.isSelected {
+                collectionView.deselectItem(at: indexPath, animated: false)
+                collectionView.delegate?.collectionView?(collectionView, didDeselectItemAt: indexPath)
+                return false
+            }
+        }
+        return true
     }
 }

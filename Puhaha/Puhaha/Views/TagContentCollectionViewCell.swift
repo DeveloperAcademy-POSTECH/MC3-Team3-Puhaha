@@ -30,7 +30,6 @@
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .regular)
         label.textAlignment = .center
-        label.textColor = .black
         label.sizeToFit()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -41,5 +40,13 @@
             contentLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             contentLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
          ])
+     }
+     
+     public func toggleSelectedButtonState() {
+         if isSelected {
+             backgroundColor = UIColor.customPurple
+         } else {
+             backgroundColor = UIColor.white
+         }
      }
  }
