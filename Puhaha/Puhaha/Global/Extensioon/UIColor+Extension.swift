@@ -69,6 +69,10 @@ extension UIColor {
         return UIColor(rgb: 0xD9D9D9)
         // 옅은 회색
     }
+    
+    static var customGreen: UIColor {
+        return UIColor(rgb: 0x479783)
+    }
 }
 
 #if DEBUG
