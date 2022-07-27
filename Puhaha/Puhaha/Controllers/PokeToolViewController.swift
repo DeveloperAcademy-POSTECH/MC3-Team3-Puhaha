@@ -27,6 +27,7 @@ class PokeToolCustomizingViewController: UIViewController {
         let objectMaterial = SCNMaterial()
         objectMaterial.isDoubleSided = false
         objectMaterial.diffuse.contents = sample.color
+        objectMaterial.roughness.intensity = 0.2
         
         let sceneView = SCNView()
         let sceneInsideSceneView = SCNScene(named: "Tools.scn")
@@ -50,30 +51,7 @@ class PokeToolCustomizingViewController: UIViewController {
         let rotateForever = SCNAction.repeatForever(action)
         sceneInsideSceneView?.rootNode.childNode(withName: "Tools", recursively: true)?.runAction(rotateForever)
         
-        // 렌더될 화면을 촬영할 카메라 노드를 생성합니다.
-        let cameraNode = SCNNode()
-        cameraNode.camera = SCNCamera()
-        cameraNode.camera?.fieldOfView = 60.0
-        
-        // 카메라가 있을 위치를 지정해줍니다.
-        cameraNode.position = SCNVector3(x: 0, y: 2, z: 8)
-        
-        // 카메라를 Scene 안에 배치합니다.
-        sceneInsideSceneView?.rootNode.addChildNode(cameraNode)
-        
-        // 조명을 추가합니다.
-        let lightNode = SCNNode()
-        lightNode.light = SCNLight()
-        lightNode.light?.type = .omni
-        lightNode.position = SCNVector3(x: 0, y: 10, z: 35)
-        sceneInsideSceneView?.rootNode.addChildNode(lightNode)
-        
-        // Ambient light 조명을 추가합니다.
-        let ambientLightNode = SCNNode()
-        ambientLightNode.light = SCNLight()
-        ambientLightNode.light?.type = .ambient
-        ambientLightNode.light?.color = UIColor.gray
-        sceneInsideSceneView?.rootNode.addChildNode(ambientLightNode)
+        willSetEnvironmentNodes(inside: sceneInsideSceneView!)
         
         sceneView.scene = sceneInsideSceneView
         sceneView.translatesAutoresizingMaskIntoConstraints = false
@@ -90,12 +68,7 @@ class PokeToolCustomizingViewController: UIViewController {
         let divider = UIHorizontalDividerView(height: 2, color: UIColor.customLightGray)
         
         // 그룹명을 표시해주는 라벨을 만듭니다.
-        let label = UILabel()
-        label.text = " 종류"
-        label.textColor = .black
-        label.textAlignment = .left
-        label.font = .systemFont(ofSize: 24, weight: .semibold)
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label = willReturnGroupLabel(labelName: "종류")
         
         // 스택 뷰를 만들고 그 안에 버튼들을 모아둡니다.
         let buttonsStackView = UIStackView(arrangedSubviews: [])
@@ -155,13 +128,8 @@ class PokeToolCustomizingViewController: UIViewController {
     private let colorButtonsStackView: UIStackView = {
         
         let divider = UIHorizontalDividerView(height: 2, color: UIColor.customLightGray)
-                
-        let label = UILabel()
-        label.text = " 색상"
-        label.textColor = .black
-        label.textAlignment = .left
-        label.font = .systemFont(ofSize: 24, weight: .semibold)
-        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        let label = willReturnGroupLabel(labelName: "색상")
         
         let buttonsStackView = UIStackView(arrangedSubviews: [])
         buttonsStackView.distribution = .equalSpacing
@@ -230,13 +198,12 @@ class PokeToolCustomizingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
         title = "찌르기 도구"
         
         view.addSubview(forkCustomView)
-        forkCustomView.addSubview(sceneView)
-        forkCustomView.addSubview(styleButtonsStackView)
-        forkCustomView.addSubview(colorButtonsStackView)
+        [sceneView, styleButtonsStackView, colorButtonsStackView].forEach {
+            forkCustomView.addSubview($0)
+        }
         
         configureConstraints()
         
@@ -250,7 +217,7 @@ class PokeToolCustomizingViewController: UIViewController {
     }
     
     private func configureConstraints() {
-
+        
         NSLayoutConstraint.activate([
             
             forkCustomView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -338,6 +305,46 @@ class PokeToolCustomizingViewController: UIViewController {
             buttonView.layer.borderWidth = 0
         }
     }
+}
+
+func willReturnGroupLabel(labelName: String) -> UILabel {
+    
+    let label = UILabel()
+    label.text = " " + labelName
+    label.textColor = UIColor(rgb: 0x272727)
+    label.textAlignment = .left
+    label.font = .systemFont(ofSize: 22, weight: .bold)
+    label.translatesAutoresizingMaskIntoConstraints = false
+    
+    return label
+}
+
+func willSetEnvironmentNodes(inside scene: SCNScene) {
+    
+    // 렌더될 화면을 촬영할 카메라 노드를 생성합니다.
+    let cameraNode = SCNNode()
+    cameraNode.camera = SCNCamera()
+    cameraNode.camera?.fieldOfView = 60.0
+    
+    // 카메라가 있을 위치를 지정해줍니다.
+    cameraNode.position = SCNVector3(x: 0, y: 2, z: 8)
+    
+    // 카메라를 Scene 안에 배치합니다.
+    scene.rootNode.addChildNode(cameraNode)
+    
+    // 조명을 추가합니다.
+    let lightNode = SCNNode()
+    lightNode.light = SCNLight()
+    lightNode.light?.type = .omni
+    lightNode.position = SCNVector3(x: 0, y: 10, z: 35)
+    scene.rootNode.addChildNode(lightNode)
+    
+    // Ambient light 조명을 추가합니다.
+    let ambientLightNode = SCNNode()
+    ambientLightNode.light = SCNLight()
+    ambientLightNode.light?.type = .ambient
+    ambientLightNode.light?.color = UIColor.gray
+    scene.rootNode.addChildNode(ambientLightNode)
 }
 
 #if DEBUG
