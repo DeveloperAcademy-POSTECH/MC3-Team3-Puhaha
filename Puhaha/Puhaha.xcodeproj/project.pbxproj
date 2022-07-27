@@ -13,6 +13,9 @@
 		551CD2E528850C6A0037487D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E428850C6A0037487D /* FirebaseFirestore */; };
 		555951DF28879DB100B4BE91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 555951DE28879DB100B4BE91 /* GoogleService-Info.plist */; };
 		55599E3C2886362900C05E81 /* CustomedLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55599E3B2886362900C05E81 /* CustomedLoginButton.swift */; };
+		55C02311288A940D001511E3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C02310288A940D001511E3 /* SettingViewController.swift */; };
+		55CF4C8F288BE81A0020DACC /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF4C8E288BE81A0020DACC /* AccountSettingViewController.swift */; };
+		A419810E288508EC00CCFDBA /* ForkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A419810C288508EC00CCFDBA /* ForkTool.swift */; };
 		A40C3F5F2890048B004465D5 /* PokeToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40C3F5E2890048B004465D5 /* PokeToolViewController.swift */; };
 		A40C3F61289012D9004465D5 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40C3F60289012D9004465D5 /* DividerView.swift */; };
 		A419810F288508EC00CCFDBA /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A419810D288508EC00CCFDBA /* UIColor+Extension.swift */; };
@@ -57,6 +60,9 @@
 		555951DE28879DB100B4BE91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		55599E3B2886362900C05E81 /* CustomedLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomedLoginButton.swift; sourceTree = "<group>"; };
 		55AA34B228854CB800C2D6D6 /* Puhaha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puhaha.entitlements; sourceTree = "<group>"; };
+		55C02310288A940D001511E3 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		55CF4C8E288BE81A0020DACC /* AccountSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
+		A419810C288508EC00CCFDBA /* ForkTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForkTool.swift; sourceTree = "<group>"; };
 		A40C3F5E2890048B004465D5 /* PokeToolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokeToolViewController.swift; sourceTree = "<group>"; };
 		A40C3F60289012D9004465D5 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 		A419810D288508EC00CCFDBA /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -213,9 +219,11 @@
 				CEC362D7288ACDE40037CBCE /* CameraViewController.swift */,
 				BF8C5FA8288E5EDF002BF0BD /* UploadViewController.swift */,
 				551CD2DD28850A800037487D /* SignInViewController.swift */,
+				55C02310288A940D001511E3 /* SettingViewController.swift */,
+				55CF4C8E288BE81A0020DACC /* AccountSettingViewController.swift */,
 				CE558B182885304500E98909 /* MainViewController.swift */,
 				CE9D233A28877E1F00D53332 /* MainTabViewController.swift */,
-				CE9D233C28877F7100D53332 /* StatisticViewController.swift */,
+				CE9D233C28877F7100D53332 /* StatisticViewController.swift */
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -361,16 +369,18 @@
 				BF8C5FAD288E655B002BF0BD /* TagContentCollectionViewCell.swift in Sources */,
 				A419810E288508EC00CCFDBA /* ForkTool.swift in Sources */,
 				CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */,
+				55C02311288A940D001511E3 /* SettingViewController.swift in Sources */,
 				CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */,
 				A419810F288508EC00CCFDBA /* UIColor+Extension.swift in Sources */,
 				CE5B4F6C288E7C8B00111ACC /* Reaction.swift in Sources */,
 				BF7F91192886530A009D3809 /* ActionSheetView.swift in Sources */,
+				55CF4C8F288BE81A0020DACC /* AccountSettingViewController.swift in Sources */,
 				A40C3F61289012D9004465D5 /* DividerView.swift in Sources */,
 				CE73298128869FA300CA87F1 /* Family.swift in Sources */,
 				CEC362D8288ACDE40037CBCE /* CameraViewController.swift in Sources */,
 				CE5B4F68288E7C6A00111ACC /* ReactionCollectionViewCell.swift in Sources */,
 				CE558B192885304500E98909 /* MainViewController.swift in Sources */,
-				CE73297F28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift in Sources */,
+				CE73297F28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift in Sources */
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
