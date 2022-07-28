@@ -10,6 +10,9 @@ import SceneKit
 
 class PokeToolCustomizingViewController: UIViewController {
     
+    // SceneView 속 3D 오브젝트에 입혀질 Material
+    static var objectMaterial = SCNMaterial()
+    
     // MARK: forkCustomView 선언
     private let forkCustomView: UIView = {
         
@@ -24,7 +27,6 @@ class PokeToolCustomizingViewController: UIViewController {
     // MARK: sceneView 선언
     private let sceneView: SCNView = {
         
-        let objectMaterial = SCNMaterial()
         objectMaterial.isDoubleSided = false
         objectMaterial.diffuse.contents = sample.color
         objectMaterial.roughness.intensity = 0.2
@@ -248,10 +250,11 @@ class PokeToolCustomizingViewController: UIViewController {
     }
     
     @objc func styleButtonPressed(_ sender: UIButton) {
+        // TODO: 클릭된 버튼에 따라 버튼 속 이미지 투명도 조절하기
+        // 선택된 이미지는 1로, 선택받지 못한 이미지는 0.3
         
-        // 클릭된 버튼에 따라서
-        // 1. 유저의 정보에 선택한 값 띄워주기
-        // 2. 선택된 오브젝트만 화면에 띄우기
+        // 선택된 버튼의 이미지는 선명해지고
+//        sender.imageView?.image = sender.imageView?.image?.alpha(1)
         
         switch sender.imageView!.image {
             
@@ -285,12 +288,8 @@ class PokeToolCustomizingViewController: UIViewController {
         willHideBorders(view: colorButtonsStackView)
         
         // 모든 Material의 색상을 선택된 색상으로 설정
-        sceneView.scene?.rootNode.childNode(withName: "Fork", recursively: true)?.geometry?.firstMaterial?.diffuse.contents = sender.backgroundColor
-        sceneView.scene?.rootNode.childNode(withName: "Spoon", recursively: true)?.geometry?.firstMaterial?.diffuse.contents = sender.backgroundColor
-        sceneView.scene?.rootNode.childNode(withName: "Whisk", recursively: true)?.geometry?.firstMaterial?.diffuse.contents = sender.backgroundColor
-        sceneView.scene?.rootNode.childNode(withName: "Spatula", recursively: true)?.geometry?.firstMaterial?.diffuse.contents = sender.backgroundColor
-        
-        sender.layer.borderWidth = 2
+        PokeToolCustomizingViewController.objectMaterial.diffuse.contents = sender.backgroundColor
+
         sample.color = sender.backgroundColor!
     }
     
