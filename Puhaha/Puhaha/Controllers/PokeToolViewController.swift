@@ -238,16 +238,17 @@ class PokeToolCustomizingViewController: UIViewController {
         ])
     }
     
-    private func willRenderSelectedToolOnly() {
+    private func willRenderSelectedToolOnly(selectedToolIndex: Int) {
+
+        let objects = ["Fork", "Spoon", "Whisk", "Spatula"]
         
-        let root = sceneView.scene?.rootNode
-        
-        root?.childNode(withName: "Fork", recursively: true)?.isHidden = true
-        root?.childNode(withName: "Spoon", recursively: true)?.isHidden = true
-        root?.childNode(withName: "Spatula", recursively: true)?.isHidden = true
-        root?.childNode(withName: "Whisk", recursively: true)?.isHidden = true
-        
-        root?.childNode(withName: sample.toolToString(), recursively: true)?.isHidden = false
+        for i in 0..<objects.count {
+            if i != selectedToolIndex {
+                sceneView.scene?.rootNode.childNode(withName: objects[i], recursively: true)?.isHidden = true
+            } else {
+                sceneView.scene?.rootNode.childNode(withName: objects[i], recursively: true)?.isHidden = false
+            }
+        }
     }
     
     @objc func styleButtonPressed(_ sender: UIButton) {
@@ -255,25 +256,25 @@ class PokeToolCustomizingViewController: UIViewController {
         // 선택된 이미지는 1로, 선택받지 못한 이미지는 0.3
         
         // 선택된 버튼의 이미지는 선명해지고
-//        sender.imageView?.image = sender.imageView?.image?.alpha(1)
+        sender.imageView?.image = sender.imageView?.image?.alpha(1)
         
         switch sender.imageView!.image {
             
-        case UIImage(systemName: "cloud"):
+        case UIImage(named: "silver_fork"):
             sample.tool = Tool.Fork
-            willRenderSelectedToolOnly()
+            willRenderSelectedToolOnly(selectedToolIndex: sample.toolToInt())
             
-        case UIImage(systemName: "bookmark"):
+        case UIImage(named: "silver_spoon"):
             sample.tool = Tool.Spoon
-            willRenderSelectedToolOnly()
+            willRenderSelectedToolOnly(selectedToolIndex: sample.toolToInt())
             
-        case UIImage(systemName: "heart"):
+        case UIImage(named: "silver_whisk"):
             sample.tool = Tool.Whisk
-            willRenderSelectedToolOnly()
+            willRenderSelectedToolOnly(selectedToolIndex: sample.toolToInt())
             
         default:
             sample.tool = Tool.Spatula
-            willRenderSelectedToolOnly()
+            willRenderSelectedToolOnly(selectedToolIndex: sample.toolToInt())
         }
     }
     
