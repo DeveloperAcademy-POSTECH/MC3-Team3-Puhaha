@@ -28,7 +28,7 @@ class CreateFamilyViewController: UIViewController {
     
     private let guideMessageLabel: UILabel = {
         let label: UILabel = UILabel()
-        label.font = .systemFont(ofSize: 26, weight: .light)
+        label.font = .systemFont(ofSize: 26, weight: .medium)
         label.textColor = UIColor(named: "InfoLabelColor")
         label.textAlignment = .center
         label.numberOfLines = 2
@@ -43,12 +43,10 @@ class CreateFamilyViewController: UIViewController {
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor(named: "BasicButtonBorderColor")?.cgColor
         button.layer.cornerRadius = 8
-        
-        button.addTarget(self, action: #selector(<#T##@objc method#>), for: .)
         return button
     }()
     
-    private let enterFamilyRoomButton: UIButton = {
+    private let enterExistFamilyRoomButton: UIButton = {
         let button: UIButton = UIButton()
         button.setTitle("기존 가족 방에 입장하기", for: .normal)
         button.setTitleColor(UIColor(named: "ButtonTitleColor"), for: .normal)
@@ -62,7 +60,7 @@ class CreateFamilyViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        [userNameLabel, helloMessageLabel, guideMessageLabel, createFamilyRoomButton, enterFamilyRoomButton].forEach {
+        [userNameLabel, helloMessageLabel, guideMessageLabel, createFamilyRoomButton, enterExistFamilyRoomButton].forEach {
             view.addSubview($0)
         }
         
@@ -76,7 +74,7 @@ class CreateFamilyViewController: UIViewController {
         helloMessageLabel.translatesAutoresizingMaskIntoConstraints = false
         guideMessageLabel.translatesAutoresizingMaskIntoConstraints = false
         createFamilyRoomButton.translatesAutoresizingMaskIntoConstraints = false
-        enterFamilyRoomButton.translatesAutoresizingMaskIntoConstraints = false
+        enterExistFamilyRoomButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             userNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
@@ -91,12 +89,12 @@ class CreateFamilyViewController: UIViewController {
             createFamilyRoomButton.heightAnchor.constraint(equalToConstant: 57),
             createFamilyRoomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26),
             createFamilyRoomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -26),
-            createFamilyRoomButton.bottomAnchor.constraint(equalTo: enterFamilyRoomButton.topAnchor, constant: -20),
+            createFamilyRoomButton.bottomAnchor.constraint(equalTo: enterExistFamilyRoomButton.topAnchor, constant: -20),
             
-            enterFamilyRoomButton.heightAnchor.constraint(equalToConstant: 57),
-            enterFamilyRoomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26),
-            enterFamilyRoomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -26),
-            enterFamilyRoomButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -82)
+            enterExistFamilyRoomButton.heightAnchor.constraint(equalToConstant: 57),
+            enterExistFamilyRoomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26),
+            enterExistFamilyRoomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -26),
+            enterExistFamilyRoomButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -82)
         ])
     }
 }

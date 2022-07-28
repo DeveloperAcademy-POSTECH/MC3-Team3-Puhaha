@@ -53,6 +53,7 @@
 		CE9F9674287FA8A600783324 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE9F9673287FA8A600783324 /* .swiftlint.yml */; };
 		CEC362D8288ACDE40037CBCE /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC362D7288ACDE40037CBCE /* CameraViewController.swift */; };
 		CEF62DA62891A58F00ED0481 /* CreateFamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF62DA52891A58F00ED0481 /* CreateFamilyViewController.swift */; };
+		CEF62DA82891B2F200ED0481 /* InviteFamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF62DA72891B2F200ED0481 /* InviteFamilyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,7 @@
 		CE9F9673287FA8A600783324 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		CEC362D7288ACDE40037CBCE /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		CEF62DA52891A58F00ED0481 /* CreateFamilyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFamilyViewController.swift; sourceTree = "<group>"; };
+		CEF62DA72891B2F200ED0481 /* InviteFamilyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFamilyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 				CE9D233A28877E1F00D53332 /* MainTabViewController.swift */,
 				CE9D233C28877F7100D53332 /* StatisticViewController.swift */
 				CEF62DA52891A58F00ED0481 /* CreateFamilyViewController.swift */,
+				CEF62DA72891B2F200ED0481 /* InviteFamilyViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				CE9D233B28877E1F00D53332 /* MainTabViewController.swift in Sources */,
 				BF8C5FAD288E655B002BF0BD /* TagContentCollectionViewCell.swift in Sources */,
 				CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */,
+				CEF62DA82891B2F200ED0481 /* InviteFamilyViewController.swift in Sources */,
 				55C02311288A940D001511E3 /* SettingViewController.swift in Sources */,
 				CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */,
 				A419810F288508EC00CCFDBA /* UIColor+Extension.swift in Sources */,
