@@ -77,8 +77,10 @@ class PokeToolCustomizingViewController: UIViewController {
         
         for toolImageIndex in 0..<toolImages.count {
             let button = UIButton()
-            button.setImage(toolImages[toolImageIndex], for: .normal)
-            button.backgroundColor = UIColor.customLightGray
+//            let image = UIImage(named: toolImages[toolImageIndex])
+//            button.imageView?.image = image
+            button.setImage(UIImage(named: toolImages[toolImageIndex]), for: .normal)
+            button.imageView?.contentMode = .scaleAspectFit
             button.layer.borderColor = UIColor.customBlack.cgColor
             button.layer.borderWidth = { sample.toolToInt() == toolImageIndex ? 2 : 0 }()
             
