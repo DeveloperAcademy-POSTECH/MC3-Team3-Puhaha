@@ -137,15 +137,16 @@ class PokeToolCustomizingViewController: UIViewController {
         
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        for toolImageIndex in 0..<toolColors.count {
+        for toolColorIndex in 0..<toolColors.count {
             
             let button = UIButton(type: .custom)
             button.layer.cornerRadius = 30
             button.layer.masksToBounds = true
             button.clipsToBounds = true
-            button.backgroundColor = toolColors[toolImageIndex]
-            button.layer.borderWidth = { sample.color == toolColors[toolImageIndex] ? 2 : 0 }()
-            button.layer.borderColor = UIColor.customBlack.cgColor
+            button.backgroundColor = UIColor.white
+            button.layer.borderWidth = { sample.color == toolColors[toolColorIndex] ? 12 : 100 }()
+            
+            button.layer.borderColor = toolColors[toolColorIndex].cgColor
             
             // Button Action
             button.addTarget(self, action: #selector(colorButtonPressed(_ :)), for: .touchUpInside)
@@ -288,14 +289,16 @@ class PokeToolCustomizingViewController: UIViewController {
         willHideBorders(view: colorButtonsStackView)
         
         // 모든 Material의 색상을 선택된 색상으로 설정
-        PokeToolCustomizingViewController.objectMaterial.diffuse.contents = sender.backgroundColor
+        PokeToolCustomizingViewController.objectMaterial.diffuse.contents = sender.layer.borderColor
 
+        sender.layer.borderWidth = 12
+        
         sample.color = sender.backgroundColor!
     }
     
     private func willHideBorders(view: UIView) {
         for buttonView in view.subviews.last!.subviews {
-            buttonView.layer.borderWidth = 0
+            buttonView.layer.borderWidth = 100
         }
     }
 }
