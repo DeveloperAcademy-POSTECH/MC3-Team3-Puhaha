@@ -261,45 +261,33 @@ class PokeToolCustomizingViewController: UIViewController {
             
         case UIImage(systemName: "cloud"):
             sample.tool = Tool.Fork
-            willHideBorders(view: styleButtonsStackView)
             willRenderSelectedToolOnly()
             
         case UIImage(systemName: "bookmark"):
             sample.tool = Tool.Spoon
-            willHideBorders(view: styleButtonsStackView)
             willRenderSelectedToolOnly()
             
         case UIImage(systemName: "heart"):
             sample.tool = Tool.Whisk
-            willHideBorders(view: styleButtonsStackView)
             willRenderSelectedToolOnly()
             
         default:
             sample.tool = Tool.Spatula
-            willHideBorders(view: styleButtonsStackView)
             willRenderSelectedToolOnly()
         }
-        
-        // 클릭된 버튼에 border값 주기
-        sender.layer.borderWidth = 2
     }
     
     @objc func colorButtonPressed(_ sender: UIButton) {
         
-        willHideBorders(view: colorButtonsStackView)
-        
-        // 모든 Material의 색상을 선택된 색상으로 설정
-        PokeToolCustomizingViewController.objectMaterial.diffuse.contents = sender.layer.borderColor
-
-        sender.layer.borderWidth = 12
-        
-        sample.color = sender.backgroundColor!
-    }
-    
-    private func willHideBorders(view: UIView) {
-        for buttonView in view.subviews.last!.subviews {
+        for buttonView in colorButtonsStackView.subviews.last!.subviews {
             buttonView.layer.borderWidth = 100
         }
+        
+        sender.layer.borderWidth = 12
+
+        PokeToolCustomizingViewController.objectMaterial.diffuse.contents = sender.layer.borderColor
+        
+        sample.color = sender.backgroundColor!
     }
 }
 
