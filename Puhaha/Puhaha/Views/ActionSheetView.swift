@@ -54,10 +54,12 @@ class ActionSheetView: UIViewController {
     
     /// 카메라 촬영화면을 모달로 띄우는 함수
     private func presentCamera() {
-        let cameraPickerController = UIImagePickerController()
-        cameraPickerController.sourceType = .camera
-        cameraPickerController.allowsEditing = true
-        present(cameraPickerController, animated: true)
+        let camera = UIImagePickerController()
+        camera.sourceType = .camera
+        camera.cameraDevice = .rear
+        camera.cameraCaptureMode = .photo
+        camera.delegate = self
+        present(camera, animated: true, completion: nil)
     }
     
     /// 앨범에서 사진을 선택하는 함수
@@ -85,12 +87,10 @@ extension ActionSheetView: PHPickerViewControllerDelegate {
         picker.dismiss(animated: true, completion: nil)
         
         let itemProvider = results.first?.itemProvider
-        print("itemProvider:\(String(describing: itemProvider))")
         
         if let itemProvider = itemProvider,
            itemProvider.canLoadObject(ofClass: UIImage.self) {
             itemProvider.loadObject(ofClass: UIImage.self) { image, _ in
-                print("itemProvider:\(String(describing: itemProvider))")
                 
                 DispatchQueue.main.async {
                     guard let selectedImage = image as? UIImage else { return print("selected Image error")}
@@ -103,5 +103,23 @@ extension ActionSheetView: PHPickerViewControllerDelegate {
                 }
             }
         }
+    }
+}
+
+extension ActionSheetView: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        
+        guard let captureImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
+        self.dismiss(animated: true)
+        
+        let uploadViewController = UploadViewController()
+        uploadViewController.pictureImageView.image = captureImage
+        
+        uploadViewController.modalPresentationStyle = .fullScreen
+        self.present(uploadViewController, animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true)
     }
 }
