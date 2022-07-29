@@ -10,14 +10,11 @@ import UIKit
 class UploadViewController: UIViewController {
     
     var tagContentsArray = UploadTag.uploadTags
-    var deliveredImageString: String = ""
     
     lazy var pictureImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.clipsToBounds = true
         imageView.sizeToFit()
-        
-        imageView.image = deliveredImageString.stringToImage()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()

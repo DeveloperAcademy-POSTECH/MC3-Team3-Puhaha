@@ -14,6 +14,11 @@ class ActionSheetView: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(sampleCameraButton)
+        
+        let configuration = PHPickerConfiguration()
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        
         configureConstraints()
     }
     
@@ -102,12 +107,6 @@ extension ActionSheetView: PHPickerViewControllerDelegate {
                     
                     let uploadViewController = UploadViewController()
                     uploadViewController.pictureImageView.image = selectedImage
-//                    let selectedImageString = selectedImage?.imageToString()
-//                    print("selectedImageString: \(selectedImageString)")
-//                    uploadViewController.deliveredImageString = selectedImageString ?? String()
-//
-//                    print("selectedImageString: \(selectedImageString)")
-//
                     uploadViewController.modalPresentationStyle = .fullScreen
                     
                     self.present(uploadViewController, animated: true)
