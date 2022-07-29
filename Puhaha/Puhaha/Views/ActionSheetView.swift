@@ -22,11 +22,6 @@ class ActionSheetView: UIViewController {
         configureConstraints()
     }
     
-    lazy var chosenImageView: UIImageView = {
-       let image = UIImageView()
-        return image
-    }()
-    
     lazy var sampleCameraButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "camera"), for: .normal)
@@ -77,13 +72,6 @@ class ActionSheetView: UIViewController {
         present(picker, animated: true)
     }
     
-    func newImageView(image: UIImage?) -> UIImageView {
-        let imageView = UIImageView()
-        imageView.backgroundColor = .black
-        imageView.image = image
-        return imageView
-    }
-    
     private func configureConstraints() {
         sampleCameraButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         sampleCameraButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
@@ -98,10 +86,12 @@ extension ActionSheetView: PHPickerViewControllerDelegate {
         
         let itemProvider = results.first?.itemProvider
         print("itemProvider:\(String(describing: itemProvider))")
+        
         if let itemProvider = itemProvider,
            itemProvider.canLoadObject(ofClass: UIImage.self) {
-            itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+            itemProvider.loadObject(ofClass: UIImage.self) { image, _ in
                 print("itemProvider:\(String(describing: itemProvider))")
+                
                 DispatchQueue.main.async {
                     guard let selectedImage = image as? UIImage else { return print("selected Image error")}
                     
@@ -112,26 +102,6 @@ extension ActionSheetView: PHPickerViewControllerDelegate {
                     self.present(uploadViewController, animated: true)
                 }
             }
-        } else {
-            print("load failed")
         }
-    }
-}
-
-extension UIImage {
-    /// 이미지 전달을 위해 string으로 변환해주는 메서드
-    func imageToString() -> String? {
-        let pngData = pngData()
-        return pngData?.base64EncodedString(options: .lineLength64Characters)
-    }
-}
-
-extension String {
-    /// 이미지를 받아오기 위해 string에서 이미지로 변환해주는 메서드
-    func stringToImage() -> UIImage? {
-        if let data = Data(base64Encoded: self, options: .ignoreUnknownCharacters) {
-            return UIImage(data: data)
-        }
-        return nil
     }
 }
