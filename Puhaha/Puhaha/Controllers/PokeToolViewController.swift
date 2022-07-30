@@ -10,6 +10,9 @@ import SceneKit
 
 class PokeToolCustomizingViewController: UIViewController {
     
+    // SceneView 속 3D 오브젝트에 입혀질 Material
+    static var objectMaterial = SCNMaterial()
+    
     // MARK: forkCustomView 선언
     private let forkCustomView: UIView = {
         
@@ -24,7 +27,6 @@ class PokeToolCustomizingViewController: UIViewController {
     // MARK: sceneView 선언
     private let sceneView: SCNView = {
         
-        let objectMaterial = SCNMaterial()
         objectMaterial.isDoubleSided = false
         objectMaterial.diffuse.contents = sample.color
         objectMaterial.roughness.intensity = 0.2
@@ -32,19 +34,14 @@ class PokeToolCustomizingViewController: UIViewController {
         let sceneView = SCNView()
         let sceneInsideSceneView = SCNScene(named: "Tools.scn")
         
-        // 모든 도구 오브젝트들을 숨깁니다.
-        sceneInsideSceneView?.rootNode.childNode(withName: "Spoon", recursively: true)?.isHidden = true
-        sceneInsideSceneView?.rootNode.childNode(withName: "Fork", recursively: true)?.isHidden = true
-        sceneInsideSceneView?.rootNode.childNode(withName: "Whisk", recursively: true)?.isHidden = true
-        sceneInsideSceneView?.rootNode.childNode(withName: "Spatula", recursively: true)?.isHidden = true
+        // 모든 도구 오브젝트들에 First material 값을 새로 주고 화면에서 숨깁니다.
+        for object in Tool.allCases {
+            sceneInsideSceneView?.rootNode.childNode(withName: object.imageFileName, recursively: true)?.isHidden = true
+            sceneInsideSceneView?.rootNode.childNode(withName: object.imageFileName, recursively: true)?.geometry?.firstMaterial = objectMaterial
+        }
         
         // 선택된 도구 오브젝트만 화면에 그려냅니다.
-        sceneInsideSceneView?.rootNode.childNode(withName: sample.toolToString(), recursively: true)?.isHidden = false
-        
-        sceneInsideSceneView?.rootNode.childNode(withName: "Spoon", recursively: true)?.geometry?.firstMaterial = objectMaterial
-        sceneInsideSceneView?.rootNode.childNode(withName: "Fork", recursively: true)?.geometry?.firstMaterial = objectMaterial
-        sceneInsideSceneView?.rootNode.childNode(withName: "Whisk", recursively: true)?.geometry?.firstMaterial = objectMaterial
-        sceneInsideSceneView?.rootNode.childNode(withName: "Spatula", recursively: true)?.geometry?.firstMaterial = objectMaterial
+        sceneInsideSceneView?.rootNode.childNode(withName: sample.tool.imageFileName, recursively: true)?.isHidden = false
         
         // 오브젝트가 회전하는 애니메이션(액션)을 추가합니다.
         let action = SCNAction.rotateBy(x: 0, y: CGFloat(GLKMathDegreesToRadians(-360)), z: 0, duration: 12)
@@ -75,13 +72,18 @@ class PokeToolCustomizingViewController: UIViewController {
         buttonsStackView.distribution = .fillEqually
         buttonsStackView.spacing = 16
         
-        for toolImageIndex in 0..<toolImages.count {
-            let button = UIButton()
-            button.setImage(toolImages[toolImageIndex], for: .normal)
-            button.backgroundColor = UIColor.customLightGray
-            button.layer.borderColor = UIColor.customBlack.cgColor
-            button.layer.borderWidth = { sample.toolToInt() == toolImageIndex ? 2 : 0 }()
+        for index in 0..<Tool.allCases.count {
             
+            let button = StyleButton(tool: Tool(rawValue: index)!)
+            
+            button.imageView?.contentMode = .scaleAspectFit
+            
+            button.setImage(UIImage(named: toolImages[index])!.alpha(1), for: .selected)
+            button.setImage(UIImage(named: toolImages[index])!.alpha(0.3), for: .normal)
+            
+            if sample.tool.rawValue == index {
+                button.isSelected = true
+            }
             // Button Action
             button.addTarget(self, action: #selector(styleButtonPressed(_ :)), for: .touchUpInside)
             
@@ -135,15 +137,16 @@ class PokeToolCustomizingViewController: UIViewController {
         
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        for toolImageIndex in 0..<toolColors.count {
+        for toolColorIndex in 0..<toolColors.count {
             
             let button = UIButton(type: .custom)
             button.layer.cornerRadius = 30
             button.layer.masksToBounds = true
             button.clipsToBounds = true
-            button.backgroundColor = toolColors[toolImageIndex]
-            button.layer.borderWidth = { sample.color == toolColors[toolImageIndex] ? 2 : 0 }()
-            button.layer.borderColor = UIColor.customBlack.cgColor
+            button.backgroundColor = UIColor.white
+            button.layer.borderWidth = { sample.color == toolColors[toolColorIndex] ? 12 : 100 }()
+            
+            button.layer.borderColor = toolColors[toolColorIndex].cgColor
             
             // Button Action
             button.addTarget(self, action: #selector(colorButtonPressed(_ :)), for: .touchUpInside)
@@ -193,6 +196,7 @@ class PokeToolCustomizingViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "찌르기 도구"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDone))
         
         view.addSubview(forkCustomView)
         [sceneView, styleButtonsStackView, colorButtonsStackView].forEach {
@@ -200,13 +204,10 @@ class PokeToolCustomizingViewController: UIViewController {
         }
         
         configureConstraints()
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDone))
-        
     }
     
     @objc func didTapDone() {
-        // container에 지금 오브젝트의 값을 저장합니다.
+        // TODO: DB에 지금 오브젝트의 값을 저장합니다.
         // 무엇을? 툴타입 & 색상 정보를.
     }
     
@@ -235,71 +236,45 @@ class PokeToolCustomizingViewController: UIViewController {
         ])
     }
     
-    private func willRenderSelectedToolOnly() {
-        
-        let root = sceneView.scene?.rootNode
-        
-        root?.childNode(withName: "Fork", recursively: true)?.isHidden = true
-        root?.childNode(withName: "Spoon", recursively: true)?.isHidden = true
-        root?.childNode(withName: "Spatula", recursively: true)?.isHidden = true
-        root?.childNode(withName: "Whisk", recursively: true)?.isHidden = true
-        
-        root?.childNode(withName: sample.toolToString(), recursively: true)?.isHidden = false
+    private func willRenderSelectedToolOnly(selectedToolIndex: Int) {
+                
+        for i in 0..<Tool.allCases.count {
+            if i != selectedToolIndex {
+                sceneView.scene?.rootNode.childNode(withName: Tool(rawValue: i)!.imageFileName, recursively: true)?.isHidden = true
+            } else {
+                sceneView.scene?.rootNode.childNode(withName: Tool(rawValue: i)!.imageFileName, recursively: true)?.isHidden = false
+            }
+        }
     }
     
-    @objc func styleButtonPressed(_ sender: UIButton) {
-        
-        // 클릭된 버튼에 따라서
-        // 1. 유저의 정보에 선택한 값 띄워주기
-        // 2. 선택된 오브젝트만 화면에 띄우기
-        
-        switch sender.imageView!.image {
-            
-        case UIImage(systemName: "cloud"):
-            sample.tool = Tool.Fork
-            willHideBorders(view: styleButtonsStackView)
-            willRenderSelectedToolOnly()
-            
-        case UIImage(systemName: "bookmark"):
-            sample.tool = Tool.Spoon
-            willHideBorders(view: styleButtonsStackView)
-            willRenderSelectedToolOnly()
-            
-        case UIImage(systemName: "heart"):
-            sample.tool = Tool.Whisk
-            willHideBorders(view: styleButtonsStackView)
-            willRenderSelectedToolOnly()
-            
-        default:
-            sample.tool = Tool.Spatula
-            willHideBorders(view: styleButtonsStackView)
-            willRenderSelectedToolOnly()
+    @objc func styleButtonPressed(_ sender: StyleButton) {
+
+        // 눌린 버튼이 이전에 눌렸던 버튼과는 다른 버튼이라면 실행되는 코드
+        if !sender.isSelected {
+            let previousButton = sender.superview?.subviews[sample.tool.rawValue] as? UIButton
+            previousButton?.isSelected.toggle()
+            sender.isSelected.toggle()
+            sample.tool = sender.tool
         }
-        
-        // 클릭된 버튼에 border값 주기
-        sender.layer.borderWidth = 2
+
+        willRenderSelectedToolOnly(selectedToolIndex: sample.tool.rawValue)
+
     }
     
     @objc func colorButtonPressed(_ sender: UIButton) {
         
-        willHideBorders(view: colorButtonsStackView)
+        for buttonView in colorButtonsStackView.subviews.last!.subviews {
+            buttonView.layer.borderWidth = 100
+        }
         
-        // 모든 Material의 색상을 선택된 색상으로 설정
-        sceneView.scene?.rootNode.childNode(withName: "Fork", recursively: true)?.geometry?.firstMaterial?.diffuse.contents = sender.backgroundColor
-        sceneView.scene?.rootNode.childNode(withName: "Spoon", recursively: true)?.geometry?.firstMaterial?.diffuse.contents = sender.backgroundColor
-        sceneView.scene?.rootNode.childNode(withName: "Whisk", recursively: true)?.geometry?.firstMaterial?.diffuse.contents = sender.backgroundColor
-        sceneView.scene?.rootNode.childNode(withName: "Spatula", recursively: true)?.geometry?.firstMaterial?.diffuse.contents = sender.backgroundColor
+        sender.layer.borderWidth = 12
         
-        sender.layer.borderWidth = 2
+        PokeToolCustomizingViewController.objectMaterial.diffuse.contents = sender.layer.borderColor
+        
         sample.color = sender.backgroundColor!
     }
-    
-    private func willHideBorders(view: UIView) {
-        for buttonView in view.subviews.last!.subviews {
-            buttonView.layer.borderWidth = 0
-        }
-    }
 }
+
 
 func willReturnGroupLabel(labelName: String) -> UILabel {
     
