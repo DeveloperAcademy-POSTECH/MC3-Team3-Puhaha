@@ -17,7 +17,7 @@ extension Date {
     
     var timeText: String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "hh시 mm분"
+        dateFormatter.dateFormat = "h시 m분"
         return dateFormatter.string(from: self)
     }
     

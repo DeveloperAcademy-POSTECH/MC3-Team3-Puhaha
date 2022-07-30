@@ -23,8 +23,8 @@ class MainTabViewController: UITabBarController {
         statisticTab.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0.0, vertical: 6.0)
         
         self.viewControllers = [tableTab, statisticTab]
-        tabBar.tintColor = UIColor(named: "MainColor") ?? UIColor()
-        tabBar.unselectedItemTintColor = UIColor(named: "GrayColor")
+        tabBar.tintColor = UIColor(named: "TabBarIconSelectedColor") ?? UIColor()
+        tabBar.unselectedItemTintColor = UIColor(named: "TabBarIconUnSelectedColor")
         UITabBar.clearShadow()
         tabBar.layer.applyShadow(color: .gray, alpha: 0.3, x: 0, y: 0, blur: 12)
     }

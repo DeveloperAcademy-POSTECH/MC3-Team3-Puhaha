@@ -11,19 +11,29 @@ class EmptyMealCardView: UIView {
     private let stateLabel: UILabel = {
         let label: UILabel = UILabel()
         label.text = "아직 식사를 하지 않았어요."
-        label.font = UIFont.systemFont(ofSize: 26)
+        label.font = UIFont.systemFont(ofSize: 26, weight: .regular)
         return label
     }()
     
-    // TODO: 버튼의 스타일이 확정되면 수정 필요 -
     private let pokeButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "Spoon") ?? UIImage(), for: .normal)
-        button.setTitle("콕 찌르기", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.alignTitleBelowImage(spacing: 16)
+        let titleAttr = AttributedString.init("콕 찌르기")
+        var configuration = UIButton.Configuration.plain()
+        configuration.attributedTitle = titleAttr
+        configuration.baseForegroundColor = .black
+        configuration.imagePlacement = .top
+        configuration.background.image = UIImage(named: "PokeButtonBackgroundImage")
         
-        button.setBackgroundImage(UIImage(named: "PokeButtonBackgroundImgae"), for: .normal)
+        let button = UIButton(configuration: configuration)
+        
+        let renderFormat = UIGraphicsImageRendererFormat.default()
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: UIScreen.main.bounds.width / 1.77, height: UIScreen.main.bounds.width / 1.77), format: renderFormat)
+        let newImage = renderer.image { _ in
+            let image = UIImage(named: "Spatula")
+            image?.draw(in: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width / 1.77, height: UIScreen.main.bounds.width / 1.77))
+        }
+        
+        button.configuration?.image = newImage
+        
         return button
     }()
     
@@ -56,34 +66,5 @@ class EmptyMealCardView: UIView {
             pokeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -(UIScreen.main.bounds.width / 8.67)),
             pokeButton.bottomAnchor.constraint(equalTo: stateLabel.bottomAnchor, constant: 53 + UIScreen.main.bounds.width * 0.77)
         ])
-    }
-}
-
-extension UIButton {
-    /**
-     버튼 내부 이미지와 텍스트 vertical 정렬하는 함수
-     출처: https://velog.io/@ezidayzi/iOS-UIButton-title-image-align-하기
-     해당 함수는 ios 15부터 사용되지 않는 함수들을 사용하기 때문에 디자인이 확정되면 아래 링크를 참고하는 방식으로 바꿔야 한다.
-     UIButton.Configuration apple doc 링크:  https://developer.apple.com/documentation/uikit/uibutton/configuration
-     */
-    func alignTitleBelowImage(spacing: CGFloat = 8.0) {
-        guard let image = self.imageView?.image else {
-            return
-        }
-        
-        guard let titleLabel = self.titleLabel else {
-            return
-        }
-        
-        guard let titleText = titleLabel.text else {
-            return
-        }
-        
-        let titleSize = titleText.size(withAttributes: [
-            NSAttributedString.Key.font: titleLabel.font as Any
-        ])
-        
-        titleEdgeInsets = UIEdgeInsets(top: self.intrinsicContentSize.height * 4 - spacing, left: -image.size.width, bottom: titleSize.height / 2, right: 0)
-        imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: spacing, right: -titleSize.width)
     }
 }

@@ -44,6 +44,8 @@
 		CE73297D28865C8800CA87F1 /* MealCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73297C28865C8800CA87F1 /* MealCardCollectionViewCell.swift */; };
 		CE73297F28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73297E28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift */; };
 		CE73298128869FA300CA87F1 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73298028869FA300CA87F1 /* Family.swift */; };
+		CE9AE1912891270500F4253D /* MainViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AE1902891270500F4253D /* MainViewController+Delegate.swift */; };
+		CE9AE1932891271700F4253D /* MainViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AE1922891271700F4253D /* MainViewController+DataSource.swift */; };
 		CE9D233B28877E1F00D53332 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D233A28877E1F00D53332 /* MainTabViewController.swift */; };
 		CE9D233D28877F7100D53332 /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D233C28877F7100D53332 /* StatisticViewController.swift */; };
 		CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F965C287FA66C00783324 /* AppDelegate.swift */; };
@@ -89,6 +91,8 @@
 		CE73297C28865C8800CA87F1 /* MealCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE73297E28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyFilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE73298028869FA300CA87F1 /* Family.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Family.swift; sourceTree = "<group>"; };
+		CE9AE1902891270500F4253D /* MainViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Delegate.swift"; sourceTree = "<group>"; };
+		CE9AE1922891271700F4253D /* MainViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+DataSource.swift"; sourceTree = "<group>"; };
 		CE9D233A28877E1F00D53332 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		CE9D233C28877F7100D53332 /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
 		CE9F9659287FA66C00783324 /* Puhaha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puhaha.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,7 +222,9 @@
 				55CF4C8E288BE81A0020DACC /* AccountSettingViewController.swift */,
 				CE558B182885304500E98909 /* MainViewController.swift */,
 				CE9D233A28877E1F00D53332 /* MainTabViewController.swift */,
-				CE9D233C28877F7100D53332 /* StatisticViewController.swift */
+				CE9D233C28877F7100D53332 /* StatisticViewController.swift */,
+				CE9AE1902891270500F4253D /* MainViewController+Delegate.swift */,
+				CE9AE1922891271700F4253D /* MainViewController+DataSource.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -346,6 +352,8 @@
 			files = (
 				55599E3C2886362900C05E81 /* CustomedLoginButton.swift in Sources */,
 				BF8C5FA9288E5EE0002BF0BD /* UploadViewController.swift in Sources */,
+				CE9AE1932891271700F4253D /* MainViewController+DataSource.swift in Sources */,
+				CE9AE1912891270500F4253D /* MainViewController+Delegate.swift in Sources */,
 				CE718850288E849D002CF653 /* EmptyMealCardView.swift in Sources */,
 				551CD2DE28850A800037487D /* SignInViewController.swift in Sources */,
 				CE5B4F6E288E7C9D00111ACC /* MealDetailViewController.swift in Sources */,
