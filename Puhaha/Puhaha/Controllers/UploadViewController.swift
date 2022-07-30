@@ -204,19 +204,19 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
         case tagTimeContentCollectionView:
             cell.contentLabel.textColor = .black
             cell.contentLabel.text = tagContentsArray[0].tagContents[indexPath.row].content
-            cell.layer.borderColor = tagContentsArray[0].tagContents[indexPath.row].backgroundColor.cgColor
+            cell.layer.borderColor = tagContentsArray[0].tagContents[indexPath.row].backgroundColor?.cgColor
             print(tagContentsArray[0].tagContents[indexPath.row])
             
         case tagMenuContentCollectionView:
             cell.contentLabel.textColor = .black
             cell.contentLabel.text = tagContentsArray[1].tagContents[indexPath.row].content
-            cell.layer.borderColor = tagContentsArray[1].tagContents[indexPath.row].backgroundColor.cgColor
+            cell.layer.borderColor = tagContentsArray[1].tagContents[indexPath.row].backgroundColor?.cgColor
             print(tagContentsArray[1].tagContents[indexPath.row])
         
         case tagEmotionContentCollectionView:
             cell.contentLabel.textColor = .black
             cell.contentLabel.text = tagContentsArray[2].tagContents[indexPath.row].content
-            cell.layer.borderColor = tagContentsArray[2].tagContents[indexPath.row].backgroundColor.cgColor
+            cell.layer.borderColor = tagContentsArray[2].tagContents[indexPath.row].backgroundColor?.cgColor
             print(tagContentsArray[2].tagContents[indexPath.row])
             
         default:
@@ -243,16 +243,16 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
             switch collectionView {
             case tagTimeContentCollectionView:
                 cell.contentLabel.textColor = .white
-                cell.layer.backgroundColor = tagContentsArray[0].tagContents[indexPath.row].backgroundColor.cgColor
+                cell.layer.backgroundColor = tagContentsArray[0].tagContents[indexPath.row].backgroundColor?.cgColor
                 
             case tagMenuContentCollectionView:
                 cell.contentLabel.textColor = .white
-                cell.layer.backgroundColor = tagContentsArray[1].tagContents[indexPath.row].backgroundColor.cgColor
+                cell.layer.backgroundColor = tagContentsArray[1].tagContents[indexPath.row].backgroundColor?.cgColor
                 print(tagContentsArray[1].tagContents[indexPath.row])
             
             case tagEmotionContentCollectionView:
                 cell.contentLabel.textColor = .white
-                cell.layer.backgroundColor = tagContentsArray[2].tagContents[indexPath.row].backgroundColor.cgColor
+                cell.layer.backgroundColor = tagContentsArray[2].tagContents[indexPath.row].backgroundColor?.cgColor
                 print(tagContentsArray[2].tagContents[indexPath.row])
                 
             default:
