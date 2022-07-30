@@ -15,6 +15,7 @@
 		55599E3C2886362900C05E81 /* CustomedLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55599E3B2886362900C05E81 /* CustomedLoginButton.swift */; };
 		55C02311288A940D001511E3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C02310288A940D001511E3 /* SettingViewController.swift */; };
 		55CF4C8F288BE81A0020DACC /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF4C8E288BE81A0020DACC /* AccountSettingViewController.swift */; };
+		55DCB98B2895A51E00C83E1D /* NameSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCB98A2895A51E00C83E1D /* NameSettingViewController.swift */; };
 		A402AAF12893B56D00425BC0 /* PokingToolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A402AAF02893B56D00425BC0 /* PokingToolButton.swift */; };
 		A40C3F5F2890048B004465D5 /* PokeToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40C3F5E2890048B004465D5 /* PokeToolViewController.swift */; };
 		A40C3F61289012D9004465D5 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40C3F60289012D9004465D5 /* DividerView.swift */; };
@@ -66,6 +67,7 @@
 		55AA34B228854CB800C2D6D6 /* Puhaha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puhaha.entitlements; sourceTree = "<group>"; };
 		55C02310288A940D001511E3 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		55CF4C8E288BE81A0020DACC /* AccountSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
+		55DCB98A2895A51E00C83E1D /* NameSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameSettingViewController.swift; sourceTree = "<group>"; };
 		A402AAF02893B56D00425BC0 /* PokingToolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokingToolButton.swift; sourceTree = "<group>"; };
 		A40C3F5E2890048B004465D5 /* PokeToolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokeToolViewController.swift; sourceTree = "<group>"; };
 		A40C3F60289012D9004465D5 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				CE5B4F6D288E7C9D00111ACC /* MealDetailViewController.swift */,
 				BF8C5FA8288E5EDF002BF0BD /* UploadViewController.swift */,
 				551CD2DD28850A800037487D /* SignInViewController.swift */,
+				55DCB98A2895A51E00C83E1D /* NameSettingViewController.swift */,
 				55C02310288A940D001511E3 /* SettingViewController.swift */,
 				55CF4C8E288BE81A0020DACC /* AccountSettingViewController.swift */,
 				CE558B182885304500E98909 /* MainViewController.swift */,
@@ -236,7 +239,7 @@
 				CE9AE1902891270500F4253D /* MainViewController+Delegate.swift */,
 				CE9AE1922891271700F4253D /* MainViewController+DataSource.swift */,
 				CE33B7762894FF680054F9CD /* CreateFamilyViewController.swift */,
-				CE33B7782894FFA40054F9CD /* InviteFamilyViewController.swift */
+				CE33B7782894FFA40054F9CD /* InviteFamilyViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				CE73298128869FA300CA87F1 /* Family.swift in Sources */,
 				A445E5F828929C9B00FD31C4 /* UIImage+Extension.swift in Sources */,
 				CE5B4F68288E7C6A00111ACC /* ReactionCollectionViewCell.swift in Sources */,
+				55DCB98B2895A51E00C83E1D /* NameSettingViewController.swift in Sources */,
 				CE558B192885304500E98909 /* MainViewController.swift in Sources */,
 				CE73297F28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift in Sources */
 			);
@@ -555,10 +559,11 @@
 				CODE_SIGN_ENTITLEMENTS = Puhaha/Puhaha.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 744MUUC77P;
+				DEVELOPMENT_TEAM = NHPUW6MZCU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Puhaha/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 사용권한을 허용해주세요.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 사용권한을 요청합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "캘러리 사용권한을 요청합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
