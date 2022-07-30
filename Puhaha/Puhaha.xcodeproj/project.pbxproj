@@ -15,6 +15,7 @@
 		55599E3C2886362900C05E81 /* CustomedLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55599E3B2886362900C05E81 /* CustomedLoginButton.swift */; };
 		55C02311288A940D001511E3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C02310288A940D001511E3 /* SettingViewController.swift */; };
 		55CF4C8F288BE81A0020DACC /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF4C8E288BE81A0020DACC /* AccountSettingViewController.swift */; };
+		A402AAF12893B56D00425BC0 /* PokingToolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A402AAF02893B56D00425BC0 /* PokingToolButton.swift */; };
 		A40C3F5F2890048B004465D5 /* PokeToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40C3F5E2890048B004465D5 /* PokeToolViewController.swift */; };
 		A40C3F61289012D9004465D5 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40C3F60289012D9004465D5 /* DividerView.swift */; };
 		A419810F288508EC00CCFDBA /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A419810D288508EC00CCFDBA /* UIColor+Extension.swift */; };
@@ -62,6 +63,7 @@
 		55AA34B228854CB800C2D6D6 /* Puhaha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puhaha.entitlements; sourceTree = "<group>"; };
 		55C02310288A940D001511E3 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		55CF4C8E288BE81A0020DACC /* AccountSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
+		A402AAF02893B56D00425BC0 /* PokingToolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokingToolButton.swift; sourceTree = "<group>"; };
 		A40C3F5E2890048B004465D5 /* PokeToolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokeToolViewController.swift; sourceTree = "<group>"; };
 		A40C3F60289012D9004465D5 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 		A419810D288508EC00CCFDBA /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				BF7F91182886530A009D3809 /* ActionSheetView.swift */,
 				A40C3F60289012D9004465D5 /* DividerView.swift */,
 				BF8C5FAC288E655B002BF0BD /* TagContentCollectionViewCell.swift */,
+				A402AAF02893B56D00425BC0 /* PokingToolButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				CE5B4F67288E7C6A00111ACC /* ReactionView.swift in Sources */,
 				CE9D233B28877E1F00D53332 /* MainTabViewController.swift in Sources */,
 				BF8C5FAD288E655B002BF0BD /* TagContentCollectionViewCell.swift in Sources */,
+				A402AAF12893B56D00425BC0 /* PokingToolButton.swift in Sources */,
 				CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */,
 				55C02311288A940D001511E3 /* SettingViewController.swift in Sources */,
 				CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */,
