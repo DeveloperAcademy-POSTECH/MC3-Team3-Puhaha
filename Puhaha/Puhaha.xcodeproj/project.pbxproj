@@ -53,8 +53,6 @@
 		CE9F9661287FA66C00783324 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F9660287FA66C00783324 /* ViewController.swift */; };
 		CE9F9666287FA66F00783324 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9F9665287FA66F00783324 /* Assets.xcassets */; };
 		CE9F9674287FA8A600783324 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE9F9673287FA8A600783324 /* .swiftlint.yml */; };
-		CEF62DA62891A58F00ED0481 /* CreateFamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF62DA52891A58F00ED0481 /* CreateFamilyViewController.swift */; };
-		CEF62DA82891B2F200ED0481 /* InviteFamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF62DA72891B2F200ED0481 /* InviteFamilyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,8 +102,6 @@
 		CE9F9665287FA66F00783324 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE9F966A287FA66F00783324 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE9F9673287FA8A600783324 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		CEF62DA52891A58F00ED0481 /* CreateFamilyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFamilyViewController.swift; sourceTree = "<group>"; };
-		CEF62DA72891B2F200ED0481 /* InviteFamilyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFamilyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,9 +222,7 @@
 				55CF4C8E288BE81A0020DACC /* AccountSettingViewController.swift */,
 				CE558B182885304500E98909 /* MainViewController.swift */,
 				CE9D233A28877E1F00D53332 /* MainTabViewController.swift */,
-				CE9D233C28877F7100D53332 /* StatisticViewController.swift */
-				CEF62DA52891A58F00ED0481 /* CreateFamilyViewController.swift */,
-				CEF62DA72891B2F200ED0481 /* InviteFamilyViewController.swift */,
+				CE9D233C28877F7100D53332 /* StatisticViewController.swift */,
 				CE9AE1902891270500F4253D /* MainViewController+Delegate.swift */,
 				CE9AE1922891271700F4253D /* MainViewController+DataSource.swift */,
 			);
@@ -356,7 +350,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEF62DA62891A58F00ED0481 /* CreateFamilyViewController.swift in Sources */,
 				55599E3C2886362900C05E81 /* CustomedLoginButton.swift in Sources */,
 				BF8C5FA9288E5EE0002BF0BD /* UploadViewController.swift in Sources */,
 				CE9AE1932891271700F4253D /* MainViewController+DataSource.swift in Sources */,
@@ -378,7 +371,6 @@
 				CE9D233B28877E1F00D53332 /* MainTabViewController.swift in Sources */,
 				BF8C5FAD288E655B002BF0BD /* TagContentCollectionViewCell.swift in Sources */,
 				CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */,
-				CEF62DA82891B2F200ED0481 /* InviteFamilyViewController.swift in Sources */,
 				55C02311288A940D001511E3 /* SettingViewController.swift in Sources */,
 				CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */,
 				A419810F288508EC00CCFDBA /* UIColor+Extension.swift in Sources */,
