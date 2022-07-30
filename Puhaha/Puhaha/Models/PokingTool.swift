@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import UIKit
+import UIKit.UIColor
 
 enum Tool: Int, CaseIterable {
     
