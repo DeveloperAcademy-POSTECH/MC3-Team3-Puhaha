@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Firebase
 import FirebaseAuth
 import AuthenticationServices
 import CryptoKit
@@ -25,7 +24,7 @@ class SignInViewController: UIViewController {
     
     private let guidingTextLabel: UILabel = {
         let label = UILabel()
-        label.text = "간편하게 로그인하고 다양한 서비스를 이용해보세요"
+        label.text = "간편하게 로그인하고 \n 다양한 서비스를 이용해보세요"
         label.font = .systemFont(ofSize: 22, weight: .regular)
         label.textAlignment = .center
         label.textColor = .black
@@ -62,7 +61,7 @@ class SignInViewController: UIViewController {
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.3).isActive = true
         
-        guidingTextLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.65).isActive = true
+        guidingTextLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
         guidingTextLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         guidingTextLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: view.bounds.height * 0.02).isActive = true
 
@@ -77,14 +76,10 @@ extension SignInViewController {
     }
 }
 
-// Apple Login 관련 코드
 extension SignInViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        // ASAuthorizationController (as = AuthenticationServices 약자)
-        // ASAuthorizationController를 통해 애플에 요청 -> appleIDToken, idTokenString 받아 -> credential
         
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            // nonce : 암호화 된 임의의 난수, 단 한번만 사용 가능한 값, 암호화 통신에 보통 사용
             guard let nonce = currentNonce else {
                 fatalError("Invalid state: A login callback was received, but no login request was sent.")
             }
@@ -96,20 +91,27 @@ extension SignInViewController: ASAuthorizationControllerDelegate {
                 print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
                 return
             }
-            let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
-            Auth.auth().signIn(with: credential) { authResult, error in
+            
+            let credential = OAuthProvider.credential(withProviderID: "apple.com",
+                                                      idToken: idTokenString,
+                                                      rawNonce: nonce)
+            
+            Auth.auth().signIn(with: credential) { _, error in
                 if let error = error {
                     print("Error Apple sign in: %@", error)
                     return
                 }
             }
+            
+            let mainTabViewController = MainTabViewController()
+            self.navigationController?.pushViewController(mainTabViewController, animated: true)
         }
     }
 }
 
 extension SignInViewController {
     func startSignInWithAppleFlow() {
-        let nonce = randomNonceString() // 이 request에 nonce가 포함되어 릴레이 공격 방지, 암호화
+        let nonce = randomNonceString()
         currentNonce = nonce
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
@@ -131,10 +133,9 @@ extension SignInViewController {
         return hashString
     }
     
-    // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
     private func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0)
-        let charset: Array<Character> = Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        let charset: [Character] = Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
         var result = ""
         var remainingLength = length
         
@@ -181,12 +182,12 @@ extension UILabel {
         } else {
             mutableAttributedString.append(NSMutableAttributedString(string: self.text ?? ""))
             mutableAttributedString.addAttribute(NSAttributedString.Key.font,
-                                          value: self.font,
-                                          range: NSMakeRange(0, mutableAttributedString.length))
+                                                 value: self.font,
+                                                 range: NSMakeRange(0, mutableAttributedString.length))
         }
         mutableAttributedString.addAttribute(NSAttributedString.Key.paragraphStyle,
-                                      value: paragraphStyle,
-                                      range: NSMakeRange(0, mutableAttributedString.length))
+                                             value: paragraphStyle,
+                                             range: NSMakeRange(0, mutableAttributedString.length))
         self.attributedText = mutableAttributedString
     }
 }
