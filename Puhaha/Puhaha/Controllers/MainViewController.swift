@@ -226,13 +226,31 @@ extension MainViewController: PHPickerViewControllerDelegate {
                     guard let selectedImage = image as? UIImage else { return print("selected Image error")}
                     
                     let uploadViewController = UploadViewController()
-                    uploadViewController.pictureImageView.image = selectedImage
-                    uploadViewController.modalPresentationStyle = .fullScreen
                     
-                    self.present(uploadViewController, animated: true)
+                    uploadViewController.pictureImageView.image = selectedImage
+                    uploadViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(
+                                        title: "취소",
+                                        style: .plain,
+                                        target: self,
+                                        action: #selector(self.dismissSelf))
+                    uploadViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(
+                                        title: "업로드",
+                                        style: .done,
+                                        target: self,
+                                        action: #selector(self.dismissSelf))
+                    
+                    let navigationViewController = UINavigationController(rootViewController: uploadViewController)
+                    
+                    uploadViewController.navigationController?.navigationBar.backgroundColor = .white
+                    navigationViewController.modalPresentationStyle = .fullScreen
+                    self.present(navigationViewController, animated: true)
                 }
             }
         }
+    }
+    
+    @objc private func dismissSelf() {
+        dismiss(animated: true, completion: nil)
     }
 }
 
