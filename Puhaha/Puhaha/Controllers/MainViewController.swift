@@ -211,6 +211,7 @@ class MainViewController: UIViewController {
     }
 }
 
+/// 사진 라이브러리에서 선택을 끝냈을 때
 extension MainViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         
@@ -254,6 +255,7 @@ extension MainViewController: PHPickerViewControllerDelegate {
     }
 }
 
+/// 카메라에서 사진 촬영을 끝냈을 때
 extension MainViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         
@@ -262,9 +264,22 @@ extension MainViewController: UIImagePickerControllerDelegate, UINavigationContr
         
         let uploadViewController = UploadViewController()
         uploadViewController.pictureImageView.image = captureImage
+        uploadViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(
+                            title: "취소",
+                            style: .plain,
+                            target: self,
+                            action: #selector(self.dismissSelf))
+        uploadViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(
+                            title: "업로드",
+                            style: .done,
+                            target: self,
+                            action: #selector(self.dismissSelf))
         
-        uploadViewController.modalPresentationStyle = .fullScreen
-        self.present(uploadViewController, animated: true)
+        let navigationViewController = UINavigationController(rootViewController: uploadViewController)
+        
+        uploadViewController.navigationController?.navigationBar.backgroundColor = .white
+        navigationViewController.modalPresentationStyle = .fullScreen
+        self.present(navigationViewController, animated: true)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
