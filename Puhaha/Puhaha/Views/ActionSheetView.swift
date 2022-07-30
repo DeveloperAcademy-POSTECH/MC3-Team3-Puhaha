@@ -35,21 +35,19 @@ class ActionSheetView: UIViewController {
         return button
     }()
     
-    @objc func tapCameraButton(_ sender: Any) {
-        if let button = sender as? UIButton {
-            let sheet = UIAlertController(title: "식사 업로드하기", message: nil, preferredStyle: .actionSheet)
-            let takePhoto = UIAlertAction(title: "사진 촬영하기", style: .default) {(_: UIAlertAction) in
-                self.presentCamera()
-            }
-            let chooseLibarary = UIAlertAction(title: "라이브러리에서 선택하기", style: .default) {(_: UIAlertAction) in
-                self.selectPhotos()
-            }
-            let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-            
-            [takePhoto, chooseLibarary, cancel].forEach { sheet.addAction($0)}
-            
-            self.present(sheet, animated: true, completion: nil)
+    @objc func tapCameraButton(_ sender: UIButton) {
+        let sheet = UIAlertController(title: "식사 업로드하기", message: nil, preferredStyle: .actionSheet)
+        let takePhoto = UIAlertAction(title: "사진 촬영하기", style: .default) {(_: UIAlertAction) in
+            self.presentCamera()
         }
+        let chooseLibarary = UIAlertAction(title: "라이브러리에서 선택하기", style: .default) {(_: UIAlertAction) in
+            self.selectPhotos()
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        [takePhoto, chooseLibarary, cancel].forEach { sheet.addAction($0)}
+        
+        self.present(sheet, animated: true, completion: nil)
     }
     
     /// 카메라 촬영화면을 모달로 띄우는 함수
