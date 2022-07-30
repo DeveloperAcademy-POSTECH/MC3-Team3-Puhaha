@@ -11,9 +11,8 @@ class UploadViewController: UIViewController {
     
     var tagContentsArray = UploadTag.uploadTags
     
-    private var pictureImageView: UIImageView = {
+    lazy var pictureImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
-        imageView.image = UIImage(named: "MealImage1")
         imageView.clipsToBounds = true
         imageView.sizeToFit()
         imageView.translatesAutoresizingMaskIntoConstraints = false
