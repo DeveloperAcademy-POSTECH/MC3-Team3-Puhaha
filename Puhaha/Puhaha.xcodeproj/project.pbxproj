@@ -31,6 +31,8 @@
 		BF8C5FA9288E5EE0002BF0BD /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FA8288E5EDF002BF0BD /* UploadViewController.swift */; };
 		BF8C5FAD288E655B002BF0BD /* TagContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FAC288E655B002BF0BD /* TagContentCollectionViewCell.swift */; };
 		BF8C5FAF288E6B21002BF0BD /* UploadTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FAE288E6B21002BF0BD /* UploadTag.swift */; };
+		CE33B7772894FF680054F9CD /* CreateFamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B7762894FF680054F9CD /* CreateFamilyViewController.swift */; };
+		CE33B7792894FFA40054F9CD /* InviteFamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B7782894FFA40054F9CD /* InviteFamilyViewController.swift */; };
 		CE46B5702888DB3D0074DEF0 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE46B56F2888DB3D0074DEF0 /* TagLabel.swift */; };
 		CE558B1528852DF800E98909 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE558B1428852DF800E98909 /* Tag.swift */; };
 		CE558B1728852DFB00E98909 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE558B1628852DFB00E98909 /* Meal.swift */; };
@@ -78,6 +80,8 @@
 		BF8C5FA8288E5EDF002BF0BD /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		BF8C5FAC288E655B002BF0BD /* TagContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF8C5FAE288E6B21002BF0BD /* UploadTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTag.swift; sourceTree = "<group>"; };
+		CE33B7762894FF680054F9CD /* CreateFamilyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFamilyViewController.swift; sourceTree = "<group>"; };
+		CE33B7782894FFA40054F9CD /* InviteFamilyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFamilyViewController.swift; sourceTree = "<group>"; };
 		CE46B56F2888DB3D0074DEF0 /* TagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLabel.swift; sourceTree = "<group>"; };
 		CE558B1428852DF800E98909 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		CE558B1628852DFB00E98909 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
@@ -225,6 +229,8 @@
 				CE9D233C28877F7100D53332 /* StatisticViewController.swift */,
 				CE9AE1902891270500F4253D /* MainViewController+Delegate.swift */,
 				CE9AE1922891271700F4253D /* MainViewController+DataSource.swift */,
+				CE33B7762894FF680054F9CD /* CreateFamilyViewController.swift */,
+				CE33B7782894FFA40054F9CD /* InviteFamilyViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -366,6 +372,7 @@
 				CE9D233D28877F7100D53332 /* StatisticViewController.swift in Sources */,
 				A40C3F5F2890048B004465D5 /* PokeToolViewController.swift in Sources */,
 				CE558B1728852DFB00E98909 /* Meal.swift in Sources */,
+				CE33B7792894FFA40054F9CD /* InviteFamilyViewController.swift in Sources */,
 				CE558B1D288530BC00E98909 /* Date+Today.swift in Sources */,
 				CE5B4F67288E7C6A00111ACC /* ReactionView.swift in Sources */,
 				CE9D233B28877E1F00D53332 /* MainTabViewController.swift in Sources */,
@@ -373,6 +380,7 @@
 				CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */,
 				55C02311288A940D001511E3 /* SettingViewController.swift in Sources */,
 				CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */,
+				CE33B7772894FF680054F9CD /* CreateFamilyViewController.swift in Sources */,
 				A419810F288508EC00CCFDBA /* UIColor+Extension.swift in Sources */,
 				CE5B4F6C288E7C8B00111ACC /* Reaction.swift in Sources */,
 				BF7F91192886530A009D3809 /* ActionSheetView.swift in Sources */,
@@ -381,7 +389,7 @@
 				CE73298128869FA300CA87F1 /* Family.swift in Sources */,
 				CE5B4F68288E7C6A00111ACC /* ReactionCollectionViewCell.swift in Sources */,
 				CE558B192885304500E98909 /* MainViewController.swift in Sources */,
-				CE73297F28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift in Sources */
+				CE73297F28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
