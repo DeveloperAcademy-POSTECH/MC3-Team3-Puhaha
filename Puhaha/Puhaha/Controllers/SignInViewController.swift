@@ -44,6 +44,7 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.customYellow
+        navigationController?.setNavigationBarHidden(true, animated: false)
 
         [titleLabel, guidingTextLabel, appleLoginButton].forEach {
             view.addSubview($0)
