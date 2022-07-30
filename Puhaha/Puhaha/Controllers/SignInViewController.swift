@@ -46,7 +46,7 @@ class SignInViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = toolColors[3]
+        view.backgroundColor = UIColor.customYellow
 
         [titleLabel, guidingTextLabel, appleLoginButton].forEach {
             view.addSubview($0)
