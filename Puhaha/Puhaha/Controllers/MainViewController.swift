@@ -122,7 +122,7 @@ class MainViewController: UIViewController {
         familyFilterCollectionView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            todayDateLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            todayDateLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
             todayDateLabel.leadingAnchor.constraint(equalTo: super.view.leadingAnchor, constant: 22),
             
             settingButton.centerYAnchor.constraint(equalTo: todayDateLabel.centerYAnchor),

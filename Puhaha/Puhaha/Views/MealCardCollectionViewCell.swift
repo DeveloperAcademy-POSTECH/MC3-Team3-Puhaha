@@ -49,7 +49,7 @@ class MealCardCollectionViewCell: UICollectionViewCell {
             let stackView: UIStackView = UIStackView()
             stackView.axis = .horizontal
             stackView.spacing = 6
-            stackView.alignment = .fill
+            stackView.distribution = .equalSpacing
             return stackView
         }()
         
@@ -118,6 +118,8 @@ class MealCardCollectionViewCell: UICollectionViewCell {
             userNameLabel.topAnchor.constraint(equalTo: gradient.bottomAnchor, constant: -(contentView.bounds.height / 3.34)),
             userNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
             
+            userIconImageView.heightAnchor.constraint(equalToConstant: 83),
+            userIconImageView.widthAnchor.constraint(equalToConstant: 83),
             userIconImageView.centerYAnchor.constraint(equalTo: userNameLabel.centerYAnchor),
             userIconImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18),
             
