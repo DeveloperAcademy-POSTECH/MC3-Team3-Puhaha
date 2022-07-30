@@ -34,13 +34,10 @@ class PokeToolCustomizingViewController: UIViewController {
         let sceneView = SCNView()
         let sceneInsideSceneView = SCNScene(named: "Tools.scn")
         
-        // 모든 도구 오브젝트들을 숨깁니다.
-        
+        // 모든 도구 오브젝트들에 First material 값을 새로 주고 화면에서 숨깁니다.
         for object in Tool.allCases {
-            
             sceneInsideSceneView?.rootNode.childNode(withName: object.imageFileName, recursively: true)?.isHidden = true
             sceneInsideSceneView?.rootNode.childNode(withName: object.imageFileName, recursively: true)?.geometry?.firstMaterial = objectMaterial
-            
         }
         
         // 선택된 도구 오브젝트만 화면에 그려냅니다.
@@ -199,6 +196,7 @@ class PokeToolCustomizingViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "찌르기 도구"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDone))
         
         view.addSubview(forkCustomView)
         [sceneView, styleButtonsStackView, colorButtonsStackView].forEach {
@@ -206,13 +204,10 @@ class PokeToolCustomizingViewController: UIViewController {
         }
         
         configureConstraints()
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDone))
-        
     }
     
     @objc func didTapDone() {
-        // container에 지금 오브젝트의 값을 저장합니다.
+        // TODO: DB에 지금 오브젝트의 값을 저장합니다.
         // 무엇을? 툴타입 & 색상 정보를.
     }
     
@@ -254,16 +249,12 @@ class PokeToolCustomizingViewController: UIViewController {
     
     @objc func styleButtonPressed(_ sender: StyleButton) {
 
-        // 눌린 버튼이 이전에 눌렸던 버튼과는 다른 버튼이라면
+        // 눌린 버튼이 이전에 눌렸던 버튼과는 다른 버튼이라면 실행되는 코드
         if !sender.isSelected {
             let previousButton = sender.superview?.subviews[sample.tool.rawValue] as? UIButton
             previousButton?.isSelected.toggle()
-            print()
-            print("index of before : ", sample.tool.rawValue)
-            print()
             sender.isSelected.toggle()
             sample.tool = sender.tool
-
         }
 
         willRenderSelectedToolOnly(selectedToolIndex: sample.tool.rawValue)
