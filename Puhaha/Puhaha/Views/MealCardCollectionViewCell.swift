@@ -34,7 +34,7 @@ class MealCardCollectionViewCell: UICollectionViewCell {
     
     var tagLabels: [TagLabel] = []
     
-    var mealDetailTagStackView: UIStackView!
+    var mealCardTagStackView: UIStackView!
     
     var gradient: UIImageView = {
         var imageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width / 1.86, height: UIScreen.main.bounds.height / 3.32))
@@ -45,18 +45,18 @@ class MealCardCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        mealDetailTagStackView = {
+        mealCardTagStackView = {
             let stackView: UIStackView = UIStackView()
             stackView.axis = .horizontal
             stackView.spacing = 6
-            stackView.alignment = .fill
+            stackView.distribution = .equalSpacing
             return stackView
         }()
         
         layer.cornerRadius = 33
         layer.masksToBounds = true
         
-        [gradient, mealImageView, userNameLabel, userIconImageView, mealDetailTagStackView].forEach {
+        [gradient, mealImageView, userNameLabel, userIconImageView, mealCardTagStackView].forEach {
             addSubview($0)
         }
         
@@ -66,7 +66,7 @@ class MealCardCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        mealDetailTagStackView = {
+        mealCardTagStackView = {
             let stackView: UIStackView = UIStackView()
             stackView.axis = .horizontal
             stackView.spacing = 6
@@ -93,7 +93,7 @@ class MealCardCollectionViewCell: UICollectionViewCell {
         }
         
         tagLabels.forEach {
-            mealDetailTagStackView.addArrangedSubview($0)
+            mealCardTagStackView.addArrangedSubview($0)
         }
     }
     
@@ -101,7 +101,7 @@ class MealCardCollectionViewCell: UICollectionViewCell {
         mealImageView.translatesAutoresizingMaskIntoConstraints = false
         userNameLabel.translatesAutoresizingMaskIntoConstraints = false
         userIconImageView.translatesAutoresizingMaskIntoConstraints = false
-        mealDetailTagStackView.translatesAutoresizingMaskIntoConstraints = false
+        mealCardTagStackView.translatesAutoresizingMaskIntoConstraints = false
         gradient.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -118,12 +118,14 @@ class MealCardCollectionViewCell: UICollectionViewCell {
             userNameLabel.topAnchor.constraint(equalTo: gradient.bottomAnchor, constant: -(contentView.bounds.height / 3.34)),
             userNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
             
+            userIconImageView.heightAnchor.constraint(equalToConstant: 83),
+            userIconImageView.widthAnchor.constraint(equalToConstant: 83),
             userIconImageView.centerYAnchor.constraint(equalTo: userNameLabel.centerYAnchor),
             userIconImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18),
             
-            mealDetailTagStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            mealDetailTagStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-            mealDetailTagStackView.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: contentView.bounds.height / 17.67)
+            mealCardTagStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            mealCardTagStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            mealCardTagStackView.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: contentView.bounds.height / 17.67)
         ])
     }
 }
