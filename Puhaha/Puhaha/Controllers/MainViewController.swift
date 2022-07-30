@@ -8,9 +8,17 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    var meals: [Meal] = Meal.sampleMeals
+    var filter: String = ""
+    var selectedCellIndex: Int = 0
     
+    var meals: [Meal] = Meal.sampleMeals
     var familyMembers: [Family] = Family.sampleFamilyMembers
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+
+        tabBarController?.navigationController?.isNavigationBarHidden = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,20 +70,20 @@ class MainViewController: UIViewController {
         return button
     }()
     
-    private var tableLabel: UILabel = {
+    var tableLabel: UILabel = {
         let label = UILabel()
         label.text = "오늘의 식탁"
         label.font = UIFont.boldSystemFont(ofSize: 24)
         return label
     }()
     
-    private let emptyMealCardView: EmptyMealCardView = {
+    let emptyMealCardView: EmptyMealCardView = {
         let view: EmptyMealCardView = EmptyMealCardView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         view.layer.zPosition = 10
         return view
     }()
     
-    private var mealCardCollectionView: UICollectionView = {
+    var mealCardCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
         layout.scrollDirection = .horizontal
@@ -89,7 +97,7 @@ class MainViewController: UIViewController {
         return collectionView
     }()
     
-    private var familyFilterCollectionView: UICollectionView = {
+    var familyFilterCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
         layout.scrollDirection = .horizontal
@@ -114,7 +122,7 @@ class MainViewController: UIViewController {
         familyFilterCollectionView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            todayDateLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            todayDateLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
             todayDateLabel.leadingAnchor.constraint(equalTo: super.view.leadingAnchor, constant: 22),
             
             settingButton.centerYAnchor.constraint(equalTo: todayDateLabel.centerYAnchor),
@@ -145,42 +153,13 @@ class MainViewController: UIViewController {
         ])
     }
 
-}
-
-extension MainViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == mealCardCollectionView {
-            return meals.count
+    func mealCardViewHidden() {
+        if meals.isEmpty {
+            emptyMealCardView.isHidden = false
+            mealCardCollectionView.isHidden = true
         } else {
-            return familyMembers.count
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == mealCardCollectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MealCardCollectionViewCell.identifier, for: indexPath) as? MealCardCollectionViewCell else { return UICollectionViewCell() }
-            
-            let meal = self.meals[indexPath.row]
-            cell.configureMealCard(with: meal)
-            
-            return cell
-        } else {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FamilyFilterCollectionViewCell.identifier, for: indexPath) as? FamilyFilterCollectionViewCell else { return UICollectionViewCell() }
-            
-            let family = self.familyMembers[indexPath.row]
-            cell.configureFilterCell(with: family)
-            
-            return cell
-        }
-    }
-}
-
-extension MainViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == mealCardCollectionView {
-            return CGSize(width: UIScreen.main.bounds.width / 1.86, height: UIScreen.main.bounds.height / 2)
-        } else {
-            return CGSize(width: 50 + 15 * familyMembers[indexPath.row].name.count, height: 32)
+            emptyMealCardView.isHidden = true
+            mealCardCollectionView.isHidden = false
         }
     }
 }
