@@ -11,7 +11,7 @@
 		551CD2E128850C6A0037487D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E028850C6A0037487D /* FirebaseAnalytics */; };
 		551CD2E328850C6A0037487D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E228850C6A0037487D /* FirebaseAuth */; };
 		551CD2E528850C6A0037487D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E428850C6A0037487D /* FirebaseFirestore */; };
-		555951DF28879DB100B4BE91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 555951DE28879DB100B4BE91 /* GoogleService-Info.plist */; };
+		554B7799289526F900216D30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 554B7798289526F900216D30 /* GoogleService-Info.plist */; };
 		55599E3C2886362900C05E81 /* CustomedLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55599E3B2886362900C05E81 /* CustomedLoginButton.swift */; };
 		55C02311288A940D001511E3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C02310288A940D001511E3 /* SettingViewController.swift */; };
 		55CF4C8F288BE81A0020DACC /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF4C8E288BE81A0020DACC /* AccountSettingViewController.swift */; };
@@ -59,7 +59,7 @@
 
 /* Begin PBXFileReference section */
 		551CD2DD28850A800037487D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		555951DE28879DB100B4BE91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		554B7798289526F900216D30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		55599E3B2886362900C05E81 /* CustomedLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomedLoginButton.swift; sourceTree = "<group>"; };
 		55AA34B228854CB800C2D6D6 /* Puhaha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puhaha.entitlements; sourceTree = "<group>"; };
 		55C02310288A940D001511E3 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -194,7 +194,7 @@
 				CE9F9660287FA66C00783324 /* ViewController.swift */,
 				CE9F9665287FA66F00783324 /* Assets.xcassets */,
 				CE9F966A287FA66F00783324 /* Info.plist */,
-				555951DE28879DB100B4BE91 /* GoogleService-Info.plist */,
+				554B7798289526F900216D30 /* GoogleService-Info.plist */,
 				CE9F9673287FA8A600783324 /* .swiftlint.yml */,
 			);
 			path = Puhaha;
@@ -321,7 +321,7 @@
 				A48C93AC288F74D500BA09EF /* BigFork.obj in Resources */,
 				A48C93A9288F74D500BA09EF /* BigWhisk.scn in Resources */,
 				CE9F9666287FA66F00783324 /* Assets.xcassets in Resources */,
-				555951DF28879DB100B4BE91 /* GoogleService-Info.plist in Resources */,
+				554B7799289526F900216D30 /* GoogleService-Info.plist in Resources */,
 				A48C93AE288F74D500BA09EF /* Spatula.scn in Resources */,
 				A48C93AB288F74D500BA09EF /* BigWhisk.obj in Resources */,
 				A48C93A8288F74D500BA09EF /* Tools.scn in Resources */,
@@ -518,7 +518,7 @@
 				CODE_SIGN_ENTITLEMENTS = Puhaha/Puhaha.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 744MUUC77P;
+				DEVELOPMENT_TEAM = NHPUW6MZCU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Puhaha/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 사용권한을 허용해주세요.";
