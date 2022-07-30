@@ -6,48 +6,37 @@
 //
 
 import Foundation
-import UIKit
+import UIKit.UIColor
 
-enum Tool {
-    case Fork       // 포크
+enum Tool: Int, CaseIterable {
+    
+    case Fork = 0   // 포크
     case Spoon      // 숟가락
     case Whisk      // 거품기
     case Spatula    // 뒤집개
+    
+    var imageFileName: String {
+        switch self {
+        case .Fork:
+            return "Fork"
+        case .Spoon:
+            return "Spoon"
+        case .Whisk:
+            return "Whisk"
+        case .Spatula:
+            return "Spatula"
+        }
+    }
 }
 
 class PokeTool {
+    
     var tool: Tool
     var color: UIColor
     
     init(tool: Tool, color: UIColor) {
         self.tool = tool
         self.color = color
-    }
-    
-    func toolToString() -> String {
-        switch tool {
-        case Tool.Fork:
-            return "Fork"
-        case Tool.Spoon:
-            return "Spoon"
-        case Tool.Whisk:
-            return "Whisk"
-        default:
-            return "Spatula"
-        }
-    }
-    
-    func toolToInt() -> Int {
-        switch tool {
-        case Tool.Fork:
-            return 0
-        case Tool.Spoon:
-            return 1
-        case Tool.Whisk:
-            return 2
-        default:
-            return 3
-        }
     }
 }
 
@@ -57,6 +46,6 @@ extension PokeTool {
     static var dummyData = PokeTool(tool: Tool.Fork, color: UIColor.customBlue)
 }
 
-let toolImages = [UIImage(systemName: "cloud"), UIImage(systemName: "bookmark"), UIImage(systemName: "heart"), UIImage(systemName: "message")]
+let toolImages = ["silver_fork", "silver_spoon", "silver_whisk", "silver_spatula_ver2"]
 
 #endif
