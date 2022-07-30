@@ -35,18 +35,16 @@ class PokeToolCustomizingViewController: UIViewController {
         let sceneInsideSceneView = SCNScene(named: "Tools.scn")
         
         // 모든 도구 오브젝트들을 숨깁니다.
-        sceneInsideSceneView?.rootNode.childNode(withName: "Spoon", recursively: true)?.isHidden = true
-        sceneInsideSceneView?.rootNode.childNode(withName: "Fork", recursively: true)?.isHidden = true
-        sceneInsideSceneView?.rootNode.childNode(withName: "Whisk", recursively: true)?.isHidden = true
-        sceneInsideSceneView?.rootNode.childNode(withName: "Spatula", recursively: true)?.isHidden = true
+        
+        for object in Tool.allCases {
+            
+            sceneInsideSceneView?.rootNode.childNode(withName: object.imageFileName, recursively: true)?.isHidden = true
+            sceneInsideSceneView?.rootNode.childNode(withName: object.imageFileName, recursively: true)?.geometry?.firstMaterial = objectMaterial
+            
+        }
         
         // 선택된 도구 오브젝트만 화면에 그려냅니다.
-        sceneInsideSceneView?.rootNode.childNode(withName: sample.toolToString(), recursively: true)?.isHidden = false
-        
-        sceneInsideSceneView?.rootNode.childNode(withName: "Spoon", recursively: true)?.geometry?.firstMaterial = objectMaterial
-        sceneInsideSceneView?.rootNode.childNode(withName: "Fork", recursively: true)?.geometry?.firstMaterial = objectMaterial
-        sceneInsideSceneView?.rootNode.childNode(withName: "Whisk", recursively: true)?.geometry?.firstMaterial = objectMaterial
-        sceneInsideSceneView?.rootNode.childNode(withName: "Spatula", recursively: true)?.geometry?.firstMaterial = objectMaterial
+        sceneInsideSceneView?.rootNode.childNode(withName: sample.tool.imageFileName, recursively: true)?.isHidden = false
         
         // 오브젝트가 회전하는 애니메이션(액션)을 추가합니다.
         let action = SCNAction.rotateBy(x: 0, y: CGFloat(GLKMathDegreesToRadians(-360)), z: 0, duration: 12)
@@ -77,13 +75,18 @@ class PokeToolCustomizingViewController: UIViewController {
         buttonsStackView.distribution = .fillEqually
         buttonsStackView.spacing = 16
         
-        for toolImageIndex in 0..<toolImages.count {
-            let button = UIButton()
-            let imageOpacity: CGFloat = { sample.toolToInt() == toolImageIndex ? 1 : 0.3 }()
-            let buttonImage = UIImage(named: toolImages[toolImageIndex])!.alpha(imageOpacity)
-            button.setImage(buttonImage, for: .normal)
+        for index in 0..<Tool.allCases.count {
+            
+            let button = StyleButton(tool: Tool(rawValue: index)!)
+            
             button.imageView?.contentMode = .scaleAspectFit
-
+            
+            button.setImage(UIImage(named: toolImages[index])!.alpha(1), for: .selected)
+            button.setImage(UIImage(named: toolImages[index])!.alpha(0.3), for: .normal)
+            
+            if sample.tool.rawValue == index {
+                button.isSelected = true
+            }
             // Button Action
             button.addTarget(self, action: #selector(styleButtonPressed(_ :)), for: .touchUpInside)
             
@@ -239,43 +242,32 @@ class PokeToolCustomizingViewController: UIViewController {
     }
     
     private func willRenderSelectedToolOnly(selectedToolIndex: Int) {
-
-        let objects = ["Fork", "Spoon", "Whisk", "Spatula"]
-        
-        for i in 0..<objects.count {
+                
+        for i in 0..<Tool.allCases.count {
             if i != selectedToolIndex {
-                sceneView.scene?.rootNode.childNode(withName: objects[i], recursively: true)?.isHidden = true
+                sceneView.scene?.rootNode.childNode(withName: Tool(rawValue: i)!.imageFileName, recursively: true)?.isHidden = true
             } else {
-                sceneView.scene?.rootNode.childNode(withName: objects[i], recursively: true)?.isHidden = false
+                sceneView.scene?.rootNode.childNode(withName: Tool(rawValue: i)!.imageFileName, recursively: true)?.isHidden = false
             }
         }
     }
     
-    @objc func styleButtonPressed(_ sender: UIButton) {
-        // TODO: 클릭된 버튼에 따라 버튼 속 이미지 투명도 조절하기
-        // 선택된 이미지는 1로, 선택받지 못한 이미지는 0.3
-        
-        // 선택된 버튼의 이미지는 선명해지고
-        sender.imageView?.image = sender.imageView?.image?.alpha(1)
-        
-        switch sender.imageView!.image {
-            
-        case UIImage(named: "silver_fork"):
-            sample.tool = Tool.Fork
-            willRenderSelectedToolOnly(selectedToolIndex: sample.toolToInt())
-            
-        case UIImage(named: "silver_spoon"):
-            sample.tool = Tool.Spoon
-            willRenderSelectedToolOnly(selectedToolIndex: sample.toolToInt())
-            
-        case UIImage(named: "silver_whisk"):
-            sample.tool = Tool.Whisk
-            willRenderSelectedToolOnly(selectedToolIndex: sample.toolToInt())
-            
-        default:
-            sample.tool = Tool.Spatula
-            willRenderSelectedToolOnly(selectedToolIndex: sample.toolToInt())
+    @objc func styleButtonPressed(_ sender: StyleButton) {
+
+        // 눌린 버튼이 이전에 눌렸던 버튼과는 다른 버튼이라면
+        if !sender.isSelected {
+            let previousButton = sender.superview?.subviews[sample.tool.rawValue] as? UIButton
+            previousButton?.isSelected.toggle()
+            print()
+            print("index of before : ", sample.tool.rawValue)
+            print()
+            sender.isSelected.toggle()
+            sample.tool = sender.tool
+
         }
+
+        willRenderSelectedToolOnly(selectedToolIndex: sample.tool.rawValue)
+
     }
     
     @objc func colorButtonPressed(_ sender: UIButton) {
@@ -285,12 +277,13 @@ class PokeToolCustomizingViewController: UIViewController {
         }
         
         sender.layer.borderWidth = 12
-
+        
         PokeToolCustomizingViewController.objectMaterial.diffuse.contents = sender.layer.borderColor
         
         sample.color = sender.backgroundColor!
     }
 }
+
 
 func willReturnGroupLabel(labelName: String) -> UILabel {
     
