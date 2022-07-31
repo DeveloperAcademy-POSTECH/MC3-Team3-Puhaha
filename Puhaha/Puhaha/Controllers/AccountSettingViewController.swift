@@ -84,7 +84,7 @@ extension AccountSettingViewController {
         let firebaseAuth = Auth.auth()
         
         let alret = UIAlertController(title: "알림",
-                                      message: "정말 로그아웃 하시겠습니까? \n 서버에 저장된 데이터는 별도의 \n 회원 탈퇴 과정이 필요합니다.",
+                                      message: "정말 로그아웃 하시겠습니까?",
                                       preferredStyle: .alert)
         
         let yes = UIAlertAction(title: "Yes", style: .default, handler: { [weak self] _ in
