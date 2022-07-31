@@ -1,5 +1,5 @@
 //
-//  UILabelHeight.swift
+//  UILabel+Extension.swift
 //  Puhaha
 //
 //  Created by 김소현 on 2022/07/31.
