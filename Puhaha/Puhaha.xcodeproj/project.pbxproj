@@ -12,7 +12,8 @@
 		551CD2E328850C6A0037487D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E228850C6A0037487D /* FirebaseAuth */; };
 		551CD2E528850C6A0037487D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E428850C6A0037487D /* FirebaseFirestore */; };
 		554B7799289526F900216D30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 554B7798289526F900216D30 /* GoogleService-Info.plist */; };
-		55599E3C2886362900C05E81 /* CustomedLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55599E3B2886362900C05E81 /* CustomedLoginButton.swift */; };
+		55599E3C2886362900C05E81 /* CustomedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55599E3B2886362900C05E81 /* CustomedButton.swift */; };
+		556AADA2289655E000A40F0B /* UITextField+SetUnderLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556AADA1289655E000A40F0B /* UITextField+SetUnderLine.swift */; };
 		55C02311288A940D001511E3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C02310288A940D001511E3 /* SettingViewController.swift */; };
 		55CF4C8F288BE81A0020DACC /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF4C8E288BE81A0020DACC /* AccountSettingViewController.swift */; };
 		55DCB98B2895A51E00C83E1D /* NameSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCB98A2895A51E00C83E1D /* NameSettingViewController.swift */; };
@@ -63,7 +64,8 @@
 /* Begin PBXFileReference section */
 		551CD2DD28850A800037487D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		554B7798289526F900216D30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		55599E3B2886362900C05E81 /* CustomedLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomedLoginButton.swift; sourceTree = "<group>"; };
+		55599E3B2886362900C05E81 /* CustomedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomedButton.swift; sourceTree = "<group>"; };
+		556AADA1289655E000A40F0B /* UITextField+SetUnderLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+SetUnderLine.swift"; sourceTree = "<group>"; };
 		55AA34B228854CB800C2D6D6 /* Puhaha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puhaha.entitlements; sourceTree = "<group>"; };
 		55C02310288A940D001511E3 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		55CF4C8E288BE81A0020DACC /* AccountSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
@@ -142,7 +144,8 @@
 			children = (
 				A419810D288508EC00CCFDBA /* UIColor+Extension.swift */,
 				CE558B1C288530BC00E98909 /* Date+Today.swift */,
-				55599E3B2886362900C05E81 /* CustomedLoginButton.swift */,
+				55599E3B2886362900C05E81 /* CustomedButton.swift */,
+				556AADA1289655E000A40F0B /* UITextField+SetUnderLine.swift */,
 				A445E5F728929C9B00FD31C4 /* UIImage+Extension.swift */,
 			);
 			path = Extensioon;
@@ -365,9 +368,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55599E3C2886362900C05E81 /* CustomedLoginButton.swift in Sources */,
+				55599E3C2886362900C05E81 /* CustomedButton.swift in Sources */,
 				BF8C5FA9288E5EE0002BF0BD /* UploadViewController.swift in Sources */,
 				CE9AE1932891271700F4253D /* MainViewController+DataSource.swift in Sources */,
+				556AADA2289655E000A40F0B /* UITextField+SetUnderLine.swift in Sources */,
 				CE9AE1912891270500F4253D /* MainViewController+Delegate.swift in Sources */,
 				CE718850288E849D002CF653 /* EmptyMealCardView.swift in Sources */,
 				551CD2DE28850A800037487D /* SignInViewController.swift in Sources */,
