@@ -83,7 +83,7 @@ extension AccountSettingViewController {
     @objc func logOutButtonTapped() {
         let firebaseAuth = Auth.auth()
         
-        let alret = UIAlertController(title: "알림",
+        let alert = UIAlertController(title: "알림",
                                       message: "정말 로그아웃 하시겠습니까?",
                                       preferredStyle: .alert)
         
@@ -98,8 +98,8 @@ extension AccountSettingViewController {
         })
         
         let no = UIAlertAction(title: "No", style: .destructive, handler: nil)
-        alret.addAction(no)
-        alret.addAction(yes)
-        present(alret, animated: true, completion: nil)
+        alert.addAction(no)
+        alert.addAction(yes)
+        present(alert, animated: true)
     }
 }
