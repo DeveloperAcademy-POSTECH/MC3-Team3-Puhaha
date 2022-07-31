@@ -27,7 +27,6 @@
 		A48C93AC288F74D500BA09EF /* BigFork.obj in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A4288F74D500BA09EF /* BigFork.obj */; };
 		A48C93AD288F74D500BA09EF /* BigSpoonVer2.scn in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A5288F74D500BA09EF /* BigSpoonVer2.scn */; };
 		A48C93AE288F74D500BA09EF /* Spatula.scn in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A6288F74D500BA09EF /* Spatula.scn */; };
-		BF7F91192886530A009D3809 /* ActionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F91182886530A009D3809 /* ActionSheetView.swift */; };
 		BF8C5FA9288E5EE0002BF0BD /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FA8288E5EDF002BF0BD /* UploadViewController.swift */; };
 		BF8C5FAD288E655B002BF0BD /* TagContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FAC288E655B002BF0BD /* TagContentCollectionViewCell.swift */; };
 		BF8C5FAF288E6B21002BF0BD /* UploadTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FAE288E6B21002BF0BD /* UploadTag.swift */; };
@@ -74,7 +73,6 @@
 		A48C93A4288F74D500BA09EF /* BigFork.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BigFork.obj; sourceTree = "<group>"; };
 		A48C93A5288F74D500BA09EF /* BigSpoonVer2.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = BigSpoonVer2.scn; sourceTree = "<group>"; };
 		A48C93A6288F74D500BA09EF /* Spatula.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Spatula.scn; sourceTree = "<group>"; };
-		BF7F91182886530A009D3809 /* ActionSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetView.swift; sourceTree = "<group>"; };
 		BF8C5FA8288E5EDF002BF0BD /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		BF8C5FAC288E655B002BF0BD /* TagContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF8C5FAE288E6B21002BF0BD /* UploadTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTag.swift; sourceTree = "<group>"; };
@@ -204,7 +202,6 @@
 				CE71884F288E849D002CF653 /* EmptyMealCardView.swift */,
 				CE73297C28865C8800CA87F1 /* MealCardCollectionViewCell.swift */,
 				CE73297E28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift */,
-				BF7F91182886530A009D3809 /* ActionSheetView.swift */,
 				A40C3F60289012D9004465D5 /* DividerView.swift */,
 				BF8C5FAC288E655B002BF0BD /* TagContentCollectionViewCell.swift */,
 			);
@@ -375,13 +372,12 @@
 				CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */,
 				A419810F288508EC00CCFDBA /* UIColor+Extension.swift in Sources */,
 				CE5B4F6C288E7C8B00111ACC /* Reaction.swift in Sources */,
-				BF7F91192886530A009D3809 /* ActionSheetView.swift in Sources */,
 				55CF4C8F288BE81A0020DACC /* AccountSettingViewController.swift in Sources */,
 				A40C3F61289012D9004465D5 /* DividerView.swift in Sources */,
 				CE73298128869FA300CA87F1 /* Family.swift in Sources */,
 				CE5B4F68288E7C6A00111ACC /* ReactionCollectionViewCell.swift in Sources */,
 				CE558B192885304500E98909 /* MainViewController.swift in Sources */,
-				CE73297F28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift in Sources */
+				CE73297F28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
