@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import FirebaseFirestore
+
+// TODO: 가입한 사용자의 이메일 -> User가 입력한 이름 (guidingTextLabel.text)를 Users.name에 넣어준다.
 
 class NameSettingViewController: UIViewController {
+    private var database = Firestore.firestore()
+    private var user = Users.self
     
     private let guidingTextLabel: UILabel = {
         let label = UILabel()
@@ -37,7 +42,11 @@ class NameSettingViewController: UIViewController {
         return button
     }()
     
+    // TODO: firestore 코드 외부 파일로 빼기
     @objc private func nextButtonTapped() {
+        let usersName = nameTextField.text
+        UserDefaults.standard.set(usersName, forKey: "name")
+        database
         let pokeToolCustomizingViewController = PokeToolCustomizingViewController()
         self.navigationController?.pushViewController(pokeToolCustomizingViewController, animated: true)
     }
