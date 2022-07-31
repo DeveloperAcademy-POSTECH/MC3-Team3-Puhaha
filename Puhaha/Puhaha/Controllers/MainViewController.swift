@@ -178,7 +178,7 @@ class MainViewController: UIViewController {
         let takePhoto = UIAlertAction(title: "사진 촬영하기", style: .default) {(_: UIAlertAction) in
             self.presentCamera()
         }
-        let chooseLibarary = UIAlertAction(title: "라이브러리에서 선택하기", style: .default) {(_: UIAlertAction) in
+        let chooseFromLibrary = UIAlertAction(title: "라이브러리에서 선택하기", style: .default) {(_: UIAlertAction) in
             self.selectPhotos()
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
