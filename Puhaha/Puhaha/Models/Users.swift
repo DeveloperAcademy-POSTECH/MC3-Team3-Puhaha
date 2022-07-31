@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FirebaseFirestore
 
 class Users {
     private let accountId: String

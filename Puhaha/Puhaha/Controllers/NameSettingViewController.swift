@@ -11,7 +11,7 @@ import FirebaseFirestore
 // TODO: 가입한 사용자의 이메일 -> User가 입력한 이름 (guidingTextLabel.text)를 Users.name에 넣어준다.
 
 class NameSettingViewController: UIViewController {
-    private var database = Firestore.firestore()
+    private var db = Firestore.firestore()
     private var user = Users.self
     
     private let guidingTextLabel: UILabel = {
@@ -30,7 +30,7 @@ class NameSettingViewController: UIViewController {
         return textField
     }()
     
-    private let nextButton: CustomedButton = {
+    lazy var nextButton: CustomedButton = {
         let button = CustomedButton()
         button.setTitle("나만의 도구 제작하기", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
@@ -42,11 +42,10 @@ class NameSettingViewController: UIViewController {
         return button
     }()
     
-    // TODO: firestore 코드 외부 파일로 빼기
     @objc private func nextButtonTapped() {
         let usersName = nameTextField.text
-        UserDefaults.standard.set(usersName, forKey: "name")
-        database
+        // TODO: usersEmail을 받아서 document 값에 넣기
+        self.db.collection("Users").document("ipkjw2@gmail.com").updateData(["name": usersName as Any])
         let pokeToolCustomizingViewController = PokeToolCustomizingViewController()
         self.navigationController?.pushViewController(pokeToolCustomizingViewController, animated: true)
     }
@@ -65,6 +64,7 @@ class NameSettingViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        nameTextField.delegate = self
         nameTextField.setUnderLine()
     }
     
@@ -85,3 +85,15 @@ class NameSettingViewController: UIViewController {
         nextButton.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: view.bounds.height * 0.55).isActive = true
     }
 }
+
+extension NameSettingViewController: UITextFieldDelegate {
+     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+         view.endEditing(true)
+         return false
+     }
+
+     func textFieldDidEndEditing(_ textField: UITextField) {
+         let isNameEmpty = nameTextField.text == ""
+         nextButton.isEnabled = !isNameEmpty
+     }
+ }
