@@ -108,10 +108,6 @@ class UploadViewController: UIViewController {
         return collectionView
     }()
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
-    
     // MARK: viewDidLoad()
     
     override func viewDidLoad() {
