@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import PhotosUI
 
 class MainViewController: UIViewController {
     var filter: String = ""
@@ -21,8 +20,6 @@ class MainViewController: UIViewController {
         tabBarController?.navigationController?.isNavigationBarHidden = true
     }
     
-    // MARK: viewDidLoad
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -30,7 +27,7 @@ class MainViewController: UIViewController {
         [todayDateLabel, plusButton, settingButton, tableLabel, emptyMealCardView, mealCardCollectionView, familyFilterCollectionView].forEach {
             view.addSubview($0)
         }
-
+        
         if meals.isEmpty {
             emptyMealCardView.isHidden = false
             mealCardCollectionView.isHidden = true
@@ -45,10 +42,6 @@ class MainViewController: UIViewController {
         
         familyFilterCollectionView.delegate = self
         familyFilterCollectionView.dataSource = self
-        
-        let configuration = PHPickerConfiguration()
-        let picker = PHPickerViewController(configuration: configuration)
-        picker.delegate = self
     }
     
     private var todayDateLabel: UILabel = {
@@ -61,18 +54,15 @@ class MainViewController: UIViewController {
         return label
     }()
     
-    lazy var plusButton: UIButton = {
+    private var plusButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "plus.circle"), for: .normal)
         button.sizeThatFits(CGSize(width: 28, height: 28))
         button.tintColor = .black
-        button.addTarget(self,
-                         action: #selector(tapCameraButton(_ :)),
-                         for: .touchUpInside)
         return button
     }()
     
-    lazy var settingButton: UIButton = {
+    private var settingButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "gearshape"), for: .normal)
         button.sizeThatFits(CGSize(width: 28, height: 28))
@@ -171,118 +161,5 @@ class MainViewController: UIViewController {
             emptyMealCardView.isHidden = true
             mealCardCollectionView.isHidden = false
         }
-    }
-    
-    @objc func tapCameraButton(_ sender: UIButton) {
-        let sheet = UIAlertController(title: "식사 업로드하기", message: nil, preferredStyle: .actionSheet)
-        let takePhoto = UIAlertAction(title: "사진 촬영하기", style: .default) {(_: UIAlertAction) in
-            self.presentCamera()
-        }
-        let chooseFromLibrary = UIAlertAction(title: "라이브러리에서 선택하기", style: .default) {(_: UIAlertAction) in
-            self.selectPhotos()
-        }
-        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-        
-        [takePhoto, chooseLibarary, cancel].forEach { sheet.addAction($0)}
-        
-        self.present(sheet, animated: true, completion: nil)
-    }
-    
-    /// 카메라 촬영화면을 모달로 띄우는 함수
-    private func presentCamera() {
-        let camera = UIImagePickerController()
-        camera.sourceType = .camera
-        camera.cameraDevice = .rear
-        camera.cameraCaptureMode = .photo
-        camera.delegate = self
-        present(camera, animated: true, completion: nil)
-    }
-    
-    /// 앨범에서 사진을 선택하는 함수
-    private func selectPhotos() {
-        var configuration = PHPickerConfiguration()
-        configuration.selectionLimit = 1
-        configuration.filter = .images
-        
-        let picker = PHPickerViewController(configuration: configuration)
-        picker.delegate = self
-        
-        present(picker, animated: true)
-    }
-}
-
-/// 사진 라이브러리에서 선택을 끝냈을 때
-extension MainViewController: PHPickerViewControllerDelegate {
-    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        
-        picker.dismiss(animated: true, completion: nil)
-        
-        let itemProvider = results.first?.itemProvider
-        
-        if let itemProvider = itemProvider,
-           itemProvider.canLoadObject(ofClass: UIImage.self) {
-            itemProvider.loadObject(ofClass: UIImage.self) { image, _ in
-                
-                DispatchQueue.main.async {
-                    guard let selectedImage = image as? UIImage else { return print("selected Image error")}
-                    
-                    let uploadViewController = UploadViewController()
-                    
-                    uploadViewController.pictureImageView.image = selectedImage
-                    uploadViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(
-                                        title: "취소",
-                                        style: .plain,
-                                        target: self,
-                                        action: #selector(self.dismissSelf))
-                    uploadViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(
-                                        title: "업로드",
-                                        style: .done,
-                                        target: self,
-                                        action: #selector(self.dismissSelf))
-                    
-                    let navigationViewController = UINavigationController(rootViewController: uploadViewController)
-                    
-                    uploadViewController.navigationController?.navigationBar.backgroundColor = .white
-                    navigationViewController.modalPresentationStyle = .fullScreen
-                    self.present(navigationViewController, animated: true)
-                }
-            }
-        }
-    }
-    
-    @objc private func dismissSelf() {
-        dismiss(animated: true, completion: nil)
-    }
-}
-
-/// 카메라에서 사진 촬영을 끝냈을 때
-extension MainViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        
-        guard let captureImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
-        self.dismiss(animated: true)
-        
-        let uploadViewController = UploadViewController()
-        uploadViewController.pictureImageView.image = captureImage
-        uploadViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(
-                            title: "취소",
-                            style: .plain,
-                            target: self,
-                            action: #selector(self.dismissSelf))
-        uploadViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(
-                            title: "업로드",
-                            style: .done,
-                            target: self,
-                            action: #selector(self.dismissSelf))
-        
-        let navigationViewController = UINavigationController(rootViewController: uploadViewController)
-        
-        uploadViewController.navigationController?.navigationBar.backgroundColor = .white
-        navigationViewController.modalPresentationStyle = .fullScreen
-        self.present(navigationViewController, animated: true)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true)
     }
 }

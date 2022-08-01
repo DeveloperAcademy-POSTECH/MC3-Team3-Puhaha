@@ -112,8 +112,6 @@ class UploadViewController: UIViewController {
         super.viewDidLayoutSubviews()
     }
     
-    // MARK: viewDidLoad()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -137,7 +135,7 @@ class UploadViewController: UIViewController {
         pictureImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         pictureImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
         pictureImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 2),
-        pictureImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+        pictureImageView.topAnchor.constraint(equalTo: view.topAnchor),
         
         tagTimeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
         tagTimeLabel.topAnchor.constraint(equalTo: pictureImageView.bottomAnchor, constant: 26),
