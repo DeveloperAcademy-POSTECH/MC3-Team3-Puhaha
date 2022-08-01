@@ -185,7 +185,7 @@ class MainViewController: UIViewController {
         
         [takePhoto, chooseFromLibrary, cancel].forEach { sheet.addAction($0)}
         
-        self.present(sheet, animated: true, completion: nil)
+        self.present(sheet, animated: true)
     }
     
     /// 카메라 촬영화면을 모달로 띄우는 함수
@@ -195,7 +195,7 @@ class MainViewController: UIViewController {
         camera.cameraDevice = .rear
         camera.cameraCaptureMode = .photo
         camera.delegate = self
-        present(camera, animated: true, completion: nil)
+        present(camera, animated: true)
     }
     
     /// 앨범에서 사진을 선택하는 함수
