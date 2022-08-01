@@ -32,6 +32,7 @@
 		BF8C5FA9288E5EE0002BF0BD /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FA8288E5EDF002BF0BD /* UploadViewController.swift */; };
 		BF8C5FAD288E655B002BF0BD /* TagContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FAC288E655B002BF0BD /* TagContentCollectionViewCell.swift */; };
 		BF8C5FAF288E6B21002BF0BD /* UploadTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FAE288E6B21002BF0BD /* UploadTag.swift */; };
+		BFFB73422897652B00AE3C09 /* Camera+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB73412897652B00AE3C09 /* Camera+Extension.swift */; };
 		CE33B7772894FF680054F9CD /* CreateFamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B7762894FF680054F9CD /* CreateFamilyViewController.swift */; };
 		CE33B7792894FFA40054F9CD /* InviteFamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B7782894FFA40054F9CD /* InviteFamilyViewController.swift */; };
 		CE46B5702888DB3D0074DEF0 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE46B56F2888DB3D0074DEF0 /* TagLabel.swift */; };
@@ -82,6 +83,7 @@
 		BF8C5FA8288E5EDF002BF0BD /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		BF8C5FAC288E655B002BF0BD /* TagContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF8C5FAE288E6B21002BF0BD /* UploadTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTag.swift; sourceTree = "<group>"; };
+		BFFB73412897652B00AE3C09 /* Camera+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Camera+Extension.swift"; sourceTree = "<group>"; };
 		CE33B7762894FF680054F9CD /* CreateFamilyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFamilyViewController.swift; sourceTree = "<group>"; };
 		CE33B7782894FFA40054F9CD /* InviteFamilyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFamilyViewController.swift; sourceTree = "<group>"; };
 		CE46B56F2888DB3D0074DEF0 /* TagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLabel.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				CE558B1C288530BC00E98909 /* Date+Today.swift */,
 				55599E3B2886362900C05E81 /* CustomedLoginButton.swift */,
 				A445E5F728929C9B00FD31C4 /* UIImage+Extension.swift */,
+				BFFB73412897652B00AE3C09 /* Camera+Extension.swift */,
 			);
 			path = Extensioon;
 			sourceTree = "<group>";
@@ -233,7 +236,7 @@
 				CE9AE1902891270500F4253D /* MainViewController+Delegate.swift */,
 				CE9AE1922891271700F4253D /* MainViewController+DataSource.swift */,
 				CE33B7762894FF680054F9CD /* CreateFamilyViewController.swift */,
-				CE33B7782894FFA40054F9CD /* InviteFamilyViewController.swift */
+				CE33B7782894FFA40054F9CD /* InviteFamilyViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				CE5B4F6C288E7C8B00111ACC /* Reaction.swift in Sources */,
 				55CF4C8F288BE81A0020DACC /* AccountSettingViewController.swift in Sources */,
 				A40C3F61289012D9004465D5 /* DividerView.swift in Sources */,
+				BFFB73422897652B00AE3C09 /* Camera+Extension.swift in Sources */,
 				CE73298128869FA300CA87F1 /* Family.swift in Sources */,
 				A445E5F828929C9B00FD31C4 /* UIImage+Extension.swift in Sources */,
 				CE5B4F68288E7C6A00111ACC /* ReactionCollectionViewCell.swift in Sources */,
@@ -522,7 +526,7 @@
 				CODE_SIGN_ENTITLEMENTS = Puhaha/Puhaha.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NHPUW6MZCU;
+				DEVELOPMENT_TEAM = D9CAJN27UH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Puhaha/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 사용권한을 허용해주세요.";
@@ -551,7 +555,7 @@
 				CODE_SIGN_ENTITLEMENTS = Puhaha/Puhaha.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 744MUUC77P;
+				DEVELOPMENT_TEAM = D9CAJN27UH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Puhaha/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 사용권한을 허용해주세요.";
