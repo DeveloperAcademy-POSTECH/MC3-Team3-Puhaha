@@ -63,8 +63,8 @@ extension AccountSettingViewController: UITableViewDataSource {
         
         switch cellTextLabel {
         case "이름 변경":
-            // TODO: 이름 변경 뷰로 연결
-            return
+            let nameSettingViewController = NameSettingViewController()
+            self.navigationController?.pushViewController(nameSettingViewController, animated: true)
             
         case "로그아웃":
             logOutButtonTapped()
