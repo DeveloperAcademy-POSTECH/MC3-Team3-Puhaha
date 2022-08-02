@@ -37,6 +37,11 @@ extension SignInViewController: ASAuthorizationControllerDelegate {
                 }
             }
             
+            let userEmail = appleIDCredential.email as String? ?? "defaultEmail"
+            
+            db.collection("Users").document(userEmail).setData(["family": "default_family",
+                                                                "familyCode": "E97E4BDA-9894-45CA-B1A4-1E31B0BC0CC4"])
+
             let mainTabViewController = MainTabViewController()
             self.navigationController?.pushViewController(mainTabViewController, animated: true)
         }

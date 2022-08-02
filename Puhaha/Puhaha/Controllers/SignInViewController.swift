@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import FirebaseFirestore
 import AuthenticationServices
 
 class SignInViewController: UIViewController {
     
+    public var db = Firestore.firestore()
     public var currentNonce: String?
     
     private let titleLabel: UILabel = {
@@ -31,7 +33,7 @@ class SignInViewController: UIViewController {
         return label
     }()
 
-    private let appleLoginButton: ASAuthorizationAppleIDButton = {
+    lazy var appleLoginButton: ASAuthorizationAppleIDButton = {
         let button = ASAuthorizationAppleIDButton(type: .default, style: .white)
         button.widthAnchor.constraint(equalToConstant: 338).isActive = true
         button.heightAnchor.constraint(equalToConstant: 57).isActive = true
