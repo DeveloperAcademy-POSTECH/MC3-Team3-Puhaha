@@ -108,9 +108,7 @@ class UploadViewController: UIViewController {
         return collectionView
     }()
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
+    // MARK: viewDidLoad()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -135,7 +133,7 @@ class UploadViewController: UIViewController {
         pictureImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         pictureImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
         pictureImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 2),
-        pictureImageView.topAnchor.constraint(equalTo: view.topAnchor),
+        pictureImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
         
         tagTimeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
         tagTimeLabel.topAnchor.constraint(equalTo: pictureImageView.bottomAnchor, constant: 26),

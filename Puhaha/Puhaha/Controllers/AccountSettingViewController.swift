@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Firebase
 import FirebaseAuth
 
 class AccountSettingViewController: UIViewController {
@@ -60,18 +59,47 @@ extension AccountSettingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
+        let cellTextLabel = cell?.textLabel?.text
         
-        if cell?.textLabel?.text == "로그아웃" {
-            let firebaseAuth = Auth.auth()
+        switch cellTextLabel {
+        case "이름 변경":
+            // TODO: 이름 변경 뷰로 연결
+            return
+            
+        case "로그아웃":
+            logOutButtonTapped()
 
+        case "탈퇴하기":
+            // TODO: 탈퇴하기 기능
+            return
+            
+        default:
+            return
+        }
+    }
+}
+
+extension AccountSettingViewController {
+    @objc func logOutButtonTapped() {
+        let firebaseAuth = Auth.auth()
+        
+        let alert = UIAlertController(title: "알림",
+                                      message: "정말 로그아웃 하시겠습니까?",
+                                      preferredStyle: .alert)
+        
+        let yes = UIAlertAction(title: "Yes", style: .default, handler: { [weak self] _ in
             do {
                 try firebaseAuth.signOut()
-                self.navigationController?.popToRootViewController(animated: true)
-                // TODO: main으로 돌아가도록 재설정
-                
+                let signInViewController = SignInViewController()
+                self?.navigationController?.pushViewController(signInViewController, animated: true)
             } catch let signOutError as NSError {
                 print("ERROR: signout \(signOutError.localizedDescription)")
             }
-        }
+        })
+        
+        let no = UIAlertAction(title: "No", style: .destructive, handler: nil)
+        alert.addAction(no)
+        alert.addAction(yes)
+        present(alert, animated: true)
     }
 }

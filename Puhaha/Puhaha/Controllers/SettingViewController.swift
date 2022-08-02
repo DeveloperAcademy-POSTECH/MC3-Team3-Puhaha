@@ -85,11 +85,23 @@ extension SettingViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
+        let cellTextLabel = cell?.textLabel?.text
         
-        if cell?.textLabel?.text == "계정 설정" {
+        switch cellTextLabel {
+        case "계정 설정":
             let accountSettingViewController = AccountSettingViewController()
             self.navigationController?.pushViewController(accountSettingViewController, animated: true)
+            
+        case "도구 편집":
+            let pokeToolCustomizingViewController = PokeToolCustomizingViewController()
+            self.navigationController?.pushViewController(pokeToolCustomizingViewController, animated: true)
+            
+        case "식구 추가":
+            let inviteFamilyViewController = InviteFamilyViewController()
+            self.navigationController?.pushViewController(inviteFamilyViewController, animated: true)
+            
+        default:
+            return
         }
-        // TODO: 도구 편집, 식구추가 뷰 연결
     }
 }
