@@ -46,6 +46,6 @@ extension PokeTool {
     static var dummyData = PokeTool(tool: Tool.Fork, color: UIColor.customBlue)
 }
 
-let toolImages = ["silver_fork", "silver_spoon", "silver_whisk", "silver_spatula_ver2"]
+let toolImages = ["silver_fork", "silver_spoon", "silver_whisk", "silver_spatula"]
 
 #endif

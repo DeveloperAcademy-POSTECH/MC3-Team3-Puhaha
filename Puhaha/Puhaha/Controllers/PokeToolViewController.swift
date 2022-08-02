@@ -76,10 +76,12 @@ class PokeToolCustomizingViewController: UIViewController {
             
             let button = StyleButton(tool: Tool(rawValue: index)!)
             
+            let toolImageName = toolImages[index] + "_straight"
+            
             button.imageView?.contentMode = .scaleAspectFit
             
-            button.setImage(UIImage(named: toolImages[index])!.alpha(1), for: .selected)
-            button.setImage(UIImage(named: toolImages[index])!.alpha(0.3), for: .normal)
+            button.setImage(UIImage(named: toolImageName)?.alpha(1), for: .selected)
+            button.setImage(UIImage(named: toolImageName)?.alpha(0.3), for: .normal)
             
             if sample.tool.rawValue == index {
                 button.isSelected = true
