@@ -7,9 +7,15 @@
 
 import UIKit
 
+import FirebaseFirestore
+import FirebaseStorage
+
 class UploadViewController: UIViewController {
     
+    private var db = Firestore.firestore()
+    private let storage = Storage.storage()
     var tagContentsArray = UploadTag.uploadTags
+    var selectedTags: [String: String] = ["time": "", "menu": "", "emotion": ""]
     
     lazy var pictureImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
@@ -130,6 +136,16 @@ class UploadViewController: UIViewController {
         configureConstraints()
     }
     
+    // MARK: viewDidDisappear
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        uploadMeal(image: pictureImageView.image ?? UIImage())
+        uploadTags(time: selectedTags["time"] ?? String(),
+                   menu: selectedTags["menu"] ?? String(),
+                   emotion: selectedTags["emotion"] ?? String())
+    }
+    
     private func configureConstraints() {
         NSLayoutConstraint.activate([
         pictureImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -174,6 +190,36 @@ class UploadViewController: UIViewController {
         tagEmotionContentCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         tagEmotionContentCollectionView.heightAnchor.constraint(equalToConstant: 30)
         ])
+    }
+    
+    /// firebase storage 에 이미지 업로드
+    private func uploadMeal(image: UIImage) {
+        var data = Data()
+        data = image.jpegData(compressionQuality: 0.8) ?? Data()
+        let filePathDate = Date.now.dayText + " " + Date.now.timeText
+        let filePathUser = Family.sampleFamilyMembers[0].name
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpeg"
+        storage.reference().child(filePathUser).child(filePathDate).putData(data, metadata: metaData) { _, error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            } else {
+                print("image uploaded")
+            }
+        }
+    }
+    /// 업로드 시 tag firestore에 데이터 저장
+    private func uploadTags(time: String, menu: String, emotion: String) {
+        
+        let tagTimeLabelText = time
+        let tagMenuLabelText = menu
+        let tagEmotionLabelText = emotion
+
+        db.collection("Families").document("E97E4BDA-9894-45CA-B1A4-1E31B0BC0CC4").collection("Meals").document("D5bzfRIPhK40qJAUWoda").updateData(
+            ["tags": ["0": tagTimeLabelText,
+                      "1": tagMenuLabelText,
+                      "2": tagEmotionLabelText]])
     }
 }
 
@@ -244,15 +290,21 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
             case tagTimeContentCollectionView:
                 cell.contentLabel.textColor = .white
                 cell.layer.backgroundColor = tagContentsArray[0].tagContents[indexPath.row].backgroundColor?.cgColor
-                
+                    selectedTags.updateValue(cell.contentLabel.text ?? String(), forKey: "time")
+                    print(selectedTags)
+            
             case tagMenuContentCollectionView:
                 cell.contentLabel.textColor = .white
                 cell.layer.backgroundColor = tagContentsArray[1].tagContents[indexPath.row].backgroundColor?.cgColor
+                    selectedTags.updateValue(cell.contentLabel.text ?? String(), forKey: "menu")
+                    print(selectedTags)
                 print(tagContentsArray[1].tagContents[indexPath.row])
             
             case tagEmotionContentCollectionView:
                 cell.contentLabel.textColor = .white
                 cell.layer.backgroundColor = tagContentsArray[2].tagContents[indexPath.row].backgroundColor?.cgColor
+                    selectedTags.updateValue(cell.contentLabel.text ?? String(), forKey: "emotion")
+                    print(selectedTags)
                 print(tagContentsArray[2].tagContents[indexPath.row])
                 
             default:
@@ -263,10 +315,16 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? TagContentCollectionViewCell {
+            cell.backgroundColor = .white
+            cell.contentLabel.textColor = .black
+            
             switch collectionView {
-            case tagTimeContentCollectionView, tagMenuContentCollectionView, tagEmotionContentCollectionView:
-                cell.backgroundColor = .white
-                cell.contentLabel.textColor = .black
+            case tagTimeContentCollectionView:
+                selectedTags.updateValue("", forKey: "time")
+            case tagMenuContentCollectionView:
+                selectedTags.updateValue("", forKey: "menu")
+            case tagEmotionContentCollectionView:
+                selectedTags.updateValue("", forKey: "emotion")
             default:
                 break
             }

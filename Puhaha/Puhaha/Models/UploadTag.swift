@@ -12,6 +12,14 @@ struct UploadTag {
     var tagContents: [Tag] = [Tag]()
 }
 
+struct UploadInformation {
+    var tags: [Int]
+    var mealImageIndex: Int
+    var uploadUser: String
+    var uploadedDate: String
+    var uploadedTime: String
+}
+
 #if DEBUG
 extension UploadTag {
     static let uploadTags = [
