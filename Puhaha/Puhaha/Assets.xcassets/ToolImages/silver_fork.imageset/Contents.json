@@ -1,7 +1,11 @@
 {
   "images" : [
     {
+<<<<<<<< HEAD:Puhaha/Puhaha/Assets.xcassets/ToolImages/silver_fork.imageset/Contents.json
       "filename" : "silver_fork.png",
+========
+      "filename" : "silver_spoon.pdf",
+>>>>>>>> 0fea422 ([REMOVE/ADD] remove tag color asset and add Silver_Spoon image asset):Puhaha/Puhaha/Assets.xcassets/SampleImage/Silver_Spoon.imageset/Contents.json
       "idiom" : "universal"
     }
   ],
