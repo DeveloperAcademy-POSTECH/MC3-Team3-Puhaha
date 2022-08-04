@@ -37,13 +37,32 @@ extension SignInViewController: ASAuthorizationControllerDelegate {
                 }
             }
             
-            let userEmail = appleIDCredential.email as String? ?? "defaultEmail"
+            let signinUserEmail = appleIDCredential.email as String? ?? "defaultEmail"
+            UserDefaults.standard.set(signinUserEmail, forKey: "loginedUserEmail")
             
-            db.collection("Users").document(userEmail).setData(["family": "default_family",
-                                                                "familyCode": "E97E4BDA-9894-45CA-B1A4-1E31B0BC0CC4"])
-
-            let mainTabViewController = MainTabViewController()
-            self.navigationController?.pushViewController(mainTabViewController, animated: true)
+            db.collection("Users").document(signinUserEmail).setData(["family": "",
+                                                                "familyCode": "",
+                                                                "name": "",
+                                                                "pokeState": ["pokedBy": "",
+                                                                              "pokedtime": ""],
+                                                                "pokingTool": ["color": "",
+                                                                               "tool": ""]])
+            
+            let userInfoManager = SigninManager()
+            userInfoManager.getSignInUser(userEmail: signinUserEmail, completion: {
+                self.user = userInfoManager.loginedUser
+            })
+            
+            if user.getName() == "" {
+                let nameSettingViewController = NameSettingViewController()
+                self.navigationController?.pushViewController(nameSettingViewController, animated: true)
+            } else if user.getToolImage() == nil {
+                let pokeToolCustomizingViewController = PokeToolCustomizingViewController()
+                self.navigationController?.pushViewController(pokeToolCustomizingViewController, animated: true)
+            } else {
+                let mainTabViewController = MainTabViewController()
+                self.navigationController?.pushViewController(mainTabViewController, animated: true)
+            }
         }
     }
 }

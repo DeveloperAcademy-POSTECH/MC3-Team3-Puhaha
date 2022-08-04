@@ -13,6 +13,7 @@ class SignInViewController: UIViewController {
     
     public var db = Firestore.firestore()
     public var currentNonce: String?
+    public var user = Users()
     
     private let titleLabel: UILabel = {
       let label = UILabel()
