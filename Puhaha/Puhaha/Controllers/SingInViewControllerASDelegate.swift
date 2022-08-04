@@ -40,13 +40,12 @@ extension SignInViewController: ASAuthorizationControllerDelegate {
             let signinUserEmail = appleIDCredential.email as String? ?? "defaultEmail"
             UserDefaults.standard.set(signinUserEmail, forKey: "loginedUserEmail")
             
-            db.collection("Users").document(signinUserEmail).setData(["family": "",
-                                                                "familyCode": "",
-                                                                "name": "",
-                                                                "pokeState": ["pokedBy": "",
-                                                                              "pokedtime": ""],
-                                                                "pokingTool": ["color": "",
-                                                                               "tool": ""]])
+            db.collection("Users").document(signinUserEmail).setData(["familyCode": "",
+                                                                      "name": "",
+                                                                      "pokeState": ["pokedBy": "",
+                                                                                    "pokedtime": ""],
+                                                                      "pokingTool": ["color": "",
+                                                                                     "tool": ""]])
             
             var destinationViewController: UIViewController = UIViewController()
             let name = UserDefaults.standard.string(forKey: "name") as String? ?? ""

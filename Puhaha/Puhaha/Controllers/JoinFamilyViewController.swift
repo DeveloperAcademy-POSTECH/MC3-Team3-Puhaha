@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class JoinFamilyViewController: UIViewController {
+    public var db = Firestore.firestore()
     
     private let guidingTextLabel: UILabel = {
         let label = UILabel()
@@ -39,8 +41,10 @@ class JoinFamilyViewController: UIViewController {
     
     @objc private func nextButtonTapped() {
         let joinedRoomCode = familyCodeTextField.text
+        let userEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? ""
+        db.collection("Users").document(userEmail).setData(["familyCode": joinedRoomCode])
+        
         UserDefaults.standard.set(joinedRoomCode, forKey: "roomCode")
-        // TODO: 가족 코드 db에 입력
         let mainTabViewController = MainTabViewController()
         self.navigationController?.pushViewController(mainTabViewController, animated: true)
     }

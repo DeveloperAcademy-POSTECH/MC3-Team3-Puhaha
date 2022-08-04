@@ -4,8 +4,8 @@
 //
 //  Created by JiwKang on 2022/07/28.
 //
+
 import UIKit
-import SwiftUI
 
 class CreateFamilyViewController: UIViewController {
     var userName: String = "박기웅"

@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class InviteFamilyViewController: UIViewController {
     private var createdRoomCode: String = UUID().uuidString
+    public var db = Firestore.firestore()
     
     private let guideMessageLabel: UILabel = {
         let label: UILabel = UILabel()
@@ -75,8 +77,10 @@ class InviteFamilyViewController: UIViewController {
     }()
     
     @objc private func enterFamilyRoomButtonTapped() {
-        // TODO: 가족 코드 db에 입력
-        UserDefaults.standard.set(createdRoomCode, forKey: "roomCode")        
+        let userEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? ""
+        db.collection("Users").document(userEmail).setData(["familyCode": createdRoomCode])
+
+        UserDefaults.standard.set(createdRoomCode, forKey: "roomCode")
         let mainTabViewController = MainTabViewController()
         self.navigationController?.pushViewController(mainTabViewController, animated: true)
     }
