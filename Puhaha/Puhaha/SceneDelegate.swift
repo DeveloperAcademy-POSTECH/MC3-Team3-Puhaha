@@ -6,39 +6,26 @@
 //
 
 import UIKit
-import FirebaseFirestore
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    private var db = Firestore.firestore()
-    private var user = Users()
-    private let userDefaultsEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? "defaultEmail"
+    
+    var viewController: UIViewController = SignInViewController()
+    private let userDefaultsRoomCode = UserDefaults.standard.string(forKey: "roomCode") as String? ?? ""
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
-        
-        let userInfoManager = SigninManager()
-        userInfoManager.getSignInUser(userEmail: userDefaultsEmail, completion: {
-            self.user = userInfoManager.loginedUser
-        })
-        
-        if userDefaultsEmail == "defaultEmail" {
-            let signInViewController = SignInViewController()
-            window?.rootViewController = UINavigationController(rootViewController: signInViewController)
-        } else if user.getName() == "" {
-            let nameSettingViewController = NameSettingViewController()
-            window?.rootViewController = UINavigationController(rootViewController: nameSettingViewController)
-        } else if user.getToolImage() == nil {
-            let pokeToolCustomizingViewController = PokeToolCustomizingViewController()
-            window?.rootViewController = UINavigationController(rootViewController: pokeToolCustomizingViewController)
+             
+        if userDefaultsRoomCode == "" {
+            viewController = SignInViewController()
         } else {
-            let mainTabViewController = MainTabViewController()
-            window?.rootViewController = UINavigationController(rootViewController: mainTabViewController)
+            viewController = MainTabViewController()
         }
+        window?.rootViewController = UINavigationController(rootViewController: viewController)
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -69,4 +56,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 }
-

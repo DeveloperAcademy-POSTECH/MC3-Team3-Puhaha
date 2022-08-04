@@ -48,21 +48,18 @@ extension SignInViewController: ASAuthorizationControllerDelegate {
                                                                 "pokingTool": ["color": "",
                                                                                "tool": ""]])
             
-            let userInfoManager = SigninManager()
-            userInfoManager.getSignInUser(userEmail: signinUserEmail, completion: {
-                self.user = userInfoManager.loginedUser
-            })
+            var destinationViewController: UIViewController = UIViewController()
+            let name = UserDefaults.standard.string(forKey: "name") as String? ?? ""
+            let roomCode = UserDefaults.standard.string(forKey: "roomCode") as String? ?? ""
             
-            if user.getName() == "" {
-                let nameSettingViewController = NameSettingViewController()
-                self.navigationController?.pushViewController(nameSettingViewController, animated: true)
-            } else if user.getToolImage() == nil {
-                let pokeToolCustomizingViewController = PokeToolCustomizingViewController()
-                self.navigationController?.pushViewController(pokeToolCustomizingViewController, animated: true)
+            if name == "" {
+                destinationViewController = NameSettingViewController()
+            } else if roomCode == "" {
+                destinationViewController = CreateFamilyViewController()
             } else {
-                let mainTabViewController = MainTabViewController()
-                self.navigationController?.pushViewController(mainTabViewController, animated: true)
+                destinationViewController = MainTabViewController()
             }
+            navigationController?.pushViewController(destinationViewController, animated: true)
         }
     }
 }
