@@ -2,51 +2,48 @@
 //  User.swift
 //  Puhaha
 //
-//  Created by 김소현 on 2022/07/31.
+//  Created by JiwKang on 2022/07/31.
 //
 
 import UIKit
 
-// TODO: 유저 모델 통합
-
-class Users {
-    private var accountId: String?
-    private var loginForm: Int?
-    private var familyCode: String?
-    
+class User {
+    private let accountId: String?
     private var name: String?
     private var toolImage: UIImage?
+    private var familyCode: String?
     private var pokeState: Poke?
-    // 왜 옵셔널을 붙여야 할까? -> 그래야 nil이 할당 가능함
     
     init() {
-        self.accountId = ""
-        self.loginForm = 0
-        self.familyCode = ""
-        
-        self.name = ""
+        self.accountId = nil
+        self.name = nil
         self.toolImage = nil
+        self.familyCode = nil
         self.pokeState = nil
     }
     
     init(accountId: String) {
         self.accountId = accountId
-        self.loginForm = 0
-        self.familyCode = ""
-        
-        self.name = ""
+        self.name = nil
         self.toolImage = nil
+        self.familyCode = nil
         self.pokeState = nil
     }
     
     init(accountId: String, name: String) {
         self.accountId = accountId
-        self.loginForm = 0
-        self.familyCode = ""
-
         self.name = name
         self.toolImage = nil
+        self.familyCode = nil
         self.pokeState = nil
+    }
+    
+    init(accountId: String, name: String, toolImage: UIImage, familyCode: String, pokeState: Poke) {
+        self.accountId = accountId
+        self.name = name
+        self.toolImage = toolImage
+        self.familyCode = familyCode
+        self.pokeState = pokeState
     }
     
     public func setName(name: String) {
@@ -58,7 +55,7 @@ class Users {
     public func setToolImage(toolImage: UIImage) {
         self.toolImage = toolImage
     }
-    public func getToolImage() -> UIImage? {
+    public func getToolImage() -> UIImage {
         return toolImage ?? UIImage()
     }
     public func setFamilyCode(code: String) {

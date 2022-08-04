@@ -8,14 +8,17 @@
 import UIKit
 
 class EmptyMealCardView: UIView {
+    var userTool: UIImage!
+    
     private let stateLabel: UILabel = {
         let label: UILabel = UILabel()
         label.text = "아직 식사를 하지 않았어요."
         label.font = UIFont.systemFont(ofSize: 26, weight: .regular)
+        label.textAlignment = .center
         return label
     }()
     
-    private let pokeButton: UIButton = {
+    let pokeButton: UIButton = {
         let titleAttr = AttributedString.init("콕 찌르기")
         var configuration = UIButton.Configuration.plain()
         configuration.attributedTitle = titleAttr
@@ -25,14 +28,9 @@ class EmptyMealCardView: UIView {
         
         let button = UIButton(configuration: configuration)
         
-        let renderFormat = UIGraphicsImageRendererFormat.default()
-        let renderer = UIGraphicsImageRenderer(size: CGSize(width: UIScreen.main.bounds.width / 1.77, height: UIScreen.main.bounds.width / 1.77), format: renderFormat)
-        let newImage = renderer.image { _ in
-            let image = UIImage(named: "Spatula")
-            image?.draw(in: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width / 1.77, height: UIScreen.main.bounds.width / 1.77))
+        button.configurationUpdateHandler = { button in
+            button.layer.opacity = button.isHighlighted ? 0.4 : 1
         }
-        
-        button.configuration?.image = newImage
         
         return button
     }()
@@ -66,5 +64,18 @@ class EmptyMealCardView: UIView {
             pokeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -(UIScreen.main.bounds.width / 8.67)),
             pokeButton.bottomAnchor.constraint(equalTo: stateLabel.bottomAnchor, constant: 53 + UIScreen.main.bounds.width * 0.77)
         ])
+    }
+    
+    public func setButtonImage(toolImage: UIImage) {
+        pokeButton.configuration?.image = imageRendering(image: toolImage)
+    }
+    
+    private func imageRendering(image: UIImage) -> UIImage {
+        let renderFormat = UIGraphicsImageRendererFormat.default()
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: UIScreen.main.bounds.width / 1.77, height: UIScreen.main.bounds.width / 1.77), format: renderFormat)
+        let newImage = renderer.image { _ in
+            image.draw(in: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width / 1.77, height: UIScreen.main.bounds.width / 1.77))
+        }
+        return newImage
     }
 }

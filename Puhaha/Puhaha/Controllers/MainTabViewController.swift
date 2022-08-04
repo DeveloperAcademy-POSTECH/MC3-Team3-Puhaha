@@ -22,7 +22,7 @@ class MainTabViewController: UITabBarController {
         statisticTab.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -4, right: 0)
         statisticTab.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0.0, vertical: 6.0)
         
-        self.viewControllers = [tableTab, statisticTab]
+        viewControllers = [tableTab, statisticTab]
         tabBar.tintColor = UIColor(named: "TabBarIconSelectedColor") ?? UIColor()
         tabBar.unselectedItemTintColor = UIColor(named: "TabBarIconUnSelectedColor")
         UITabBar.clearShadow()
