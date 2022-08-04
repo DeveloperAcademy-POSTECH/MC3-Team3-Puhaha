@@ -58,15 +58,26 @@ class InviteFamilyViewController: UIViewController {
         return stackView
     }()
     
-    private let enterFamilyRoomButton: UIButton = {
+    lazy var enterFamilyRoomButton: UIButton = {
         let button: UIButton = UIButton()
         button.setTitle("입장하기", for: .normal)
         button.setTitleColor(UIColor(named: "ButtonTitleColor"), for: .normal)
         button.setTitleColor(UIColor.white, for: .selected)
         button.backgroundColor = .customYellow
         button.layer.cornerRadius = 8
+        
+        button.addTarget(self,
+                         action: #selector(enterFamilyRoomButtonTapped),
+                         for: .touchUpInside)
+        
         return button
     }()
+    
+    @objc private func enterFamilyRoomButtonTapped() {
+        // TODO: 가족 코드 db에 입력
+        let mainTabViewController = MainTabViewController()
+        self.navigationController?.pushViewController(mainTabViewController, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
