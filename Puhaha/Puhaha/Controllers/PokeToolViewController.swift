@@ -59,7 +59,7 @@ class PokeToolCustomizingViewController: UIViewController {
     }()
     
     // MARK: stack of image buttons View 선언
-    private let styleButtonsStackView: UIStackView = {
+    lazy var styleButtonsStackView: UIStackView = {
         
         // 구분선을 만듭니다.
         let divider = UIHorizontalDividerView(height: 2, color: UIColor.customLightGray)
@@ -124,7 +124,7 @@ class PokeToolCustomizingViewController: UIViewController {
     }()
     
     // MARK: stack of colored buttons View 선언
-    private let colorButtonsStackView: UIStackView = {
+    lazy var colorButtonsStackView: UIStackView = {
         
         let divider = UIHorizontalDividerView(height: 2, color: UIColor.customLightGray)
         
