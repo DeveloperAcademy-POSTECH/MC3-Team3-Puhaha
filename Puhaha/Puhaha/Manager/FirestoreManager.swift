@@ -104,13 +104,15 @@ class FirestoreManager: ObservableObject {
                 let pokeStateValue = document.data()?["pokeState"] as? [String: String] ?? [:]
 
                 let pokingToolColor: String = pokingTool["color"] ?? ""
-                let pokingToolTool: String = pokingTool["tool"] ?? ""
-                let toolImage: UIImage = UIImage(named: "\(pokingToolColor)_\(pokingToolTool)") ?? UIImage()
+                let pokingToolType: String = pokingTool["tool"] ?? ""
+                let toolImage: UIImage = UIImage(named: "\(pokingToolColor)_\(pokingToolType)") ?? UIImage()
                 let pokedBy: String = pokeStateValue["pokedBy"] ?? ""
                 let pokedTime: String = pokeStateValue["pokedTime"] ?? ""
                 
                 loginedUser.setName(name: name)
                 loginedUser.setToolImage(toolImage: toolImage)
+                loginedUser.setToolType(with: pokingToolType)
+                loginedUser.setToolColor(with: pokingToolColor)
                 loginedUser.setFamilyCode(code: familyCode)
                 loginedUser.setPoke(poke: Poke(pokedBy: pokedBy, pokedTime: pokedTime))
                 
