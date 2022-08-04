@@ -12,15 +12,17 @@
 		551CD2E328850C6A0037487D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E228850C6A0037487D /* FirebaseAuth */; };
 		551CD2E528850C6A0037487D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E428850C6A0037487D /* FirebaseFirestore */; };
 		554B7799289526F900216D30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 554B7798289526F900216D30 /* GoogleService-Info.plist */; };
+		554E4D6F289AB50200045AF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F965E287FA66C00783324 /* SceneDelegate.swift */; };
 		55599E3C2886362900C05E81 /* CustomedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55599E3B2886362900C05E81 /* CustomedButton.swift */; };
 		556AADA2289655E000A40F0B /* UITextField+SetUnderLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556AADA1289655E000A40F0B /* UITextField+SetUnderLine.swift */; };
 		556AADA428965F2600A40F0B /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556AADA328965F2600A40F0B /* Users.swift */; };
 		556AADA62896654100A40F0B /* PokeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556AADA52896654100A40F0B /* PokeState.swift */; };
+		55AA0250289A610D006650BF /* SigninManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA024F289A610D006650BF /* SigninManager.swift */; };
 		55C02311288A940D001511E3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C02310288A940D001511E3 /* SettingViewController.swift */; };
 		55CF4C8F288BE81A0020DACC /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF4C8E288BE81A0020DACC /* AccountSettingViewController.swift */; };
-		55DCB98B2895A51E00C83E1D /* NameSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCB98A2895A51E00C83E1D /* NameSettingViewController.swift */; };
 		55DCB98528958B4F00C83E1D /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCB98428958B4F00C83E1D /* UILabel+Extension.swift */; };
 		55DCB98728958EDE00C83E1D /* SingInViewControllerASDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCB98628958EDE00C83E1D /* SingInViewControllerASDelegate.swift */; };
+		55DCB98B2895A51E00C83E1D /* NameSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCB98A2895A51E00C83E1D /* NameSettingViewController.swift */; };
 		A402AAF12893B56D00425BC0 /* PokingToolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A402AAF02893B56D00425BC0 /* PokingToolButton.swift */; };
 		A40C3F5F2890048B004465D5 /* PokeToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40C3F5E2890048B004465D5 /* PokeToolViewController.swift */; };
 		A40C3F61289012D9004465D5 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40C3F60289012D9004465D5 /* DividerView.swift */; };
@@ -59,7 +61,6 @@
 		CE9D233B28877E1F00D53332 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D233A28877E1F00D53332 /* MainTabViewController.swift */; };
 		CE9D233D28877F7100D53332 /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D233C28877F7100D53332 /* StatisticViewController.swift */; };
 		CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F965C287FA66C00783324 /* AppDelegate.swift */; };
-		CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F965E287FA66C00783324 /* SceneDelegate.swift */; };
 		CE9F9661287FA66C00783324 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F9660287FA66C00783324 /* ViewController.swift */; };
 		CE9F9666287FA66F00783324 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9F9665287FA66F00783324 /* Assets.xcassets */; };
 		CE9F9674287FA8A600783324 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE9F9673287FA8A600783324 /* .swiftlint.yml */; };
@@ -72,12 +73,13 @@
 		556AADA1289655E000A40F0B /* UITextField+SetUnderLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+SetUnderLine.swift"; sourceTree = "<group>"; };
 		556AADA328965F2600A40F0B /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		556AADA52896654100A40F0B /* PokeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeState.swift; sourceTree = "<group>"; };
+		55AA024F289A610D006650BF /* SigninManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninManager.swift; sourceTree = "<group>"; };
 		55AA34B228854CB800C2D6D6 /* Puhaha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puhaha.entitlements; sourceTree = "<group>"; };
 		55C02310288A940D001511E3 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		55CF4C8E288BE81A0020DACC /* AccountSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
-		55DCB98A2895A51E00C83E1D /* NameSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameSettingViewController.swift; sourceTree = "<group>"; };
 		55DCB98428958B4F00C83E1D /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		55DCB98628958EDE00C83E1D /* SingInViewControllerASDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInViewControllerASDelegate.swift; sourceTree = "<group>"; };
+		55DCB98A2895A51E00C83E1D /* NameSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameSettingViewController.swift; sourceTree = "<group>"; };
 		A402AAF02893B56D00425BC0 /* PokingToolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokingToolButton.swift; sourceTree = "<group>"; };
 		A40C3F5E2890048B004465D5 /* PokeToolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokeToolViewController.swift; sourceTree = "<group>"; };
 		A40C3F60289012D9004465D5 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				CE558B1628852DFB00E98909 /* Meal.swift */,
 				CE73298028869FA300CA87F1 /* Family.swift */,
 				556AADA328965F2600A40F0B /* Users.swift */,
+				55AA024F289A610D006650BF /* SigninManager.swift */,
 				556AADA52896654100A40F0B /* PokeState.swift */,
 				BF8C5FAE288E6B21002BF0BD /* UploadTag.swift */,
 				CE5B4F6B288E7C8B00111ACC /* Reaction.swift */,
@@ -387,6 +390,7 @@
 				CE9AE1912891270500F4253D /* MainViewController+Delegate.swift in Sources */,
 				CE718850288E849D002CF653 /* EmptyMealCardView.swift in Sources */,
 				551CD2DE28850A800037487D /* SignInViewController.swift in Sources */,
+				554E4D6F289AB50200045AF9 /* SceneDelegate.swift in Sources */,
 				CE5B4F6E288E7C9D00111ACC /* MealDetailViewController.swift in Sources */,
 				CE73297D28865C8800CA87F1 /* MealCardCollectionViewCell.swift in Sources */,
 				CE46B5702888DB3D0074DEF0 /* TagLabel.swift in Sources */,
@@ -403,11 +407,11 @@
 				CE558B1D288530BC00E98909 /* Date+Today.swift in Sources */,
 				CE5B4F67288E7C6A00111ACC /* ReactionView.swift in Sources */,
 				CE9D233B28877E1F00D53332 /* MainTabViewController.swift in Sources */,
+				55AA0250289A610D006650BF /* SigninManager.swift in Sources */,
 				BF8C5FAD288E655B002BF0BD /* TagContentCollectionViewCell.swift in Sources */,
 				A402AAF12893B56D00425BC0 /* PokingToolButton.swift in Sources */,
 				CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */,
 				55C02311288A940D001511E3 /* SettingViewController.swift in Sources */,
-				CE9F965F287FA66C00783324 /* SceneDelegate.swift in Sources */,
 				556AADA428965F2600A40F0B /* Users.swift in Sources */,
 				CE33B7772894FF680054F9CD /* CreateFamilyViewController.swift in Sources */,
 				A419810F288508EC00CCFDBA /* UIColor+Extension.swift in Sources */,
