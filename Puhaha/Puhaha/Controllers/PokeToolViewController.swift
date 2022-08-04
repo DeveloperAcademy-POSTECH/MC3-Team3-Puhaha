@@ -10,6 +10,9 @@ import SceneKit
 
 class PokeToolCustomizingViewController: UIViewController {
     
+    let firestoreManager = FirestoreManager()
+    private var storageManager = StorageManager()
+
     // SceneView 속 3D 오브젝트에 입혀질 Material
     static var objectMaterial = SCNMaterial()
     
