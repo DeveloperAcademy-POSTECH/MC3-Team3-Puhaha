@@ -30,6 +30,8 @@ class MainViewController: UIViewController {
         tabBarController?.navigationController?.isNavigationBarHidden = true
     }
     
+    // MARK: viewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -38,7 +40,7 @@ class MainViewController: UIViewController {
         getLoginedUser()
         fetchMeals()
         
-        [todayDateLabel, plusButton, settingButton, tableLabel, emptyMealCardView, mealCardCollectionView, familyFilterCollectionView].forEach {
+        [todayDateLabel, /* plusButton, */settingButton, tableLabel, emptyMealCardView, mealCardCollectionView, familyFilterCollectionView].forEach {
             view.addSubview($0)
         }
         todayDateLabel.text = today.dayText
@@ -56,19 +58,23 @@ class MainViewController: UIViewController {
     private var todayDateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 28)
-        
         return label
     }()
     
-    private var plusButton: UIButton = {
+    /*
+    lazy var plusButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "plus.circle"), for: .normal)
         button.sizeThatFits(CGSize(width: 28, height: 28))
         button.tintColor = .black
+        button.addTarget(self,
+                         action: #selector(tapCameraButton(_ :)),
+                         for: .touchUpInside)
         return button
     }()
-    
-    private var settingButton: UIButton = {
+    */
+     
+    lazy var settingButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "gearshape"), for: .normal)
         button.sizeThatFits(CGSize(width: 28, height: 28))
@@ -120,7 +126,7 @@ class MainViewController: UIViewController {
     func setConstraints() {
         todayDateLabel.translatesAutoresizingMaskIntoConstraints = false
         settingButton.translatesAutoresizingMaskIntoConstraints = false
-        plusButton.translatesAutoresizingMaskIntoConstraints = false
+        /* plusButton.translatesAutoresizingMaskIntoConstraints = false */
         tableLabel.translatesAutoresizingMaskIntoConstraints = false
         
         emptyMealCardView.translatesAutoresizingMaskIntoConstraints = false
@@ -134,9 +140,11 @@ class MainViewController: UIViewController {
             settingButton.centerYAnchor.constraint(equalTo: todayDateLabel.centerYAnchor),
             settingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
             
+            /*
             plusButton.centerYAnchor.constraint(equalTo: todayDateLabel.centerYAnchor),
             plusButton.trailingAnchor.constraint(equalTo: settingButton.leadingAnchor, constant: -20),
-            
+            */
+             
             tableLabel.topAnchor.constraint(equalTo: todayDateLabel.bottomAnchor, constant: 91),
             tableLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             
@@ -212,3 +220,5 @@ class MainViewController: UIViewController {
         }
     }
 }
+
+

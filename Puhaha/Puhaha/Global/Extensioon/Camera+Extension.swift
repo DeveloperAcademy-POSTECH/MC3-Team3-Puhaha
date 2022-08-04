@@ -9,7 +9,7 @@ import UIKit
 import PhotosUI
 
 /// 사진 라이브러리에서 선택을 끝냈을 때
-extension MainViewController: PHPickerViewControllerDelegate {
+extension MainTabViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         
         picker.dismiss(animated: true, completion: nil)
@@ -53,7 +53,7 @@ extension MainViewController: PHPickerViewControllerDelegate {
 }
 
 /// 카메라에서 사진 촬영을 끝냈을 때
-extension MainViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension MainTabViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         
         guard let captureImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
