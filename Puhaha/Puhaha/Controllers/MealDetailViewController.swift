@@ -6,15 +6,11 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 class MealDetailViewController: UIViewController {
     var meal: Meal!
-    
-    #if DEBUG
-    let tags: [Tag] = Tag.sampleTag
-    let reactions: [Reaction?] = Reaction.sampleReaction
-    let uploadedTime: Date = Date() // 현재 오늘의 날짜를 가져오지만 추후 뷰 연결 시 받아 오는 것으로 바꿀 것
-    #endif
+    private let storageRef = Storage.storage().reference()
     
     private let mealImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
@@ -69,12 +65,13 @@ class MealDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationController?.isNavigationBarHidden = false
-        self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationBar.backItem?.title = ""
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.backItem?.title = ""
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         
         view.layer.masksToBounds = true
         
@@ -86,10 +83,23 @@ class MealDetailViewController: UIViewController {
         }
         
         mealImageView.image = meal.mealImage
-        uploadedMeridianLabel.text = uploadedTime.ampm
-        uploadedTimeLabel.text = uploadedTime.timeText
         
-        for tag in tags {
+        var uploadedTimeNum = Int(meal.uploadedTime)!
+        if uploadedTimeNum > 1200 {
+            uploadedMeridianLabel.text = "오후"
+            uploadedTimeNum -= 1200
+        } else {
+            uploadedMeridianLabel.text = "오전"
+        }
+        var uploadedTimeText = String(uploadedTimeNum)
+        
+        let centerIndex = uploadedTimeText.index(uploadedTimeText.startIndex, offsetBy: 2)
+        uploadedTimeText.insert("시", at: centerIndex)
+        uploadedTimeText.append("분")
+        
+        uploadedTimeLabel.text = uploadedTimeText
+        
+        for tag in meal.tags {
             let tagLabel = TagLabel()
             tagLabel.setTextAndBackgroundColor(tag: tag, fontSize: 16)
             tagLabels.append(tagLabel)
@@ -139,16 +149,23 @@ class MealDetailViewController: UIViewController {
 
 extension MealDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return reactions.count
+        return meal.reactions.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReactionCollectionViewCell.identifier, for: indexPath) as? ReactionCollectionViewCell else { return UICollectionViewCell() }
         
-        let reaction = self.reactions[indexPath.row]
+        let reaction = meal.reactions[indexPath.row]
         cell.configureEmojiImage(with: reaction)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            // TODO
+            print("add reaction")
+        }
     }
 }
 

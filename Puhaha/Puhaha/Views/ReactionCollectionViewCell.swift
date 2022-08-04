@@ -10,13 +10,17 @@ import UIKit
 class ReactionCollectionViewCell: UICollectionViewCell {
     static let identifier: String = "ReactionCollectionViewCell"
     
-    let reactionEmojiImageButton: UIButton = {
-        let button: UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 67))
-        var configuration = UIButton.Configuration.plain()
-        configuration.background.image = UIImage(named: "AddReactionButtonImage")
-        button.configuration = configuration
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 64)
-        return button
+    let reactionEmojiBackgroundView: UIImageView = {
+        let imageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 67))
+        imageView.image = UIImage(named: "AddReactionButtonImage")
+        return imageView
+    }()
+    
+    let reactionEmojiLabel: UILabel = {
+        let label: UILabel = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 40)
+        return label
     }()
     
     let reactedUserNameLabel: UILabel = {
@@ -29,8 +33,7 @@ class ReactionCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        [reactionEmojiImageButton, reactedUserNameLabel].forEach {
+        [reactionEmojiBackgroundView, reactionEmojiLabel, reactedUserNameLabel].forEach {
             addSubview($0)
         }
         
@@ -43,31 +46,35 @@ class ReactionCollectionViewCell: UICollectionViewCell {
     
     func configureEmojiImage(with reaction: Reaction?) {
         if reaction == nil {
-            reactionEmojiImageButton.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
-            reactionEmojiImageButton.configuration?.background.image = UIImage(named: "AddReactionButtonImage")
-            reactionEmojiImageButton.configuration?.background.imageContentMode = .top
-            reactionEmojiImageButton.setTitle("", for: .normal)
+            reactionEmojiBackgroundView.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
+            reactionEmojiBackgroundView.image = UIImage(named: "AddReactionButtonImage")
             reactedUserNameLabel.text = ""
+            reactionEmojiBackgroundView.widthAnchor.constraint(equalToConstant: 60).isActive = true
         } else {
-            reactionEmojiImageButton.configuration?.background.image = UIImage(named: "ReactionBackgroundImage")
-            reactionEmojiImageButton.setTitle(reaction?.reactionEmojiString, for: .normal)
-            reactionEmojiImageButton.frame = CGRect(x: 0, y: 0, width: 60, height: 67)
-            reactionEmojiImageButton.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 9, trailing: 0)
+            reactionEmojiBackgroundView.frame = CGRect(x: 0, y: 0, width: 60, height: 67)
+            reactionEmojiBackgroundView.image = UIImage(named: "ReactionBackgroundImage")
+            reactionEmojiLabel.text = reaction?.reactionEmojiString
             reactedUserNameLabel.text = reaction?.reactedUserName
+            reactionEmojiBackgroundView.widthAnchor.constraint(equalToConstant: 67).isActive = true
         }
     }
     
     private func setConstraints() {
-        reactionEmojiImageButton.translatesAutoresizingMaskIntoConstraints = false
+        reactionEmojiBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        reactionEmojiLabel.translatesAutoresizingMaskIntoConstraints = false
         reactedUserNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            reactionEmojiImageButton.topAnchor.constraint(equalTo: topAnchor),
-            reactionEmojiImageButton.leadingAnchor.constraint(equalTo: leadingAnchor),
-            reactionEmojiImageButton.trailingAnchor.constraint(equalTo: trailingAnchor),
-            reactionEmojiImageButton.bottomAnchor.constraint(equalTo: topAnchor, constant: 67),
+            reactionEmojiBackgroundView.topAnchor.constraint(equalTo: topAnchor),
+            reactionEmojiBackgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            reactionEmojiBackgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            reactedUserNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            reactionEmojiLabel.topAnchor.constraint(equalTo: topAnchor),
+            reactionEmojiLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            reactionEmojiLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            reactionEmojiLabel.bottomAnchor.constraint(equalTo: topAnchor, constant: 60),
+            
+            reactedUserNameLabel.centerXAnchor.constraint(equalTo: reactionEmojiBackgroundView.centerXAnchor),
             reactedUserNameLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
             reactedUserNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             reactedUserNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor)

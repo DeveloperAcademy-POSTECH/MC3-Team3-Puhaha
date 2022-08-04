@@ -11,9 +11,9 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case mealCardCollectionView:
-            return meals.count
+            return firestoreManager.meals.count
         case familyFilterCollectionView:
-            return familyMembers.count
+            return firestoreManager.families.count
         default:
             return 0
         }
@@ -24,14 +24,14 @@ extension MainViewController: UICollectionViewDataSource {
         case mealCardCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MealCardCollectionViewCell.identifier, for: indexPath) as? MealCardCollectionViewCell else { return UICollectionViewCell() }
             
-            let meal = self.meals[indexPath.row]
-            cell.configureMealCard(with: meal)
+            let meal = firestoreManager.meals[indexPath.row]
+            cell.configureMealCard(with: meal, familyCode: familyCode, date: today)
             
             return cell
         case familyFilterCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FamilyFilterCollectionViewCell.identifier, for: indexPath) as? FamilyFilterCollectionViewCell else { return UICollectionViewCell() }
             
-            let family = self.familyMembers[indexPath.row]
+            let family = firestoreManager.families[indexPath.row]
             cell.configureFilterCell(with: family)
             
             return cell
@@ -44,19 +44,19 @@ extension MainViewController: UICollectionViewDataSource {
         switch collectionView {
         case mealCardCollectionView:
             let mealDetailViewController = MealDetailViewController()
-            mealDetailViewController.meal = meals[indexPath.row]
+            mealDetailViewController.meal = firestoreManager.meals[indexPath.row]
             navigationController?.pushViewController(mealDetailViewController, animated: true)
         case familyFilterCollectionView:
-            filter = familyMembers[indexPath.row].name
-            familyMembers[selectedCellIndex].isSelected = false
+            filter = firestoreManager.families[indexPath.row].user.getName()
+            firestoreManager.families[selectedCellIndex].isSelected = false
             selectedCellIndex = indexPath.row
             tableLabel.text = "\(filter)의 식탁"
             if filter == "모두" {
-                meals = Meal.sampleMeals
-                familyMembers[indexPath.row].isSelected = true
+                meals = firestoreManager.meals
+                firestoreManager.families[indexPath.row].isSelected = true
             } else {
-                meals = Meal.sampleMeals.filter { $0.uploadUser == filter }
-                familyMembers[indexPath.row].isSelected = true
+                meals = firestoreManager.meals.filter { $0.uploadUser == filter }
+                firestoreManager.families[indexPath.row].isSelected = true
             }
             mealCardCollectionView.reloadData()
             familyFilterCollectionView.reloadData()
