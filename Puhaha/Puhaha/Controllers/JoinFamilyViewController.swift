@@ -38,6 +38,9 @@ class JoinFamilyViewController: UIViewController {
     }()
     
     @objc private func nextButtonTapped() {
+        let joinedRoomCode = familyCodeTextField.text
+        UserDefaults.standard.set(joinedRoomCode, forKey: "roomCode")
+        // TODO: 가족 코드 db에 입력
         let mainTabViewController = MainTabViewController()
         self.navigationController?.pushViewController(mainTabViewController, animated: true)
     }

@@ -4,10 +4,11 @@
 //
 //  Created by JiwKang on 2022/07/28.
 //
+
 import UIKit
 
 class InviteFamilyViewController: UIViewController {
-    private var roomCode: String = UUID().uuidString
+    private var createdRoomCode: String = UUID().uuidString
     
     private let guideMessageLabel: UILabel = {
         let label: UILabel = UILabel()
@@ -75,6 +76,7 @@ class InviteFamilyViewController: UIViewController {
     
     @objc private func enterFamilyRoomButtonTapped() {
         // TODO: 가족 코드 db에 입력
+        UserDefaults.standard.set(createdRoomCode, forKey: "roomCode")        
         let mainTabViewController = MainTabViewController()
         self.navigationController?.pushViewController(mainTabViewController, animated: true)
     }
@@ -94,8 +96,8 @@ class InviteFamilyViewController: UIViewController {
             view.addSubview($0)
         }
         
-        roomCodeLabel.text = roomCode
-        roomCodeLabel.text = roomCode
+        roomCodeLabel.text = createdRoomCode
+        roomCodeLabel.text = createdRoomCode
         
         configureConstraints()
     }

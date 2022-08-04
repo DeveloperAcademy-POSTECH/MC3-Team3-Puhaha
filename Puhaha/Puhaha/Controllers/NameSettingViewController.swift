@@ -42,6 +42,7 @@ class NameSettingViewController: UIViewController {
     @objc private func nextButtonTapped() {
         let signinUserName = nameTextField.text as String? ?? "defaultName"
         let signinUserEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? "default email"
+        UserDefaults.standard.set(signinUserName, forKey: "name")
         self.db.collection("Users").document(signinUserEmail).updateData(["name": signinUserName])
         let pokeToolCustomizingViewController = PokeToolCustomizingViewController()
         self.navigationController?.pushViewController(pokeToolCustomizingViewController, animated: true)
