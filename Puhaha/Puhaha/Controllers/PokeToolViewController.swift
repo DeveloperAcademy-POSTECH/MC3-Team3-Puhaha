@@ -7,12 +7,17 @@
 
 import UIKit
 import SceneKit
+import FirebaseFirestore
 
 class PokeToolCustomizingViewController: UIViewController {
     
+    // MARK: User Data
+    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "ipkjw2@gmail.com"
+    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userEmail") ?? "")
+    
     let firestoreManager = FirestoreManager()
-    private var storageManager = StorageManager()
-
+    let userDB = Firestore.firestore().collection("Users")
+    
     // SceneView 속 3D 오브젝트에 입혀질 Material
     static var objectMaterial = SCNMaterial()
     
@@ -240,7 +245,7 @@ class PokeToolCustomizingViewController: UIViewController {
     }
     
     private func willRenderSelectedToolOnly(selectedToolIndex: Int) {
-                
+        
         for i in 0..<Tool.allCases.count {
             if i != selectedToolIndex {
                 sceneView.scene?.rootNode.childNode(withName: Tool(rawValue: i)!.imageFileName, recursively: true)?.isHidden = true
@@ -251,7 +256,7 @@ class PokeToolCustomizingViewController: UIViewController {
     }
     
     @objc func styleButtonPressed(_ sender: StyleButton) {
-
+        
         // 눌린 버튼이 이전에 눌렸던 버튼과는 다른 버튼이라면 실행되는 코드
         if !sender.isSelected {
             let previousButton = sender.superview?.subviews[sample.tool.rawValue] as? UIButton
@@ -259,9 +264,9 @@ class PokeToolCustomizingViewController: UIViewController {
             sender.isSelected.toggle()
             sample.tool = sender.tool
         }
-
+        
         willRenderSelectedToolOnly(selectedToolIndex: sample.tool.rawValue)
-
+        
     }
     
     @objc func colorButtonPressed(_ sender: UIButton) {
@@ -275,6 +280,18 @@ class PokeToolCustomizingViewController: UIViewController {
         PokeToolCustomizingViewController.objectMaterial.diffuse.contents = sender.layer.borderColor
         
         sample.color = sender.backgroundColor!
+    }
+    
+    private func getLoginedUser() {
+        firestoreManager.getLoginedUser(userEmail: loginedUserEmail) { [self] in
+            loginedUser = firestoreManager.loginedUser
+        }
+    }
+    
+    private func getUserToolData() {
+        
+        sample.tool = firestoreManager.loginedUser.getToolType()
+        sample.color = firestoreManager.loginedUser.getToolColor()
     }
 }
 
