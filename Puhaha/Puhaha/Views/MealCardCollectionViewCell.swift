@@ -81,7 +81,7 @@ class MealCardCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureMealCard(with meal: Meal) {
+    func configureMealCard(with meal: Meal, familyCode: String, date: Date) {
         mealImageView.image = meal.mealImage
         userNameLabel.text = meal.uploadUser
         userIconImageView.image = meal.userIcon

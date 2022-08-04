@@ -13,7 +13,9 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
         case mealCardCollectionView:
             return CGSize(width: UIScreen.main.bounds.width / 1.86, height: UIScreen.main.bounds.height / 2)
         case familyFilterCollectionView:
-            return CGSize(width: 50 + 15 * familyMembers[indexPath.row].name.count, height: 32)
+            let label = UILabel()
+            label.text = firestoreManager.families[indexPath.row].user.getName()
+            return CGSize(width: 50 + label.intrinsicContentSize.width, height: 32)
         default:
             return CGSize()
         }
