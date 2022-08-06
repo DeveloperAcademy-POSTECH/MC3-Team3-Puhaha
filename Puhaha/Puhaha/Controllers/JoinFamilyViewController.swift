@@ -40,7 +40,7 @@ class JoinFamilyViewController: UIViewController {
     }()
     
     @objc private func nextButtonTapped() {
-        let joinedRoomCode = familyCodeTextField.text
+        let joinedRoomCode = familyCodeTextField.text as String? ?? ""
         let userEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? ""
         db.collection("Users").document(userEmail).setData(["familyCode": joinedRoomCode])
         

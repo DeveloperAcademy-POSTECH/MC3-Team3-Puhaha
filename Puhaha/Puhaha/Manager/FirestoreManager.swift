@@ -24,7 +24,7 @@ class FirestoreManager: ObservableObject {
         self.user = User()
         self.loginedUser = User()
         self.memberEmails = []
-        self.families = [Family(user: User(accountId: "", name: "모두", toolImage: UIImage(named: "IconEveryoneFilter")!, familyCode: "", pokeState: Poke()), isSelected: true)]
+        self.families = [Family(user: User(accountId: "", name: "모두", loginForm: 0, toolImage: UIImage(named: "IconEveryoneFilter")!, familyCode: "", pokeState: Poke()), isSelected: true)]
     }
     
     func fetchMeals(familyCode: String, date: Date, completion: @escaping () -> Void) {
@@ -136,6 +136,7 @@ class FirestoreManager: ObservableObject {
                             
                             let accountId = data["accountId"] as? String ?? ""
                             let name = data["name"] as? String ?? ""
+                            let loginForm = data["loginForm"] as? Int ?? 0
                             let familyCode = data["familyCode"] as? String ?? ""
                             let pokingTool = data["pokingTool"] as? [String: String] ?? [:]
                             let pokeStateValue = data["pokeState"] as? [String: String] ?? [:]
@@ -146,7 +147,7 @@ class FirestoreManager: ObservableObject {
                             let pokedBy: String = pokeStateValue["pokedBy"] ?? ""
                             let pokedTime: String = pokeStateValue["pokedTime"] ?? ""
                             
-                            let user = User(accountId: accountId, name: name, toolImage: toolImage, familyCode: familyCode, pokeState: Poke(pokedBy: pokedBy, pokedTime: pokedTime))
+                            let user = User(accountId: accountId, name: name, loginForm: loginForm, toolImage: toolImage, familyCode: familyCode, pokeState: Poke(pokedBy: pokedBy, pokedTime: pokedTime))
                             
                             families.append(Family(user: user, isSelected: false))
                         }

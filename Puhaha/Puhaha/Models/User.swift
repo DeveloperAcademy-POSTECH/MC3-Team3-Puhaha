@@ -10,6 +10,7 @@ import UIKit
 class User {
     private let accountId: String?
     private var name: String?
+    private var loginForm: Int?
     private var toolImage: UIImage?
     private var familyCode: String?
     private var pokeState: Poke?
@@ -17,6 +18,7 @@ class User {
     init() {
         self.accountId = nil
         self.name = nil
+        self.loginForm = 0
         self.toolImage = nil
         self.familyCode = nil
         self.pokeState = nil
@@ -25,6 +27,7 @@ class User {
     init(accountId: String) {
         self.accountId = accountId
         self.name = nil
+        self.loginForm = 0
         self.toolImage = nil
         self.familyCode = nil
         self.pokeState = nil
@@ -33,14 +36,16 @@ class User {
     init(accountId: String, name: String) {
         self.accountId = accountId
         self.name = name
+        self.loginForm = 0
         self.toolImage = nil
         self.familyCode = nil
         self.pokeState = nil
     }
     
-    init(accountId: String, name: String, toolImage: UIImage, familyCode: String, pokeState: Poke) {
+    init(accountId: String, name: String, loginForm: Int, toolImage: UIImage, familyCode: String, pokeState: Poke) {
         self.accountId = accountId
         self.name = name
+        self.loginForm = loginForm
         self.toolImage = toolImage
         self.familyCode = familyCode
         self.pokeState = pokeState

@@ -12,14 +12,14 @@ class SigninManager: ObservableObject {
     private var db = Firestore.firestore()
     private let userDefaultsEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? "defaultsEmail"
     
-    @Published var loginedUser: Users
+    @Published var loginedUser: User
     
     init() {
-        self.loginedUser = Users(accountId: userDefaultsEmail)
+        self.loginedUser = User(accountId: userDefaultsEmail)
     }
     
     func getSignInUser(userEmail: String, completion: @escaping () -> Void) {
-        loginedUser = Users(accountId: userEmail)
+        loginedUser = User(accountId: userEmail)
         
         db.collection("Users").document(userEmail).getDocument(source: .default) { [self] (document, error) in
             if let document = document {
