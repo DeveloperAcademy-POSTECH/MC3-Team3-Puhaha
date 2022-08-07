@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import PhotosUI
 import FirebaseStorage
 import FirebaseFirestore
 
@@ -41,7 +40,7 @@ class MainViewController: UIViewController {
         getLoginedUser()
         fetchMeals()
         
-        [todayDateLabel, plusButton, settingButton, tableLabel, emptyMealCardView, mealCardCollectionView, familyFilterCollectionView].forEach {
+        [todayDateLabel, /* plusButton, */settingButton, tableLabel, emptyMealCardView, mealCardCollectionView, familyFilterCollectionView].forEach {
             view.addSubview($0)
         }
         todayDateLabel.text = today.dayText
@@ -54,19 +53,15 @@ class MainViewController: UIViewController {
         
         familyFilterCollectionView.delegate = self
         familyFilterCollectionView.dataSource = self
-        
-        let configuration = PHPickerConfiguration()
-        let picker = PHPickerViewController(configuration: configuration)
-        picker.delegate = self
     }
     
     private var todayDateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 28)
-        
         return label
     }()
     
+    /*
     lazy var plusButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "plus.circle"), for: .normal)
@@ -77,7 +72,8 @@ class MainViewController: UIViewController {
                          for: .touchUpInside)
         return button
     }()
-    
+    */
+     
     lazy var settingButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "gearshape"), for: .normal)
@@ -130,7 +126,7 @@ class MainViewController: UIViewController {
     func setConstraints() {
         todayDateLabel.translatesAutoresizingMaskIntoConstraints = false
         settingButton.translatesAutoresizingMaskIntoConstraints = false
-        plusButton.translatesAutoresizingMaskIntoConstraints = false
+        /* plusButton.translatesAutoresizingMaskIntoConstraints = false */
         tableLabel.translatesAutoresizingMaskIntoConstraints = false
         
         emptyMealCardView.translatesAutoresizingMaskIntoConstraints = false
@@ -144,9 +140,11 @@ class MainViewController: UIViewController {
             settingButton.centerYAnchor.constraint(equalTo: todayDateLabel.centerYAnchor),
             settingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
             
+            /*
             plusButton.centerYAnchor.constraint(equalTo: todayDateLabel.centerYAnchor),
             plusButton.trailingAnchor.constraint(equalTo: settingButton.leadingAnchor, constant: -20),
-            
+            */
+             
             tableLabel.topAnchor.constraint(equalTo: todayDateLabel.bottomAnchor, constant: 91),
             tableLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             
@@ -185,42 +183,6 @@ class MainViewController: UIViewController {
         }
     }
     
-    @objc func tapCameraButton(_ sender: UIButton) {
-        let sheet = UIAlertController(title: "식사 업로드하기", message: nil, preferredStyle: .actionSheet)
-        let takePhoto = UIAlertAction(title: "사진 촬영하기", style: .default) {(_: UIAlertAction) in
-            self.presentCamera()
-        }
-        let chooseFromLibrary = UIAlertAction(title: "라이브러리에서 선택하기", style: .default) {(_: UIAlertAction) in
-            self.selectPhotos()
-        }
-        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-        
-        [takePhoto, chooseFromLibrary, cancel].forEach { sheet.addAction($0)}
-        
-        self.present(sheet, animated: true)
-    }
-    
-    /// 카메라 촬영화면을 모달로 띄우는 함수
-    private func presentCamera() {
-        let camera = UIImagePickerController()
-        camera.sourceType = .camera
-        camera.cameraDevice = .rear
-        camera.cameraCaptureMode = .photo
-        camera.delegate = self
-        present(camera, animated: true)
-    }
-    
-    /// 앨범에서 사진을 선택하는 함수
-    private func selectPhotos() {
-        var configuration = PHPickerConfiguration()
-        configuration.selectionLimit = 1
-        configuration.filter = .images
-        
-        let picker = PHPickerViewController(configuration: configuration)
-        picker.delegate = self
-        
-        present(picker, animated: true)
-    }
     private func getFamilyMemeber() {
         firestoreManager.getFamilyMember(familyCode: familyCode) { [self] in
             familyMembers = firestoreManager.families
