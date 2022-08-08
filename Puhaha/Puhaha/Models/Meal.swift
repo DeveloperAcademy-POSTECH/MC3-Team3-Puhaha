@@ -12,7 +12,7 @@ struct Meal {
     let mealImageName: String
     var uploadUser: String
     var userIcon: UIImage
-    let tags: [Tag]
+    var tags: [Tag]
     let uploadedDate: String
     let uploadedTime: String
     var reactions: [Reaction?]
