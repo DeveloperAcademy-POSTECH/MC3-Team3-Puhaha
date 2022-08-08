@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import FirebaseFirestore
+import  FirebaseFirestore
 
 class SigninManager: ObservableObject {
     private var db = Firestore.firestore()

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import FirebaseFirestore
+import  FirebaseFirestore
 
 class FirestoreManager: ObservableObject {
     private let tagColor: [UIColor] = [.customPurple, .customBlue, .customGreen]

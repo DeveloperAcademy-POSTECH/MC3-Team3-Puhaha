@@ -7,8 +7,8 @@
 
 import UIKit
 import PhotosUI
-import FirebaseStorage
-import FirebaseFirestore
+import  FirebaseFirestore
+import  FirebaseStorage
 
 class MainViewController: UIViewController {
     var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "ipkjw2@gmail.com"

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import FirebaseFirestore
+import  FirebaseFirestore
 
 class NameSettingViewController: UIViewController {
     private var db = Firestore.firestore()
