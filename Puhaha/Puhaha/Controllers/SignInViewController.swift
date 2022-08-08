@@ -6,8 +6,9 @@
 //
 
 import UIKit
-import  AuthenticationServices
-import  FirebaseFirestore
+
+import AuthenticationServices
+import FirebaseFirestore
 
 class SignInViewController: UIViewController {
     
@@ -36,8 +37,6 @@ class SignInViewController: UIViewController {
 
     lazy var appleLoginButton: ASAuthorizationAppleIDButton = {
         let button = ASAuthorizationAppleIDButton(type: .default, style: .white)
-        button.widthAnchor.constraint(equalToConstant: 338).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 57).isActive = true
         button.addTarget(self,
                          action: #selector(appleLoginButtonTapped),
                          for: .touchUpInside)
@@ -68,6 +67,8 @@ class SignInViewController: UIViewController {
         guidingTextLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: view.bounds.height * 0.02).isActive = true
 
         appleLoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        appleLoginButton.widthAnchor.constraint(equalToConstant: 338).isActive = true
+        appleLoginButton.heightAnchor.constraint(equalToConstant: 57).isActive = true
         appleLoginButton.topAnchor.constraint(equalTo: guidingTextLabel.bottomAnchor, constant: view.bounds.height * 0.15).isActive = true
     }
 }

@@ -6,7 +6,8 @@
 //
 
 import UIKit
-import  FirebaseFirestore
+
+import FirebaseFirestore
 
 class JoinFamilyViewController: UIViewController {
     public var db = Firestore.firestore()
@@ -42,8 +43,10 @@ class JoinFamilyViewController: UIViewController {
     @objc private func nextButtonTapped() {
         let joinedRoomCode = familyCodeTextField.text as String? ?? ""
         let userEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? ""
-        db.collection("Users").document(userEmail).setData(["familyCode": joinedRoomCode])
+        let firestoreManager = FirestoreManager()
         
+        firestoreManager.setFamilyCode(userEmail: userEmail, code: joinedRoomCode)
+
         UserDefaults.standard.set(joinedRoomCode, forKey: "roomCode")
         let mainTabViewController = MainTabViewController()
         self.navigationController?.pushViewController(mainTabViewController, animated: true)

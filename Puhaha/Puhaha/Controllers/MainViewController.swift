@@ -7,8 +7,9 @@
 
 import UIKit
 import PhotosUI
-import  FirebaseFirestore
-import  FirebaseStorage
+
+import FirebaseFirestore
+import FirebaseStorage
 
 class MainViewController: UIViewController {
     var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "ipkjw2@gmail.com"
@@ -220,7 +221,7 @@ class MainViewController: UIViewController {
     }
     
     private func getLoginedUser() {
-        firestoreManager.getLoginedUser(userEmail: loginedUserEmail) { [self] in
+        firestoreManager.getSignInUser(userEmail: loginedUserEmail) { [self] in
             loginedUser = firestoreManager.loginedUser
             emptyMealCardView.setButtonImage(toolImage: loginedUser.getToolImage())
             emptyMealCardView.reloadInputViews()
