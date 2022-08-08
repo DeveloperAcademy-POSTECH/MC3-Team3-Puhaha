@@ -12,10 +12,32 @@ import FirebaseStorage
 
 class UploadViewController: UIViewController {
     
-    private var db = Firestore.firestore()
-    private let storage = Storage.storage()
-    var tagContentsArray = UploadTag.uploadTags
+    let tagContentsArray = UploadTag.uploadTags
     var selectedTags: [String: String] = ["time": "", "menu": "", "emotion": ""]
+
+    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? String()
+    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userEmail") ?? String())
+    
+    var filter: String = "모두"
+    var selectedCellIndex: Int = 0
+    let today: Date = Date.now
+    let familyCode: String = UserDefaults.standard.string(forKey: "familyCode") ?? " "
+    var familyMembers: [Family] = []
+    
+    var meals: [Meal] = []
+    var meal = Meal.init(mealImage: UIImage(),
+                mealImageName: "",
+                uploadUser: "",
+                userIcon: UIImage(),
+                tags: [],
+                uploadedDate: Date().dateText,
+                uploadedTime: Date().timeText,
+                reactions: [])
+    
+    let firestoreManager = FirestoreManager()
+    private var storageManager = StorageManager()
+    
+    // MARK: UI
     
     lazy var pictureImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
@@ -138,10 +160,21 @@ class UploadViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
-        uploadMeal(image: pictureImageView.image ?? UIImage())
-        uploadTags(time: selectedTags["time"] ?? String(),
-                   menu: selectedTags["menu"] ?? String(),
-                   emotion: selectedTags["emotion"] ?? String())
+        meal.tags[0].content = selectedTags["time"] ?? String()
+        meal.tags[1].content = selectedTags["menu"] ?? String()
+        meal.tags[2].content = selectedTags["emotion"] ?? String()
+        storageManager.uploadMealImage(image: pictureImageView.image ?? UIImage(),
+                                       familyCode: familyCode)
+        firestoreManager.uploadTags(familyCode: familyCode,
+                                    meal: Meal.init(mealImage: UIImage(),
+                                                    mealImageName: "",
+                                                    uploadUser: "",
+                                                    userIcon: UIImage(),
+                                                    tags: [],
+                                                    uploadedDate: Date().dateText,
+                                                    uploadedTime: Date().timeText,
+                                                    reactions: []))
+        
     }
     
     private func configureConstraints() {
@@ -188,36 +221,6 @@ class UploadViewController: UIViewController {
         tagEmotionContentCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         tagEmotionContentCollectionView.heightAnchor.constraint(equalToConstant: 30)
         ])
-    }
-    
-    /// firebase storage 에 이미지 업로드
-    private func uploadMeal(image: UIImage) {
-        var data = Data()
-        data = image.jpegData(compressionQuality: 0.8) ?? Data()
-        let filePathDate = Date.now.dayText + " " + Date.now.timeText
-        let filePathUser = Family.sampleFamilyMembers[0].name
-        let metaData = StorageMetadata()
-        metaData.contentType = "image/jpeg"
-        storage.reference().child(filePathUser).child(filePathDate).putData(data, metadata: metaData) { _, error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            } else {
-                print("image uploaded")
-            }
-        }
-    }
-    /// 업로드 시 tag firestore에 데이터 저장
-    private func uploadTags(time: String, menu: String, emotion: String) {
-        
-        let tagTimeLabelText = time
-        let tagMenuLabelText = menu
-        let tagEmotionLabelText = emotion
-
-        db.collection("Families").document("E97E4BDA-9894-45CA-B1A4-1E31B0BC0CC4").collection("Meals").document("D5bzfRIPhK40qJAUWoda").updateData(
-            ["tags": ["0": tagTimeLabelText,
-                      "1": tagMenuLabelText,
-                      "2": tagEmotionLabelText]])
     }
 }
 
@@ -318,11 +321,11 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
             
             switch collectionView {
             case tagTimeContentCollectionView:
-                selectedTags.updateValue("", forKey: "time")
+                selectedTags.removeValue(forKey: "time")
             case tagMenuContentCollectionView:
-                selectedTags.updateValue("", forKey: "menu")
+                selectedTags.removeValue(forKey: "menu")
             case tagEmotionContentCollectionView:
-                selectedTags.updateValue("", forKey: "emotion")
+                selectedTags.removeValue(forKey: "emotion")
             default:
                 break
             }
