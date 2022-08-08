@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import FirebaseFirestore
+import  FirebaseFirestore
 
 class JoinFamilyViewController: UIViewController {
     public var db = Firestore.firestore()

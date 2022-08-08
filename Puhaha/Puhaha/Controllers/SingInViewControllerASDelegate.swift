@@ -6,9 +6,9 @@
 //
 
 import UIKit
-import FirebaseAuth
-import AuthenticationServices
-import CryptoKit
+import  AuthenticationServices
+import  CryptoKit
+import  FirebaseAuth
 
 extension SignInViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
