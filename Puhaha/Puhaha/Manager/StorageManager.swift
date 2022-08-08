@@ -6,7 +6,8 @@
 //
 
 import UIKit
-import  FirebaseStorage
+
+import FirebaseStorage
 
 class StorageManager {
     let storageRef = Storage.storage().reference()

@@ -6,9 +6,10 @@
 //
 
 import UIKit
-import  AuthenticationServices
-import  CryptoKit
-import  FirebaseAuth
+
+import AuthenticationServices
+import CryptoKit
+import FirebaseAuth
 
 extension SignInViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
@@ -37,15 +38,11 @@ extension SignInViewController: ASAuthorizationControllerDelegate {
                 }
             }
             
-            let signinUserEmail = appleIDCredential.email as String? ?? "defaultEmail"
-            UserDefaults.standard.set(signinUserEmail, forKey: "loginedUserEmail")
+            let signinUserEmail = appleIDCredential.email as String? ?? ""
+            let firestoreManager = FirestoreManager()
             
-            db.collection("Users").document(signinUserEmail).setData(["familyCode": "",
-                                                                      "name": "",
-                                                                      "pokeState": ["pokedBy": "",
-                                                                                    "pokedtime": ""],
-                                                                      "pokingTool": ["color": "",
-                                                                                     "tool": ""]])
+            UserDefaults.standard.set(signinUserEmail, forKey: "loginedUserEmail")
+            firestoreManager.setDefaultUserData(userEmail: signinUserEmail)
             
             var destinationViewController: UIViewController = UIViewController()
             let name = UserDefaults.standard.string(forKey: "name") as String? ?? ""

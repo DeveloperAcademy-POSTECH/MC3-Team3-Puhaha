@@ -6,12 +6,14 @@
 //
 
 import UIKit
-import  FirebaseFirestore
+
+import FirebaseFirestore
 
 class FirestoreManager: ObservableObject {
     private let tagColor: [UIColor] = [.customPurple, .customBlue, .customGreen]
     
     private var db = Firestore.firestore()
+//    private let userDefaultsEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? "defaultsEmail"
     
     @Published var meals: [Meal]
     @Published var user: User
@@ -93,7 +95,7 @@ class FirestoreManager: ObservableObject {
         }
     }
     
-    func getLoginedUser(userEmail: String, completion: @escaping () -> Void) {
+    func getSignInUser(userEmail: String, completion: @escaping () -> Void) {
         loginedUser = User(accountId: userEmail)
         
         db.collection("Users").document(userEmail).getDocument(source: .default) { [self] (document, error) in
@@ -158,5 +160,22 @@ class FirestoreManager: ObservableObject {
                 print(error ?? "")
             }
         }
+    }
+    
+    func setFamilyCode(userEmail: String, code: String) {
+        db.collection("Users").document(userEmail).setData(["familyCode": code])
+    }
+    
+    func setUserName(userEmail: String, userName: String) {
+        db.collection("Users").document(userEmail).updateData(["name": userName])
+    }
+    
+    func setDefaultUserData(userEmail: String) {
+        db.collection("Users").document(userEmail).setData(["familyCode": "",
+                                                                  "name": "",
+                                                                  "pokeState": ["pokedBy": "",
+                                                                                "pokedtime": ""],
+                                                                  "pokingTool": ["color": "",
+                                                                                 "tool": ""]])
     }
 }
