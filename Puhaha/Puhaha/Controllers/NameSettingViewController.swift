@@ -42,7 +42,7 @@ class NameSettingViewController: UIViewController {
     
     @objc private func nextButtonTapped() {
         let signinUserName = nameTextField.text as String? ?? ""
-        let signinUserEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? ""
+        let signinUserEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? "-"
         let firestoreManager = FirestoreManager()
 
         UserDefaults.standard.set(signinUserName, forKey: "name")

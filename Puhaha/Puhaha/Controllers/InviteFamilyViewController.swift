@@ -78,7 +78,7 @@ class InviteFamilyViewController: UIViewController {
     }()
     
     @objc private func enterFamilyRoomButtonTapped() {
-        let userEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? ""
+        let userEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? "-"
         let firestoreManager = FirestoreManager()
         
         firestoreManager.setFamilyCode(userEmail: userEmail, code: createdRoomCode)

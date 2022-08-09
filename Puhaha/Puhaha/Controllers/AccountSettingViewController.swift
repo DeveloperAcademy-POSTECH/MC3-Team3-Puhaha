@@ -56,9 +56,17 @@ extension AccountSettingViewController: UITableViewDataSource {
         return cell
     }
     
+    enum AccountSettingLabel: String {
+        case changeName = "이름 변경"
+        case logout = "로그아웃"
+        case delete = "탈퇴하기"
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        let cellTextLabel = cell?.textLabel?.text
+        let cellTextLabel = cell?.textLabel?.text as? String
+        
+        // TODO: enum으로 선언
         
         switch cellTextLabel {
         case "이름 변경":
@@ -69,7 +77,7 @@ extension AccountSettingViewController: UITableViewDataSource {
             logOutButtonTapped()
 
         case "탈퇴하기":
-            // TODO: 탈퇴하기 기능
+            // TODO: 탈퇴하기 기능 (유저 지우고, 패밀리에서도 그 유저 지워야 함)
             return
             
         default:
