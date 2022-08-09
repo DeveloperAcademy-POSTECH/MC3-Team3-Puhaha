@@ -57,6 +57,9 @@ class User {
     public func getName() -> String {
         return name ?? ""
     }
+    public func getFamilyCode() -> String {
+        return familyCode ?? ""
+    }
     public func setToolImage(toolImage: UIImage) {
         self.toolImage = toolImage
     }
@@ -69,4 +72,5 @@ class User {
     public func setPoke(poke: Poke) {
         self.pokeState = poke
     }
+    
 }

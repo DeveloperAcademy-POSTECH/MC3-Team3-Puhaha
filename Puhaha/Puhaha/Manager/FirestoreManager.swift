@@ -13,7 +13,6 @@ class FirestoreManager: ObservableObject {
     private let tagColor: [UIColor] = [.customPurple, .customBlue, .customGreen]
     
     private var db = Firestore.firestore()
-//    private let userDefaultsEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? "defaultsEmail"
     
     @Published var meals: [Meal]
     @Published var user: User

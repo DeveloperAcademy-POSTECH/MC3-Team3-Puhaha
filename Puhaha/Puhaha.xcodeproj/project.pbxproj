@@ -20,7 +20,6 @@
 		559D06C2289BAD7900338782 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559D06C1289BAD7900338782 /* UILabel+Extension.swift */; };
 		559D06C4289BB30A00338782 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559D06C3289BB30A00338782 /* SceneDelegate.swift */; };
 		559D06C6289BB97300338782 /* JoinFamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559D06C5289BB97300338782 /* JoinFamilyViewController.swift */; };
-		55AA0250289A610D006650BF /* SigninManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA024F289A610D006650BF /* SigninManager.swift */; };
 		55C02311288A940D001511E3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C02310288A940D001511E3 /* SettingViewController.swift */; };
 		55CF4C8F288BE81A0020DACC /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF4C8E288BE81A0020DACC /* AccountSettingViewController.swift */; };
 		55DCB98728958EDE00C83E1D /* SingInViewControllerASDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCB98628958EDE00C83E1D /* SingInViewControllerASDelegate.swift */; };
@@ -83,7 +82,6 @@
 		559D06C1289BAD7900338782 /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		559D06C3289BB30A00338782 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		559D06C5289BB97300338782 /* JoinFamilyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinFamilyViewController.swift; sourceTree = "<group>"; };
-		55AA024F289A610D006650BF /* SigninManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninManager.swift; sourceTree = "<group>"; };
 		55AA34B228854CB800C2D6D6 /* Puhaha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puhaha.entitlements; sourceTree = "<group>"; };
 		55C02310288A940D001511E3 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		55CF4C8E288BE81A0020DACC /* AccountSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
@@ -309,7 +307,6 @@
 				CE558B1428852DF800E98909 /* Tag.swift */,
 				CE558B1628852DFB00E98909 /* Meal.swift */,
 				CE73298028869FA300CA87F1 /* Family.swift */,
-				55AA024F289A610D006650BF /* SigninManager.swift */,
 				556AADA52896654100A40F0B /* PokeState.swift */,
 				BF8C5FAE288E6B21002BF0BD /* UploadTag.swift */,
 				CE5B4F6B288E7C8B00111ACC /* Reaction.swift */,
@@ -453,7 +450,6 @@
 				559D06C4289BB30A00338782 /* SceneDelegate.swift in Sources */,
 				CE5B4F67288E7C6A00111ACC /* ReactionView.swift in Sources */,
 				CE9D233B28877E1F00D53332 /* MainTabViewController.swift in Sources */,
-				55AA0250289A610D006650BF /* SigninManager.swift in Sources */,
 				BF8C5FAD288E655B002BF0BD /* TagContentCollectionViewCell.swift in Sources */,
 				559D06C2289BAD7900338782 /* UILabel+Extension.swift in Sources */,
 				A402AAF12893B56D00425BC0 /* PokingToolButton.swift in Sources */,

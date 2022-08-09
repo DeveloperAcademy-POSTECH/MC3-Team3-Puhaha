@@ -13,6 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var viewController: UIViewController = SignInViewController()
     private let userDefaultsRoomCode = UserDefaults.standard.string(forKey: "roomCode") as String? ?? ""
+    private let userDefaultsName = UserDefaults.standard.string(forKey: "name") as String? ?? ""
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -20,7 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
              
-        if userDefaultsRoomCode == "" {
+        if userDefaultsName == "" {
+            viewController = NameSettingViewController()
+        } else if userDefaultsRoomCode == "" {
             viewController = SignInViewController()
         } else {
             viewController = MainTabViewController()
