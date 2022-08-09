@@ -160,20 +160,19 @@ class UploadViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
-        meal.tags[0].content = selectedTags["time"] ?? String()
-        meal.tags[1].content = selectedTags["menu"] ?? String()
-        meal.tags[2].content = selectedTags["emotion"] ?? String()
+
         storageManager.uploadMealImage(image: pictureImageView.image ?? UIImage(),
                                        familyCode: familyCode)
+
         firestoreManager.uploadTags(familyCode: familyCode,
-                                    meal: Meal.init(mealImage: UIImage(),
-                                                    mealImageName: "",
-                                                    uploadUser: "",
-                                                    userIcon: UIImage(),
-                                                    tags: [],
-                                                    uploadedDate: Date().dateText,
-                                                    uploadedTime: Date().timeText,
-                                                    reactions: []))
+                                    meal: Meal(mealImage: meal.mealImage,
+                                               mealImageName: meal.mealImageName,
+                                               uploadUser: meal.uploadUser,
+                                               userIcon: meal.userIcon,
+                                               tags: meal.tags,
+                                               uploadedDate: meal.uploadedDate,
+                                               uploadedTime: meal.uploadedTime,
+                                               reactions: meal.reactions))
         
     }
     
