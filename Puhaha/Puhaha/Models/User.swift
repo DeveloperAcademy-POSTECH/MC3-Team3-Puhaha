@@ -11,6 +11,7 @@ class User {
     private let accountId: String?
     private var name: String?
     private var loginForm: Int?
+
     private var toolImage: UIImage?
     private var familyCode: String?
     private var pokeState: Poke?
@@ -19,6 +20,7 @@ class User {
         self.accountId = nil
         self.name = nil
         self.loginForm = 0
+
         self.toolImage = nil
         self.familyCode = nil
         self.pokeState = nil
@@ -28,6 +30,7 @@ class User {
         self.accountId = accountId
         self.name = nil
         self.loginForm = 0
+
         self.toolImage = nil
         self.familyCode = nil
         self.pokeState = nil
@@ -37,6 +40,7 @@ class User {
         self.accountId = accountId
         self.name = name
         self.loginForm = 0
+
         self.toolImage = nil
         self.familyCode = nil
         self.pokeState = nil
@@ -46,6 +50,7 @@ class User {
         self.accountId = accountId
         self.name = name
         self.loginForm = loginForm
+
         self.toolImage = toolImage
         self.familyCode = familyCode
         self.pokeState = pokeState
@@ -72,5 +77,4 @@ class User {
     public func setPoke(poke: Poke) {
         self.pokeState = poke
     }
-    
 }

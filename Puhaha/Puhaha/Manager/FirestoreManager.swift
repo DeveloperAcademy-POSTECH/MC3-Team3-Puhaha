@@ -138,6 +138,7 @@ class FirestoreManager: ObservableObject {
                             let accountId = data["accountId"] as? String ?? ""
                             let name = data["name"] as? String ?? ""
                             let loginForm = data["loginForm"] as? Int ?? 0
+
                             let familyCode = data["familyCode"] as? String ?? ""
                             let pokingTool = data["pokingTool"] as? [String: String] ?? [:]
                             let pokeStateValue = data["pokeState"] as? [String: String] ?? [:]
