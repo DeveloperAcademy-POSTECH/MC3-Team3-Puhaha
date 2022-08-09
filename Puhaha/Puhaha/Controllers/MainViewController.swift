@@ -9,6 +9,9 @@ import UIKit
 import FirebaseStorage
 import FirebaseFirestore
 
+import FirebaseFirestore
+import FirebaseStorage
+
 class MainViewController: UIViewController {
     var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "ipkjw2@gmail.com"
     var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userEmail") ?? "")
@@ -29,8 +32,6 @@ class MainViewController: UIViewController {
 
         tabBarController?.navigationController?.isNavigationBarHidden = true
     }
-    
-    // MARK: viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,16 +61,13 @@ class MainViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 28)
         return label
     }()
-    
+
     /*
     lazy var plusButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "plus.circle"), for: .normal)
         button.sizeThatFits(CGSize(width: 28, height: 28))
         button.tintColor = .black
-        button.addTarget(self,
-                         action: #selector(tapCameraButton(_ :)),
-                         for: .touchUpInside)
         return button
     }()
     */

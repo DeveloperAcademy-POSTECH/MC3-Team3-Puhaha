@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FirebaseAuth
 
 class AccountSettingViewController: UIViewController {
     private let SettingSectionNames: [String] = ["이름 변경", "로그아웃", "탈퇴하기"]
@@ -57,20 +56,28 @@ extension AccountSettingViewController: UITableViewDataSource {
         return cell
     }
     
+    enum AccountSettingLabel: String {
+        case changeName = "이름 변경"
+        case logout = "로그아웃"
+        case delete = "탈퇴하기"
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        let cellTextLabel = cell?.textLabel?.text
+        let cellTextLabel = cell?.textLabel?.text as? String
+        
+        // TODO: enum으로 선언
         
         switch cellTextLabel {
         case "이름 변경":
-            // TODO: 이름 변경 뷰로 연결
-            return
+            let nameSettingViewController = NameSettingViewController()
+            self.navigationController?.pushViewController(nameSettingViewController, animated: true)
             
         case "로그아웃":
             logOutButtonTapped()
 
         case "탈퇴하기":
-            // TODO: 탈퇴하기 기능
+            // TODO: 탈퇴하기 기능 (유저 지우고, 패밀리에서도 그 유저 지워야 함)
             return
             
         default:
@@ -81,20 +88,14 @@ extension AccountSettingViewController: UITableViewDataSource {
 
 extension AccountSettingViewController {
     @objc func logOutButtonTapped() {
-        let firebaseAuth = Auth.auth()
-        
         let alert = UIAlertController(title: "알림",
                                       message: "정말 로그아웃 하시겠습니까?",
                                       preferredStyle: .alert)
         
         let yes = UIAlertAction(title: "Yes", style: .default, handler: { [weak self] _ in
-            do {
-                try firebaseAuth.signOut()
-                let signInViewController = SignInViewController()
-                self?.navigationController?.pushViewController(signInViewController, animated: true)
-            } catch let signOutError as NSError {
-                print("ERROR: signout \(signOutError.localizedDescription)")
-            }
+            UserDefaults.standard.set("", forKey: "loginedUserEmail")
+            let signInViewController = SignInViewController()
+            self?.navigationController?.pushViewController(signInViewController, animated: true)
         })
         
         let no = UIAlertAction(title: "No", style: .destructive, handler: nil)

@@ -4,8 +4,8 @@
 //
 //  Created by JiwKang on 2022/07/28.
 //
+
 import UIKit
-import SwiftUI
 
 class CreateFamilyViewController: UIViewController {
     var userName: String = "박기웅"
@@ -35,31 +35,51 @@ class CreateFamilyViewController: UIViewController {
         return label
     }()
     
-    private let createFamilyRoomButton: UIButton = {
+    lazy var inviteNewFamilyRoomButton: UIButton = {
         let button: UIButton = UIButton()
         button.setTitle("새로운 가족 방 생성하기", for: .normal)
         button.setTitleColor(UIColor(named: "ButtonTitleColor"), for: .normal)
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor(named: "BasicButtonBorderColor")?.cgColor
         button.layer.cornerRadius = 8
+        
+        button.addTarget(self,
+                         action: #selector(inviteNewFamilyRoomButtonTapped),
+                         for: .touchUpInside)
+        
         return button
     }()
     
-    private let enterExistFamilyRoomButton: UIButton = {
+    lazy var joinExistFamilyRoomButton: UIButton = {
         let button: UIButton = UIButton()
         button.setTitle("기존 가족 방에 입장하기", for: .normal)
         button.setTitleColor(UIColor(named: "ButtonTitleColor"), for: .normal)
         button.backgroundColor = .customYellow
         button.layer.cornerRadius = 8
+        
+        button.addTarget(self,
+                         action: #selector(joinExistFamilyRoomButtonTapped),
+                         for: .touchUpInside)
+        
         return button
     }()
+    
+    @objc private func inviteNewFamilyRoomButtonTapped() {
+        let inviteFamilyViewController = InviteFamilyViewController()
+        self.navigationController?.pushViewController(inviteFamilyViewController, animated: true)
+    }
+    
+    @objc private func joinExistFamilyRoomButtonTapped() {
+        let joinFamilyViewController = JoinFamilyViewController()
+        self.navigationController?.pushViewController(joinFamilyViewController, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
         
-        [userNameLabel, helloMessageLabel, guideMessageLabel, createFamilyRoomButton, enterExistFamilyRoomButton].forEach {
+        [userNameLabel, helloMessageLabel, guideMessageLabel, inviteNewFamilyRoomButton, joinExistFamilyRoomButton].forEach {
             view.addSubview($0)
         }
         
@@ -72,8 +92,8 @@ class CreateFamilyViewController: UIViewController {
         userNameLabel.translatesAutoresizingMaskIntoConstraints = false
         helloMessageLabel.translatesAutoresizingMaskIntoConstraints = false
         guideMessageLabel.translatesAutoresizingMaskIntoConstraints = false
-        createFamilyRoomButton.translatesAutoresizingMaskIntoConstraints = false
-        enterExistFamilyRoomButton.translatesAutoresizingMaskIntoConstraints = false
+        inviteNewFamilyRoomButton.translatesAutoresizingMaskIntoConstraints = false
+        joinExistFamilyRoomButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             userNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
@@ -85,15 +105,15 @@ class CreateFamilyViewController: UIViewController {
             guideMessageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             guideMessageLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             
-            createFamilyRoomButton.heightAnchor.constraint(equalToConstant: 57),
-            createFamilyRoomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26),
-            createFamilyRoomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -26),
-            createFamilyRoomButton.bottomAnchor.constraint(equalTo: enterExistFamilyRoomButton.topAnchor, constant: -20),
+            inviteNewFamilyRoomButton.heightAnchor.constraint(equalToConstant: 57),
+            inviteNewFamilyRoomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26),
+            inviteNewFamilyRoomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -26),
+            inviteNewFamilyRoomButton.bottomAnchor.constraint(equalTo: joinExistFamilyRoomButton.topAnchor, constant: -20),
             
-            enterExistFamilyRoomButton.heightAnchor.constraint(equalToConstant: 57),
-            enterExistFamilyRoomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26),
-            enterExistFamilyRoomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -26),
-            enterExistFamilyRoomButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -82)
+            joinExistFamilyRoomButton.heightAnchor.constraint(equalToConstant: 57),
+            joinExistFamilyRoomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26),
+            joinExistFamilyRoomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -26),
+            joinExistFamilyRoomButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -82)
         ])
     }
 }

@@ -6,9 +6,10 @@
 //
 
 import UIKit
-import FirebaseAuth
+
 import AuthenticationServices
 import CryptoKit
+import FirebaseAuth
 
 extension SignInViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
@@ -37,8 +38,32 @@ extension SignInViewController: ASAuthorizationControllerDelegate {
                 }
             }
             
-            let mainTabViewController = MainTabViewController()
-            self.navigationController?.pushViewController(mainTabViewController, animated: true)
+            let signinUserEmail = appleIDCredential.email as String? ?? "-"
+            UserDefaults.standard.set(signinUserEmail, forKey: "loginedUserEmail")
+
+            let firestoreManager = FirestoreManager()
+            firestoreManager.setDefaultUserData(userEmail: signinUserEmail)
+            // 얘는 왜 있을까? -> 로그인 과정이 끝나면, 해당 정보로 서버 상에서 유저를 생성한다.
+            
+            var user = User()
+            var destinationViewController: UIViewController = UIViewController()
+            
+            firestoreManager.getSignInUser(userEmail: signinUserEmail, completion: {
+                user = firestoreManager.loginedUser
+            })
+            
+            let name = user.getName()
+            let familyCode = user.getFamilyCode()
+            
+            if name == "" {
+                destinationViewController = NameSettingViewController()
+            } else if familyCode == "" {
+                destinationViewController = CreateFamilyViewController()
+            } else {
+                destinationViewController = MainTabViewController()
+            }
+            
+            navigationController?.pushViewController(destinationViewController, animated: true)
         }
     }
 }
