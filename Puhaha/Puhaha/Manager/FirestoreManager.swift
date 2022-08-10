@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import FirebaseFirestore
 
 class FirestoreManager: ObservableObject {
@@ -24,7 +25,7 @@ class FirestoreManager: ObservableObject {
         self.user = User()
         self.loginedUser = User()
         self.memberEmails = []
-        self.families = [Family(user: User(accountId: "", name: "모두", toolImage: UIImage(named: "IconEveryoneFilter")!, familyCode: "", pokeState: Poke()), isSelected: true)]
+        self.families = [Family(user: User(accountId: "", name: "모두", loginForm: 0, toolImage: UIImage(named: "IconEveryoneFilter")!, familyCode: "", pokeState: Poke()), isSelected: true)]
     }
     
     func fetchMeals(familyCode: String, date: Date, completion: @escaping () -> Void) {
@@ -93,7 +94,7 @@ class FirestoreManager: ObservableObject {
         }
     }
     
-    func getLoginedUser(userEmail: String, completion: @escaping () -> Void) {
+    func getSignInUser(userEmail: String, completion: @escaping () -> Void) {
         loginedUser = User(accountId: userEmail)
         
         db.collection("Users").document(userEmail).getDocument(source: .default) { [self] (document, error) in
@@ -136,6 +137,8 @@ class FirestoreManager: ObservableObject {
                             
                             let accountId = data["accountId"] as? String ?? ""
                             let name = data["name"] as? String ?? ""
+                            let loginForm = data["loginForm"] as? Int ?? 0
+
                             let familyCode = data["familyCode"] as? String ?? ""
                             let pokingTool = data["pokingTool"] as? [String: String] ?? [:]
                             let pokeStateValue = data["pokeState"] as? [String: String] ?? [:]
@@ -146,7 +149,7 @@ class FirestoreManager: ObservableObject {
                             let pokedBy: String = pokeStateValue["pokedBy"] ?? ""
                             let pokedTime: String = pokeStateValue["pokedTime"] ?? ""
                             
-                            let user = User(accountId: accountId, name: name, toolImage: toolImage, familyCode: familyCode, pokeState: Poke(pokedBy: pokedBy, pokedTime: pokedTime))
+                            let user = User(accountId: accountId, name: name, loginForm: loginForm, toolImage: toolImage, familyCode: familyCode, pokeState: Poke(pokedBy: pokedBy, pokedTime: pokedTime))
                             
                             families.append(Family(user: user, isSelected: false))
                         }
@@ -179,5 +182,22 @@ class FirestoreManager: ObservableObject {
                 }
             }
         }
+
+    func setFamilyCode(userEmail: String, code: String) {
+        db.collection("Users").document(userEmail).setData(["familyCode": code])
+    }
+    
+    func setUserName(userEmail: String, userName: String) {
+        db.collection("Users").document(userEmail).updateData(["name": userName])
+    }
+    
+    func setDefaultUserData(userEmail: String) {
+        db.collection("Users").document(userEmail).setData(["familyCode": "",
+                                                                  "name": "",
+                                                                  "pokeState": ["pokedBy": "",
+                                                                                "pokedtime": ""],
+                                                                  "pokingTool": ["color": "",
+                                                                                 "tool": ""]])
+
     }
 }

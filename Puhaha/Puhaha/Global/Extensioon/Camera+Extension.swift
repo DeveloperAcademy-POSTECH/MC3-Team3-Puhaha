@@ -9,6 +9,7 @@ import UIKit
 import PhotosUI
 
 /// 사진 라이브러리에서 선택을 끝냈을 때
+
 extension MainTabViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         
@@ -53,6 +54,7 @@ extension MainTabViewController: PHPickerViewControllerDelegate {
 }
 
 /// 카메라에서 사진 촬영을 끝냈을 때
+
 extension MainTabViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         

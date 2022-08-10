@@ -6,8 +6,9 @@
 //
 
 import UIKit
-import FirebaseStorage
+
 import FirebaseFirestore
+import FirebaseStorage
 
 class MainViewController: UIViewController {
     var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "ipkjw2@gmail.com"
@@ -29,8 +30,6 @@ class MainViewController: UIViewController {
 
         tabBarController?.navigationController?.isNavigationBarHidden = true
     }
-    
-    // MARK: viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,16 +59,13 @@ class MainViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 28)
         return label
     }()
-    
+
     /*
     lazy var plusButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "plus.circle"), for: .normal)
         button.sizeThatFits(CGSize(width: 28, height: 28))
         button.tintColor = .black
-        button.addTarget(self,
-                         action: #selector(tapCameraButton(_ :)),
-                         for: .touchUpInside)
         return button
     }()
     */
@@ -191,7 +187,7 @@ class MainViewController: UIViewController {
     }
     
     private func getLoginedUser() {
-        firestoreManager.getLoginedUser(userEmail: loginedUserEmail) { [self] in
+        firestoreManager.getSignInUser(userEmail: loginedUserEmail) { [self] in
             loginedUser = firestoreManager.loginedUser
             emptyMealCardView.setButtonImage(toolImage: loginedUser.getToolImage())
             emptyMealCardView.reloadInputViews()
