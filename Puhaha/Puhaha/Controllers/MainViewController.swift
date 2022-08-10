@@ -7,6 +7,9 @@
 
 import UIKit
 
+import FirebaseFirestore
+import FirebaseStorage
+
 class MainViewController: UIViewController {
     var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "ipkjw2@gmail.com"
     var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userEmail") ?? "")
@@ -58,7 +61,7 @@ class MainViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 28)
         return label
     }()
-    
+
     /*
     lazy var plusButton: UIButton = {
         let button = UIButton()
