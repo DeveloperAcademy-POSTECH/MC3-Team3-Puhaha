@@ -198,6 +198,5 @@ class FirestoreManager: ObservableObject {
                                                                                 "pokedtime": ""],
                                                                   "pokingTool": ["color": "",
                                                                                  "tool": ""]])
-
     }
 }
