@@ -73,6 +73,16 @@ extension UIColor {
     static var customLightGray: UIColor {
         return UIColor(rgb: 0xEFEFEF)
     }
+    
+    /// 리엑션 선택 뷰 label 색
+    static var customLabelColor: UIColor {
+        return UIColor(rgb: 0x858589)
+    }
+    
+    /// 리엑션 선택 뷰 배경 색
+    static var customReactionSelectBackgroundColor: UIColor {
+        return UIColor(rgb: 0xF3F3F3)
+    }
 }
 
 #if DEBUG

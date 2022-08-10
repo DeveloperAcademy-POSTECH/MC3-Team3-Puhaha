@@ -83,8 +83,13 @@ class MealCardCollectionViewCell: UICollectionViewCell {
     
     func configureMealCard(with meal: Meal, familyCode: String, date: Date) {
         mealImageView.image = meal.mealImage
-        userNameLabel.text = meal.uploadUser
         userIconImageView.image = meal.userIcon
+        
+        if meal.uploadUser.contains("@") {
+            userNameLabel.text = " "
+        } else {
+            userNameLabel.text = meal.uploadUser
+        }
         
         for tag in meal.tags {
             let tagLabel = TagLabel()
