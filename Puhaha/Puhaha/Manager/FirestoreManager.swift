@@ -182,6 +182,7 @@ class FirestoreManager: ObservableObject {
                 }
             }
         }
+    }
 
     func setFamilyCode(userEmail: String, code: String) {
         db.collection("Users").document(userEmail).setData(["familyCode": code])
