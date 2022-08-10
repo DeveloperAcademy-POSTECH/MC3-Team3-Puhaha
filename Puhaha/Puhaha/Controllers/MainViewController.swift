@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import FirebaseStorage
-import FirebaseFirestore
 
 import FirebaseFirestore
 import FirebaseStorage
@@ -189,7 +187,7 @@ class MainViewController: UIViewController {
     }
     
     private func getLoginedUser() {
-        firestoreManager.getLoginedUser(userEmail: loginedUserEmail) { [self] in
+        firestoreManager.getSignInUser(userEmail: loginedUserEmail) { [self] in
             loginedUser = firestoreManager.loginedUser
             emptyMealCardView.setButtonImage(toolImage: loginedUser.getToolImage())
             emptyMealCardView.reloadInputViews()
