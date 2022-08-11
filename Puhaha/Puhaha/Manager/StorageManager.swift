@@ -10,6 +10,7 @@ import FirebaseStorage
 
 class StorageManager {
     let storageRef = Storage.storage().reference()
+    let firestoreManager = FirestoreManager()
     var mealImage: UIImage!
     
     func getMealImage(familyCode: String, date: String, imageName: String, completion: @escaping () -> Void) {
@@ -25,15 +26,16 @@ class StorageManager {
         }
     }
     
-    func uploadMealImage(image: UIImage, familyCode: String, mealImageIndex: String) {
+    func uploadMealImage(image: UIImage, familyCode: String) {
         var data = Data()
         data = image.jpegData(compressionQuality: 0.8) ?? Data()
         let filePathDate = Date().dateText
         let filePathUser = familyCode
-        let fileMealImageIndex = mealImageIndex
+        let fileMealImageIndex = String(firestoreManager.meals.count)
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpeg"
-        storageRef.child(filePathUser).child(filePathDate).child(fileMealImageIndex).putData(data, metadata: metaData) { _, error in
+        
+        storageRef.child(filePathUser).child(filePathDate).child("\(fileMealImageIndex).jpeg").putData(data, metadata: metaData) { _, error in
             if let error = error {
                 print(error.localizedDescription)
                 return
