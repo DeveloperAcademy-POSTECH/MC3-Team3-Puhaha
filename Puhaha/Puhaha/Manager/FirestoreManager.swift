@@ -39,10 +39,10 @@ class FirestoreManager: ObservableObject {
                 let data = queryDocumentSnapshot.data()
                 
                 let mealImageIndex = data["mealImageIndex"] as? String ?? ""
-                let tagsString = data["tags"] as? [String ] ?? []
+                let tagsString = data["tags"] as? [String: String] ?? [:]
                 var tags: [Tag] = []
-                for i in 0..<tagsString.count {
-                    tags.append(Tag(content: tagsString[i], backgroundColor: self.tagColor[i]))
+                for key in tagsString.keys {
+                    tags.append(Tag(content: tagsString[key] ?? "", backgroundColor: self.tagColor[Int(key) ?? 0]))
                 }
                 let uploadUserEmail = data["uploadUser"] as? String ?? ""
                 let uploadedTime = data["uploadedTime"] as? String ?? ""
@@ -55,7 +55,7 @@ class FirestoreManager: ObservableObject {
                     }
                 }
                 
-                let meal = Meal(mealImage: UIImage(), mealImageName: mealImageIndex, uploadUser: uploadUserEmail, userIcon: UIImage(), tags: tags, uploadedDate: uploadedDate, uploadedTime: uploadedTime, reactions: reactions)
+                let meal = Meal(mealImage: UIImage(), mealImageName: mealImageIndex, uploadUser: "", uploadUserEmail: uploadUserEmail, userIcon: UIImage(), tags: tags, uploadedDate: uploadedDate, uploadedTime: uploadedTime, reactions: reactions)
                 
                 DispatchQueue.main.async {
                     completion()
@@ -162,6 +162,28 @@ class FirestoreManager: ObservableObject {
         }
     }
     
+    func addReaction(familyCode: String, meal: Meal, newReaction: [String: String]) {
+        db.collection("Families").document(familyCode).collection("Meals").whereField("uploadUser", isEqualTo: meal.uploadUserEmail).whereField("uploadedDate", isEqualTo: meal.uploadedDate).whereField("uploadedTime", isEqualTo: meal.uploadedTime).getDocuments { querySnapshot, error in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    
+                    let reactionsValue = data["reactions"] as? [[String: String]] ?? []
+                    var reactions: [[String: String]] = []
+                    for i in 0..<reactionsValue.count {
+                        for key in reactionsValue[i].keys {
+                            reactions.append([key: reactionsValue[i][key]!])
+                        }
+                    }
+                    reactions.append(newReaction)
+                    document.reference.updateData(["reactions": reactions])
+                }
+            }
+        }
+    }
+
     func setFamilyCode(userEmail: String, code: String) {
         db.collection("Users").document(userEmail).setData(["familyCode": code])
     }
