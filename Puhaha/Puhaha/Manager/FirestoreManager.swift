@@ -180,9 +180,8 @@ class FirestoreManager: ObservableObject {
     }
     
     func setTag(userEmail: String, code: String, mealImageName: String) {
-        db.collection("Families").document(code).collection("Meals").document(mealImageName).setData(["tags": ["0": "",
-                               "1": ""],
-                               "2": ""])
+        db.collection("Families").document(code).collection("Meals").document(mealImageName).setData(["tags": ["0": "-",
+                               "1": "-",
+                               "2": "-"]])
     }
-
 }
