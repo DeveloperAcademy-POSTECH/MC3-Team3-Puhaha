@@ -16,13 +16,12 @@ class UploadViewController: UIViewController {
     var selectedTags: [String: String] = ["time": "", "menu": "", "emotion": ""]
 
     var loginedUserEmail: String = UserDefaults.standard.string(forKey: "loginedUserEmail") ?? String()
-    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "ipkjw2@gmail.com") ?? String())
+    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "loginedUserEmail") ?? String())
     
     var filter: String = "모두"
     var selectedCellIndex: Int = 0
     let today: Date = Date.now
-    let familyCode: String = "E97E4BDA-9894-45CA-B1A4-1E31B0BC0CC4"
-//    let familyCode: String = UserDefaults.standard.string(forKey: "E97E4BDA-9894-45CA-B1A4-1E31B0BC0CC4") ?? " "
+    let familyCode: String = UserDefaults.standard.string(forKey: "familyCode") ?? " "
     var familyMembers: [Family] = []
     
     var meals: [Meal] = []
@@ -30,13 +29,13 @@ class UploadViewController: UIViewController {
                 mealImageName: "-",
                 uploadUser: "-",
                 userIcon: UIImage(),
-                tags: [],
+                tags: [Tag(content: "-")],
                 uploadedDate: Date().dateText,
                 uploadedTime: Date().timeText,
                 reactions: [])
     
-    let firestoreManager = FirestoreManager()
-    private var storageManager = StorageManager()
+    private let firestoreManager = FirestoreManager()
+    private let storageManager = StorageManager()
     
     // MARK: UI
     
@@ -155,33 +154,43 @@ class UploadViewController: UIViewController {
         tagEmotionContentCollectionView.delegate = self
         
         configureConstraints()
-        print(firestoreManager.meals.count)
     }
     
     // MARK: viewDidDisappear
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
-        
-        storageManager.uploadMealImage(image: pictureImageView.image ?? UIImage(),
-                                       familyCode: familyCode)
-        setMealTags()
+        setMealInfo()
         
     }
     
-    private func setMealTags() {
-        firestoreManager.setTag(userEmail: loginedUserEmail, code: familyCode, mealImageName: meal.mealImageName)
-    
-        let fetchedTimeTag = selectedTags["time"]
-        let fetchedMenuTag = selectedTags["menu"]
-        let fetchedEmotionTag = selectedTags["emotion"]
+    private func setMealInfo() {
+        let fetchedTimeTag = selectedTags["time"] ?? String()
+        let fetchedMenuTag = selectedTags["menu"] ?? String()
+        let fetchedEmotionTag = selectedTags["emotion"] ?? String()
         
-        meal.tags[0].content = fetchedTimeTag ?? String()
-        meal.tags[1].content = fetchedMenuTag ?? String()
-        meal.tags[2].content = fetchedEmotionTag ?? String()
+        storageManager.uploadMealImage(image: pictureImageView.image ?? UIImage(),
+                                       familyCode: familyCode)
         
-        print("meal.tags: \(meal.tags)")
+        firestoreManager.setTag(userEmail: loginedUserEmail,
+                                familyCode: familyCode,
+                                mealImageName: meal.mealImageName,
+                                timeTag: fetchedTimeTag,
+                                menuTag: fetchedMenuTag,
+                                emotionTag: fetchedEmotionTag)
         
+        firestoreManager.setFamilyCode(userEmail: loginedUserEmail, code: familyCode)
+        print("loginedUserEmail: \(loginedUserEmail)")
+        
+        firestoreManager.setUserName(userEmail: loginedUserEmail, userName: meal.uploadUser)
+        
+        firestoreManager.setUploadImageIndex(userEmail: loginedUserEmail, mealImageName: meal.mealImageName, familyCode: familyCode)
+        
+        firestoreManager.setUploadUser(userEmail: loginedUserEmail, familyCode: familyCode, mealImageName: meal.mealImageName)
+        
+        firestoreManager.setUploadDate(userEmail: loginedUserEmail, familyCode: familyCode, mealImageName: meal.mealImageName)
+        
+        firestoreManager.setUploadTime(userEmail: loginedUserEmail, familyCode: familyCode, mealImageName: meal.mealImageName)
     }
     
     private func configureConstraints() {
