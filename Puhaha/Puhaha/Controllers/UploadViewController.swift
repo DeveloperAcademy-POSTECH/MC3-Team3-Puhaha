@@ -26,13 +26,13 @@ class UploadViewController: UIViewController {
     
     var meals: [Meal] = []
     var meal = Meal.init(mealImage: UIImage(),
-                mealImageName: "-",
-                uploadUser: "-",
-                userIcon: UIImage(),
-                tags: [Tag(content: "-")],
-                uploadedDate: Date().dateText,
-                uploadedTime: Date().timeText,
-                reactions: [])
+                        mealImageName: "-",
+                         uploadUser: "-",
+                         userIcon: UIImage(),
+                         tags: [Tag.init(content: ""), Tag.init(content: ""), Tag.init(content: "")],
+                         uploadedDate: Date().dateText,
+                         uploadedTime: Date().timeText,
+                         reactions: [])
     
     private let firestoreManager = FirestoreManager()
     private let storageManager = StorageManager()
@@ -161,7 +161,6 @@ class UploadViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         setMealInfo()
-        
     }
     
     private func setMealInfo() {
@@ -169,16 +168,20 @@ class UploadViewController: UIViewController {
         let fetchedMenuTag = selectedTags["menu"] ?? String()
         let fetchedEmotionTag = selectedTags["emotion"] ?? String()
         
+        meal.tags[0].content = fetchedTimeTag
+        meal.tags[1].content = fetchedMenuTag
+        meal.tags[2].content = fetchedEmotionTag
+        
         storageManager.uploadMealImage(image: pictureImageView.image ?? UIImage(),
                                        familyCode: familyCode)
         
         firestoreManager.setTag(userEmail: loginedUserEmail,
                                 familyCode: familyCode,
                                 mealImageName: meal.mealImageName,
-                                timeTag: fetchedTimeTag,
-                                menuTag: fetchedMenuTag,
-                                emotionTag: fetchedEmotionTag)
-        
+                                timeTag: meal.tags[0].content,
+                                menuTag: meal.tags[1].content,
+                                emotionTag: meal.tags[2].content)
+
         firestoreManager.setFamilyCode(userEmail: loginedUserEmail, code: familyCode)
         print("loginedUserEmail: \(loginedUserEmail)")
         
