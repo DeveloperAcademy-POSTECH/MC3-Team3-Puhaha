@@ -25,14 +25,15 @@ class StorageManager {
         }
     }
     
-    func uploadMealImage(image: UIImage, familyCode: String) {
+    func uploadMealImage(image: UIImage, familyCode: String, mealImageIndex: String) {
         var data = Data()
         data = image.jpegData(compressionQuality: 0.8) ?? Data()
         let filePathDate = Date().dateText
         let filePathUser = familyCode
+        let fileMealImageIndex = mealImageIndex
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpeg"
-        storageRef.child(filePathUser).child(filePathDate).putData(data, metadata: metaData) { _, error in
+        storageRef.child(filePathUser).child(filePathDate).child(fileMealImageIndex).putData(data, metadata: metaData) { _, error in
             if let error = error {
                 print(error.localizedDescription)
                 return
