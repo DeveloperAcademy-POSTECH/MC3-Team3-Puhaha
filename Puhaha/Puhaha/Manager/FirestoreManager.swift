@@ -178,4 +178,11 @@ class FirestoreManager: ObservableObject {
                                                                   "pokingTool": ["color": "",
                                                                                  "tool": ""]])
     }
+    
+    func setTag(userEmail: String, code: String, mealImageName: String) {
+        db.collection("Families").document(code).collection("Meals").document(mealImageName).setData(["tags": ["0": "",
+                               "1": ""],
+                               "2": ""])
+    }
+
 }
