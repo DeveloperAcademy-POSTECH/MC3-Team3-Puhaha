@@ -77,6 +77,6 @@ extension UIColor {
 
 #if DEBUG
 
-let toolColors = [UIColor.darkGray, UIColor.customBlue, UIColor.customYellow, UIColor.customBlack, UIColor.customPurple]
+let toolColors = [UIColor.customLightGray, UIColor.customBlue, UIColor.customYellow, UIColor.customBlack, UIColor.customPurple]
 
 #endif

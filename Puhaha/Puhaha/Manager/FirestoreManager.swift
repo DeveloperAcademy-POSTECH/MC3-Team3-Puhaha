@@ -24,7 +24,7 @@ class FirestoreManager: ObservableObject {
         self.user = User()
         self.loginedUser = User()
         self.memberEmails = []
-        self.families = [Family(user: User(accountId: "", name: "모두", toolImage: UIImage(named: "IconEveryoneFilter")!, familyCode: "", pokeState: Poke()), isSelected: true)]
+        self.families = [Family(user: User(accountId: "", name: "모두", toolImage: UIImage(named: "IconEveryoneFilter")!, toolType: "", toolColor: "", familyCode: "", pokeState: Poke()), isSelected: true)]
     }
     
     func fetchMeals(familyCode: String, date: Date, completion: @escaping () -> Void) {
@@ -83,9 +83,10 @@ class FirestoreManager: ObservableObject {
                 
                 user.setName(name: name)
                 user.setToolImage(toolImage: toolImage)
+                user.setToolType(with: pokingToolTool)
+                user.setToolColor(with: pokingToolColor)
                 user.setFamilyCode(code: familyCode)
                 user.setPoke(poke: Poke(pokedBy: pokedBy, pokedTime: pokedTime))
-                
                 completion()
             } else {
                 print(error ?? "")
@@ -117,6 +118,7 @@ class FirestoreManager: ObservableObject {
                 loginedUser.setPoke(poke: Poke(pokedBy: pokedBy, pokedTime: pokedTime))
                 
                 completion()
+                
             } else {
                 print(error ?? "")
             }
@@ -148,7 +150,7 @@ class FirestoreManager: ObservableObject {
                             let pokedBy: String = pokeStateValue["pokedBy"] ?? ""
                             let pokedTime: String = pokeStateValue["pokedTime"] ?? ""
                             
-                            let user = User(accountId: accountId, name: name, toolImage: toolImage, familyCode: familyCode, pokeState: Poke(pokedBy: pokedBy, pokedTime: pokedTime))
+                            let user = User(accountId: accountId, name: name, toolImage: toolImage, toolType: pokingToolTool, toolColor: pokingToolColor, familyCode: familyCode, pokeState: Poke(pokedBy: pokedBy, pokedTime: pokedTime))
                             
                             families.append(Family(user: user, isSelected: false))
                         }

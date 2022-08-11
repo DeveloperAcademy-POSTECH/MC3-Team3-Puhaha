@@ -12,11 +12,12 @@ import FirebaseFirestore
 class PokeToolCustomizingViewController: UIViewController {
     
     // MARK: User Data
-    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "ipkjw2@gmail.com"
-    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userEmail") ?? "")
+    //    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "ipkjw2@gmail.com"
+    var loginedUserEmail: String = "ipkjw2@gmail.com"
+    //    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userEmail") ?? "")
+    var loginedUser: User = User(accountId: "ipkjw2@gmail.com")
     
     let firestoreManager = FirestoreManager()
-    let userDB = Firestore.firestore().collection("Users")
     
     // SceneView 속 3D 오브젝트에 입혀질 Material
     static var objectMaterial = SCNMaterial()
@@ -205,7 +206,7 @@ class PokeToolCustomizingViewController: UIViewController {
         view.backgroundColor = .white
         title = "찌르기 도구"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDone))
-        
+                                
         view.addSubview(forkCustomView)
         [sceneView, styleButtonsStackView, colorButtonsStackView].forEach {
             forkCustomView.addSubview($0)
@@ -217,6 +218,8 @@ class PokeToolCustomizingViewController: UIViewController {
     @objc func didTapDone() {
         // TODO: DB에 지금 오브젝트의 값을 저장합니다.
         // 무엇을? 툴타입 & 색상 정보를.
+        // TODO: Dismiss Poke Tool View Controller View
+        //        setUserToolData()
     }
     
     private func configureConstraints() {
@@ -282,16 +285,49 @@ class PokeToolCustomizingViewController: UIViewController {
         sample.color = sender.backgroundColor!
     }
     
-    private func getLoginedUser() {
+    private func getToolDataTry() {
         firestoreManager.getLoginedUser(userEmail: loginedUserEmail) { [self] in
             loginedUser = firestoreManager.loginedUser
+            
+            let fetchedToolType = loginedUser.getToolType()
+            let fetchedToolColor = loginedUser.getToolColor()
+            
+            print("fetchedToolType: \(fetchedToolType)")
+            print("fetchedToolColor: \(fetchedToolColor)")
+            // 여기까지는 정상 작동~ 호호호
+            
+            sample.tool = convertStringToToolType(string: fetchedToolType)
+            sample.color = convertStringToToolColor(string: fetchedToolColor)
+            
+            
+            
         }
+        //    private func getLoginedUser() {
+        //        firestoreManager.getLoginedUser(userEmail: loginedUserEmail) { [self] in
+        //            loginedUser = firestoreManager.loginedUser
+        //
+        //
+        //            print("로그인된 유저 : \(loginedUser.getName())")
+        //        }
+        //    }
+        //
+        //    private func getUserToolData() {
+        //
+        //        let fetchedToolType = firestoreManager.loginedUser.getToolType()
+        //        let fetchedToolColor = firestoreManager.loginedUser.getToolColor()
+        //
+        //        sample.tool = convertStringToToolType(string: fetchedToolType)
+        //        sample.color = convertStringToToolColor(string: fetchedToolColor)
+        //
+        //        print(sample.tool.imageFileName)
+        //
+        
     }
     
-    private func getUserToolData() {
+    private func setUserToolData() {
         
-        sample.tool = firestoreManager.loginedUser.getToolType()
-        sample.color = firestoreManager.loginedUser.getToolColor()
+        
+        
     }
 }
 
@@ -337,5 +373,7 @@ func willSetEnvironmentNodes(inside scene: SCNScene) {
 }
 
 #if DEBUG
+
 var sample = PokeTool(tool: Tool.Fork, color: UIColor.customBlue)
+
 #endif

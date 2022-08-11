@@ -29,6 +29,35 @@ enum Tool: Int, CaseIterable {
     }
 }
 
+func convertStringToToolType(string value: String) -> Tool {
+    
+    switch value {
+    case "Fork":
+        return Tool.Fork
+    case "Spoon":
+        return Tool.Spoon
+    case "Whisk":
+        return Tool.Whisk
+    default:
+        return Tool.Spatula
+    }
+}
+
+func convertStringToToolColor(string value: String) -> UIColor {
+    switch value {
+    case "Silver":
+        return UIColor.customLightGray
+    case "Blue":
+        return UIColor.customBlue
+    case "Black":
+        return UIColor.customBlack
+    case "Yellow":
+        return UIColor.customYellow
+    default:
+        return UIColor.customPurple
+    }
+}
+
 class PokeTool {
     
     var tool: Tool
@@ -41,10 +70,6 @@ class PokeTool {
 }
 
 #if DEBUG
-// 더미데이터입니다 빠밤
-extension PokeTool {
-    static var dummyData = PokeTool(tool: Tool.Fork, color: UIColor.customBlue)
-}
 
 let toolImages = ["silver_fork", "silver_spoon", "silver_whisk", "silver_spatula_ver2"]
 

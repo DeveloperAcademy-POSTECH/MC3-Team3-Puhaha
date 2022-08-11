@@ -16,15 +16,15 @@ class User {
     private var familyCode: String?
     private var pokeState: Poke?
     
-//    init() {
-//        self.accountId = nil
-//        self.name = nil
-//        self.toolImage = nil
-//        self.toolType = nil
-//        self.toolColor = nil
-//        self.familyCode = nil
-//        self.pokeState = nil
-//    }
+    init() {
+        self.accountId = nil
+        self.name = nil
+        self.toolImage = nil
+        self.toolType = nil
+        self.toolColor = nil
+        self.familyCode = nil
+        self.pokeState = nil
+    }
     
     init(accountId: String) {
         self.accountId = accountId
@@ -35,22 +35,26 @@ class User {
         self.familyCode = nil
         self.pokeState = nil
     }
-//
-//    init(accountId: String, name: String) {
-//        self.accountId = accountId
-//        self.name = name
-//        self.toolImage = nil
-//        self.familyCode = nil
-//        self.pokeState = nil
-//    }
-//
-//    init(accountId: String, name: String, toolImage: UIImage, familyCode: String, pokeState: Poke) {
-//        self.accountId = accountId
-//        self.name = name
-//        self.toolImage = toolImage
-//        self.familyCode = familyCode
-//        self.pokeState = pokeState
-//    }
+
+    init(accountId: String, name: String) {
+        self.accountId = accountId
+        self.name = name
+        self.toolImage = nil
+        self.toolType = nil
+        self.toolColor = nil
+        self.familyCode = nil
+        self.pokeState = nil
+    }
+
+    init(accountId: String, name: String, toolImage: UIImage, toolType: String, toolColor: String, familyCode: String, pokeState: Poke) {
+        self.accountId = accountId
+        self.name = name
+        self.toolImage = toolImage
+        self.toolType = toolType
+        self.toolColor = toolColor
+        self.familyCode = familyCode
+        self.pokeState = pokeState
+    }
     
     public func setName(name: String) {
         self.name = name
@@ -65,13 +69,13 @@ class User {
         return toolImage ?? UIImage()
     }
     public func getToolType() -> String {
-        return toolType ?? String()
+        return toolType ?? ""
     }
     public func setToolType(with tool: String) {
         self.toolType = tool
     }
     public func getToolColor() -> String {
-        return toolColor ?? String()
+        return toolColor ?? ""
     }
     public func setToolColor(with color: String) {
         self.toolColor = color

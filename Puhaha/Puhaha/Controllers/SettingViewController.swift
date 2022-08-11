@@ -9,6 +9,9 @@ import UIKit
 
 class SettingViewController: UIViewController {
     
+    // 유저의 값을 가지고 있는 변수들
+    
+    
     private let settingSectionNames: [String] = ["내 정보 편집", "그룹원 관리"]
     private let myInfoSettingList: [String] = ["계정 설정", "도구 편집"]
     private let familySettingList: [String] = ["식구 추가"]
@@ -94,6 +97,7 @@ extension SettingViewController: UITableViewDataSource {
             
         case "도구 편집":
             let pokeToolCustomizingViewController = PokeToolCustomizingViewController()
+            pokeToolCustomizingViewController.loginedUserData = sampleUser
             self.navigationController?.pushViewController(pokeToolCustomizingViewController, animated: true)
             
         case "식구 추가":
