@@ -179,9 +179,26 @@ class FirestoreManager: ObservableObject {
                                                                                  "tool": ""]])
     }
     
-    func setTag(userEmail: String, code: String, mealImageName: String) {
-        db.collection("Families").document(code).collection("Meals").document(mealImageName).setData(["tags": ["0": "-",
-                               "1": "-",
-                               "2": "-"]])
+    func setTag(userEmail: String, familyCode: String, mealImageName: String, timeTag: String, menuTag: String, emotionTag: String) {
+        db.collection("Families").document(familyCode).collection("Meals").document(mealImageName).setData(["tags": ["0": timeTag,
+                               "1": menuTag,
+                               "2": emotionTag]])
     }
+    
+    func setUploadImageIndex(userEmail: String, mealImageName: String, familyCode: String) {
+        db.collection("Families").document(familyCode).collection("Meals").document(mealImageName).setData(["mealImageIndex": String(meals.count)])
+    }
+    
+    func setUploadUser(userEmail: String, familyCode: String, mealImageName: String) {
+        db.collection("Families").document(familyCode).collection("Meals").document(mealImageName).setData(["uploadUser": userEmail])
+    }
+    
+    func setUploadDate(userEmail: String, familyCode: String, mealImageName: String) {
+        db.collection("Families").document(familyCode).collection("Meals").document(mealImageName).setData(["uploadDate": Date().dateText])
+    }
+    
+    func setUploadTime(userEmail: String, familyCode: String, mealImageName: String) {
+        db.collection("Families").document(familyCode).collection("Meals").document(mealImageName).setData(["uploadTime": Date().timeText])
+    }
+    
 }
