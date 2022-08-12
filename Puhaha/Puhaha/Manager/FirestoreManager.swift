@@ -74,7 +74,7 @@ class FirestoreManager: ObservableObject {
                 let familyCode = document.data()?["familyCode"] as? String ?? ""
                 let pokingTool = document.data()?["pokingTool"] as? [String: String] ?? [:]
                 let pokeStateValue = document.data()?["pokeState"] as? [String: String] ?? [:]
-
+                
                 let pokingToolColor: String = pokingTool["color"] ?? ""
                 let pokingToolTool: String = pokingTool["tool"] ?? ""
                 let toolImage: UIImage = UIImage(named: "\(pokingToolColor)_\(pokingToolTool)") ?? UIImage()
@@ -103,7 +103,7 @@ class FirestoreManager: ObservableObject {
                 let familyCode = document.data()?["familyCode"] as? String ?? ""
                 let pokingTool = document.data()?["pokingTool"] as? [String: String] ?? [:]
                 let pokeStateValue = document.data()?["pokeState"] as? [String: String] ?? [:]
-
+                
                 let pokingToolColor: String = pokingTool["color"] ?? ""
                 let pokingToolType: String = pokingTool["tool"] ?? ""
                 let toolImage: UIImage = UIImage(named: "\(pokingToolColor)_\(pokingToolType)") ?? UIImage()
@@ -143,7 +143,7 @@ class FirestoreManager: ObservableObject {
                             let familyCode = data["familyCode"] as? String ?? ""
                             let pokingTool = data["pokingTool"] as? [String: String] ?? [:]
                             let pokeStateValue = data["pokeState"] as? [String: String] ?? [:]
-
+                            
                             let pokingToolColor: String = pokingTool["color"] ?? ""
                             let pokingToolTool: String = pokingTool["tool"] ?? ""
                             let toolImage: UIImage = UIImage(named: "\(pokingToolColor)_\(pokingToolTool)") ?? UIImage()
@@ -161,5 +161,17 @@ class FirestoreManager: ObservableObject {
                 print(error ?? "")
             }
         }
+    }
+    
+    func setPokingToolData(userEmail: String, toolType: Tool, toolColor: UIColor) {
+        
+        // 서버에 문자열로 저장하기 때문에, Tool 과 UIColor를 String값으로 변환해서 사용합니다.
+        let tool = toolType.imageFileName
+        let color = convertUIColorToString(color: toolColor)
+        
+        db.collection("Users").document(userEmail).updateData([
+            "pokingTool.tool": tool,
+            "pokingTool.color": color
+        ])
     }
 }
