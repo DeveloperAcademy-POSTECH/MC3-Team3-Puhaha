@@ -58,6 +58,21 @@ func convertStringToToolColor(string value: String) -> UIColor {
     }
 }
 
+func convertUIColorToString(color value: UIColor) -> String {
+    switch value {
+    case .customLightGray:
+        return "Silver"
+    case .customBlue:
+        return "Blue"
+    case .customBlack:
+        return "Black"
+    case .customYellow:
+        return "Yellow"
+    default:
+        return "Purple"
+    }
+}
+
 class PokeTool {
     
     var tool: Tool
