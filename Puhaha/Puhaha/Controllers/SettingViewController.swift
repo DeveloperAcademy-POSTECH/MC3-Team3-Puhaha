@@ -10,7 +10,14 @@ import UIKit
 class SettingViewController: UIViewController {
     
     // 유저의 값을 가지고 있는 변수들
+    // MARK: User Data
+        var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "ipkjw2@gmail.com"
+    //    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userEmail") ?? "")
+    var loginedUser: User = User(accountId: "ipkjw2@gmail.com")
     
+    let firestoreManager = FirestoreManager()
+    
+    var sample = PokeTool(tool: Tool.Spatula, color: UIColor.customPurple)
     
     private let settingSectionNames: [String] = ["내 정보 편집", "그룹원 관리"]
     private let myInfoSettingList: [String] = ["계정 설정", "도구 편집"]
@@ -38,6 +45,8 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
+        
+        getToolDataTry()
         
         navigationItem.title = "설정"
         view.addSubview(self.tableView)
@@ -97,7 +106,7 @@ extension SettingViewController: UITableViewDataSource {
             
         case "도구 편집":
             let pokeToolCustomizingViewController = PokeToolCustomizingViewController()
-            pokeToolCustomizingViewController.loginedUserData = sampleUser
+            pokeToolCustomizingViewController.passedUserToolData = sample
             self.navigationController?.pushViewController(pokeToolCustomizingViewController, animated: true)
             
         case "식구 추가":
@@ -106,6 +115,22 @@ extension SettingViewController: UITableViewDataSource {
             
         default:
             return
+        }
+    }
+    
+    private func getToolDataTry() {
+        firestoreManager.getLoginedUser(userEmail: loginedUserEmail) { [self] in
+            loginedUser = firestoreManager.loginedUser
+            
+            let fetchedToolType = loginedUser.getToolType()
+            let fetchedToolColor = loginedUser.getToolColor()
+            
+            print("fetchedToolType: \(fetchedToolType)")
+            print("fetchedToolColor: \(fetchedToolColor)")
+            
+            sample.tool = convertStringToToolType(string: fetchedToolType)
+            sample.color = convertStringToToolColor(string: fetchedToolColor)
+    
         }
     }
 }
