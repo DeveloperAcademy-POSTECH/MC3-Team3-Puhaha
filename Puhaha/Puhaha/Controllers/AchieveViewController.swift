@@ -13,6 +13,7 @@ class AchieveViewController: UIViewController {
     private var firestoreManager: FirestoreManager = FirestoreManager()
     private var storageManager: StorageManager = StorageManager()
     private var meals: [Meal] = []
+    private let familyCode: String = UserDefaults.standard.string(forKey: "familyCode") ?? "-"
     
     private let titleLabel: UILabel = {
         let label: UILabel = UILabel()
@@ -120,8 +121,6 @@ class AchieveViewController: UIViewController {
     }
     
     private func fetchMeals() {
-        let familyCode: String = UserDefaults.standard.string(forKey: "familyCode") ?? " "
-        
         firestoreManager.fetchMeals(familyCode: familyCode, date: nil) { [self] in
             achieveCollectionView.reloadData()
             
@@ -160,6 +159,7 @@ extension AchieveViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let mealDetailViewController = MealDetailViewController()
         mealDetailViewController.meal = meals[indexPath.row]
+        mealDetailViewController.familyCode = familyCode
         navigationController?.pushViewController(mealDetailViewController, animated: true)
     }
 }
