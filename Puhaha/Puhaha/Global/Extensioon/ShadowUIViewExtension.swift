@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIView {
-    public func setCalendarShadow(radius: CGFloat, opacity: Float, offset: CGSize, width: CGFloat, height: CGFloat) {
+    public func setShadow(radius: CGFloat, opacity: Float, offset: CGSize, width: CGFloat, height: CGFloat) {
         let shadowLayer = CAShapeLayer()
         
         shadowLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: width, height: height), cornerRadius: 13).cgPath
