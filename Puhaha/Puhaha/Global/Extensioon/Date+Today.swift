@@ -37,4 +37,10 @@ extension Date {
         dateFormatter.dateFormat = "yyyyMMdd"
         return dateFormatter.string(from: self)
     }
+    
+    var dateTextWithDot: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        return dateFormatter.string(from: self)
+    }
 }

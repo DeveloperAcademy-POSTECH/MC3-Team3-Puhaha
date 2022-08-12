@@ -73,6 +73,21 @@ extension UIColor {
     static var customLightGray: UIColor {
         return UIColor(rgb: 0xEFEFEF)
     }
+    
+    /// 모아보기 label 색
+    static var customTitleBlack: UIColor {
+        return UIColor(rgb: 0x101010)
+    }
+    
+    /// 모아보기 Date 색
+    static var customDateLabelBlack: UIColor {
+        return UIColor(rgb: 0x393939)
+    }
+    
+    /// 모아보기 업로드 시간  label 색
+    static var customUploadTimeBlack: UIColor {
+        return UIColor(rgb: 0x676767)
+    }
 }
 
 #if DEBUG

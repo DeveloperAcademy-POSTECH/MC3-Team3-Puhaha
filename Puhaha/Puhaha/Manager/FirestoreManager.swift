@@ -28,8 +28,14 @@ class FirestoreManager: ObservableObject {
         self.families = [Family(user: User(accountId: "", name: "모두", loginForm: 0, toolImage: UIImage(named: "IconEveryoneFilter")!, familyCode: "", pokeState: Poke()), isSelected: true)]
     }
     
-    func fetchMeals(familyCode: String, date: Date, completion: @escaping () -> Void) {
-        db.collection("Families").document(familyCode).collection("Meals").whereField("uploadedDate", isEqualTo: date.dateText).addSnapshotListener { [self] (querySnapshot, _) in
+    func fetchMeals(familyCode: String, date: Date?, completion: @escaping () -> Void) {
+        var documentPath: Query = db.collection("Families").document(familyCode).collection("Meals")
+        
+        if date != nil {
+            documentPath = documentPath.whereField("uploadedDate", isEqualTo: date!.dateText)
+        }
+        
+        documentPath.addSnapshotListener { [self] (querySnapshot, _) in
             guard let documents = querySnapshot?.documents else {
                 print("No Documents")
                 return
