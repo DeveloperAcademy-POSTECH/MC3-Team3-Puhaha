@@ -10,7 +10,8 @@ import UIKit
 import FirebaseStorage
 
 class MealDetailViewController: UIViewController {
-    var meal: Meal!
+    @Published var meal: Meal!
+    var familyCode: String!
     private let storageRef = Storage.storage().reference()
     
     private let mealImageView: UIImageView = {
@@ -48,6 +49,12 @@ class MealDetailViewController: UIViewController {
         return stackView
     }()
     
+    private let reactionSelectView: EmoticonView = {
+        let collectionView = EmoticonView()
+        collectionView.isHidden = true
+        return collectionView
+    }()
+    
     private let reactionCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
@@ -79,10 +86,12 @@ class MealDetailViewController: UIViewController {
         reactionCollectionView.delegate = self
         reactionCollectionView.dataSource = self
         
-        [mealImageView, gradient, uploadedMeridianLabel, uploadedTimeLabel, mealDetailTagStackView, reactionCollectionView].forEach {
+        [mealImageView, gradient, uploadedMeridianLabel, uploadedTimeLabel, mealDetailTagStackView, reactionCollectionView, reactionSelectView].forEach {
             view.addSubview($0)
         }
         
+        reactionSelectView.meal = meal
+        reactionSelectView.familyCode = familyCode
         mealImageView.image = meal.mealImage
         
         var uploadedTimeNum = Int(meal.uploadedTime)!
@@ -120,6 +129,7 @@ class MealDetailViewController: UIViewController {
         uploadedTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         mealDetailTagStackView.translatesAutoresizingMaskIntoConstraints = false
         reactionCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        reactionSelectView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             mealImageView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -143,7 +153,12 @@ class MealDetailViewController: UIViewController {
             reactionCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             reactionCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             reactionCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -(UIScreen.main.bounds.height / 25.57 + 95)),
-            reactionCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: UIScreen.main.bounds.height / 25.57)
+            reactionCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: UIScreen.main.bounds.height / 25.57),
+            
+            reactionSelectView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 38),
+            reactionSelectView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -38),
+            reactionSelectView.topAnchor.constraint(equalTo: reactionCollectionView.topAnchor, constant: -232),
+            reactionSelectView.bottomAnchor.constraint(equalTo: reactionCollectionView.topAnchor, constant: 10)
         ])
     }
 }
@@ -164,8 +179,7 @@ extension MealDetailViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            // TODO
-            print("add reaction")
+            reactionSelectView.isHidden.toggle()
         }
     }
 }

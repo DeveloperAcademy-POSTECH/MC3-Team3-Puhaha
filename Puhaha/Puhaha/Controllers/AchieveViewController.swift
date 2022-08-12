@@ -120,7 +120,7 @@ class AchieveViewController: UIViewController {
     }
     
     private func fetchMeals() {
-        let familyCode: String = UserDefaults.standard.string(forKey: "familyCode") ?? "E97E4BDA-9894-45CA-B1A4-1E31B0BC0CC4"
+        let familyCode: String = UserDefaults.standard.string(forKey: "familyCode") ?? " "
         
         firestoreManager.fetchMeals(familyCode: familyCode, date: nil) { [self] in
             achieveCollectionView.reloadData()
