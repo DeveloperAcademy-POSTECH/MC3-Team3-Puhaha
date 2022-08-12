@@ -7,9 +7,6 @@
 
 import UIKit
 
-import FirebaseFirestore
-import FirebaseStorage
-
 class UploadViewController: UIViewController {
     
     let tagContentsArray = UploadTag.uploadTags
