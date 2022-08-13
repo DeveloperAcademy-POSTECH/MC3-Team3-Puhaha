@@ -8,6 +8,7 @@
 import UIKit
 
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class FirestoreManager: ObservableObject {
     private let tagColor: [UIColor] = [.customPurple, .customBlue, .customGreen]
@@ -19,6 +20,7 @@ class FirestoreManager: ObservableObject {
     @Published var loginedUser: User
     @Published var memberEmails: [String]
     @Published var families: [Family]
+    @Published var documentsCount = 0
     
     init() {
         self.meals = []
@@ -179,26 +181,45 @@ class FirestoreManager: ObservableObject {
                                                                                  "tool": ""]])
     }
     
-    func setTag(userEmail: String, familyCode: String, mealImageName: String, timeTag: String, menuTag: String, emotionTag: String) {
-        db.collection("Families").document(familyCode).collection("Meals").document(mealImageName).setData(["tags": ["0": timeTag,
-                               "1": menuTag,
-                               "2": emotionTag]])
-    }
-    
-    func setUploadImageIndex(userEmail: String, mealImageName: String, familyCode: String) {
-        db.collection("Families").document(familyCode).collection("Meals").document(mealImageName).setData(["mealImageIndex": String(meals.count)])
-    }
-    
-    func setUploadUser(userEmail: String, familyCode: String, mealImageName: String) {
-        db.collection("Families").document(familyCode).collection("Meals").document(mealImageName).setData(["uploadUser": userEmail])
-    }
-    
-    func setUploadDate(userEmail: String, familyCode: String, mealImageName: String) {
-        db.collection("Families").document(familyCode).collection("Meals").document(mealImageName).setData(["uploadDate": Date().dateText])
-    }
-    
-    func setUploadTime(userEmail: String, familyCode: String, mealImageName: String) {
-        db.collection("Families").document(familyCode).collection("Meals").document(mealImageName).setData(["uploadTime": Date().timeText])
-    }
-    
+    func setUpMeals(userEmail: String,
+                    familyCode: String,
+                    timeTag: String,
+                    menuTag: String,
+                    emotionTag: String,
+                    completion: @escaping () -> Void) {
+        
+        var documentRef: DocumentReference
+        var count = 0
+        
+        documentsCount = { [self] in
+            db.collection("Families").document(familyCode).collection("Meals").getDocuments() { [self] querySnapShot, error in
+                if let error = error {
+                    print("Error getting documents: \(error)")
+                } else {
+                    for document in querySnapShot!.documents {
+                        count += 1
+                        print("\(document.documentID) => \(document.data())")
+                    }
+                    print("Count: \(count)")
+                    count += 1
+                    
+                }
+                print("collection안에서: \(count)")
+                self.documentsCount = count
+            }
+            print("return 전: \(count)")
+            return self.documentsCount
+        }()
+        
+        documentRef = db.collection("Families").document(familyCode).collection("Meals").addDocument(data: [
+            "mealImageIndex": String(documentsCount),
+            "uploadUser": userEmail,
+            "uploadDate": Date().dateText,
+            "uploadTime": Date().timeNumberText,
+            "tags": ["0": timeTag,
+                     "1": menuTag,
+                     "2": emotionTag]
+        ])
+
+        print("documents 끝나고 documentsCount, count: \(documentsCount), \(count)")    }
 }
