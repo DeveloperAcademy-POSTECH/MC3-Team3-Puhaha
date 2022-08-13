@@ -167,7 +167,8 @@ class UploadViewController: UIViewController {
                                     familyCode: familyCode,
                                     timeTag: fetchedTimeTag,
                                     menuTag: fetchedMenuTag,
-                                    emotionTag: fetchedEmotionTag)
+                                    emotionTag: fetchedEmotionTag) {
+        }
     }
     
     private func configureConstraints() {
