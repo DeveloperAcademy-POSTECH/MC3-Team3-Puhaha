@@ -31,12 +31,12 @@ extension MainTabViewController: PHPickerViewControllerDelegate {
                                         title: "취소",
                                         style: .plain,
                                         target: self,
-                                        action: #selector(self.dismissSelf))
+                                        action: #selector(self.dismissForCancel))
                     uploadViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(
                                         title: "업로드",
                                         style: .done,
                                         target: self,
-                                        action: #selector(self.dismissSelf))
+                                        action: #selector(self.dismissForUpload))
                     
                     let navigationViewController = UINavigationController(rootViewController: uploadViewController)
                     
@@ -48,7 +48,12 @@ extension MainTabViewController: PHPickerViewControllerDelegate {
         }
     }
     
-    @objc private func dismissSelf() {
+    @objc private func dismissForUpload() {
+        dismiss(animated: true, completion: nil)
+        UploadViewController().setMealInfo()
+    }
+    
+    @objc private func dismissForCancel() {
         dismiss(animated: true, completion: nil)
     }
 }
@@ -67,12 +72,12 @@ extension MainTabViewController: UIImagePickerControllerDelegate, UINavigationCo
                             title: "취소",
                             style: .plain,
                             target: self,
-                            action: #selector(self.dismissSelf))
+                            action: #selector(self.dismissForCancel))
         uploadViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(
                             title: "업로드",
                             style: .done,
                             target: self,
-                            action: #selector(self.dismissSelf))
+                            action: #selector(self.dismissForUpload))
         
         let navigationViewController = UINavigationController(rootViewController: uploadViewController)
         
