@@ -148,14 +148,7 @@ class UploadViewController: UIViewController {
         configureConstraints()
     }
     
-    // MARK: viewDidDisappear
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(true)
-        setMealInfo()
-    }
-    
-    private func setMealInfo() {
+    public func setMealInfo() {
         let fetchedTimeTag = selectedTags["time"] ?? String()
         let fetchedMenuTag = selectedTags["menu"] ?? String()
         let fetchedEmotionTag = selectedTags["emotion"] ?? String()
