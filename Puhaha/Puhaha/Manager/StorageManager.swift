@@ -26,12 +26,12 @@ class StorageManager {
         }
     }
     
-    func uploadMealImage(image: UIImage, familyCode: String) {
+    func uploadMealImage(image: UIImage, familyCode: String, imageName: String) {
         var data = Data()
         data = image.jpegData(compressionQuality: 0.8) ?? Data()
         let filePathDate = Date().dateText
         let filePathUser = familyCode
-        let fileMealImageIndex = String(firestoreManager.meals.count)
+        let fileMealImageIndex = imageName
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpeg"
         

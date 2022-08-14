@@ -17,6 +17,7 @@ class UploadViewController: UIViewController {
     
     let familyCode: String = UserDefaults.standard.string(forKey: "familyCode") ?? " "
     
+    
     var meal = Meal.init(mealImage: UIImage(),
                         mealImageName: "-",
                          uploadUser: "-",
@@ -152,16 +153,13 @@ class UploadViewController: UIViewController {
         let fetchedTimeTag = selectedTags["time"] ?? String()
         let fetchedMenuTag = selectedTags["menu"] ?? String()
         let fetchedEmotionTag = selectedTags["emotion"] ?? String()
-
-        storageManager.uploadMealImage(image: pictureImageView.image ?? UIImage(),
-                                       familyCode: familyCode)
         
-        firestoreManager.setUpMeals(userEmail: loginedUserEmail,
+        //        storageManager.uploadMealImage(image: pictureImageView.image ?? UIImage(),
+        
+        firestoreManager.setUpMeals(image: pictureImageView.image ?? UIImage(),
+                                    userEmail: loginedUserEmail,
                                     familyCode: familyCode,
-                                    timeTag: fetchedTimeTag,
-                                    menuTag: fetchedMenuTag,
-                                    emotionTag: fetchedEmotionTag) {
-        }
+                                    tags: Array(selectedTags.values))
     }
     
     private func configureConstraints() {
