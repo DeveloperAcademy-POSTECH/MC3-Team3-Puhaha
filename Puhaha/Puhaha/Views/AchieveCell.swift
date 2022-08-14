@@ -64,7 +64,7 @@ class AchieveCell: UICollectionViewCell {
         
         configureConstraints()
         
-        setCalendarShadow(radius: 6, opacity: 0.1, offset: CGSize(width: 0.0, height: 1.0), width: 150, height: 150)
+        setShadow(radius: 6, opacity: 0.1, offset: CGSize(width: 0.0, height: 1.0), pathSize: CGSize(width: 150, height: 150))
     }
     
     required init?(coder: NSCoder) {

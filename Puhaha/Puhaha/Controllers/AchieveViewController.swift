@@ -77,7 +77,7 @@ class AchieveViewController: UIViewController {
         achieveCollectionView.dataSource = self
         
         configureConstraints()
-        calendar.setCalendarShadow(radius: 13, opacity: 0.1, offset: CGSize(width: 0.0, height: 1.0), width: calendar.bounds.width, height: UIScreen.main.bounds.height / 2.81)
+        calendar.setShadow(radius: 13, opacity: 0.1, offset: CGSize(width: 0.0, height: 1.0), pathSize: CGSize(width: calendar.bounds.width, height: UIScreen.main.bounds.height / 2.81))
         
         fetchMeals()
     }

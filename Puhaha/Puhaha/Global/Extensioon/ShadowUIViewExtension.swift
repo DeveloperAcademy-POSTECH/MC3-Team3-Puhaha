@@ -8,10 +8,10 @@
 import UIKit
 
 extension UIView {
-    public func setShadow(radius: CGFloat, opacity: Float, offset: CGSize, width: CGFloat, height: CGFloat) {
+    public func setShadow(radius: CGFloat, opacity: Float, offset: CGSize, pathSize: CGSize) {
         let shadowLayer = CAShapeLayer()
         
-        shadowLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: width, height: height), cornerRadius: 13).cgPath
+        shadowLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: pathSize.width, height: pathSize.height), cornerRadius: 13).cgPath
         shadowLayer.fillColor = UIColor.white.cgColor
         shadowLayer.shadowColor = UIColor.black.cgColor
         shadowLayer.shadowPath = shadowLayer.path
