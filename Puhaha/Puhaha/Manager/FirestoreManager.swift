@@ -77,7 +77,7 @@ class FirestoreManager: ObservableObject {
                 let familyCode = document.data()?["familyCode"] as? String ?? ""
                 let pokingTool = document.data()?["pokingTool"] as? [String: String] ?? [:]
                 let pokeStateValue = document.data()?["pokeState"] as? [String: String] ?? [:]
-
+                
                 let pokingToolColor: String = pokingTool["color"] ?? ""
                 let pokingToolTool: String = pokingTool["tool"] ?? ""
                 let toolImage: UIImage = UIImage(named: "\(pokingToolColor)_\(pokingToolTool)") ?? UIImage()
@@ -105,7 +105,7 @@ class FirestoreManager: ObservableObject {
                 let familyCode = document.data()?["familyCode"] as? String ?? ""
                 let pokingTool = document.data()?["pokingTool"] as? [String: String] ?? [:]
                 let pokeStateValue = document.data()?["pokeState"] as? [String: String] ?? [:]
-
+                
                 let pokingToolColor: String = pokingTool["color"] ?? ""
                 let pokingToolTool: String = pokingTool["tool"] ?? ""
                 let toolImage: UIImage = UIImage(named: "\(pokingToolColor)_\(pokingToolTool)") ?? UIImage()
@@ -140,11 +140,11 @@ class FirestoreManager: ObservableObject {
                             let accountId = data["accountId"] as? String ?? ""
                             let name = data["name"] as? String ?? ""
                             let loginForm = data["loginForm"] as? Int ?? 0
-
+                            
                             let familyCode = data["familyCode"] as? String ?? ""
                             let pokingTool = data["pokingTool"] as? [String: String] ?? [:]
                             let pokeStateValue = data["pokeState"] as? [String: String] ?? [:]
-
+                            
                             let pokingToolColor: String = pokingTool["color"] ?? ""
                             let pokingToolTool: String = pokingTool["tool"] ?? ""
                             let toolImage: UIImage = UIImage(named: "\(pokingToolColor)_\(pokingToolTool)") ?? UIImage()
@@ -174,52 +174,33 @@ class FirestoreManager: ObservableObject {
     
     func setDefaultUserData(userEmail: String) {
         db.collection("Users").document(userEmail).setData(["familyCode": "",
-                                                                  "name": "",
-                                                                  "pokeState": ["pokedBy": "",
-                                                                                "pokedtime": ""],
-                                                                  "pokingTool": ["color": "",
-                                                                                 "tool": ""]])
+                                                            "name": "",
+                                                            "pokeState": ["pokedBy": "",
+                                                                          "pokedtime": ""],
+                                                            "pokingTool": ["color": "",
+                                                                           "tool": ""]])
     }
     
-    func setUpMeals(userEmail: String,
+    func setUpMeals(image: UIImage,
+                    userEmail: String,
                     familyCode: String,
-                    timeTag: String,
-                    menuTag: String,
-                    emotionTag: String,
-                    completion: @escaping () -> Void) {
+                    tags: [String]) {
+        let today = Date.now
         
         var documentRef: DocumentReference
-        var count = 0
-        
-        documentsCount = { [self] in
-            db.collection("Families").document(familyCode).collection("Meals").getDocuments() { [self] querySnapShot, error in
-                if let error = error {
-                    print("Error getting documents: \(error)")
-                } else {
-                    for document in querySnapShot!.documents {
-                        count += 1
-                        print("\(document.documentID) => \(document.data())")
-                    }
-                    print("Count: \(count)")
-                    count += 1
-                    
-                }
-                print("collection안에서: \(count)")
-                self.documentsCount = count
-            }
-            print("return 전: \(count)")
-            return self.documentsCount
-        }()
-        
+        var storageManager = StorageManager()
+        let imageName: String = "img_\(today.dateText)_\(today.timeNumberText).jpeg"
         documentRef = db.collection("Families").document(familyCode).collection("Meals").addDocument(data: [
-            "mealImageIndex": String(documentsCount),
+            "mealImageIndex": imageName,
             "uploadUser": userEmail,
             "uploadDate": Date().dateText,
             "uploadTime": Date().timeNumberText,
-            "tags": ["0": timeTag,
-                     "1": menuTag,
-                     "2": emotionTag]
-        ])
-
-        print("documents 끝나고 documentsCount, count: \(documentsCount), \(count)")    }
+            "tags": ["0": tags[0],
+                     "1": tags[1],
+                     "2": tags[2]
+                    ]])
+        
+        storageManager.uploadMealImage(image: image, familyCode: familyCode, imageName: imageName)
+        
+    }
 }
