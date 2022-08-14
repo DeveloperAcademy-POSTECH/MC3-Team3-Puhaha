@@ -15,7 +15,7 @@ class StorageManager {
     
     func getMealImage(familyCode: String, date: String, imageName: String, completion: @escaping () -> Void) {
         let mealRef = storageRef.child(familyCode).child(date)
-        mealRef.child("\(imageName).jpeg").getData(maxSize: 1 * 3_840 * 2_160) { [self] (data, error) in
+        mealRef.child(imageName).getData(maxSize: 1 * 3_840 * 2_160) { [self] (data, error) in
             if let error = error {
                 print(error)
                 mealImage = UIImage()

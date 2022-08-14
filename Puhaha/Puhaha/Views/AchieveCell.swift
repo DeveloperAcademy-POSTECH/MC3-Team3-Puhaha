@@ -12,6 +12,8 @@ class AchieveCell: UICollectionViewCell {
     
     private let mealImageView: UIImageView = {
         let imageView: UIImageView = UIImageView()
+        imageView.layer.cornerRadius = 6
+        imageView.layer.masksToBounds = true
         return imageView
     }()
     
