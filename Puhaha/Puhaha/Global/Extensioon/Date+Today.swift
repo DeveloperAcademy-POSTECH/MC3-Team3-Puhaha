@@ -43,4 +43,10 @@ extension Date {
         dateFormatter.dateFormat = "yyyy.M.d"
         return dateFormatter.string(from: self)
     }
+    
+    func transferDateToStringDay() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "H시 m분"
+        return dateFormatter.string(from: self)
+    }
 }

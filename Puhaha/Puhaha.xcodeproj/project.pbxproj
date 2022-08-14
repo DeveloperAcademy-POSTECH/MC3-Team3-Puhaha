@@ -53,6 +53,7 @@
 		CE33B7A12896632E0054F9CD /* Poke.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B7A02896632E0054F9CD /* Poke.swift */; };
 		CE445BE728A41ABE0084A93F /* AchieveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE445BE628A41ABE0084A93F /* AchieveViewController.swift */; };
 		CE445BE928A426C00084A93F /* AchieveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE445BE828A426C00084A93F /* AchieveCell.swift */; };
+		CE45191728A8E0EC00D1FB21 /* String+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45191628A8E0EC00D1FB21 /* String+Extenstion.swift */; };
 		CE46B5702888DB3D0074DEF0 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE46B56F2888DB3D0074DEF0 /* TagLabel.swift */; };
 		CE558B1528852DF800E98909 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE558B1428852DF800E98909 /* Tag.swift */; };
 		CE558B1728852DFB00E98909 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE558B1628852DFB00E98909 /* Meal.swift */; };
@@ -124,6 +125,7 @@
 
 		CE445BE628A41ABE0084A93F /* AchieveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchieveViewController.swift; sourceTree = "<group>"; };
 		CE445BE828A426C00084A93F /* AchieveCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchieveCell.swift; sourceTree = "<group>"; };
+		CE45191628A8E0EC00D1FB21 /* String+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extenstion.swift"; sourceTree = "<group>"; };
 		CE46B56F2888DB3D0074DEF0 /* TagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLabel.swift; sourceTree = "<group>"; };
 		CE558B1428852DF800E98909 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		CE558B1628852DFB00E98909 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				A445E5F728929C9B00FD31C4 /* UIImage+Extension.swift */,
 				BFFB73412897652B00AE3C09 /* Camera+Extension.swift */,
 				CEE92FDA28A63E0000AEE539 /* ShadowUIViewExtension.swift */,
+				CE45191628A8E0EC00D1FB21 /* String+Extenstion.swift */,
 			);
 			path = Extensioon;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55599E3C2886362900C05E81 /* CustomedButton.swift in Sources */,
+				CE45191728A8E0EC00D1FB21 /* String+Extenstion.swift in Sources */,
 				CE33B79B2896592F0054F9CD /* FirestoreManager.swift in Sources */,
 				BF8C5FA9288E5EE0002BF0BD /* UploadViewController.swift in Sources */,
 				CE9AE1932891271700F4253D /* MainViewController+DataSource.swift in Sources */,
