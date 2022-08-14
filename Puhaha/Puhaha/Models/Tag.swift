@@ -8,8 +8,8 @@
 import UIKit.UIColor
 
 struct Tag {
-    let content: String
-    let backgroundColor: UIColor?
+    var content: String
+    var backgroundColor: UIColor?
     
     init(content: String) {
         self.content = content

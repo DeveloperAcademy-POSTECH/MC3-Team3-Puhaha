@@ -39,7 +39,10 @@
 		A48C93AC288F74D500BA09EF /* BigFork.obj in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A4288F74D500BA09EF /* BigFork.obj */; };
 		A48C93AD288F74D500BA09EF /* BigSpoonVer2.scn in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A5288F74D500BA09EF /* BigSpoonVer2.scn */; };
 		A48C93AE288F74D500BA09EF /* Spatula.scn in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A6288F74D500BA09EF /* Spatula.scn */; };
-		BF7F91192886530A009D3809 /* ActionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F91182886530A009D3809 /* ActionSheetView.swift */; };
+		BF42685328A35674003DB735 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE33B78A2895755E0054F9CD /* FirebaseAnalytics */; };
+		BF42685428A35674003DB735 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CE33B78C2895755E0054F9CD /* FirebaseAuth */; };
+		BF42685528A35674003DB735 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CE33B78E2895755E0054F9CD /* FirebaseFirestore */; };
+		BF42685628A35674003DB735 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE33B7902895755E0054F9CD /* FirebaseFirestoreSwift */; };
 		BF8C5FA9288E5EE0002BF0BD /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FA8288E5EDF002BF0BD /* UploadViewController.swift */; };
 		BF8C5FAD288E655B002BF0BD /* TagContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FAC288E655B002BF0BD /* TagContentCollectionViewCell.swift */; };
 		BF8C5FAF288E6B21002BF0BD /* UploadTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FAE288E6B21002BF0BD /* UploadTag.swift */; };
@@ -629,6 +632,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Puhaha/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 사용권한을 허용해주세요.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진앨범 사용권한을 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

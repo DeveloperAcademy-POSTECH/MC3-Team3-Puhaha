@@ -8,6 +8,8 @@
 import UIKit
 import PhotosUI
 
+let uploadViewController = UploadViewController()
+
 /// 사진 라이브러리에서 선택을 끝냈을 때
 
 extension MainTabViewController: PHPickerViewControllerDelegate {
@@ -24,19 +26,17 @@ extension MainTabViewController: PHPickerViewControllerDelegate {
                 DispatchQueue.main.async {
                     guard let selectedImage = image as? UIImage else { return print("selected Image error")}
                     
-                    let uploadViewController = UploadViewController()
-                    
                     uploadViewController.pictureImageView.image = selectedImage
                     uploadViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(
                                         title: "취소",
                                         style: .plain,
                                         target: self,
-                                        action: #selector(self.dismissSelf))
+                                        action: #selector(self.dismissForCancel))
                     uploadViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(
                                         title: "업로드",
                                         style: .done,
                                         target: self,
-                                        action: #selector(self.dismissSelf))
+                                        action: #selector(self.dismissForUpload))
                     
                     let navigationViewController = UINavigationController(rootViewController: uploadViewController)
                     
@@ -48,7 +48,12 @@ extension MainTabViewController: PHPickerViewControllerDelegate {
         }
     }
     
-    @objc private func dismissSelf() {
+    @objc private func dismissForUpload() {
+        dismiss(animated: true, completion: nil)
+        uploadViewController.setMealInfo()
+    }
+    
+    @objc private func dismissForCancel() {
         dismiss(animated: true, completion: nil)
     }
 }
@@ -61,18 +66,17 @@ extension MainTabViewController: UIImagePickerControllerDelegate, UINavigationCo
         guard let captureImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
         self.dismiss(animated: true)
         
-        let uploadViewController = UploadViewController()
         uploadViewController.pictureImageView.image = captureImage
         uploadViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(
                             title: "취소",
                             style: .plain,
                             target: self,
-                            action: #selector(self.dismissSelf))
+                            action: #selector(self.dismissForCancel))
         uploadViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(
                             title: "업로드",
                             style: .done,
                             target: self,
-                            action: #selector(self.dismissSelf))
+                            action: #selector(self.dismissForUpload))
         
         let navigationViewController = UINavigationController(rootViewController: uploadViewController)
         

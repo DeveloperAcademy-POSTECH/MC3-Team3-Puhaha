@@ -31,6 +31,8 @@ class MainViewController: UIViewController {
         tabBarController?.navigationController?.isNavigationBarHidden = true
     }
     
+    // MARK: viewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -66,6 +68,9 @@ class MainViewController: UIViewController {
         button.setBackgroundImage(UIImage(systemName: "plus.circle"), for: .normal)
         button.sizeThatFits(CGSize(width: 28, height: 28))
         button.tintColor = .black
+        button.addTarget(self,
+                         action: #selector(tapCameraButton(_ :)),
+                         for: .touchUpInside)
         return button
     }()
     */

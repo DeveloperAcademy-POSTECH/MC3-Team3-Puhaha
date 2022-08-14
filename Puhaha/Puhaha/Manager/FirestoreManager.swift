@@ -8,6 +8,7 @@
 import UIKit
 
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class FirestoreManager: ObservableObject {
     private let tagColor: [UIColor] = [.customPurple, .customBlue, .customGreen]
@@ -19,6 +20,7 @@ class FirestoreManager: ObservableObject {
     @Published var loginedUser: User
     @Published var memberEmails: [String]
     @Published var families: [Family]
+    @Published var documentsCount = 0
     
     init() {
         self.meals = []
@@ -75,7 +77,7 @@ class FirestoreManager: ObservableObject {
                 let familyCode = document.data()?["familyCode"] as? String ?? ""
                 let pokingTool = document.data()?["pokingTool"] as? [String: String] ?? [:]
                 let pokeStateValue = document.data()?["pokeState"] as? [String: String] ?? [:]
-
+                
                 let pokingToolColor: String = pokingTool["color"] ?? ""
                 let pokingToolTool: String = pokingTool["tool"] ?? ""
                 let toolImage: UIImage = UIImage(named: "\(pokingToolColor)_\(pokingToolTool)") ?? UIImage()
@@ -103,7 +105,7 @@ class FirestoreManager: ObservableObject {
                 let familyCode = document.data()?["familyCode"] as? String ?? ""
                 let pokingTool = document.data()?["pokingTool"] as? [String: String] ?? [:]
                 let pokeStateValue = document.data()?["pokeState"] as? [String: String] ?? [:]
-
+                
                 let pokingToolColor: String = pokingTool["color"] ?? ""
                 let pokingToolTool: String = pokingTool["tool"] ?? ""
                 let toolImage: UIImage = UIImage(named: "\(pokingToolColor)_\(pokingToolTool)") ?? UIImage()
@@ -138,11 +140,11 @@ class FirestoreManager: ObservableObject {
                             let accountId = data["accountId"] as? String ?? ""
                             let name = data["name"] as? String ?? ""
                             let loginForm = data["loginForm"] as? Int ?? 0
-
+                            
                             let familyCode = data["familyCode"] as? String ?? ""
                             let pokingTool = data["pokingTool"] as? [String: String] ?? [:]
                             let pokeStateValue = data["pokeState"] as? [String: String] ?? [:]
-
+                            
                             let pokingToolColor: String = pokingTool["color"] ?? ""
                             let pokingToolTool: String = pokingTool["tool"] ?? ""
                             let toolImage: UIImage = UIImage(named: "\(pokingToolColor)_\(pokingToolTool)") ?? UIImage()
@@ -194,10 +196,33 @@ class FirestoreManager: ObservableObject {
     
     func setDefaultUserData(userEmail: String) {
         db.collection("Users").document(userEmail).setData(["familyCode": "",
-                                                                  "name": "",
-                                                                  "pokeState": ["pokedBy": "",
-                                                                                "pokedtime": ""],
-                                                                  "pokingTool": ["color": "",
-                                                                                 "tool": ""]])
+                                                            "name": "",
+                                                            "pokeState": ["pokedBy": "",
+                                                                          "pokedtime": ""],
+                                                            "pokingTool": ["color": "",
+                                                                           "tool": ""]])
+    }
+    
+    func setUpMeals(image: UIImage,
+                    userEmail: String,
+                    familyCode: String,
+                    tags: [String]) {
+        let today = Date.now
+        
+        var documentRef: DocumentReference
+        var storageManager = StorageManager()
+        let imageName: String = "img_\(today.dateText)_\(today.timeNumberText).jpeg"
+        documentRef = db.collection("Families").document(familyCode).collection("Meals").addDocument(data: [
+            "mealImageIndex": imageName,
+            "uploadUser": userEmail,
+            "uploadDate": Date().dateText,
+            "uploadTime": Date().timeNumberText,
+            "tags": ["0": tags[0],
+                     "1": tags[1],
+                     "2": tags[2]
+                    ]])
+        
+        storageManager.uploadMealImage(image: image, familyCode: familyCode, imageName: imageName)
+        
     }
 }
