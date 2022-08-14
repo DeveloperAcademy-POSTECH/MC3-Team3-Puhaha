@@ -35,7 +35,7 @@ class UploadViewController: UIViewController {
     lazy var pictureImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.clipsToBounds = true
-        imageView.sizeToFit()
+        imageView.contentMode = .scaleToFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -166,11 +166,11 @@ class UploadViewController: UIViewController {
         NSLayoutConstraint.activate([
         pictureImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         pictureImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
-        pictureImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 2),
-        pictureImageView.topAnchor.constraint(equalTo: view.topAnchor),
+        pictureImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+        pictureImageView.bottomAnchor.constraint(equalTo: tagTimeLabel.topAnchor, constant: -26),
         
         tagTimeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
-        tagTimeLabel.topAnchor.constraint(equalTo: pictureImageView.bottomAnchor, constant: 26),
+        tagTimeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height / 1.76),
         
         tagTimeContentCollectionView.topAnchor.constraint(equalTo: tagTimeLabel.bottomAnchor, constant: 14),
         tagTimeContentCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
