@@ -92,14 +92,7 @@ class AchieveCell: UICollectionViewCell {
         mealImageView.image = meal.mealImage
         uploadedUserNameLabel.text = meal.uploadUser
         
-        if meal.uploadedTime.count == 4 {
-            var uploadedTimeText = meal.uploadedTime
-            
-            let centerIndex = uploadedTimeText.index(uploadedTimeText.startIndex, offsetBy: 2)
-            uploadedTimeText.insert("시", at: centerIndex)
-            uploadedTimeText.append("분")
-            
-            uploadedTimeLabel.text = " " + uploadedTimeText
-        }
+        let uploadedTimeText = meal.uploadedTime.transferStringToDate()!.transferDateToStringDay()
+        uploadedTimeLabel.text = " \(uploadedTimeText)"
     }
 }
