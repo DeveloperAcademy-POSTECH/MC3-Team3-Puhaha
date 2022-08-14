@@ -50,9 +50,10 @@ class FirestoreManager: ObservableObject {
                 for key in tagsString.keys {
                     tags.append(Tag(content: tagsString[key] ?? "", backgroundColor: self.tagColor[Int(key) ?? 0]))
                 }
+                
                 let uploadUserEmail = data["uploadUser"] as? String ?? ""
-                let uploadedTime = data["uploadedTime"] as? String ?? ""
-                let uploadedDate = data["uploadedDate"] as? String ?? ""
+                let uploadedTime = data["uploadTime"] as? String ?? ""
+                let uploadedDate = data["uploadDate"] as? String ?? ""
                 let reactionsValue = data["reactions"] as? [[String: String]] ?? []
                 var reactions: [Reaction?] = [nil]
                 for i in 0..<reactionsValue.count {
