@@ -49,6 +49,7 @@ class ReactionCollectionViewCell: UICollectionViewCell {
             reactionEmojiBackgroundView.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
             reactionEmojiBackgroundView.image = UIImage(named: "AddReactionButtonImage")
             reactedUserNameLabel.text = ""
+            reactionEmojiLabel.text = ""
             reactionEmojiBackgroundView.widthAnchor.constraint(equalToConstant: 60).isActive = true
         } else {
             reactionEmojiBackgroundView.frame = CGRect(x: 0, y: 0, width: 60, height: 67)

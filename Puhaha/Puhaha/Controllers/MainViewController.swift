@@ -204,7 +204,7 @@ class MainViewController: UIViewController {
             mealCardCollectionView.reloadData()
             
             for i in 0..<firestoreManager.meals.count {
-                storageManager.getMealImage(familyCode: familyCode, date: today.dateText, imageName: "\(i + 1)") { [self] in
+                storageManager.getMealImage(familyCode: familyCode, date: meals[i].uploadedDate, imageName: meals[i].mealImageName) { [self] in
                     firestoreManager.meals[i].mealImage = storageManager.mealImage
                     firestoreManager.getUploadUser(userEmail: firestoreManager.meals[i].uploadUserEmail) { [self] in
                         firestoreManager.meals[i].uploadUser = firestoreManager.user.getName()
