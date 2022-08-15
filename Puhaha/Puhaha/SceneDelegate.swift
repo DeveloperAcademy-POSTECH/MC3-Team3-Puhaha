@@ -20,10 +20,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
-             
-        if userDefaultsName == "" {
+        
+        UserDefaults.standard.set("", forKey: "roomCode")
+        UserDefaults.standard.set("", forKey: "name")
+        
+        if userDefaultsName == "" && userDefaultsRoomCode != "" {
             viewController = NameSettingViewController()
-        } else if userDefaultsRoomCode == "" {
+        } else if userDefaultsName == "" && userDefaultsRoomCode == "" {
             viewController = SignInViewController()
         } else {
             viewController = MainTabViewController()
