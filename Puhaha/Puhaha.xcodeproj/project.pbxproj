@@ -51,7 +51,7 @@
 		CE33B79D2896593F0054F9CD /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B79C2896593F0054F9CD /* StorageManager.swift */; };
 		CE33B79F289662310054F9CD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B79E289662310054F9CD /* User.swift */; };
 		CE33B7A12896632E0054F9CD /* Poke.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B7A02896632E0054F9CD /* Poke.swift */; };
-		CE445BE728A41ABE0084A93F /* AchieveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE445BE628A41ABE0084A93F /* AchieveViewController.swift */; };
+		CE445BE728A41ABE0084A93F /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE445BE628A41ABE0084A93F /* ArchiveViewController.swift */; };
 		CE445BE928A426C00084A93F /* AchieveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE445BE828A426C00084A93F /* AchieveCell.swift */; };
 		CE45191728A8E0EC00D1FB21 /* String+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45191628A8E0EC00D1FB21 /* String+Extenstion.swift */; };
 		CE46B5702888DB3D0074DEF0 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE46B56F2888DB3D0074DEF0 /* TagLabel.swift */; };
