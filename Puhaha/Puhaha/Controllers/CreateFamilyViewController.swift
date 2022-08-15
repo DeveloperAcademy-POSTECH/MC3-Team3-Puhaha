@@ -38,7 +38,7 @@ class CreateFamilyViewController: UIViewController {
     lazy var inviteNewFamilyRoomButton: UIButton = {
         let button: UIButton = UIButton()
         button.setTitle("새로운 가족 방 생성하기", for: .normal)
-        button.setTitleColor(UIColor(named: "ButtonTitleColor"), for: .normal)
+        button.setTitleColor(.customCreateFamilyButtonTitleColor, for: .normal)
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor(named: "BasicButtonBorderColor")?.cgColor
         button.layer.cornerRadius = 8
@@ -53,7 +53,7 @@ class CreateFamilyViewController: UIViewController {
     lazy var joinExistFamilyRoomButton: UIButton = {
         let button: UIButton = UIButton()
         button.setTitle("기존 가족 방에 입장하기", for: .normal)
-        button.setTitleColor(UIColor(named: "ButtonTitleColor"), for: .normal)
+        button.setTitleColor(.customCreateFamilyButtonTitleColor, for: .normal)
         button.backgroundColor = .customYellow
         button.layer.cornerRadius = 8
         

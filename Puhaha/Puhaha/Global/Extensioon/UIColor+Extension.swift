@@ -97,6 +97,11 @@ extension UIColor {
     static var customReactionSelectBackgroundColor: UIColor {
         return UIColor(rgb: 0xF3F3F3)
     }
+    
+    /// CreateFamilyViewController label color
+    static var customCreateFamilyButtonTitleColor: UIColor {
+        return UIColor(rgb: 0x333333)
+    }
 }
 
 #if DEBUG

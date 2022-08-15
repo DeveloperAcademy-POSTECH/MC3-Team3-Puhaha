@@ -261,4 +261,7 @@ class FirestoreManager: ObservableObject {
         
         storageManager.uploadMealImage(image: image, familyCode: familyCode, imageName: imageName)
     }
+    func addFamily(roomCode: String, userEmail: String) {
+        db.collection("Families").document(roomCode).setData(["users": [userEmail]])
+    }
 }

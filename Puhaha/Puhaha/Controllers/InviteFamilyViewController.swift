@@ -86,6 +86,8 @@ class InviteFamilyViewController: UIViewController {
         
         let mainTabViewController = MainTabViewController()
         self.navigationController?.pushViewController(mainTabViewController, animated: true)
+        
+        firestoreManager.addFamily(roomCode: createdRoomCode, userEmail: userEmail)
     }
     
     override func viewDidLoad() {
