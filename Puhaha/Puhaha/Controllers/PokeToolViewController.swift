@@ -12,8 +12,8 @@ import FirebaseFirestore
 
 class PokeToolCustomizingViewController: UIViewController {
     
-    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "-"
-    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userEmail") ?? "")
+    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "-"
+    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "")
     
     var passedUserToolData: PokeTool = PokeTool(tool: Tool.Whisk, color: UIColor.customBlack)
     
@@ -204,8 +204,9 @@ class PokeToolCustomizingViewController: UIViewController {
         view.backgroundColor = .white
         title = "찌르기 도구"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDone))
-        
+        navigationController?.setNavigationBarHidden(false, animated: false)
         view.addSubview(forkCustomView)
+        
         [sceneView, styleButtonsStackView, colorButtonsStackView].forEach {
             forkCustomView.addSubview($0)
         }
