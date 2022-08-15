@@ -15,7 +15,7 @@ class UploadViewController: UIViewController {
     var loginedUserEmail: String = UserDefaults.standard.string(forKey: "loginedUserEmail") ?? String()
     var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "loginedUserEmail") ?? String())
     
-    let familyCode: String = UserDefaults.standard.string(forKey: "familyCode") ?? " "
+    let familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "-"
     
     var meal = Meal.init(mealImage: UIImage(),
                         mealImageName: "-",

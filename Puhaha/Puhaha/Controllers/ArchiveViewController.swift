@@ -13,7 +13,7 @@ class ArchiveViewController: UIViewController {
     private var firestoreManager: FirestoreManager = FirestoreManager()
     private var storageManager: StorageManager = StorageManager()
     private var meals: [Meal] = []
-    private let familyCode: String = UserDefaults.standard.string(forKey: "familyCode") ?? "E97E4BDA-9894-45CA-B1A4-1E31B0BC0CC4"
+    private let familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "E97E4BDA-9894-45CA-B1A4-1E31B0BC0CC4"
     
     private let titleLabel: UILabel = {
         let label: UILabel = UILabel()

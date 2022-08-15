@@ -17,7 +17,7 @@ class MainViewController: UIViewController {
     var filter: String = "모두"
     var selectedCellIndex: Int = 0
     var today: Date = Date.now
-    var familyCode: String = UserDefaults.standard.string(forKey: "familyCode") ?? "-"
+    var familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "-"
     var familyMembers: [Family] = []
     
     var meals: [Meal] = []

@@ -15,7 +15,7 @@ class StorageManager {
     
     func getMealImage(familyCode: String, date: String, imageName: String, completion: @escaping () -> Void) {
         let mealRef = storageRef.child(familyCode).child(date)
-        mealRef.child(imageName).getData(maxSize: 1 * 3_840 * 2_160) { [self] (data, error) in
+        mealRef.child("\(imageName).jpeg").getData(maxSize: 1 * 3_840 * 2_160) { [self] (data, error) in
             if let error = error {
                 print(error)
                 mealImage = UIImage()
@@ -26,6 +26,25 @@ class StorageManager {
         }
     }
     
+//    func uploadMealImage(image: UIImage, familyCode: String, imageName: String) {
+//        var data = Data()
+//        data = image.jpegData(compressionQuality: 0.8) ?? Data()
+//        let filePathDate = Date().dateText
+//        let filePathUser = familyCode
+//        let fileMealImageIndex = imageName
+//        let metaData = StorageMetadata()
+//        metaData.contentType = "image/jpeg"
+//
+//        storageRef.child(filePathUser).child(filePathDate).child("\(fileMealImageIndex).jpeg").putData(data, metadata: metaData) { _, error in
+//            if let error = error {
+//                print(error.localizedDescription)
+//                return
+//            } else {
+//                print("image uploaded")
+//            }
+//        }
+//    }
+    
     func uploadMealImage(image: UIImage, familyCode: String, imageName: String) {
         var data = Data()
         data = image.jpegData(compressionQuality: 0.8) ?? Data()
@@ -35,13 +54,16 @@ class StorageManager {
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpeg"
         
-        storageRef.child(filePathUser).child(filePathDate).child("\(fileMealImageIndex).jpeg").putData(data, metadata: metaData) { _, error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            } else {
-                print("image uploaded")
+        DispatchQueue.main.async {
+            self.storageRef.child(filePathUser).child(filePathDate).child("\(fileMealImageIndex).jpeg").putData(data, metadata: metaData) { _, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                } else {
+                    print("image uploaded")
+                }
             }
         }
+
     }
 }
