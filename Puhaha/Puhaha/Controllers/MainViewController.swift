@@ -6,8 +6,9 @@
 //
 
 import UIKit
-import FirebaseStorage
+
 import FirebaseFirestore
+import FirebaseStorage
 
 class MainViewController: UIViewController {
     var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "ipkjw2@gmail.com"
@@ -15,8 +16,8 @@ class MainViewController: UIViewController {
     
     var filter: String = "모두"
     var selectedCellIndex: Int = 0
-    let today: Date = Date.now
-    let familyCode: String = UserDefaults.standard.string(forKey: "familyCode") ?? " "
+    var today: Date = Date.now
+    var familyCode: String = UserDefaults.standard.string(forKey: "familyCode") ?? "-"
     var familyMembers: [Family] = []
     
     var meals: [Meal] = []
@@ -60,7 +61,7 @@ class MainViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 28)
         return label
     }()
-    
+
     /*
     lazy var plusButton: UIButton = {
         let button = UIButton()
@@ -191,7 +192,7 @@ class MainViewController: UIViewController {
     }
     
     private func getLoginedUser() {
-        firestoreManager.getLoginedUser(userEmail: loginedUserEmail) { [self] in
+        firestoreManager.getSignInUser(userEmail: loginedUserEmail) { [self] in
             loginedUser = firestoreManager.loginedUser
             emptyMealCardView.setButtonImage(toolImage: loginedUser.getToolImage())
             emptyMealCardView.reloadInputViews()
@@ -199,13 +200,13 @@ class MainViewController: UIViewController {
     }
     
     private func fetchMeals() {
-        firestoreManager.fetchMeals(familyCode: familyCode, date: .now) { [self] in
+        firestoreManager.fetchMeals(familyCode: familyCode, date: today) { [self] in
             mealCardCollectionView.reloadData()
             
             for i in 0..<firestoreManager.meals.count {
-                storageManager.getMealImage(familyCode: familyCode, date: Date.now.dateText, imageName: "\(i + 1)") { [self] in
+                storageManager.getMealImage(familyCode: familyCode, date: today.dateText, imageName: "\(i + 1)") { [self] in
                     firestoreManager.meals[i].mealImage = storageManager.mealImage
-                    firestoreManager.getUploadUser(userEmail: firestoreManager.meals[i].uploadUser) { [self] in
+                    firestoreManager.getUploadUser(userEmail: firestoreManager.meals[i].uploadUserEmail) { [self] in
                         firestoreManager.meals[i].uploadUser = firestoreManager.user.getName()
                         firestoreManager.meals[i].userIcon = firestoreManager.user.getToolImage()
                         meals = firestoreManager.meals

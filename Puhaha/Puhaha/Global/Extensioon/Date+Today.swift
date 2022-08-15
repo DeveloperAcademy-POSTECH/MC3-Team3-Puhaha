@@ -25,6 +25,12 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
+    var timeNumberText: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hhmm"
+        return dateFormatter.string(from: self)
+    }
+    
     var ampm: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "a"

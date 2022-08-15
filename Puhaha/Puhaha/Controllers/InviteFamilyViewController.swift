@@ -4,10 +4,14 @@
 //
 //  Created by JiwKang on 2022/07/28.
 //
+
 import UIKit
 
+import FirebaseFirestore
+
 class InviteFamilyViewController: UIViewController {
-    private var roomCode: String = UUID().uuidString
+    private var createdRoomCode: String = UUID().uuidString
+    public var db = Firestore.firestore()
     
     private let guideMessageLabel: UILabel = {
         let label: UILabel = UILabel()
@@ -58,15 +62,31 @@ class InviteFamilyViewController: UIViewController {
         return stackView
     }()
     
-    private let enterFamilyRoomButton: UIButton = {
+    lazy var enterFamilyRoomButton: UIButton = {
         let button: UIButton = UIButton()
         button.setTitle("입장하기", for: .normal)
         button.setTitleColor(UIColor(named: "ButtonTitleColor"), for: .normal)
         button.setTitleColor(UIColor.white, for: .selected)
         button.backgroundColor = .customYellow
         button.layer.cornerRadius = 8
+        
+        button.addTarget(self,
+                         action: #selector(enterFamilyRoomButtonTapped),
+                         for: .touchUpInside)
+        
         return button
     }()
+    
+    @objc private func enterFamilyRoomButtonTapped() {
+        let userEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? "-"
+        let firestoreManager = FirestoreManager()
+        
+        firestoreManager.setFamilyCode(userEmail: userEmail, code: createdRoomCode)
+        UserDefaults.standard.set(createdRoomCode, forKey: "roomCode")
+        
+        let mainTabViewController = MainTabViewController()
+        self.navigationController?.pushViewController(mainTabViewController, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,8 +103,8 @@ class InviteFamilyViewController: UIViewController {
             view.addSubview($0)
         }
         
-        roomCodeLabel.text = roomCode
-        roomCodeLabel.text = roomCode
+        roomCodeLabel.text = createdRoomCode
+        roomCodeLabel.text = createdRoomCode
         
         configureConstraints()
     }

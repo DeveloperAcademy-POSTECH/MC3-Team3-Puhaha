@@ -44,6 +44,7 @@ extension MainViewController: UICollectionViewDataSource {
         switch collectionView {
         case mealCardCollectionView:
             let mealDetailViewController = MealDetailViewController()
+            mealDetailViewController.familyCode = familyCode
             mealDetailViewController.meal = firestoreManager.meals[indexPath.row]
             navigationController?.pushViewController(mealDetailViewController, animated: true)
         case familyFilterCollectionView:

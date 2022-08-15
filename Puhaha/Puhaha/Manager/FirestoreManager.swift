@@ -6,7 +6,9 @@
 //
 
 import UIKit
+
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class FirestoreManager: ObservableObject {
     private let tagColor: [UIColor] = [.customPurple, .customBlue, .customGreen]
@@ -18,13 +20,16 @@ class FirestoreManager: ObservableObject {
     @Published var loginedUser: User
     @Published var memberEmails: [String]
     @Published var families: [Family]
+    @Published var documentsCount = 0
     
     init() {
         self.meals = []
         self.user = User()
         self.loginedUser = User()
         self.memberEmails = []
+        
         self.families = [Family(user: User(accountId: "", name: "모두", toolImage: UIImage(named: "IconEveryoneFilter")!, toolType: "", toolColor: "", familyCode: "", pokeState: Poke()), isSelected: true)]
+        
     }
     
     func fetchMeals(familyCode: String, date: Date, completion: @escaping () -> Void) {
@@ -38,10 +43,10 @@ class FirestoreManager: ObservableObject {
                 let data = queryDocumentSnapshot.data()
                 
                 let mealImageIndex = data["mealImageIndex"] as? String ?? ""
-                let tagsString = data["tags"] as? [String ] ?? []
+                let tagsString = data["tags"] as? [String: String] ?? [:]
                 var tags: [Tag] = []
-                for i in 0..<tagsString.count {
-                    tags.append(Tag(content: tagsString[i], backgroundColor: self.tagColor[i]))
+                for key in tagsString.keys {
+                    tags.append(Tag(content: tagsString[key] ?? "", backgroundColor: self.tagColor[Int(key) ?? 0]))
                 }
                 let uploadUserEmail = data["uploadUser"] as? String ?? ""
                 let uploadedTime = data["uploadedTime"] as? String ?? ""
@@ -54,7 +59,7 @@ class FirestoreManager: ObservableObject {
                     }
                 }
                 
-                let meal = Meal(mealImage: UIImage(), mealImageName: mealImageIndex, uploadUser: uploadUserEmail, userIcon: UIImage(), tags: tags, uploadedDate: uploadedDate, uploadedTime: uploadedTime, reactions: reactions)
+                let meal = Meal(mealImage: UIImage(), mealImageName: mealImageIndex, uploadUser: "", uploadUserEmail: uploadUserEmail, userIcon: UIImage(), tags: tags, uploadedDate: uploadedDate, uploadedTime: uploadedTime, reactions: reactions)
                 
                 DispatchQueue.main.async {
                     completion()
@@ -94,7 +99,7 @@ class FirestoreManager: ObservableObject {
         }
     }
     
-    func getLoginedUser(userEmail: String, completion: @escaping () -> Void) {
+    func getSignInUser(userEmail: String, completion: @escaping () -> Void) {
         loginedUser = User(accountId: userEmail)
         
         db.collection("Users").document(userEmail).getDocument(source: .default) { [self] (document, error) in
@@ -140,6 +145,8 @@ class FirestoreManager: ObservableObject {
                             
                             let accountId = data["accountId"] as? String ?? ""
                             let name = data["name"] as? String ?? ""
+                            let loginForm = data["loginForm"] as? Int ?? 0
+                            
                             let familyCode = data["familyCode"] as? String ?? ""
                             let pokingTool = data["pokingTool"] as? [String: String] ?? [:]
                             let pokeStateValue = data["pokeState"] as? [String: String] ?? [:]
@@ -173,5 +180,66 @@ class FirestoreManager: ObservableObject {
             "pokingTool.tool": tool,
             "pokingTool.color": color
         ])
+    }
+    
+    func addReaction(familyCode: String, meal: Meal, newReaction: [String: String]) {
+        db.collection("Families").document(familyCode).collection("Meals").whereField("uploadUser", isEqualTo: meal.uploadUserEmail).whereField("uploadedDate", isEqualTo: meal.uploadedDate).whereField("uploadedTime", isEqualTo: meal.uploadedTime).getDocuments { querySnapshot, error in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    
+                    let reactionsValue = data["reactions"] as? [[String: String]] ?? []
+                    var reactions: [[String: String]] = []
+                    for i in 0..<reactionsValue.count {
+                        for key in reactionsValue[i].keys {
+                            reactions.append([key: reactionsValue[i][key]!])
+                        }
+                    }
+                    reactions.append(newReaction)
+                    document.reference.updateData(["reactions": reactions])
+                }
+            }
+        }
+    }
+    
+    func setFamilyCode(userEmail: String, code: String) {
+        db.collection("Users").document(userEmail).setData(["familyCode": code])
+    }
+    
+    func setUserName(userEmail: String, userName: String) {
+        db.collection("Users").document(userEmail).updateData(["name": userName])
+    }
+    
+    func setDefaultUserData(userEmail: String) {
+        db.collection("Users").document(userEmail).setData(["familyCode": "",
+                                                            "name": "",
+                                                            "pokeState": ["pokedBy": "",
+                                                                          "pokedtime": ""],
+                                                            "pokingTool": ["color": "",
+                                                                           "tool": ""]])
+    }
+    
+    func setUpMeals(image: UIImage,
+                    userEmail: String,
+                    familyCode: String,
+                    tags: [String]) {
+        let today = Date.now
+        
+        var documentRef: DocumentReference
+        var storageManager = StorageManager()
+        let imageName: String = "img_\(today.dateText)_\(today.timeNumberText).jpeg"
+        documentRef = db.collection("Families").document(familyCode).collection("Meals").addDocument(data: [
+            "mealImageIndex": imageName,
+            "uploadUser": userEmail,
+            "uploadDate": Date().dateText,
+            "uploadTime": Date().timeNumberText,
+            "tags": ["0": tags[0],
+                     "1": tags[1],
+                     "2": tags[2]
+                    ]])
+        
+        storageManager.uploadMealImage(image: image, familyCode: familyCode, imageName: imageName)
     }
 }
