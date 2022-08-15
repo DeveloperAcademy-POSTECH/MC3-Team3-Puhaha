@@ -12,7 +12,7 @@ import FirebaseFirestore
 
 class PokeToolCustomizingViewController: UIViewController {
     
-    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "ipkjw2@gmail.com"
+    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "-"
     var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userEmail") ?? "")
     
     var passedUserToolData: PokeTool = PokeTool(tool: Tool.Whisk, color: UIColor.customBlack)
