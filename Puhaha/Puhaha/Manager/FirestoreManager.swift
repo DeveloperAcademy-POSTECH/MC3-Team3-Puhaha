@@ -177,11 +177,10 @@ class FirestoreManager: ObservableObject {
         }
     }
     
-    func setPokingToolData(userEmail: String, toolType: Tool, toolColor: UIColor) {
-        
-        // 서버에 문자열로 저장하기 때문에, Tool 과 UIColor를 String값으로 변환해서 사용합니다.
-        let tool = toolType.imageFileName
-        let color = convertUIColorToString(color: toolColor)
+    func setPokingToolData(userEmail: String, tool passedTool: PokeTool) {
+                        
+        let tool = passedTool.tool.imageFileName
+        let color = convertUIColorToString(color: passedTool.color)
         
         db.collection("Users").document(userEmail).updateData([
             "pokingTool.tool": tool,

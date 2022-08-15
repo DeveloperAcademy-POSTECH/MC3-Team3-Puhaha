@@ -285,7 +285,7 @@ class PokeToolCustomizingViewController: UIViewController {
     
     private func setUserToolData() {
         
-        FirestoreManager().setPokingToolData(userEmail: loginedUserEmail, toolType: passedUserToolData.tool, toolColor: passedUserToolData.color)
+        FirestoreManager().setPokingToolData(userEmail: loginedUserEmail, tool: passedUserToolData)
         
     }
 }
