@@ -78,6 +78,7 @@ class CreateFamilyViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        navigationController?.setNavigationBarHidden(false, animated: false)
         
         [userNameLabel, helloMessageLabel, guideMessageLabel, inviteNewFamilyRoomButton, joinExistFamilyRoomButton].forEach {
             view.addSubview($0)
