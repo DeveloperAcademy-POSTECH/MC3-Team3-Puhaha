@@ -28,7 +28,14 @@ class FirestoreManager: ObservableObject {
         self.loginedUser = User()
         self.memberEmails = []
         
-        self.families = [Family(user: User(accountId: "", name: "모두", toolImage: UIImage(named: "IconEveryoneFilter")!, toolType: "", toolColor: "", familyCode: "", pokeState: Poke()), isSelected: true)]
+        self.families = [Family(user: User(accountId: "",
+                                           name: "모두",
+                                           toolImage: UIImage(named: "IconEveryoneFilter")!,
+                                           toolType: "",
+                                           toolColor: "",
+                                           familyCode: "",
+                                           pokeState: Poke()),
+                                isSelected: true)]
         
     }
     
@@ -164,7 +171,13 @@ class FirestoreManager: ObservableObject {
                             let pokedBy: String = pokeStateValue["pokedBy"] ?? ""
                             let pokedTime: String = pokeStateValue["pokedTime"] ?? ""
                             
-                            let user = User(accountId: accountId, name: name, toolImage: toolImage, toolType: pokingToolTool, toolColor: pokingToolColor, familyCode: familyCode, pokeState: Poke(pokedBy: pokedBy, pokedTime: pokedTime))
+                            let user = User(accountId: accountId,
+                                            name: name,
+                                            toolImage: toolImage,
+                                            toolType: pokingToolTool,
+                                            toolColor: pokingToolColor,
+                                            familyCode: familyCode,
+                                            pokeState: Poke(pokedBy: pokedBy, pokedTime: pokedTime))
                             
                             families.append(Family(user: user, isSelected: false))
                         }
@@ -178,7 +191,7 @@ class FirestoreManager: ObservableObject {
     }
     
     func setPokingToolData(userEmail: String, tool passedTool: PokeTool) {
-                        
+        
         let tool = passedTool.tool.imageFileName
         let color = convertUIColorToString(color: passedTool.color)
         
