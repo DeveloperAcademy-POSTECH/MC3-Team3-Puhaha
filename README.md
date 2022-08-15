@@ -28,10 +28,9 @@ An app to share photos of meals with your families and keep in touch with each o
 
 
 ## Screen Shot  
-|Main View|Upload View|Poke View|Poke Editing View|
-|---|---|---|---|
-|<img width="183" alt="메인뷰edited" src="https://user-images.githubusercontent.com/99120199/184612492-3b7d5f1b-89bf-467c-a581-8e421619e2ec.png">|<img width="183" alt="업로드뷰" src="https://user-images.githubusercontent.com/99120199/184612511-cae99351-edfe-4862-9b23-17d0f66ab01b.png">|<img width="172" alt="Poke뷰" src="https://user-images.githubusercontent.com/99120199/184612506-39bd3ae7-d926-4b03-8a86-db68d6e6a8fd.png">|<img width="178" alt="도구편집뷰" src="https://user-images.githubusercontent.com/99120199/184612509-7a455050-b66f-411c-a7e7-699af934a3cf.png">
-
+|Main View|Upload View|Poke View|Poke Editing View|Archiving View|
+|---|---|---|---|---|
+|<img width="183" alt="메인뷰edited" src="https://user-images.githubusercontent.com/99120199/184612492-3b7d5f1b-89bf-467c-a581-8e421619e2ec.png">|<img width="183" alt="업로드뷰" src="https://user-images.githubusercontent.com/99120199/184612511-cae99351-edfe-4862-9b23-17d0f66ab01b.png">|<img width="172" alt="Poke뷰" src="https://user-images.githubusercontent.com/99120199/184612506-39bd3ae7-d926-4b03-8a86-db68d6e6a8fd.png">|<img width="178" alt="도구편집뷰" src="https://user-images.githubusercontent.com/99120199/184612509-7a455050-b66f-411c-a7e7-699af934a3cf.png">|<img width="183" alt="아카이빙뷰" src="https://user-images.githubusercontent.com/99120199/184635090-e491eb8d-26eb-4b54-8726-aafa5f6e0e20.png">|
 
 
 ## Skills & Tech Stack
