@@ -224,7 +224,7 @@ class FirestoreManager: ObservableObject {
     }
     
     func setFamilyCode(userEmail: String, code: String) {
-        db.collection("Users").document(userEmail).setData(["familyCode": code])
+        db.collection("Users").document(userEmail).updateData(["familyCode": code])
     }
     
     func setUserName(userEmail: String, userName: String) {
