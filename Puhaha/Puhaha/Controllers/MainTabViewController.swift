@@ -34,12 +34,12 @@ class MainTabViewController: UITabBarController {
         tableTab.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -4, right: 0)
         tableTab.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0.0, vertical: 6.0)
         
-        let achieveTab = AchieveViewController()
-        achieveTab.tabBarItem = UITabBarItem(title: "통계", image: UIImage(named: "icon-tab-bar-statistic") ?? UIImage(), selectedImage: UIImage(named: "icon-tab-bar-statistic") ?? UIImage())
-        achieveTab.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -4, right: 0)
-        achieveTab.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0.0, vertical: 6.0)
+        let archiveTab = ArchiveViewController()
+        archiveTab.tabBarItem = UITabBarItem(title: "통계", image: UIImage(named: "icon-tab-bar-statistic") ?? UIImage(), selectedImage: UIImage(named: "icon-tab-bar-statistic") ?? UIImage())
+        archiveTab.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -4, right: 0)
+        archiveTab.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0.0, vertical: 6.0)
         
-        viewControllers = [tableTab, achieveTab]
+        viewControllers = [tableTab, archiveTab]
         tabBar.tintColor = UIColor(named: "TabBarIconSelectedColor") ?? UIColor()
         tabBar.unselectedItemTintColor = UIColor(named: "TabBarIconUnSelectedColor")
         UITabBar.clearShadow()

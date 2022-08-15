@@ -1,5 +1,5 @@
 //
-//  AchieveViewController.swift
+//  ArchiveViewController.swift
 //  Puhaha
 //
 //  Created by JiwKang on 2022/08/11.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-class AchieveViewController: UIViewController {
+class ArchiveViewController: UIViewController {
     private var selectedDate: Date = Date.now
     
     private var firestoreManager: FirestoreManager = FirestoreManager()
     private var storageManager: StorageManager = StorageManager()
     private var meals: [Meal] = []
-    private let familyCode: String = UserDefaults.standard.string(forKey: "familyCode") ?? "-"
+    private let familyCode: String = UserDefaults.standard.string(forKey: "familyCode") ?? "E97E4BDA-9894-45CA-B1A4-1E31B0BC0CC4"
     
     private let titleLabel: UILabel = {
         let label: UILabel = UILabel()
@@ -45,14 +45,14 @@ class AchieveViewController: UIViewController {
         return label
     }()
     
-    private let achieveCollectionView: UICollectionView = {
+    private let archiveCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 14
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(AchieveCell.self, forCellWithReuseIdentifier: AchieveCell.identifier)
+        collectionView.register(ArchiveCell.self, forCellWithReuseIdentifier: ArchiveCell.identifier)
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 22, bottom: 0, right: 22)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isHidden = true
@@ -69,15 +69,15 @@ class AchieveViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        [titleLabel, calendar, dateLabel, achieveCollectionView, emptyLabel].forEach {
+        [titleLabel, calendar, dateLabel, archiveCollectionView, emptyLabel].forEach {
             view.addSubview($0)
         }
         
-        achieveCollectionView.delegate = self
-        achieveCollectionView.dataSource = self
+        archiveCollectionView.delegate = self
+        archiveCollectionView.dataSource = self
         
         configureConstraints()
-        calendar.setShadow(radius: 13, opacity: 0.1, offset: CGSize(width: 0.0, height: 1.0), pathSize: CGSize(width: calendar.bounds.width, height: UIScreen.main.bounds.height / 2.81))
+        calendar.setShadow(radius: 13, opacity: 0.1, offset: CGSize(width: 0.0, height: 1.0), pathSize: CGSize(width: UIScreen.main.bounds.width / 1.13, height: UIScreen.main.bounds.height / 2.81))
         
         fetchMeals()
     }
@@ -86,7 +86,7 @@ class AchieveViewController: UIViewController {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         calendar.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        achieveCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        archiveCollectionView.translatesAutoresizingMaskIntoConstraints = false
         emptyLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -101,20 +101,20 @@ class AchieveViewController: UIViewController {
             dateLabel.topAnchor.constraint(equalTo: calendar.bottomAnchor, constant: 22),
             dateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
             
-            achieveCollectionView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 16),
-            achieveCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            achieveCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            achieveCollectionView.bottomAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 16 + 190),
+            archiveCollectionView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 16),
+            archiveCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            archiveCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            archiveCollectionView.bottomAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 16 + 190),
             
-            emptyLabel.centerXAnchor.constraint(equalTo: achieveCollectionView.centerXAnchor),
-            emptyLabel.centerYAnchor.constraint(equalTo: achieveCollectionView.centerYAnchor)
+            emptyLabel.centerXAnchor.constraint(equalTo: archiveCollectionView.centerXAnchor),
+            emptyLabel.centerYAnchor.constraint(equalTo: archiveCollectionView.centerYAnchor)
         ])
     }
     
     @objc private func uiPickerDateChanged(_ sender: UIDatePicker) {
         selectedDate = sender.date
         meals = firestoreManager.meals.filter { $0.uploadedDate == selectedDate.dateText }
-        achieveCollectionView.reloadData()
+        archiveCollectionView.reloadData()
         dateLabel.text = selectedDate.dateTextWithDot
         
         collectionViewHiddenToggle()
@@ -122,7 +122,7 @@ class AchieveViewController: UIViewController {
     
     private func fetchMeals() {
         firestoreManager.fetchMeals(familyCode: familyCode, date: nil) { [self] in
-            achieveCollectionView.reloadData()
+            archiveCollectionView.reloadData()
             
             for i in 0..<firestoreManager.meals.count {
                 storageManager.getMealImage(familyCode: familyCode, date: firestoreManager.meals[i].uploadedDate, imageName: firestoreManager.meals[i].mealImageName) { [self] in
@@ -130,11 +130,11 @@ class AchieveViewController: UIViewController {
                     firestoreManager.getUploadUser(userEmail: firestoreManager.meals[i].uploadUserEmail) { [self] in
                         firestoreManager.meals[i].uploadUser = firestoreManager.user.getName()
                         firestoreManager.meals[i].userIcon = firestoreManager.user.getToolImage()
-                        achieveCollectionView.reloadData()
+                        archiveCollectionView.reloadData()
                         collectionViewHiddenToggle()
                     }
                     meals = firestoreManager.meals.filter { $0.uploadedDate == selectedDate.dateText }
-                    achieveCollectionView.reloadData()
+                    archiveCollectionView.reloadData()
                 }
             }
         }
@@ -143,15 +143,15 @@ class AchieveViewController: UIViewController {
     private func collectionViewHiddenToggle() {
         if meals.isEmpty {
             emptyLabel.isHidden = false
-            achieveCollectionView.isHidden = true
+            archiveCollectionView.isHidden = true
         } else {
             emptyLabel.isHidden = true
-            achieveCollectionView.isHidden = false
+            archiveCollectionView.isHidden = false
         }
     }
 }
 
-extension AchieveViewController: UICollectionViewDelegateFlowLayout {
+extension ArchiveViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 150, height: 182)
     }
@@ -164,13 +164,13 @@ extension AchieveViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension AchieveViewController: UICollectionViewDataSource {
+extension ArchiveViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return meals.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AchieveCell.identifier, for: indexPath) as? AchieveCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArchiveCell.identifier, for: indexPath) as? ArchiveCell else { return UICollectionViewCell() }
         
         cell.configureCell(meal: meals[indexPath.row])
         

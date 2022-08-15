@@ -1,5 +1,5 @@
 //
-//  AchieveCell.swift
+//  ArchiveCell.swift
 //  Puhaha
 //
 //  Created by JiwKang on 2022/08/11.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-class AchieveCell: UICollectionViewCell {
-    static let identifier: String = "AchieveCell"
+class ArchiveCell: UICollectionViewCell {
+    static let identifier: String = "ArchiveCell"
     
     private let mealImageView: UIImageView = {
         let imageView: UIImageView = UIImageView()
@@ -37,7 +37,7 @@ class AchieveCell: UICollectionViewCell {
     
     private let stopwatchImageView: UIImageView = {
         let imageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
-        imageView.image = UIImage(systemName: "stopwatch")
+        imageView.image = UIImage(systemName: "clock")
         imageView.tintColor = .customUploadTimeBlack
         return imageView
     }()
