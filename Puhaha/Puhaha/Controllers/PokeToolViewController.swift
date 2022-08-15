@@ -150,7 +150,7 @@ class PokeToolCustomizingViewController: UIViewController {
             let buttonSize: CGFloat = UIScreen.main.bounds.width / 6.5
             
             let button = UIButton(type: .custom)
-            button.layer.cornerRadius = buttonSize/2
+            button.layer.cornerRadius = buttonSize / 2
             button.layer.masksToBounds = true
             button.clipsToBounds = true
             button.backgroundColor = UIColor.white
