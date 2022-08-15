@@ -218,7 +218,7 @@ class PokeToolCustomizingViewController: UIViewController {
         
         // TODO: Dismiss Poke Tool View Controller View
         setUserToolData()
-        
+        navigationController?.pushViewController(CreateFamilyViewController(), animated: true)
     }
     
     private func configureConstraints() {
