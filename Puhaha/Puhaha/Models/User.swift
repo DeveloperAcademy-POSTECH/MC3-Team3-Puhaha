@@ -58,7 +58,7 @@ class User {
         
         self.accountId = accountId
         self.name = name
-        self.loginForm = loginForm
+        self.loginForm = 0
 
         self.toolImage = toolImage
         self.toolType = toolType
