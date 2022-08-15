@@ -144,9 +144,12 @@ class PokeToolCustomizingViewController: UIViewController {
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         
         for toolColorIndex in 0..<toolColors.count {
+                        
+            // MARK: 버튼의 property
+            let buttonSize: CGFloat = UIScreen.main.bounds.width / 6.5
             
             let button = UIButton(type: .custom)
-            button.layer.cornerRadius = 30
+            button.layer.cornerRadius = buttonSize/2
             button.layer.masksToBounds = true
             button.clipsToBounds = true
             button.backgroundColor = UIColor.white
@@ -158,9 +161,6 @@ class PokeToolCustomizingViewController: UIViewController {
             button.addTarget(self, action: #selector(colorButtonPressed(_ :)), for: .touchUpInside)
             
             button.translatesAutoresizingMaskIntoConstraints = false
-            
-            // MARK: 버튼의 property
-            let buttonSize: CGFloat = 60
             
             // button의 사이즈를 정해줍니다.
             NSLayoutConstraint.activate([
