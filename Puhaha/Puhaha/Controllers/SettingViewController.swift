@@ -11,9 +11,9 @@ class SettingViewController: UIViewController {
     
     // 유저의 값을 가지고 있는 변수들
     // MARK: User Data
-        var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "ipkjw2@gmail.com"
+    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "-"
     //    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userEmail") ?? "")
-    var loginedUser: User = User(accountId: "ipkjw2@gmail.com")
+    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userEmail") ?? "-")
     
     let firestoreManager = FirestoreManager()
     
@@ -81,10 +81,10 @@ extension SettingViewController: UITableViewDataSource {
             return 0
         }
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingViewController.cellIdentifier, for: indexPath)
-
+        
         if indexPath.section == 0 {
             cell.textLabel?.text = myInfoSettingList[indexPath.row]
         } else if indexPath.section == 1 {
@@ -94,12 +94,12 @@ extension SettingViewController: UITableViewDataSource {
         }
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         let cellTextLabel = cell?.textLabel?.text
         
-        // TODO: enum으로 선언 
+        // TODO: enum으로 선언
         
         switch cellTextLabel {
         case "계정 설정":
@@ -132,7 +132,7 @@ extension SettingViewController: UITableViewDataSource {
             
             sample.tool = convertStringToToolType(string: fetchedToolType)
             sample.color = convertStringToToolColor(string: fetchedToolColor)
-    
+            
         }
     }
 }
