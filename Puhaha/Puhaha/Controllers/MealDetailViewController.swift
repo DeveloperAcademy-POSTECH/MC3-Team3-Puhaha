@@ -101,12 +101,7 @@ class MealDetailViewController: UIViewController {
         } else {
             uploadedMeridianLabel.text = "오전"
         }
-        var uploadedTimeText = String(uploadedTimeNum)
-        
-        let centerIndex = uploadedTimeText.index(uploadedTimeText.startIndex, offsetBy: 2)
-        uploadedTimeText.insert("시", at: centerIndex)
-        uploadedTimeText.append("분")
-        
+        let uploadedTimeText = String(uploadedTimeNum).transferStringToDate()!.transferDateToStringDay()
         uploadedTimeLabel.text = uploadedTimeText
         
         for tag in meal.tags {

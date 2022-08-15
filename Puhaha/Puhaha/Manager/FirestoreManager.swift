@@ -32,8 +32,14 @@ class FirestoreManager: ObservableObject {
         
     }
     
-    func fetchMeals(familyCode: String, date: Date, completion: @escaping () -> Void) {
-        db.collection("Families").document(familyCode).collection("Meals").whereField("uploadedDate", isEqualTo: date.dateText).addSnapshotListener { [self] (querySnapshot, _) in
+    func fetchMeals(familyCode: String, date: Date?, completion: @escaping () -> Void) {
+        var documentPath: Query = db.collection("Families").document(familyCode).collection("Meals")
+        
+        if date != nil {
+            documentPath = documentPath.whereField("uploadedDate", isEqualTo: date!.dateText)
+        }
+        
+        documentPath.addSnapshotListener { [self] (querySnapshot, _) in
             guard let documents = querySnapshot?.documents else {
                 print("No Documents")
                 return
@@ -48,9 +54,10 @@ class FirestoreManager: ObservableObject {
                 for key in tagsString.keys {
                     tags.append(Tag(content: tagsString[key] ?? "", backgroundColor: self.tagColor[Int(key) ?? 0]))
                 }
+                
                 let uploadUserEmail = data["uploadUser"] as? String ?? ""
-                let uploadedTime = data["uploadedTime"] as? String ?? ""
-                let uploadedDate = data["uploadedDate"] as? String ?? ""
+                let uploadedTime = data["uploadTime"] as? String ?? ""
+                let uploadedDate = data["uploadDate"] as? String ?? ""
                 let reactionsValue = data["reactions"] as? [[String: String]] ?? []
                 var reactions: [Reaction?] = [nil]
                 for i in 0..<reactionsValue.count {
