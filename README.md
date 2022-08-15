@@ -17,7 +17,7 @@ An app to share photos of meals with your families and keep in touch with each o
 ## Members
 |[Colli]|[Key]|[Lena]|[Teemo]|[Woogy]|
 |---|---|---|---|---|
-|![Colli](https://user-images.githubusercontent.com/99120199/184615798-86451bcc-8665-4b29-ad8b-7f53b80acbee.jpeg)|![Key](https://user-images.githubusercontent.com/99120199/184613898-7120b293-4fc4-4d17-8a41-d1b33848189d.png)|![Lena](https://user-images.githubusercontent.com/99120199/184615828-293415e3-63b2-4eed-85bc-d9ab43a3e1c0.jpeg)|![Teemo](https://user-images.githubusercontent.com/99120199/184615840-80bdb933-d72b-4d80-a91b-abcde2303332.png)|![Woogy](https://user-images.githubusercontent.com/99120199/184615852-c38773a4-9c9a-49e8-af70-c01d8375fc73.png)|
+|<img width="170" alt="Colli" src="https://user-images.githubusercontent.com/99120199/184615798-86451bcc-8665-4b29-ad8b-7f53b80acbee.jpeg">|<img width="170" alt="Key" src="https://user-images.githubusercontent.com/99120199/184625499-f21b08b6-7229-4519-85a0-9ea154c627ff.png">|<img width="170" alt="Lena" src="https://user-images.githubusercontent.com/99120199/184615828-293415e3-63b2-4eed-85bc-d9ab43a3e1c0.jpeg">|<img width="170" alt="Teemo" src="https://user-images.githubusercontent.com/99120199/184615840-80bdb933-d72b-4d80-a91b-abcde2303332.png">|<img width="170" alt="Woogy" src="https://user-images.githubusercontent.com/99120199/184615852-c38773a4-9c9a-49e8-af70-c01d8375fc73.png">|
 
 
 [Colli]:https://github.com/SohyeonKim-dev
