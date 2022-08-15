@@ -17,10 +17,10 @@ class UploadViewController: UIViewController {
     
     let familyCode: String = UserDefaults.standard.string(forKey: "familyCode") ?? " "
     
-    
     var meal = Meal.init(mealImage: UIImage(),
                         mealImageName: "-",
                          uploadUser: "-",
+                         uploadUserEmail: "-",
                          userIcon: UIImage(),
                          tags: [Tag.init(content: ""), Tag.init(content: ""), Tag.init(content: "")],
                          uploadedDate: Date().dateText,
