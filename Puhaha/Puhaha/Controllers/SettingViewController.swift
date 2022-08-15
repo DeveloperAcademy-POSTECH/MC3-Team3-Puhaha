@@ -121,7 +121,7 @@ extension SettingViewController: UITableViewDataSource {
     }
     
     private func getToolDataTry() {
-        firestoreManager.getLoginedUser(userEmail: loginedUserEmail) { [self] in
+        firestoreManager.getSignInUser(userEmail: loginedUserEmail) { [self] in
             loginedUser = firestoreManager.loginedUser
             
             let fetchedToolType = loginedUser.getToolType()
