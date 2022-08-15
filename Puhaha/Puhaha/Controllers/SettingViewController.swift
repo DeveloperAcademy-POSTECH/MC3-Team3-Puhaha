@@ -9,6 +9,16 @@ import UIKit
 
 class SettingViewController: UIViewController {
     
+    // 유저의 값을 가지고 있는 변수들
+    // MARK: User Data
+    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "-"
+    //    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userEmail") ?? "")
+    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userEmail") ?? "-")
+    
+    let firestoreManager = FirestoreManager()
+    
+    var sample = PokeTool(tool: Tool.Spatula, color: UIColor.customPurple)
+    
     private let settingSectionNames: [String] = ["내 정보 편집", "그룹원 관리"]
     private let myInfoSettingList: [String] = ["계정 설정", "도구 편집"]
     private let familySettingList: [String] = ["식구 추가"]
@@ -35,6 +45,8 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
+        
+        getToolDataTry()
         
         navigationItem.title = "설정"
         view.addSubview(self.tableView)
@@ -69,10 +81,10 @@ extension SettingViewController: UITableViewDataSource {
             return 0
         }
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingViewController.cellIdentifier, for: indexPath)
-
+        
         if indexPath.section == 0 {
             cell.textLabel?.text = myInfoSettingList[indexPath.row]
         } else if indexPath.section == 1 {
@@ -82,12 +94,12 @@ extension SettingViewController: UITableViewDataSource {
         }
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         let cellTextLabel = cell?.textLabel?.text
         
-        // TODO: enum으로 선언 
+        // TODO: enum으로 선언
         
         switch cellTextLabel {
         case "계정 설정":
@@ -96,6 +108,7 @@ extension SettingViewController: UITableViewDataSource {
             
         case "도구 편집":
             let pokeToolCustomizingViewController = PokeToolCustomizingViewController()
+            pokeToolCustomizingViewController.passedUserToolData = sample
             self.navigationController?.pushViewController(pokeToolCustomizingViewController, animated: true)
             
         case "식구 추가":
@@ -104,6 +117,22 @@ extension SettingViewController: UITableViewDataSource {
             
         default:
             return
+        }
+    }
+    
+    private func getToolDataTry() {
+        firestoreManager.getSignInUser(userEmail: loginedUserEmail) { [self] in
+            loginedUser = firestoreManager.loginedUser
+            
+            let fetchedToolType = loginedUser.getToolType()
+            let fetchedToolColor = loginedUser.getToolColor()
+            
+            print("fetchedToolType: \(fetchedToolType)")
+            print("fetchedToolColor: \(fetchedToolColor)")
+            
+            sample.tool = convertStringToToolType(string: fetchedToolType)
+            sample.color = convertStringToToolColor(string: fetchedToolColor)
+            
         }
     }
 }

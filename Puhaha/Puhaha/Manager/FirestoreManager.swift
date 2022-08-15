@@ -27,7 +27,16 @@ class FirestoreManager: ObservableObject {
         self.user = User()
         self.loginedUser = User()
         self.memberEmails = []
-        self.families = [Family(user: User(accountId: "", name: "모두", loginForm: 0, toolImage: UIImage(named: "IconEveryoneFilter")!, familyCode: "", pokeState: Poke()), isSelected: true)]
+        
+        self.families = [Family(user: User(accountId: "",
+                                           name: "모두",
+                                           toolImage: UIImage(named: "IconEveryoneFilter")!,
+                                           toolType: "",
+                                           toolColor: "",
+                                           familyCode: "",
+                                           pokeState: Poke()),
+                                isSelected: true)]
+        
     }
     
     func fetchMeals(familyCode: String, date: Date?, completion: @escaping () -> Void) {
@@ -93,9 +102,10 @@ class FirestoreManager: ObservableObject {
                 
                 user.setName(name: name)
                 user.setToolImage(toolImage: toolImage)
+                user.setToolType(with: pokingToolTool)
+                user.setToolColor(with: pokingToolColor)
                 user.setFamilyCode(code: familyCode)
                 user.setPoke(poke: Poke(pokedBy: pokedBy, pokedTime: pokedTime))
-                
                 completion()
             } else {
                 print(error ?? "")
@@ -114,17 +124,20 @@ class FirestoreManager: ObservableObject {
                 let pokeStateValue = document.data()?["pokeState"] as? [String: String] ?? [:]
                 
                 let pokingToolColor: String = pokingTool["color"] ?? ""
-                let pokingToolTool: String = pokingTool["tool"] ?? ""
-                let toolImage: UIImage = UIImage(named: "\(pokingToolColor)_\(pokingToolTool)") ?? UIImage()
+                let pokingToolType: String = pokingTool["tool"] ?? ""
+                let toolImage: UIImage = UIImage(named: "\(pokingToolColor)_\(pokingToolType)") ?? UIImage()
                 let pokedBy: String = pokeStateValue["pokedBy"] ?? ""
                 let pokedTime: String = pokeStateValue["pokedTime"] ?? ""
                 
                 loginedUser.setName(name: name)
                 loginedUser.setToolImage(toolImage: toolImage)
+                loginedUser.setToolType(with: pokingToolType)
+                loginedUser.setToolColor(with: pokingToolColor)
                 loginedUser.setFamilyCode(code: familyCode)
                 loginedUser.setPoke(poke: Poke(pokedBy: pokedBy, pokedTime: pokedTime))
                 
                 completion()
+                
             } else {
                 print(error ?? "")
             }
@@ -158,7 +171,13 @@ class FirestoreManager: ObservableObject {
                             let pokedBy: String = pokeStateValue["pokedBy"] ?? ""
                             let pokedTime: String = pokeStateValue["pokedTime"] ?? ""
                             
-                            let user = User(accountId: accountId, name: name, loginForm: loginForm, toolImage: toolImage, familyCode: familyCode, pokeState: Poke(pokedBy: pokedBy, pokedTime: pokedTime))
+                            let user = User(accountId: accountId,
+                                            name: name,
+                                            toolImage: toolImage,
+                                            toolType: pokingToolTool,
+                                            toolColor: pokingToolColor,
+                                            familyCode: familyCode,
+                                            pokeState: Poke(pokedBy: pokedBy, pokedTime: pokedTime))
                             
                             families.append(Family(user: user, isSelected: false))
                         }
@@ -169,6 +188,17 @@ class FirestoreManager: ObservableObject {
                 print(error ?? "")
             }
         }
+    }
+    
+    func setPokingToolData(userEmail: String, tool passedTool: PokeTool) {
+        
+        let tool = passedTool.tool.imageFileName
+        let color = convertUIColorToString(color: passedTool.color)
+        
+        db.collection("Users").document(userEmail).updateData([
+            "pokingTool.tool": tool,
+            "pokingTool.color": color
+        ])
     }
     
     func addReaction(familyCode: String, meal: Meal, newReaction: [String: String]) {
@@ -192,7 +222,7 @@ class FirestoreManager: ObservableObject {
             }
         }
     }
-
+    
     func setFamilyCode(userEmail: String, code: String) {
         db.collection("Users").document(userEmail).setData(["familyCode": code])
     }
@@ -230,6 +260,5 @@ class FirestoreManager: ObservableObject {
                     ]])
         
         storageManager.uploadMealImage(image: image, familyCode: familyCode, imageName: imageName)
-        
     }
 }

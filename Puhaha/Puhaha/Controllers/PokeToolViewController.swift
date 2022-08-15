@@ -8,10 +8,17 @@
 import UIKit
 import SceneKit
 
+import FirebaseFirestore
+
 class PokeToolCustomizingViewController: UIViewController {
     
+    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "-"
+    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userEmail") ?? "")
+    
+    var passedUserToolData: PokeTool = PokeTool(tool: Tool.Whisk, color: UIColor.customBlack)
+    
     // SceneView 속 3D 오브젝트에 입혀질 Material
-    static var objectMaterial = SCNMaterial()
+    lazy var objectMaterial = SCNMaterial()
     
     // MARK: forkCustomView 선언
     private let forkCustomView: UIView = {
@@ -25,10 +32,10 @@ class PokeToolCustomizingViewController: UIViewController {
     }()
     
     // MARK: sceneView 선언
-    private let sceneView: SCNView = {
+    lazy var sceneView: SCNView = {
         
         objectMaterial.isDoubleSided = false
-        objectMaterial.diffuse.contents = sample.color
+        objectMaterial.diffuse.contents = passedUserToolData.color
         objectMaterial.roughness.intensity = 0.2
         
         let sceneView = SCNView()
@@ -41,7 +48,7 @@ class PokeToolCustomizingViewController: UIViewController {
         }
         
         // 선택된 도구 오브젝트만 화면에 그려냅니다.
-        sceneInsideSceneView?.rootNode.childNode(withName: sample.tool.imageFileName, recursively: true)?.isHidden = false
+        sceneInsideSceneView?.rootNode.childNode(withName: passedUserToolData.tool.imageFileName, recursively: true)?.isHidden = false
         
         // 오브젝트가 회전하는 애니메이션(액션)을 추가합니다.
         let action = SCNAction.rotateBy(x: 0, y: CGFloat(GLKMathDegreesToRadians(-360)), z: 0, duration: 12)
@@ -59,7 +66,7 @@ class PokeToolCustomizingViewController: UIViewController {
     }()
     
     // MARK: stack of image buttons View 선언
-    private let styleButtonsStackView: UIStackView = {
+    lazy var styleButtonsStackView: UIStackView = {
         
         // 구분선을 만듭니다.
         let divider = UIHorizontalDividerView(height: 2, color: UIColor.customLightGray)
@@ -81,7 +88,7 @@ class PokeToolCustomizingViewController: UIViewController {
             button.setImage(UIImage(named: toolImages[index])!.alpha(1), for: .selected)
             button.setImage(UIImage(named: toolImages[index])!.alpha(0.3), for: .normal)
             
-            if sample.tool.rawValue == index {
+            if passedUserToolData.tool.rawValue == index {
                 button.isSelected = true
             }
             // Button Action
@@ -124,7 +131,7 @@ class PokeToolCustomizingViewController: UIViewController {
     }()
     
     // MARK: stack of colored buttons View 선언
-    private let colorButtonsStackView: UIStackView = {
+    lazy var colorButtonsStackView: UIStackView = {
         
         let divider = UIHorizontalDividerView(height: 2, color: UIColor.customLightGray)
         
@@ -138,13 +145,16 @@ class PokeToolCustomizingViewController: UIViewController {
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         
         for toolColorIndex in 0..<toolColors.count {
+                        
+            // MARK: 버튼의 property
+            let buttonSize: CGFloat = UIScreen.main.bounds.width / 6.5
             
             let button = UIButton(type: .custom)
-            button.layer.cornerRadius = 30
+            button.layer.cornerRadius = buttonSize / 2
             button.layer.masksToBounds = true
             button.clipsToBounds = true
             button.backgroundColor = UIColor.white
-            button.layer.borderWidth = { sample.color == toolColors[toolColorIndex] ? 12 : 100 }()
+            button.layer.borderWidth = { passedUserToolData.color == toolColors[toolColorIndex] ? 12 : 100 }()
             
             button.layer.borderColor = toolColors[toolColorIndex].cgColor
             
@@ -152,9 +162,6 @@ class PokeToolCustomizingViewController: UIViewController {
             button.addTarget(self, action: #selector(colorButtonPressed(_ :)), for: .touchUpInside)
             
             button.translatesAutoresizingMaskIntoConstraints = false
-            
-            // MARK: 버튼의 property
-            let buttonSize: CGFloat = 60
             
             // button의 사이즈를 정해줍니다.
             NSLayoutConstraint.activate([
@@ -207,8 +214,10 @@ class PokeToolCustomizingViewController: UIViewController {
     }
     
     @objc func didTapDone() {
-        // TODO: DB에 지금 오브젝트의 값을 저장합니다.
-        // 무엇을? 툴타입 & 색상 정보를.
+        
+        // TODO: Dismiss Poke Tool View Controller View
+        setUserToolData()
+        
     }
     
     private func configureConstraints() {
@@ -237,7 +246,7 @@ class PokeToolCustomizingViewController: UIViewController {
     }
     
     private func willRenderSelectedToolOnly(selectedToolIndex: Int) {
-                
+        
         for i in 0..<Tool.allCases.count {
             if i != selectedToolIndex {
                 sceneView.scene?.rootNode.childNode(withName: Tool(rawValue: i)!.imageFileName, recursively: true)?.isHidden = true
@@ -248,17 +257,17 @@ class PokeToolCustomizingViewController: UIViewController {
     }
     
     @objc func styleButtonPressed(_ sender: StyleButton) {
-
+        
         // 눌린 버튼이 이전에 눌렸던 버튼과는 다른 버튼이라면 실행되는 코드
         if !sender.isSelected {
-            let previousButton = sender.superview?.subviews[sample.tool.rawValue] as? UIButton
+            let previousButton = sender.superview?.subviews[passedUserToolData.tool.rawValue] as? UIButton
             previousButton?.isSelected.toggle()
             sender.isSelected.toggle()
-            sample.tool = sender.tool
+            passedUserToolData.tool = sender.tool
         }
-
-        willRenderSelectedToolOnly(selectedToolIndex: sample.tool.rawValue)
-
+        
+        willRenderSelectedToolOnly(selectedToolIndex: passedUserToolData.tool.rawValue)
+        
     }
     
     @objc func colorButtonPressed(_ sender: UIButton) {
@@ -269,9 +278,16 @@ class PokeToolCustomizingViewController: UIViewController {
         
         sender.layer.borderWidth = 12
         
-        PokeToolCustomizingViewController.objectMaterial.diffuse.contents = sender.layer.borderColor
+        objectMaterial.diffuse.contents = sender.layer.borderColor
         
-        sample.color = sender.backgroundColor!
+        passedUserToolData.color = UIColor(cgColor: sender.layer.borderColor!)
+        print("Color Button Tapped : \(convertUIColorToString(color: passedUserToolData.color))")
+    }
+    
+    private func setUserToolData() {
+        
+        FirestoreManager().setPokingToolData(userEmail: loginedUserEmail, tool: passedUserToolData)
+        
     }
 }
 
@@ -317,5 +333,5 @@ func willSetEnvironmentNodes(inside scene: SCNScene) {
 }
 
 #if DEBUG
-var sample = PokeTool(tool: Tool.Fork, color: UIColor.customBlue)
+
 #endif

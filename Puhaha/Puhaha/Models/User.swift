@@ -13,6 +13,8 @@ class User {
     private var loginForm: Int?
 
     private var toolImage: UIImage?
+    private var toolType: String?
+    private var toolColor: String?
     private var familyCode: String?
     private var pokeState: Poke?
     
@@ -22,6 +24,8 @@ class User {
         self.loginForm = 0
 
         self.toolImage = nil
+        self.toolType = nil
+        self.toolColor = nil
         self.familyCode = nil
         self.pokeState = nil
     }
@@ -32,26 +36,33 @@ class User {
         self.loginForm = 0
 
         self.toolImage = nil
+        self.toolType = nil
+        self.toolColor = nil
         self.familyCode = nil
         self.pokeState = nil
     }
-    
+
     init(accountId: String, name: String) {
         self.accountId = accountId
         self.name = name
         self.loginForm = 0
 
         self.toolImage = nil
+        self.toolType = nil
+        self.toolColor = nil
         self.familyCode = nil
         self.pokeState = nil
     }
-    
-    init(accountId: String, name: String, loginForm: Int, toolImage: UIImage, familyCode: String, pokeState: Poke) {
+
+    init(accountId: String, name: String, toolImage: UIImage, toolType: String, toolColor: String, familyCode: String, pokeState: Poke) {
+        
         self.accountId = accountId
         self.name = name
-        self.loginForm = loginForm
+        self.loginForm = 0
 
         self.toolImage = toolImage
+        self.toolType = toolType
+        self.toolColor = toolColor
         self.familyCode = familyCode
         self.pokeState = pokeState
     }
@@ -71,6 +82,18 @@ class User {
     public func getToolImage() -> UIImage {
         return toolImage ?? UIImage()
     }
+    public func getToolType() -> String {
+        return toolType ?? ""
+    }
+    public func setToolType(with tool: String) {
+        self.toolType = tool
+    }
+    public func getToolColor() -> String {
+        return toolColor ?? ""
+    }
+    public func setToolColor(with color: String) {
+        self.toolColor = color
+    }
     public func setFamilyCode(code: String) {
         self.familyCode = code
     }
@@ -78,3 +101,5 @@ class User {
         self.pokeState = poke
     }
 }
+
+// setToolColor(with: "Yellow")
