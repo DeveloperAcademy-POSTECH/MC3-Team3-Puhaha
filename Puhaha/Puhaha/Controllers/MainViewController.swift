@@ -11,7 +11,7 @@ import FirebaseFirestore
 import FirebaseStorage
 
 class MainViewController: UIViewController {
-    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "ipkjw2@gmail.com"
+    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "-"
     var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userEmail") ?? "")
     
     var filter: String = "모두"
@@ -194,7 +194,7 @@ class MainViewController: UIViewController {
     private func getLoginedUser() {
         firestoreManager.getSignInUser(userEmail: loginedUserEmail) { [self] in
             loginedUser = firestoreManager.loginedUser
-            emptyMealCardView.setButtonImage(toolImage: loginedUser.getToolImage())
+            emptyMealCardView.setButtonImage(toolImage: firestoreManager.loginedUser.getToolImage())
             emptyMealCardView.reloadInputViews()
         }
     }
