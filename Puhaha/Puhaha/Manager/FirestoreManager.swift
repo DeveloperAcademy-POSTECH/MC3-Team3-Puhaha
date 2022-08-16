@@ -43,10 +43,10 @@ class FirestoreManager: ObservableObject {
         var documentPath: Query = db.collection("Families").document(familyCode).collection("Meals")
         
         if date != nil {
-            documentPath = documentPath.whereField("uploadedDate", isEqualTo: date!.dateText)
+            documentPath = documentPath.whereField("uploadDate", isEqualTo: date!.dateText)
         }
         
-        documentPath.addSnapshotListener { [self] (querySnapshot, _) in
+        documentPath.order(by: "uploadTime", descending: true).addSnapshotListener { [self] (querySnapshot, _) in
             guard let documents = querySnapshot?.documents else {
                 print("No Documents")
                 return

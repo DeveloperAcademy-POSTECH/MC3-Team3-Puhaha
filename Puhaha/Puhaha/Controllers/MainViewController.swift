@@ -11,8 +11,8 @@ import FirebaseFirestore
 import FirebaseStorage
 
 class MainViewController: UIViewController {
-    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "-"
-    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userEmail") ?? "")
+    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "-"
+    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "")
     
     var filter: String = "모두"
     var selectedCellIndex: Int = 0
@@ -61,19 +61,6 @@ class MainViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 28)
         return label
     }()
-
-    /*
-    lazy var plusButton: UIButton = {
-        let button = UIButton()
-        button.setBackgroundImage(UIImage(systemName: "plus.circle"), for: .normal)
-        button.sizeThatFits(CGSize(width: 28, height: 28))
-        button.tintColor = .black
-        button.addTarget(self,
-                         action: #selector(tapCameraButton(_ :)),
-                         for: .touchUpInside)
-        return button
-    }()
-    */
      
     lazy var settingButton: UIButton = {
         let button = UIButton()
@@ -201,10 +188,9 @@ class MainViewController: UIViewController {
     
     private func fetchMeals() {
         firestoreManager.fetchMeals(familyCode: familyCode, date: today) { [self] in
-            mealCardCollectionView.reloadData()
             
             for i in 0..<firestoreManager.meals.count {
-                storageManager.getMealImage(familyCode: familyCode, date: meals[i].uploadedDate, imageName: meals[i].mealImageName) { [self] in
+                storageManager.getMealImage(familyCode: familyCode, date: firestoreManager.meals[i].uploadedDate, imageName: firestoreManager.meals[i].mealImageName) { [self] in
                     firestoreManager.meals[i].mealImage = storageManager.mealImage
                     firestoreManager.getUploadUser(userEmail: firestoreManager.meals[i].uploadUserEmail) { [self] in
                         firestoreManager.meals[i].uploadUser = firestoreManager.user.getName()
@@ -217,6 +203,7 @@ class MainViewController: UIViewController {
                 }
             }
             meals = firestoreManager.meals
+            mealCardCollectionView.reloadData()
             mealCardViewHidden()
         }
     }

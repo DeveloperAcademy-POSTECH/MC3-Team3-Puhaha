@@ -202,7 +202,7 @@ class PokeToolCustomizingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = "찌르기 도구"
+        title = "나만의 도구"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDone))
         navigationController?.setNavigationBarHidden(false, animated: false)
         view.addSubview(forkCustomView)

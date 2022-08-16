@@ -12,8 +12,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
     var viewController: UIViewController = SignInViewController()
-    private let userDefaultsRoomCode = UserDefaults.standard.string(forKey: "roomCode") as String? ?? ""
-    private let userDefaultsName = UserDefaults.standard.string(forKey: "name") as String? ?? ""
+    private let userDefaultsRoomCode = UserDefaults.standard.string(forKey: "roomCode") as String? ?? "-"
+    private let userDefaultsName = UserDefaults.standard.string(forKey: "name") as String? ?? "-"
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -21,8 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
         
-        UserDefaults.standard.set("", forKey: "roomCode")
-        UserDefaults.standard.set("", forKey: "name")
+//        UserDefaults.standard.set("", forKey: "roomCode")
+//        UserDefaults.standard.set("", forKey: "name")
         
         if userDefaultsName == "" && userDefaultsRoomCode != "" {
             viewController = NameSettingViewController()

@@ -8,12 +8,35 @@
 import UIKit
 
 import FirebaseCore
+import AuthenticationServices
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let forUserID = UserDefaults.standard.string(forKey: "forUserID")
+        appleIDProvider.getCredentialState(forUserID: forUserID ?? "") { (credentialState, error) in
+            switch credentialState {
+            case .authorized:
+                print(UserDefaults.standard.string(forKey: "loginedUserEmail")!)
+                print("authorized")
+                // The Apple ID credential is valid.
+            case .revoked:
+                print("revoked")
+            case .notFound:
+                // The Apple ID credential is either revoked or was not found, so show the sign-in UI.
+                print("notFound")
+                DispatchQueue.main.async {
+                    // self.window?.rootViewController?.showLoginViewController()
+                }
+            default:
+                break
+            }
+        }
+        
         return true
     }
 

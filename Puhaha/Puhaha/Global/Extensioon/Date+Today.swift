@@ -27,11 +27,11 @@ extension Date {
     
     var timeNumberText: String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "hhmm"
+        dateFormatter.dateFormat = "HHmm"
         return dateFormatter.string(from: self)
     }
     
-    var ampm: String {
+    var meridiem: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "a"
         dateFormatter.locale = Locale(identifier: "ko_KR")
@@ -52,7 +52,7 @@ extension Date {
     
     func transferDateToStringDay() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "H시 m분"
+        dateFormatter.dateFormat = "h시 m분"
         return dateFormatter.string(from: self)
     }
 }

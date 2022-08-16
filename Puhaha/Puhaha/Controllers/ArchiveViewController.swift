@@ -13,7 +13,7 @@ class ArchiveViewController: UIViewController {
     private var firestoreManager: FirestoreManager = FirestoreManager()
     private var storageManager: StorageManager = StorageManager()
     private var meals: [Meal] = []
-    private let familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "E97E4BDA-9894-45CA-B1A4-1E31B0BC0CC4"
+    private let familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? ""
     
     private let titleLabel: UILabel = {
         let label: UILabel = UILabel()
@@ -122,7 +122,6 @@ class ArchiveViewController: UIViewController {
     
     private func fetchMeals() {
         firestoreManager.fetchMeals(familyCode: familyCode, date: nil) { [self] in
-            archiveCollectionView.reloadData()
             
             for i in 0..<firestoreManager.meals.count {
                 storageManager.getMealImage(familyCode: familyCode, date: firestoreManager.meals[i].uploadedDate, imageName: firestoreManager.meals[i].mealImageName) { [self] in
@@ -130,6 +129,7 @@ class ArchiveViewController: UIViewController {
                     firestoreManager.getUploadUser(userEmail: firestoreManager.meals[i].uploadUserEmail) { [self] in
                         firestoreManager.meals[i].uploadUser = firestoreManager.user.getName()
                         firestoreManager.meals[i].userIcon = firestoreManager.user.getToolImage()
+                        meals = firestoreManager.meals.filter { $0.uploadedDate == selectedDate.dateText }
                         archiveCollectionView.reloadData()
                         collectionViewHiddenToggle()
                     }
@@ -137,6 +137,7 @@ class ArchiveViewController: UIViewController {
                     archiveCollectionView.reloadData()
                 }
             }
+            archiveCollectionView.reloadData()
         }
     }
     
@@ -173,6 +174,8 @@ extension ArchiveViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArchiveCell.identifier, for: indexPath) as? ArchiveCell else { return UICollectionViewCell() }
         
         cell.configureCell(meal: meals[indexPath.row])
+//        meals.count * meals.count
+//        100 * 3 * 100 * 3 = 90000
         
         return cell
     }
