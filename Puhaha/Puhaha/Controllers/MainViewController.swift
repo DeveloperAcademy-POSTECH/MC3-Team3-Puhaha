@@ -68,9 +68,7 @@ class MainViewController: UIViewController {
         button.setBackgroundImage(UIImage(systemName: "plus.circle"), for: .normal)
         button.sizeThatFits(CGSize(width: 28, height: 28))
         button.tintColor = .black
-        button.addTarget(self,
-                         action: #selector(tapCameraButton(_ :)),
-                         for: .touchUpInside)
+       i
         return button
     }()
     */
@@ -80,6 +78,7 @@ class MainViewController: UIViewController {
         button.setBackgroundImage(UIImage(systemName: "gearshape"), for: .normal)
         button.sizeThatFits(CGSize(width: 28, height: 28))
         button.tintColor = .black
+        button.addTarget(self, action: #selector(navigateToSettingView), for: .touchUpInside)
         return button
     }()
     
@@ -219,6 +218,11 @@ class MainViewController: UIViewController {
             meals = firestoreManager.meals
             mealCardViewHidden()
         }
+    }
+    
+    @objc func navigateToSettingView() {
+        let settingViewController = SettingViewController()
+        self.navigationController?.pushViewController(settingViewController, animated: true)
     }
 }
 
