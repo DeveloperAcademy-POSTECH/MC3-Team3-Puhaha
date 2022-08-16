@@ -47,8 +47,8 @@ class SettingViewController: UIViewController {
         view.backgroundColor = UIColor.white
         
         getToolDataTry()
-        
         navigationItem.title = "설정"
+        navigationController?.setNavigationBarHidden(false, animated: false)
         view.addSubview(self.tableView)
     }
 }

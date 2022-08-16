@@ -100,7 +100,7 @@ class InviteFamilyViewController: UIViewController {
         [roomCodeLabel, roomCodeCopyButton].forEach {
             roomCodeStackView.addArrangedSubview($0)
         }
-        
+        navigationController?.setNavigationBarHidden(false, animated: false)
         [guideMessageLabel, roomCodeStackView, enterFamilyRoomButton].forEach {
             view.addSubview($0)
         }

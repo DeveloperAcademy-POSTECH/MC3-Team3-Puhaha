@@ -35,6 +35,7 @@ class AccountSettingViewController: UIViewController {
         view.backgroundColor = UIColor.white
         
         self.navigationItem.title = "계정 설정"
+        navigationController?.setNavigationBarHidden(false, animated: false)
         view.addSubview(self.tableView)
     }
 }
