@@ -20,10 +20,10 @@ class MainViewController: UIViewController {
     var familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "-"
     var familyMembers: [Family] = []
     
-    var meals: [Meal] = []
+    @Published var baseMeals: [Meal] = []
+    @Published var meals: [Meal] = []
     
     let firestoreManager = FirestoreManager()
-    private var storageManager = StorageManager()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -39,9 +39,8 @@ class MainViewController: UIViewController {
         
         getFamilyMemeber()
         getLoginedUser()
-        fetchMeals()
         
-        [todayDateLabel, /* plusButton, */settingButton, tableLabel, emptyMealCardView, mealCardCollectionView, familyFilterCollectionView].forEach {
+        [todayDateLabel, settingButton, tableLabel, emptyMealCardView, mealCardCollectionView, familyFilterCollectionView].forEach {
             view.addSubview($0)
         }
         todayDateLabel.text = today.dayText
@@ -114,7 +113,6 @@ class MainViewController: UIViewController {
     func setConstraints() {
         todayDateLabel.translatesAutoresizingMaskIntoConstraints = false
         settingButton.translatesAutoresizingMaskIntoConstraints = false
-        /* plusButton.translatesAutoresizingMaskIntoConstraints = false */
         tableLabel.translatesAutoresizingMaskIntoConstraints = false
         
         emptyMealCardView.translatesAutoresizingMaskIntoConstraints = false
@@ -127,11 +125,6 @@ class MainViewController: UIViewController {
             
             settingButton.centerYAnchor.constraint(equalTo: todayDateLabel.centerYAnchor),
             settingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
-            
-            /*
-            plusButton.centerYAnchor.constraint(equalTo: todayDateLabel.centerYAnchor),
-            plusButton.trailingAnchor.constraint(equalTo: settingButton.leadingAnchor, constant: -20),
-            */
              
             tableLabel.topAnchor.constraint(equalTo: todayDateLabel.bottomAnchor, constant: 91),
             tableLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
@@ -154,12 +147,11 @@ class MainViewController: UIViewController {
             familyFilterCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
-
+    
     func mealCardViewHidden() {
-        if firestoreManager.meals.isEmpty {
+        if meals.isEmpty {
             emptyMealCardView.isHidden = false
             mealCardCollectionView.isHidden = true
-            
             if filter == "모두" {
                 emptyMealCardView.pokeButton.isHidden = true
             } else {
@@ -183,28 +175,6 @@ class MainViewController: UIViewController {
             loginedUser = firestoreManager.loginedUser
             emptyMealCardView.setButtonImage(toolImage: firestoreManager.loginedUser.getToolImage())
             emptyMealCardView.reloadInputViews()
-        }
-    }
-    
-    private func fetchMeals() {
-        firestoreManager.fetchMeals(familyCode: familyCode, date: today) { [self] in
-            
-            for i in 0..<firestoreManager.meals.count {
-                storageManager.getMealImage(familyCode: familyCode, date: firestoreManager.meals[i].uploadedDate, imageName: firestoreManager.meals[i].mealImageName) { [self] in
-                    firestoreManager.meals[i].mealImage = storageManager.mealImage
-                    firestoreManager.getUploadUser(userEmail: firestoreManager.meals[i].uploadUserEmail) { [self] in
-                        firestoreManager.meals[i].uploadUser = firestoreManager.user.getName()
-                        firestoreManager.meals[i].userIcon = firestoreManager.user.getToolImage()
-                        meals = firestoreManager.meals
-                        mealCardCollectionView.reloadData()
-                    }
-                    
-                    mealCardCollectionView.reloadData()
-                }
-            }
-            meals = firestoreManager.meals
-            mealCardCollectionView.reloadData()
-            mealCardViewHidden()
         }
     }
 }

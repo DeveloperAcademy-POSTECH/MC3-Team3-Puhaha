@@ -11,7 +11,7 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case mealCardCollectionView:
-            return firestoreManager.meals.count
+            return meals.count
         case familyFilterCollectionView:
             return firestoreManager.families.count
         default:
@@ -23,9 +23,7 @@ extension MainViewController: UICollectionViewDataSource {
         switch collectionView {
         case mealCardCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MealCardCollectionViewCell.identifier, for: indexPath) as? MealCardCollectionViewCell else { return UICollectionViewCell() }
-            
-            let meal = firestoreManager.meals[indexPath.row]
-            cell.configureMealCard(with: meal, familyCode: familyCode, date: today)
+            cell.configureMealCard(with: meals[indexPath.row])
             
             return cell
         case familyFilterCollectionView:
@@ -45,7 +43,9 @@ extension MainViewController: UICollectionViewDataSource {
         case mealCardCollectionView:
             let mealDetailViewController = MealDetailViewController()
             mealDetailViewController.familyCode = familyCode
-            mealDetailViewController.meal = firestoreManager.meals[indexPath.row]
+            
+            mealDetailViewController.meal = meals[indexPath.row]
+            
             navigationController?.pushViewController(mealDetailViewController, animated: true)
         case familyFilterCollectionView:
             filter = firestoreManager.families[indexPath.row].user.getName()
@@ -53,16 +53,16 @@ extension MainViewController: UICollectionViewDataSource {
             selectedCellIndex = indexPath.row
             tableLabel.text = "\(filter)의 식탁"
             if filter == "모두" {
-                meals = firestoreManager.meals
+                meals = baseMeals
                 firestoreManager.families[indexPath.row].isSelected = true
             } else {
-                meals = firestoreManager.meals.filter { $0.uploadUser == filter }
+                meals = baseMeals.filter { $0.uploadUser == filter }
                 firestoreManager.families[indexPath.row].isSelected = true
             }
+            mealCardViewHidden()
             mealCardCollectionView.reloadData()
             familyFilterCollectionView.reloadData()
             
-            mealCardViewHidden()
         default:
             return
         }

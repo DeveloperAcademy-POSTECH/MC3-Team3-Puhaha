@@ -143,8 +143,6 @@ class UploadViewController: UIViewController {
         let fetchedMenuTag = selectedTags["menu"] ?? String()
         let fetchedEmotionTag = selectedTags["emotion"] ?? String()
         
-        //        storageManager.uploadMealImage(image: pictureImageView.image ?? UIImage(),
-        
         firestoreManager.setUpMeals(image: pictureImageView.image ?? UIImage(),
                                     userEmail: loginedUserEmail,
                                     familyCode: familyCode,

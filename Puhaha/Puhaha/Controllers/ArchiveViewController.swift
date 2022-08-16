@@ -8,11 +8,11 @@
 import UIKit
 
 class ArchiveViewController: UIViewController {
-    private var selectedDate: Date = Date.now
+    var selectedDate: Date = Date.now
     
-    private var firestoreManager: FirestoreManager = FirestoreManager()
-    private var storageManager: StorageManager = StorageManager()
-    private var meals: [Meal] = []
+    @Published var baseMeals: [Meal] = []
+    @Published var meals: [Meal] = []
+    
     private let familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? ""
     
     private let titleLabel: UILabel = {
@@ -45,7 +45,7 @@ class ArchiveViewController: UIViewController {
         return label
     }()
     
-    private let archiveCollectionView: UICollectionView = {
+    let archiveCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
         layout.scrollDirection = .horizontal
@@ -78,8 +78,6 @@ class ArchiveViewController: UIViewController {
         
         configureConstraints()
         calendar.setShadow(radius: 13, opacity: 0.1, offset: CGSize(width: 0.0, height: 1.0), pathSize: CGSize(width: UIScreen.main.bounds.width / 1.13, height: UIScreen.main.bounds.height / 2.81))
-        
-        fetchMeals()
     }
     
     private func configureConstraints() {
@@ -113,36 +111,14 @@ class ArchiveViewController: UIViewController {
     
     @objc private func uiPickerDateChanged(_ sender: UIDatePicker) {
         selectedDate = sender.date
-        meals = firestoreManager.meals.filter { $0.uploadedDate == selectedDate.dateText }
         archiveCollectionView.reloadData()
         dateLabel.text = selectedDate.dateTextWithDot
         
         collectionViewHiddenToggle()
     }
     
-    private func fetchMeals() {
-        firestoreManager.fetchMeals(familyCode: familyCode, date: nil) { [self] in
-            
-            for i in 0..<firestoreManager.meals.count {
-                storageManager.getMealImage(familyCode: familyCode, date: firestoreManager.meals[i].uploadedDate, imageName: firestoreManager.meals[i].mealImageName) { [self] in
-                    firestoreManager.meals[i].mealImage = storageManager.mealImage
-                    firestoreManager.getUploadUser(userEmail: firestoreManager.meals[i].uploadUserEmail) { [self] in
-                        firestoreManager.meals[i].uploadUser = firestoreManager.user.getName()
-                        firestoreManager.meals[i].userIcon = firestoreManager.user.getToolImage()
-                        meals = firestoreManager.meals.filter { $0.uploadedDate == selectedDate.dateText }
-                        archiveCollectionView.reloadData()
-                        collectionViewHiddenToggle()
-                    }
-                    meals = firestoreManager.meals.filter { $0.uploadedDate == selectedDate.dateText }
-                    archiveCollectionView.reloadData()
-                }
-            }
-            archiveCollectionView.reloadData()
-        }
-    }
-    
-    private func collectionViewHiddenToggle() {
-        if meals.isEmpty {
+    func collectionViewHiddenToggle() {
+        if meals.filter({ $0.uploadedDate == selectedDate.dateText }).isEmpty {
             emptyLabel.isHidden = false
             archiveCollectionView.isHidden = true
         } else {
@@ -159,7 +135,7 @@ extension ArchiveViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let mealDetailViewController = MealDetailViewController()
-        mealDetailViewController.meal = meals[indexPath.row]
+        mealDetailViewController.meal = meals.filter { $0.uploadedDate == selectedDate.dateText }[indexPath.row]
         mealDetailViewController.familyCode = familyCode
         navigationController?.pushViewController(mealDetailViewController, animated: true)
     }
@@ -167,15 +143,13 @@ extension ArchiveViewController: UICollectionViewDelegateFlowLayout {
 
 extension ArchiveViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return meals.count
+        return meals.filter { $0.uploadedDate == selectedDate.dateText }.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArchiveCell.identifier, for: indexPath) as? ArchiveCell else { return UICollectionViewCell() }
         
-        cell.configureCell(meal: meals[indexPath.row])
-//        meals.count * meals.count
-//        100 * 3 * 100 * 3 = 90000
+        cell.configureCell(meal: meals.filter { $0.uploadedDate == selectedDate.dateText }[indexPath.row])
         
         return cell
     }

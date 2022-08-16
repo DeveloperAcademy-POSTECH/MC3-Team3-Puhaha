@@ -14,40 +14,23 @@ class StorageManager {
     @Published var mealImage: UIImage!
     
     func getMealImage(familyCode: String, date: String, imageName: String, completion: @escaping () -> Void) {
+        
         let mealRef = storageRef.child(familyCode).child(date)
+        
         mealRef.child(imageName).getData(maxSize: 1 * 3_840 * 2_160) { [self] (data, error) in
             if let error = error {
                 print(error)
                 mealImage = UIImage()
             } else {
-                mealImage = UIImage(data: data!)!/*.preparingThumbnail(of: CGSize(width: 100, height: 100))*/
-                completion()
+                mealImage = UIImage(data: data!)!
             }
+            completion()
         }
     }
     
-//    func uploadMealImage(image: UIImage, familyCode: String, imageName: String) {
-//        var data = Data()
-//        data = image.jpegData(compressionQuality: 0.8) ?? Data()
-//        let filePathDate = Date().dateText
-//        let filePathUser = familyCode
-//        let fileMealImageIndex = imageName
-//        let metaData = StorageMetadata()
-//        metaData.contentType = "image/jpeg"
-//
-//        storageRef.child(filePathUser).child(filePathDate).child("\(fileMealImageIndex).jpeg").putData(data, metadata: metaData) { _, error in
-//            if let error = error {
-//                print(error.localizedDescription)
-//                return
-//            } else {
-//                print("image uploaded")
-//            }
-//        }
-//    }
-    
-    func uploadMealImage(image: UIImage, familyCode: String, imageName: String) {
+    func uploadMealImage(image: UIImage, familyCode: String, imageName: String, completion: @escaping () -> Void) {
         var data = Data()
-        data = image.jpegData(compressionQuality: 0.05) ?? Data()
+        data = image.jpegData(compressionQuality: 0.00001) ?? Data()
         let filePathDate = Date().dateText
         let filePathUser = familyCode
         let fileMealImageIndex = imageName
@@ -61,6 +44,7 @@ class StorageManager {
                     return
                 } else {
                     print("image uploaded")
+                    completion()
                 }
             }
         }

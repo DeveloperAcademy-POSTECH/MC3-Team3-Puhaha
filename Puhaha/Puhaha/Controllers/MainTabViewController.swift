@@ -7,8 +7,18 @@
 
 import UIKit
 import PhotosUI
+import FirebaseFirestore
+import FirebaseStorage
 
 class MainTabViewController: UITabBarController {
+    
+    public var firestoreManager = FirestoreManager()
+    public var storageManager = StorageManager()
+    var today: Date = Date.now
+    var roomCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "-"
+    
+    var tableTab: MainViewController!
+    var archiveTab: ArchiveViewController!
     
     private let cameraButton: UIButton = {
         let button: UIButton = UIButton(frame: .zero)
@@ -28,13 +38,18 @@ class MainTabViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        fetchMeals()
+        
         view.backgroundColor = .white
-        let tableTab = MainViewController()
+        tableTab = MainViewController()
+        tableTab.meals = firestoreManager.meals.filter { $0.uploadedDate == today.dateText }
         tableTab.tabBarItem = UITabBarItem(title: "식탁", image: UIImage(named: "icon-tab-bar-table") ?? UIImage(), selectedImage: UIImage(named: "icon-tab-bar-table") ?? UIImage())
         tableTab.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -4, right: 0)
         tableTab.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0.0, vertical: 6.0)
         
-        let archiveTab = ArchiveViewController()
+        archiveTab = ArchiveViewController()
+        archiveTab.meals = firestoreManager.meals
         archiveTab.tabBarItem = UITabBarItem(title: "통계", image: UIImage(named: "icon-tab-bar-statistic") ?? UIImage(), selectedImage: UIImage(named: "icon-tab-bar-statistic") ?? UIImage())
         archiveTab.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -4, right: 0)
         archiveTab.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0.0, vertical: 6.0)
@@ -88,6 +103,55 @@ class MainTabViewController: UITabBarController {
         [takePhoto, chooseFromLibrary, cancel].forEach { sheet.addAction($0)}
         
         self.present(sheet, animated: true)
+    }
+    
+    public func fetchMeals() {
+        firestoreManager.fetchMeals(familyCode: roomCode, date: nil) { [self] in
+            for i in 0..<firestoreManager.meals.count {
+                getMealImage(date: firestoreManager.meals[i].uploadedDate, imageName: firestoreManager.meals[i].mealImageName, index: i)
+            }
+        }
+    }
+    
+    private func getMealImage(date: String, imageName: String, index: Int) {
+        storageManager.getMealImage(familyCode: roomCode,
+                                    date: date,
+                                    imageName: imageName) { [self] in
+            firestoreManager.meals[index].mealImage = storageManager.mealImage
+            getUser(index)
+            reloadMainView()
+            reloadArchiveView()
+        }
+    }
+    
+    private func getUser(_ i: Int) {
+        firestoreManager.getUploadUser(userEmail: firestoreManager.meals[i].uploadUserEmail) { [self] in
+            firestoreManager.meals[i].uploadUser = firestoreManager.user.getName()
+            firestoreManager.meals[i].userIcon = firestoreManager.user.getToolImage()
+            
+            reloadArchiveView()
+        }
+    }
+    
+    private func reloadMainView() {
+        tableTab.baseMeals = firestoreManager.meals.filter { $0.uploadedDate == today.dateText }
+        
+        if tableTab.filter == "모두" {
+            tableTab.meals = tableTab.baseMeals
+        } else {
+            tableTab.meals = tableTab.baseMeals.filter { $0.uploadUser == tableTab.filter }
+        }
+        
+        tableTab.mealCardViewHidden()
+        tableTab.mealCardCollectionView.reloadData()
+    }
+    
+    private func reloadArchiveView() {
+        archiveTab.baseMeals = firestoreManager.meals
+        
+        archiveTab.meals = archiveTab.baseMeals.filter { $0.uploadedDate == archiveTab.selectedDate.dateText }
+        archiveTab.collectionViewHiddenToggle()
+        archiveTab.archiveCollectionView.reloadData()
     }
 }
 

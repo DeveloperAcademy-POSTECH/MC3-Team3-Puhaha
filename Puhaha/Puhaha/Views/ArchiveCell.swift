@@ -14,6 +14,7 @@ class ArchiveCell: UICollectionViewCell {
         let imageView: UIImageView = UIImageView()
         imageView.layer.cornerRadius = 6
         imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
