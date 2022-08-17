@@ -55,7 +55,7 @@ class NameSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(false, animated: false)
         nameTextField.becomeFirstResponder()
         
         [guidingTextLabel, nameTextField, nextButton].forEach {

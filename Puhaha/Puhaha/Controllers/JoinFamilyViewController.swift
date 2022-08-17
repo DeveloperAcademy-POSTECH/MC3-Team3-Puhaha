@@ -56,7 +56,7 @@ class JoinFamilyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(false, animated: false)
         familyCodeTextField.becomeFirstResponder()
         
         [guidingTextLabel, familyCodeTextField, nextButton].forEach {
