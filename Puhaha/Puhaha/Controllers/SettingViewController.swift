@@ -25,7 +25,7 @@ class SettingViewController: UIViewController {
     static let cellIdentifier = "sectionTableViewCell"
     
     lazy var tableView: UITableView = {
-        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height * 3
+        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height * 2
         let displayWidth: CGFloat = self.view.frame.width
         let displayHeight: CGFloat = self.view.frame.height
         
