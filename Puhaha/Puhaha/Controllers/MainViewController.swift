@@ -12,7 +12,7 @@ import FirebaseStorage
 
 class MainViewController: UIViewController {
     var loginedUserEmail: String = UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "-"
-    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "")
+    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "-")
     
     var filter: String = "모두"
     var selectedCellIndex: Int = 0

@@ -54,7 +54,8 @@ class MainTabViewController: UITabBarController {
 //        archiveTab.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -4, right: 0)
 //        archiveTab.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0.0, vertical: 6.0)
         
-        viewControllers = [tableTab, archiveTab]
+//        viewControllers = [tableTab, archiveTab]
+        viewControllers = [archiveTab]
         tabBar.tintColor = UIColor(named: "TabBarIconSelectedColor") ?? UIColor()
         tabBar.unselectedItemTintColor = UIColor(named: "TabBarIconUnSelectedColor")
         UITabBar.clearShadow()

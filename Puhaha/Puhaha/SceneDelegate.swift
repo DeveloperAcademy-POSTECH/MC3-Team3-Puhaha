@@ -21,9 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
         
-//        UserDefaults.standard.set("", forKey: "roomCode")
-//        UserDefaults.standard.set("", forKey: "name")
-        
+        UserDefaults.standard.set("-", forKey: "roomCode")
+        UserDefaults.standard.set("-", forKey: "name")
+//x1
         if userDefaultsName == "" && userDefaultsRoomCode != "" {
             viewController = NameSettingViewController()
         } else if userDefaultsName == "" && userDefaultsRoomCode == "" {
@@ -31,7 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else {
             viewController = MainTabViewController()
         }
-        window?.rootViewController = UINavigationController(rootViewController: viewController)
+        window?.rootViewController = UINavigationController(rootViewController: ArchiveViewController())
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

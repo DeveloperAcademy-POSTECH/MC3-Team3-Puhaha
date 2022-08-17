@@ -8,6 +8,9 @@
 import UIKit
 
 class ArchiveViewController: UIViewController {
+    let calenderWidth = UIScreen.main.bounds.width * 0.9
+    let calenderHeight = UIScreen.main.bounds.width * 0.74
+    
     var selectedDate: Date = Date.now
     
     @Published var baseMeals: [Meal] = []
@@ -18,7 +21,7 @@ class ArchiveViewController: UIViewController {
     private let titleLabel: UILabel = {
         let label: UILabel = UILabel()
         label.text = "모아보기"
-        label.font = UIFont.systemFont(ofSize: 28, weight: .bold)
+        label.font = .boldSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .title1).pointSize)
         label.textColor = .customTitleBlack
         return label
     }()
@@ -39,7 +42,7 @@ class ArchiveViewController: UIViewController {
     
     private let dateLabel: UILabel = {
         let label: UILabel = UILabel()
-        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        label.font = .boldSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .title2).pointSize)
         label.textColor = .customDateLabelBlack
         label.text = Date.now.dateTextWithDot
         return label
@@ -77,8 +80,7 @@ class ArchiveViewController: UIViewController {
         archiveCollectionView.dataSource = self
         
         configureConstraints()
-//        calendar.setShadow(radius: 13, opacity: 0.1, offset: CGSize(width: 0.0, height: 1.0), pathSize: CGSize(width: UIScreen.main.bounds.width / 1.13, height: UIScreen.main.bounds.height / 2.81))
-        calendar.setShadow(radius: 13, opacity: 0.1, offset: CGSize(width: 0.0, height: 1.0), pathSize: CGSize(width: UIScreen.main.bounds.width - 44, height: UIScreen.main.bounds.width - 44))
+        calendar.setShadow(radius: 13, opacity: 0.1, offset: CGSize(width: 0.0, height: 1.0), pathSize: CGSize(width: calenderWidth, height: calenderHeight))
     }
     
     private func configureConstraints() {
@@ -89,23 +91,22 @@ class ArchiveViewController: UIViewController {
         emptyLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 76),
+            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height / 11.09),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
             
-            calendar.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
-//            calendar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
-//            calendar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
+            calendar.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: UIScreen.main.bounds.height / 52.69),
             calendar.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            calendar.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 44),
-            calendar.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 44),
+            calendar.widthAnchor.constraint(equalToConstant: calenderWidth),
+            calendar.heightAnchor.constraint(equalToConstant: calenderHeight),
             
-            dateLabel.topAnchor.constraint(equalTo: calendar.bottomAnchor, constant: 22),
+            dateLabel.topAnchor.constraint(equalTo: calendar.bottomAnchor, constant: UIScreen.main.bounds.height / 38.32),
             dateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
             
             archiveCollectionView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 16),
             archiveCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             archiveCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            archiveCollectionView.bottomAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 16 + 190),
+            archiveCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+//            archiveCollectionView.heightAnchor.constraint(equalToConstant: 16 + 190),
             
             emptyLabel.centerXAnchor.constraint(equalTo: archiveCollectionView.centerXAnchor),
             emptyLabel.centerYAnchor.constraint(equalTo: archiveCollectionView.centerYAnchor)

@@ -59,7 +59,7 @@
 		CE66046228AB712500D33A64 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CE33B78C2895755E0054F9CD /* FirebaseAuth */; };
 		CE66046328AB712500D33A64 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CE33B78E2895755E0054F9CD /* FirebaseFirestore */; };
 		CE66046428AB712500D33A64 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE33B7902895755E0054F9CD /* FirebaseFirestoreSwift */; };
-		CE66046628AB9D0700D33A64 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE66046528AB9D0700D33A64 /* GoogleService-Info.plist */; };
+		CE66046C28AC259600D33A64 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE66046B28AC259600D33A64 /* GoogleService-Info.plist */; };
 		CE718850288E849D002CF653 /* EmptyMealCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71884F288E849D002CF653 /* EmptyMealCardView.swift */; };
 		CE73297D28865C8800CA87F1 /* MealCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73297C28865C8800CA87F1 /* MealCardCollectionViewCell.swift */; };
 		CE73297F28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73297E28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift */; };
@@ -127,7 +127,7 @@
 		CE5B4F66288E7C6A00111ACC /* ReactionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE5B4F6B288E7C8B00111ACC /* Reaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reaction.swift; sourceTree = "<group>"; };
 		CE5B4F6D288E7C9D00111ACC /* MealDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealDetailViewController.swift; sourceTree = "<group>"; };
-		CE66046528AB9D0700D33A64 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CE66046B28AC259600D33A64 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE71884F288E849D002CF653 /* EmptyMealCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyMealCardView.swift; sourceTree = "<group>"; };
 		CE73297C28865C8800CA87F1 /* MealCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE73297E28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyFilterCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -255,7 +255,6 @@
 		CE9F965B287FA66C00783324 /* Puhaha */ = {
 			isa = PBXGroup;
 			children = (
-				CE66046528AB9D0700D33A64 /* GoogleService-Info.plist */,
 				CE33B77A289519E50054F9CD /* Manager */,
 				A48C939E288F74BE00BA09EF /* Resources */,
 				55AA34B228854CB800C2D6D6 /* Puhaha.entitlements */,
@@ -267,6 +266,7 @@
 				CE9F9660287FA66C00783324 /* ViewController.swift */,
 				559D06C3289BB30A00338782 /* SceneDelegate.swift */,
 				CE9F9665287FA66F00783324 /* Assets.xcassets */,
+				CE66046B28AC259600D33A64 /* GoogleService-Info.plist */,
 				CE9F966A287FA66F00783324 /* Info.plist */,
 				CE9F9673287FA8A600783324 /* .swiftlint.yml */,
 			);
@@ -405,10 +405,10 @@
 				A48C93AD288F74D500BA09EF /* BigSpoonVer2.scn in Resources */,
 				A48C93AC288F74D500BA09EF /* BigFork.obj in Resources */,
 				A48C93A9288F74D500BA09EF /* BigWhisk.scn in Resources */,
-				CE66046628AB9D0700D33A64 /* GoogleService-Info.plist in Resources */,
 				CE9F9666287FA66F00783324 /* Assets.xcassets in Resources */,
 				A48C93AE288F74D500BA09EF /* Spatula.scn in Resources */,
 				A48C93AB288F74D500BA09EF /* BigWhisk.obj in Resources */,
+				CE66046C28AC259600D33A64 /* GoogleService-Info.plist in Resources */,
 				A48C93A8288F74D500BA09EF /* Tools.scn in Resources */,
 				A48C93AA288F74D500BA09EF /* BigSpoonVer2.obj in Resources */,
 			);
