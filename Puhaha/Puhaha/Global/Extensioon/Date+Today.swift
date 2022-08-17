@@ -46,7 +46,7 @@ extension Date {
     
     var dateTextWithDot: String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy.M.d"
+        dateFormatter.dateFormat = "yyyy. M. d"
         return dateFormatter.string(from: self)
     }
     

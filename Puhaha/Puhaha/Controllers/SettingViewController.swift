@@ -25,14 +25,7 @@ class SettingViewController: UIViewController {
     static let cellIdentifier = "sectionTableViewCell"
     
     lazy var tableView: UITableView = {
-        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height * 3
-        let displayWidth: CGFloat = self.view.frame.width
-        let displayHeight: CGFloat = self.view.frame.height
-        
-        let tableView: UITableView = UITableView(frame: CGRect(x: 0,
-                                                               y: barHeight,
-                                                               width: displayWidth,
-                                                               height: displayHeight - barHeight))
+        let tableView: UITableView = UITableView()
         
         tableView.backgroundColor = UIColor.customLightGray
         
@@ -45,11 +38,25 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
+        navigationController?.navigationBar.backgroundColor = .white
         
         getToolDataTry()
         
         navigationItem.title = "설정"
         view.addSubview(self.tableView)
+        
+        configureConstraints()
+    }
+    
+    private func configureConstraints() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
 }
 
@@ -62,9 +69,9 @@ extension SettingViewController: UITableViewDelegate {
         return 55
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60
-    }
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 30
+//    }
 }
 
 extension SettingViewController: UITableViewDataSource {

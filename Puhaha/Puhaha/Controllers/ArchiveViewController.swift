@@ -77,7 +77,8 @@ class ArchiveViewController: UIViewController {
         archiveCollectionView.dataSource = self
         
         configureConstraints()
-        calendar.setShadow(radius: 13, opacity: 0.1, offset: CGSize(width: 0.0, height: 1.0), pathSize: CGSize(width: UIScreen.main.bounds.width / 1.13, height: UIScreen.main.bounds.height / 2.81))
+//        calendar.setShadow(radius: 13, opacity: 0.1, offset: CGSize(width: 0.0, height: 1.0), pathSize: CGSize(width: UIScreen.main.bounds.width / 1.13, height: UIScreen.main.bounds.height / 2.81))
+        calendar.setShadow(radius: 13, opacity: 0.1, offset: CGSize(width: 0.0, height: 1.0), pathSize: CGSize(width: UIScreen.main.bounds.width - 44, height: UIScreen.main.bounds.width - 44))
     }
     
     private func configureConstraints() {
@@ -92,9 +93,11 @@ class ArchiveViewController: UIViewController {
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
             
             calendar.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
-            calendar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
-            calendar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
-            calendar.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 2.81),
+//            calendar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
+//            calendar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
+            calendar.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            calendar.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 44),
+            calendar.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 44),
             
             dateLabel.topAnchor.constraint(equalTo: calendar.bottomAnchor, constant: 22),
             dateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
