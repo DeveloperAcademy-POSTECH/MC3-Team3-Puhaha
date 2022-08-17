@@ -12,6 +12,8 @@ import FirebaseStorage
 
 class MainTabViewController: UITabBarController {
     
+    private let cameraButtonSize: CGFloat = UIScreen.main.bounds.height / 10.41
+    
     public var firestoreManager = FirestoreManager()
     public var storageManager = StorageManager()
     var today: Date = Date.now
@@ -30,7 +32,7 @@ class MainTabViewController: UITabBarController {
         super.viewDidAppear(true)
         
         if UIScreen.main.bounds.width < UIScreen.main.bounds.height {
-            cameraButton.frame = CGRect(x: view.bounds.width/2 - 40, y: UIScreen.main.bounds.height - tabBar.bounds.height - 40, width: 80, height: 80)
+            cameraButton.frame = CGRect(x: view.bounds.width/2 - 40, y: UIScreen.main.bounds.height - tabBar.bounds.height - 40, width: cameraButtonSize, height: cameraButtonSize)
         } else {
             cameraButton.frame = CGRect(x: view.bounds.width - tabBar.bounds.height * 1.5, y: UIScreen.main.bounds.height - tabBar.bounds.height - tabBar.bounds.height * 1.5, width: tabBar.bounds.height, height: tabBar.bounds.height)
         }
