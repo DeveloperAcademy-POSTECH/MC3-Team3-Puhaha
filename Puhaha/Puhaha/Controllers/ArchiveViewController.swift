@@ -8,15 +8,17 @@
 import UIKit
 
 class ArchiveViewController: UIViewController {
-    let calenderWidth = UIScreen.main.bounds.width * 0.9
-    let calenderHeight = UIScreen.main.bounds.width * 0.74
+    let calenderWidth = UIScreen.main.bounds.width * 0.88
+    var calenderHeight: CGFloat! = UIScreen.main.bounds.height / UIScreen.main.bounds.width > 2 ? UIScreen.main.bounds.width * 0.85 : UIScreen.main.bounds.width * 0.70
+    
+    let size: CGFloat = UIScreen.main.bounds.height / 6
     
     var selectedDate: Date = Date.now
     
     @Published var baseMeals: [Meal] = []
     @Published var meals: [Meal] = []
     
-    private let familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? ""
+    private let familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "-"
     
     private let titleLabel: UILabel = {
         let label: UILabel = UILabel()
@@ -99,14 +101,13 @@ class ArchiveViewController: UIViewController {
             calendar.widthAnchor.constraint(equalToConstant: calenderWidth),
             calendar.heightAnchor.constraint(equalToConstant: calenderHeight),
             
-            dateLabel.topAnchor.constraint(equalTo: calendar.bottomAnchor, constant: UIScreen.main.bounds.height / 38.32),
+            dateLabel.bottomAnchor.constraint(equalTo: archiveCollectionView.topAnchor, constant: -(UIScreen.main.bounds.height / 76.64)),
             dateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
             
-            archiveCollectionView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 16),
+            archiveCollectionView.heightAnchor.constraint(equalToConstant: 16 + size + 40),
             archiveCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             archiveCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            archiveCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-//            archiveCollectionView.heightAnchor.constraint(equalToConstant: 16 + 190),
+            archiveCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40),
             
             emptyLabel.centerXAnchor.constraint(equalTo: archiveCollectionView.centerXAnchor),
             emptyLabel.centerYAnchor.constraint(equalTo: archiveCollectionView.centerYAnchor)
@@ -134,7 +135,7 @@ class ArchiveViewController: UIViewController {
 
 extension ArchiveViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: 182)
+        return CGSize(width: size, height: size + 32)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

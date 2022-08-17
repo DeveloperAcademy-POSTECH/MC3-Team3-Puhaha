@@ -45,17 +45,22 @@ class MainTabViewController: UITabBarController {
         tableTab = MainViewController()
         tableTab.meals = firestoreManager.meals.filter { $0.uploadedDate == today.dateText }
         tableTab.tabBarItem = UITabBarItem(title: "식탁", image: UIImage(named: "icon-tab-bar-table") ?? UIImage(), selectedImage: UIImage(named: "icon-tab-bar-table") ?? UIImage())
-//        tableTab.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -4, right: 0)
-//        tableTab.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0.0, vertical: 6.0)
+        
+        /* 탭 바 아이템 이미지와 타이틀 위치 조정 코드이나 iPhone8에서 깨지는 문제로 인해 주석처리
+        tableTab.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -4, right: 0)
+        tableTab.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0.0, vertical: 6.0)
+        */
         
         archiveTab = ArchiveViewController()
         archiveTab.meals = firestoreManager.meals
         archiveTab.tabBarItem = UITabBarItem(title: "통계", image: UIImage(named: "icon-tab-bar-statistic") ?? UIImage(), selectedImage: UIImage(named: "icon-tab-bar-statistic") ?? UIImage())
-//        archiveTab.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -4, right: 0)
-//        archiveTab.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0.0, vertical: 6.0)
         
-//        viewControllers = [tableTab, archiveTab]
-        viewControllers = [archiveTab]
+        /* 탭 바 아이템 이미지와 타이틀 위치 조정 코드이나 iPhone8에서 깨지는 문제로 인해 주석처리
+        archiveTab.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -4, right: 0)
+        archiveTab.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0.0, vertical: 6.0)
+         */
+        
+        viewControllers = [tableTab, archiveTab]
         tabBar.tintColor = UIColor(named: "TabBarIconSelectedColor") ?? UIColor()
         tabBar.unselectedItemTintColor = UIColor(named: "TabBarIconUnSelectedColor")
         UITabBar.clearShadow()

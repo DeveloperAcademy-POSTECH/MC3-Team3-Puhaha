@@ -11,7 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     
-    var viewController: UIViewController = SignInViewController()
+    var viewController: UIViewController!
     private let userDefaultsRoomCode = UserDefaults.standard.string(forKey: "roomCode") as String? ?? "-"
     private let userDefaultsName = UserDefaults.standard.string(forKey: "name") as String? ?? "-"
     
@@ -31,7 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else {
             viewController = MainTabViewController()
         }
-        window?.rootViewController = UINavigationController(rootViewController: ArchiveViewController())
+        window?.rootViewController = UINavigationController(rootViewController: viewController)
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
