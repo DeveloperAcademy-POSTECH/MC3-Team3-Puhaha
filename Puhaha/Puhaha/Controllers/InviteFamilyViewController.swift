@@ -30,7 +30,7 @@ class InviteFamilyViewController: UIViewController {
         return label
     }()
     
-    private let roomCodeCopyButton: UIButton = {
+    lazy var roomCodeCopyButton: UIButton = {
         let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 18, weight: .regular, scale: .medium)
         
         var titleAttr = AttributedString.init("복사하기")
@@ -45,6 +45,10 @@ class InviteFamilyViewController: UIViewController {
         let button: UIButton = UIButton()
         button.configuration = buttonConfiguration
         button.setImage(UIImage(systemName: "rectangle.portrait.on.rectangle.portrait", withConfiguration: imageConfiguration), for: .normal)
+        button.addTarget(self,
+                         action: #selector(copyPasteFamilyRoomCodeTapped),
+                         for: .touchUpInside)
+        
         button.alpha = 0.85
         
         return button
@@ -88,6 +92,20 @@ class InviteFamilyViewController: UIViewController {
         self.navigationController?.pushViewController(mainTabViewController, animated: true)
         
         firestoreManager.addFamily(roomCode: createdRoomCode, userEmail: userEmail)
+    }
+    
+    @objc private func copyPasteFamilyRoomCodeTapped() {
+        UIPasteboard.general.string = roomCodeLabel.text
+        
+        let alertController = UIAlertController(title: "",
+                                                message: "복사완료!",
+                                                preferredStyle: .actionSheet)
+        present(alertController, animated: true, completion: nil)
+        
+        let when = DispatchTime.now() + 0.5
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            alertController.dismiss(animated: true, completion: nil)
+        }
     }
     
     override func viewDidLoad() {
