@@ -65,7 +65,7 @@ class InviteFamilyViewController: UIViewController {
     lazy var enterFamilyRoomButton: UIButton = {
         let button: UIButton = UIButton()
         button.setTitle("입장하기", for: .normal)
-        button.setTitleColor(UIColor(named: "ButtonTitleColor"), for: .normal)
+        button.setTitleColor(.customCreateFamilyButtonTitleColor, for: .normal)
         button.setTitleColor(UIColor.white, for: .selected)
         button.backgroundColor = .customYellow
         button.layer.cornerRadius = 8
