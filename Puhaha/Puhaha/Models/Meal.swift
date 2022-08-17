@@ -8,21 +8,25 @@
 import UIKit
 
 struct Meal {
-    let mealImage: UIImage
-    let uploadUser: String
-    let userIcon: UIImage
-    let tags: [Tag]
-    let uploadedTime: Date
+    var mealImage: UIImage
+    let mealImageName: String
+    var uploadUser: String
+    var uploadUserEmail: String
+    var userIcon: UIImage
+    var tags: [Tag]
+    let uploadedDate: String
+    let uploadedTime: String
+    var reactions: [Reaction?]
+    
+    init(mealImage: UIImage, mealImageName: String, uploadUser: String, uploadUserEmail: String, userIcon: UIImage, tags: [Tag], uploadedDate: String, uploadedTime: String, reactions: [Reaction?]) {
+        self.mealImage = mealImage
+        self.mealImageName = mealImageName
+        self.uploadUser = uploadUser
+        self.uploadUserEmail = uploadUserEmail
+        self.userIcon = userIcon
+        self.tags = tags
+        self.uploadedDate = uploadedDate
+        self.uploadedTime = uploadedTime
+        self.reactions = reactions
+    }
 }
-
-#if DEBUG
-extension Meal {
-    static var sampleMeals: [Meal] = [
-        Meal(mealImage: UIImage(named: "MealImage1")!, uploadUser: "콜리", userIcon: UIImage(named: "Spoon")!, tags: Tag.sampleTag, uploadedTime: Date()),
-        Meal(mealImage: UIImage(named: "MealImage2")!, uploadUser: "키", userIcon: UIImage(named: "Spoon")!, tags: Tag.sampleTag, uploadedTime: Date()),
-        Meal(mealImage: UIImage(named: "MealImage3")!, uploadUser: "레나", userIcon: UIImage(named: "Spoon")!, tags: Tag.sampleTag, uploadedTime: Date()),
-        Meal(mealImage: UIImage(named: "MealImage4")!, uploadUser: "티모", userIcon: UIImage(named: "Spoon")!, tags: Tag.sampleTag, uploadedTime: Date()),
-        Meal(mealImage: UIImage(named: "MealImage5")!, uploadUser: "우기", userIcon: UIImage(named: "Spoon")!, tags: Tag.sampleTag, uploadedTime: Date())
-    ]
-}
-#endif

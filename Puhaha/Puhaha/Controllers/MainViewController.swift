@@ -6,14 +6,24 @@
 //
 
 import UIKit
-import PhotosUI
+
+import FirebaseFirestore
+import FirebaseStorage
 
 class MainViewController: UIViewController {
-    var filter: String = ""
-    var selectedCellIndex: Int = 0
+    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "ipkjw2@gmail.com"
+    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userEmail") ?? "")
     
-    var meals: [Meal] = Meal.sampleMeals
-    var familyMembers: [Family] = Family.sampleFamilyMembers
+    var filter: String = "모두"
+    var selectedCellIndex: Int = 0
+    var today: Date = Date.now
+    var familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "-"
+    var familyMembers: [Family] = []
+    
+    var meals: [Meal] = []
+    
+    let firestoreManager = FirestoreManager()
+    private var storageManager = StorageManager()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -27,17 +37,16 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        [todayDateLabel, plusButton, settingButton, tableLabel, emptyMealCardView, mealCardCollectionView, familyFilterCollectionView].forEach {
+        getFamilyMemeber()
+        getLoginedUser()
+        fetchMeals()
+        
+        [todayDateLabel, /* plusButton, */settingButton, tableLabel, emptyMealCardView, mealCardCollectionView, familyFilterCollectionView].forEach {
             view.addSubview($0)
         }
-
-        if meals.isEmpty {
-            emptyMealCardView.isHidden = false
-            mealCardCollectionView.isHidden = true
-        } else {
-            emptyMealCardView.isHidden = true
-            mealCardCollectionView.isHidden = false
-        }
+        todayDateLabel.text = today.dayText
+        
+        mealCardViewHidden()
         
         setConstraints()
         mealCardCollectionView.delegate = self
@@ -45,44 +54,37 @@ class MainViewController: UIViewController {
         
         familyFilterCollectionView.delegate = self
         familyFilterCollectionView.dataSource = self
-        
-        let configuration = PHPickerConfiguration()
-        let picker = PHPickerViewController(configuration: configuration)
-        picker.delegate = self
     }
     
     private var todayDateLabel: UILabel = {
-        var todayDate = Date.now
-        
         let label = UILabel()
-        label.text = todayDate.dayText
         label.font = UIFont.boldSystemFont(ofSize: 28)
-        
         return label
     }()
-    
+
+    /*
     lazy var plusButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "plus.circle"), for: .normal)
         button.sizeThatFits(CGSize(width: 28, height: 28))
         button.tintColor = .black
-        button.addTarget(self,
-                         action: #selector(tapCameraButton(_ :)),
-                         for: .touchUpInside)
+       i
         return button
     }()
-    
+    */
+     
     lazy var settingButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "gearshape"), for: .normal)
         button.sizeThatFits(CGSize(width: 28, height: 28))
         button.tintColor = .black
+        button.addTarget(self, action: #selector(navigateToSettingView), for: .touchUpInside)
         return button
     }()
     
     var tableLabel: UILabel = {
         let label = UILabel()
-        label.text = "오늘의 식탁"
+        label.text = "모두의 식탁"
         label.font = UIFont.boldSystemFont(ofSize: 24)
         return label
     }()
@@ -124,7 +126,7 @@ class MainViewController: UIViewController {
     func setConstraints() {
         todayDateLabel.translatesAutoresizingMaskIntoConstraints = false
         settingButton.translatesAutoresizingMaskIntoConstraints = false
-        plusButton.translatesAutoresizingMaskIntoConstraints = false
+        /* plusButton.translatesAutoresizingMaskIntoConstraints = false */
         tableLabel.translatesAutoresizingMaskIntoConstraints = false
         
         emptyMealCardView.translatesAutoresizingMaskIntoConstraints = false
@@ -133,81 +135,94 @@ class MainViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             todayDateLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
-            todayDateLabel.leadingAnchor.constraint(equalTo: super.view.leadingAnchor, constant: 22),
+            todayDateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
             
             settingButton.centerYAnchor.constraint(equalTo: todayDateLabel.centerYAnchor),
-            settingButton.trailingAnchor.constraint(equalTo: super.view.trailingAnchor, constant: -22),
+            settingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
             
+            /*
             plusButton.centerYAnchor.constraint(equalTo: todayDateLabel.centerYAnchor),
             plusButton.trailingAnchor.constraint(equalTo: settingButton.leadingAnchor, constant: -20),
-            
+            */
+             
             tableLabel.topAnchor.constraint(equalTo: todayDateLabel.bottomAnchor, constant: 91),
-            tableLabel.leadingAnchor.constraint(equalTo: super.view.leadingAnchor, constant: 25),
+            tableLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             
             emptyMealCardView.topAnchor.constraint(equalTo: tableLabel.bottomAnchor),
-            emptyMealCardView.bottomAnchor.constraint(equalTo: super.view.bottomAnchor, constant: -(UIScreen.main
+            emptyMealCardView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(UIScreen.main
                 .bounds.height / 6.48)),
-            emptyMealCardView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            emptyMealCardView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            emptyMealCardView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            emptyMealCardView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             mealCardCollectionView.topAnchor.constraint(equalTo: tableLabel.bottomAnchor),
-            mealCardCollectionView.bottomAnchor.constraint(equalTo: super.view.bottomAnchor, constant: -(UIScreen.main
+            mealCardCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(UIScreen.main
                 .bounds.height / 6.48)),
-            mealCardCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            mealCardCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            mealCardCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mealCardCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             familyFilterCollectionView.topAnchor.constraint(equalTo: todayDateLabel.bottomAnchor, constant: 20),
             familyFilterCollectionView.bottomAnchor.constraint(equalTo: tableLabel.topAnchor, constant: -39),
-            familyFilterCollectionView.leadingAnchor.constraint(equalTo: super.view.leadingAnchor),
-            familyFilterCollectionView.trailingAnchor.constraint(equalTo: super.view.trailingAnchor)
+            familyFilterCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            familyFilterCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
 
     func mealCardViewHidden() {
-        if meals.isEmpty {
+        if firestoreManager.meals.isEmpty {
             emptyMealCardView.isHidden = false
             mealCardCollectionView.isHidden = true
+            
+            if filter == "모두" {
+                emptyMealCardView.pokeButton.isHidden = true
+            } else {
+                emptyMealCardView.pokeButton.isHidden = false
+            }
         } else {
             emptyMealCardView.isHidden = true
             mealCardCollectionView.isHidden = false
         }
     }
     
-    @objc func tapCameraButton(_ sender: UIButton) {
-        let sheet = UIAlertController(title: "식사 업로드하기", message: nil, preferredStyle: .actionSheet)
-        let takePhoto = UIAlertAction(title: "사진 촬영하기", style: .default) {(_: UIAlertAction) in
-            self.presentCamera()
+    private func getFamilyMemeber() {
+        firestoreManager.getFamilyMember(familyCode: familyCode) { [self] in
+            familyMembers = firestoreManager.families
+            familyFilterCollectionView.reloadData()
         }
-        let chooseFromLibrary = UIAlertAction(title: "라이브러리에서 선택하기", style: .default) {(_: UIAlertAction) in
-            self.selectPhotos()
-        }
-        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-        
-        [takePhoto, chooseFromLibrary, cancel].forEach { sheet.addAction($0)}
-        
-        self.present(sheet, animated: true)
     }
     
-    /// 카메라 촬영화면을 모달로 띄우는 함수
-    private func presentCamera() {
-        let camera = UIImagePickerController()
-        camera.sourceType = .camera
-        camera.cameraDevice = .rear
-        camera.cameraCaptureMode = .photo
-        camera.delegate = self
-        present(camera, animated: true)
+    private func getLoginedUser() {
+        firestoreManager.getSignInUser(userEmail: loginedUserEmail) { [self] in
+            loginedUser = firestoreManager.loginedUser
+            emptyMealCardView.setButtonImage(toolImage: loginedUser.getToolImage())
+            emptyMealCardView.reloadInputViews()
+        }
     }
     
-    /// 앨범에서 사진을 선택하는 함수
-    private func selectPhotos() {
-        var configuration = PHPickerConfiguration()
-        configuration.selectionLimit = 1
-        configuration.filter = .images
-        
-        let picker = PHPickerViewController(configuration: configuration)
-        picker.delegate = self
-        
-        present(picker, animated: true)
+    private func fetchMeals() {
+        firestoreManager.fetchMeals(familyCode: familyCode, date: today) { [self] in
+            mealCardCollectionView.reloadData()
+            
+            for i in 0..<firestoreManager.meals.count {
+                storageManager.getMealImage(familyCode: familyCode, date: meals[i].uploadedDate, imageName: meals[i].mealImageName) { [self] in
+                    firestoreManager.meals[i].mealImage = storageManager.mealImage
+                    firestoreManager.getUploadUser(userEmail: firestoreManager.meals[i].uploadUserEmail) { [self] in
+                        firestoreManager.meals[i].uploadUser = firestoreManager.user.getName()
+                        firestoreManager.meals[i].userIcon = firestoreManager.user.getToolImage()
+                        meals = firestoreManager.meals
+                        mealCardCollectionView.reloadData()
+                    }
+                    
+                    mealCardCollectionView.reloadData()
+                }
+            }
+            meals = firestoreManager.meals
+            mealCardViewHidden()
+        }
+    }
+    
+    @objc func navigateToSettingView() {
+        let settingViewController = SettingViewController()
+        self.navigationController?.pushViewController(settingViewController, animated: true)
     }
 }
 

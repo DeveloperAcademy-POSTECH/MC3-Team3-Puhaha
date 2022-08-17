@@ -36,15 +36,15 @@ class FamilyFilterCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    private var familyNameLabel: UILabel = {
+    var familyNameLabel: UILabel = {
         let label: UILabel = UILabel()
         label.sizeToFit()
         return label
     }()
     
     func configureFilterCell(with family: Family) {
-        userIconImageView.image = family.userIcon
-        familyNameLabel.text = family.name
+        userIconImageView.image = family.user.getToolImage()
+        familyNameLabel.text = family.user.getName()
         if family.isSelected {
             backgroundColor = UIColor(named: "MainColor")
         } else {

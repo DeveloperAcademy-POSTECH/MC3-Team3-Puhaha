@@ -11,14 +11,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     
+    var viewController: UIViewController = SignInViewController()
+    private let userDefaultsRoomCode = UserDefaults.standard.string(forKey: "roomCode") as String? ?? ""
+    private let userDefaultsName = UserDefaults.standard.string(forKey: "name") as String? ?? ""
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let mainTabViewController = MainTabViewController()
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let settingViewController = SettingViewController()
-        window?.rootViewController = UINavigationController(rootViewController: settingViewController)
         window?.makeKeyAndVisible()
+        
+        UserDefaults.standard.set("", forKey: "roomCode")
+        UserDefaults.standard.set("", forKey: "name")
+        
+        if userDefaultsName == "" && userDefaultsRoomCode != "" {
+            viewController = NameSettingViewController()
+        } else if userDefaultsName == "" && userDefaultsRoomCode == "" {
+            viewController = SignInViewController()
+        } else {
+            viewController = MainTabViewController()
+        }
+        window?.rootViewController = UINavigationController(rootViewController: viewController)
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -48,7 +61,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
-

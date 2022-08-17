@@ -9,12 +9,33 @@ import UIKit
 
 class UploadViewController: UIViewController {
     
-    var tagContentsArray = UploadTag.uploadTags
+    private let firestoreManager = FirestoreManager()
+    private let storageManager = StorageManager()
+
+    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "loginedUserEmail") ?? String()
+    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "loginedUserEmail") ?? String())
+    
+    let familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "-"
+    
+    var meal = Meal.init(mealImage: UIImage(),
+                        mealImageName: "-",
+                         uploadUser: "-",
+                         uploadUserEmail: "-",
+                         userIcon: UIImage(),
+                         tags: [Tag.init(content: ""), Tag.init(content: ""), Tag.init(content: "")],
+                         uploadedDate: Date().dateText,
+                         uploadedTime: Date().timeText,
+                         reactions: [])
+    
+    let tagContentsArray = UploadTag.uploadTags
+    var selectedTags: [String: String] = ["time": "", "menu": "", "emotion": ""]
+    
+    // MARK: UI
     
     lazy var pictureImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.clipsToBounds = true
-        imageView.sizeToFit()
+        imageView.contentMode = .scaleToFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -128,15 +149,28 @@ class UploadViewController: UIViewController {
         configureConstraints()
     }
     
+    public func setMealInfo() {
+        let fetchedTimeTag = selectedTags["time"] ?? String()
+        let fetchedMenuTag = selectedTags["menu"] ?? String()
+        let fetchedEmotionTag = selectedTags["emotion"] ?? String()
+        
+        //        storageManager.uploadMealImage(image: pictureImageView.image ?? UIImage(),
+        
+        firestoreManager.setUpMeals(image: pictureImageView.image ?? UIImage(),
+                                    userEmail: loginedUserEmail,
+                                    familyCode: familyCode,
+                                    tags: Array(selectedTags.values))
+    }
+    
     private func configureConstraints() {
         NSLayoutConstraint.activate([
         pictureImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         pictureImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
-        pictureImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 2),
-        pictureImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+        pictureImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+        pictureImageView.bottomAnchor.constraint(equalTo: tagTimeLabel.topAnchor, constant: -26),
         
         tagTimeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
-        tagTimeLabel.topAnchor.constraint(equalTo: pictureImageView.bottomAnchor, constant: 26),
+        tagTimeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height / 1.76),
         
         tagTimeContentCollectionView.topAnchor.constraint(equalTo: tagTimeLabel.bottomAnchor, constant: 14),
         tagTimeContentCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -242,15 +276,21 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
             case tagTimeContentCollectionView:
                 cell.contentLabel.textColor = .white
                 cell.layer.backgroundColor = tagContentsArray[0].tagContents[indexPath.row].backgroundColor?.cgColor
-                
+                    selectedTags.updateValue(cell.contentLabel.text ?? String(), forKey: "time")
+                    print(selectedTags)
+            
             case tagMenuContentCollectionView:
                 cell.contentLabel.textColor = .white
                 cell.layer.backgroundColor = tagContentsArray[1].tagContents[indexPath.row].backgroundColor?.cgColor
+                    selectedTags.updateValue(cell.contentLabel.text ?? String(), forKey: "menu")
+                    print(selectedTags)
                 print(tagContentsArray[1].tagContents[indexPath.row])
             
             case tagEmotionContentCollectionView:
                 cell.contentLabel.textColor = .white
                 cell.layer.backgroundColor = tagContentsArray[2].tagContents[indexPath.row].backgroundColor?.cgColor
+                    selectedTags.updateValue(cell.contentLabel.text ?? String(), forKey: "emotion")
+                    print(selectedTags)
                 print(tagContentsArray[2].tagContents[indexPath.row])
                 
             default:
@@ -261,10 +301,16 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? TagContentCollectionViewCell {
+            cell.backgroundColor = .white
+            cell.contentLabel.textColor = .black
+            
             switch collectionView {
-            case tagTimeContentCollectionView, tagMenuContentCollectionView, tagEmotionContentCollectionView:
-                cell.backgroundColor = .white
-                cell.contentLabel.textColor = .black
+            case tagTimeContentCollectionView:
+                selectedTags.removeValue(forKey: "time")
+            case tagMenuContentCollectionView:
+                selectedTags.removeValue(forKey: "menu")
+            case tagEmotionContentCollectionView:
+                selectedTags.removeValue(forKey: "emotion")
             default:
                 break
             }
