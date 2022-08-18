@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "blue_fork.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

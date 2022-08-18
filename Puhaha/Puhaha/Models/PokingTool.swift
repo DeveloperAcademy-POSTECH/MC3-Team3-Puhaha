@@ -86,6 +86,6 @@ class PokeTool {
 
 #if DEBUG
 
-let toolImages = ["silver_fork", "silver_spoon", "silver_whisk", "silver_spatula_ver2"]
+let toolImages = ["silver_fork", "silver_spoon", "silver_whisk", "silver_spatula"]
 
 #endif
