@@ -18,4 +18,13 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return newImage!
     }
+    
+    func imageRendering(size: CGSize) -> UIImage {
+        let renderFormat = UIGraphicsImageRendererFormat.default()
+        let renderer = UIGraphicsImageRenderer(size: size, format: renderFormat)
+        let newImage = renderer.image { _ in
+            self.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        }
+        return newImage
+    }
 }

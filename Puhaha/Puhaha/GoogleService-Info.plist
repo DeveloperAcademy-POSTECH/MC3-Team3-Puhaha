@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>694827834713-84trm96reduk86bbk7g7g2srr8s9obj6.apps.googleusercontent.com</string>
+	<string>763542758719-1qs47vsfncbd9j8n7kvvq8ta2ddlffce.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.694827834713-84trm96reduk86bbk7g7g2srr8s9obj6</string>
+	<string>com.googleusercontent.apps.763542758719-1qs47vsfncbd9j8n7kvvq8ta2ddlffce</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBjzRkVwKsfZvqtN6lC4HoGxOdAF-PfCnQ</string>
+	<string>AIzaSyDa3QfvN2GccJ6rsweqwOCDxK08AoOkfZ8</string>
 	<key>GCM_SENDER_ID</key>
-	<string>694827834713</string>
+	<string>763542758719</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.mc3.puhaha.whatdidyoueat</string>
 	<key>PROJECT_ID</key>
-	<string>puhaha-sub-4</string>
+	<string>puhaha-2f271</string>
 	<key>STORAGE_BUCKET</key>
-	<string>puhaha-sub-4.appspot.com</string>
+	<string>puhaha-2f271.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:694827834713:ios:075b9fcef56db2941b4048</string>
+	<string>1:763542758719:ios:68464f0a86f8aefe169f8a</string>
 </dict>
 </plist>

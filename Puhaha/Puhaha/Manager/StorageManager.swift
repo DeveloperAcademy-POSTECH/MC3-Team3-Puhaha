@@ -29,8 +29,11 @@ class StorageManager {
     }
     
     func uploadMealImage(image: UIImage, familyCode: String, imageName: String, completion: @escaping () -> Void) {
-        var data = Data()
-        data = image.jpegData(compressionQuality: 0.00001) ?? Data()
+        let size: CGFloat = 200
+        
+        let renderedImage = image.imageRendering(size: CGSize(width: size, height: image.size.height / image.size.width * size))
+        let data = renderedImage.jpegData(compressionQuality: 0) ?? Data()
+        
         let filePathDate = Date().dateText
         let filePathUser = familyCode
         let fileMealImageIndex = imageName

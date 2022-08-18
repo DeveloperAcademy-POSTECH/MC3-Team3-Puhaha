@@ -67,15 +67,6 @@ class EmptyMealCardView: UIView {
     }
     
     public func setButtonImage(toolImage: UIImage) {
-        pokeButton.configuration?.image = imageRendering(image: toolImage)
-    }
-    
-    private func imageRendering(image: UIImage) -> UIImage {
-        let renderFormat = UIGraphicsImageRendererFormat.default()
-        let renderer = UIGraphicsImageRenderer(size: CGSize(width: UIScreen.main.bounds.width / 1.77, height: UIScreen.main.bounds.width / 1.77), format: renderFormat)
-        let newImage = renderer.image { _ in
-            image.draw(in: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width / 1.77, height: UIScreen.main.bounds.width / 1.77))
-        }
-        return newImage
+        pokeButton.configuration?.image = toolImage.imageRendering(size: CGSize(width: UIScreen.main.bounds.width / 1.77, height: UIScreen.main.bounds.width / 1.77))
     }
 }

@@ -96,7 +96,14 @@ class FirestoreManager: ObservableObject {
                 
                 let pokingToolColor: String = pokingTool["color"] ?? ""
                 let pokingToolTool: String = pokingTool["tool"] ?? ""
-                let toolImage: UIImage = UIImage(named: "\(pokingToolColor)_\(pokingToolTool)") ?? UIImage()
+                let toolImage: UIImage = UIImage(named: "\(pokingToolColor.lowercased())_\(pokingToolTool.lowercased())") ?? UIImage()
+                
+                /* Tool enum 사용할 경우
+                let toolType = convertStringToToolType(string: pokingTool["tool"] ?? "")
+                let toolColor = convertStringToToolColor(string: pokingTool["color"] ?? "")
+                let toolImage: UIImage = UIImage(named: "\(toolColor)_\(toolType.imageFileName)") ?? UIImage()
+                */
+                
                 let pokedBy: String = pokeStateValue["pokedBy"] ?? ""
                 let pokedTime: String = pokeStateValue["pokedTime"] ?? ""
                 
