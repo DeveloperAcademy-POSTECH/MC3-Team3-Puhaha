@@ -14,7 +14,7 @@ class UploadViewController: UIViewController {
 
     private let customWidth22 = UIScreen.main.bounds.width / 17.73
     private let customHeight22 = UIScreen.main.bounds.height / 38.36
-    private let systemframe = UIScreen.main.bounds
+    private let systemFrame = UIScreen.main.bounds
     
     var tagLabel: TagLabel = TagLabel()
     
