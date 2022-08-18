@@ -76,7 +76,7 @@ class UploadViewController: UIViewController {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 11
         layout.minimumInteritemSpacing = 0
-        layout.sectionInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width / 17.73, bottom: 0, right: UIScreen.main.bounds.width / 17.73)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: systemFrame.width / 17.73, bottom: 0, right: UIScreen.main.bounds.width / 17.73)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(TagContentCollectionViewCell.self, forCellWithReuseIdentifier: TagContentCollectionViewCell.reuseIdentifier)
