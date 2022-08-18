@@ -25,7 +25,14 @@ class SettingViewController: UIViewController {
     static let cellIdentifier = "sectionTableViewCell"
     
     lazy var tableView: UITableView = {
-        let tableView: UITableView = UITableView()
+        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height * 2
+        let displayWidth: CGFloat = self.view.frame.width
+        let displayHeight: CGFloat = self.view.frame.height
+        
+        let tableView: UITableView = UITableView(frame: CGRect(x: 0,
+                                                               y: barHeight,
+                                                               width: displayWidth,
+                                                               height: displayHeight - barHeight))
         
         tableView.backgroundColor = UIColor.customLightGray
         
@@ -41,8 +48,8 @@ class SettingViewController: UIViewController {
         navigationController?.navigationBar.backgroundColor = .white
         
         getToolDataTry()
-        
         navigationItem.title = "설정"
+        navigationController?.setNavigationBarHidden(false, animated: false)
         view.addSubview(self.tableView)
         
         configureConstraints()
@@ -69,9 +76,9 @@ extension SettingViewController: UITableViewDelegate {
         return 55
     }
     
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 30
-//    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60
+    }
 }
 
 extension SettingViewController: UITableViewDataSource {

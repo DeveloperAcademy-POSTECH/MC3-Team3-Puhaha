@@ -66,6 +66,7 @@ class MainViewController: UIViewController {
         button.setBackgroundImage(UIImage(systemName: "gearshape"), for: .normal)
         button.sizeThatFits(CGSize(width: 28, height: 28))
         button.tintColor = .black
+        button.addTarget(self, action: #selector(navigateToSettingView), for: .touchUpInside)
         return button
     }()
     
