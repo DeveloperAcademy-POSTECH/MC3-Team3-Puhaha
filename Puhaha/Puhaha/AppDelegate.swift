@@ -13,6 +13,10 @@ import AuthenticationServices
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var window: UIWindow?
+    private let userDefaultsRoomCode = UserDefaults.standard.string(forKey: "roomCode") as String? ?? "-"
+    private let userDefaultsName = UserDefaults.standard.string(forKey: "name") as String? ?? "-"
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         
@@ -21,19 +25,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appleIDProvider.getCredentialState(forUserID: forUserID ?? "") { (credentialState, error) in
             switch credentialState {
             case .authorized:
-                print(UserDefaults.standard.string(forKey: "loginedUserEmail")!)
-                print("authorized")
-                // The Apple ID credential is valid.
+                DispatchQueue.main.async {
+                    print(UserDefaults.standard.string(forKey: "loginedUserEmail")!)
+                    let mainTabViewController = MainTabViewController()
+                    self.window?.rootViewController = mainTabViewController
+                    print("authorized")
+                    // The Apple ID credential is valid.
+                }
             case .revoked:
-                print("revoked")
+                DispatchQueue.main.async {
+                    print("revoked")
+                    let signInViewController = SignInViewController()
+                    self.window?.rootViewController = signInViewController
+                }
+                    
             case .notFound:
                 // The Apple ID credential is either revoked or was not found, so show the sign-in UI.
                 print("notFound")
                 DispatchQueue.main.async {
+                    let signInViewController = SignInViewController()
+                    self.window?.rootViewController = signInViewController
                     // self.window?.rootViewController?.showLoginViewController()
                 }
             default:
                 break
+                
             }
         }
         
