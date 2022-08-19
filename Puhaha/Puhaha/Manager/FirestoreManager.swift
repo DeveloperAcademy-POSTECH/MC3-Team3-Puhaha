@@ -43,10 +43,10 @@ class FirestoreManager: ObservableObject {
         var documentPath: Query = db.collection("Families").document(familyCode).collection("Meals")
         
         if date != nil {
-            documentPath = documentPath.whereField("uploadedDate", isEqualTo: date!.dateText)
+            documentPath = documentPath.whereField("uploadDate", isEqualTo: date!.dateText)
         }
         
-        documentPath.addSnapshotListener { [self] (querySnapshot, _) in
+        documentPath.order(by: "uploadTime", descending: true).addSnapshotListener { [self] (querySnapshot, _) in
             guard let documents = querySnapshot?.documents else {
                 print("No Documents")
                 return
@@ -96,7 +96,14 @@ class FirestoreManager: ObservableObject {
                 
                 let pokingToolColor: String = pokingTool["color"] ?? ""
                 let pokingToolTool: String = pokingTool["tool"] ?? ""
-                let toolImage: UIImage = UIImage(named: "\(pokingToolColor)_\(pokingToolTool)") ?? UIImage()
+                let toolImage: UIImage = UIImage(named: "\(pokingToolColor.lowercased())_\(pokingToolTool.lowercased())") ?? UIImage()
+                
+                /* Tool enum 사용할 경우
+                let toolType = convertStringToToolType(string: pokingTool["tool"] ?? "")
+                let toolColor = convertStringToToolColor(string: pokingTool["color"] ?? "")
+                let toolImage: UIImage = UIImage(named: "\(toolColor)_\(toolType.imageFileName)") ?? UIImage()
+                */
+                
                 let pokedBy: String = pokeStateValue["pokedBy"] ?? ""
                 let pokedTime: String = pokeStateValue["pokedTime"] ?? ""
                 
@@ -202,20 +209,14 @@ class FirestoreManager: ObservableObject {
     }
     
     func addReaction(familyCode: String, meal: Meal, newReaction: [String: String]) {
-        db.collection("Families").document(familyCode).collection("Meals").whereField("uploadUser", isEqualTo: meal.uploadUserEmail).whereField("uploadedDate", isEqualTo: meal.uploadedDate).whereField("uploadedTime", isEqualTo: meal.uploadedTime).getDocuments { querySnapshot, error in
+        db.collection("Families").document(familyCode).collection("Meals").whereField("uploadUser", isEqualTo: meal.uploadUserEmail).whereField("uploadDate", isEqualTo: meal.uploadedDate).whereField("uploadTime", isEqualTo: meal.uploadedTime).getDocuments { querySnapshot, error in
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {
                 for document in querySnapshot!.documents {
                     let data = document.data()
                     
-                    let reactionsValue = data["reactions"] as? [[String: String]] ?? []
-                    var reactions: [[String: String]] = []
-                    for i in 0..<reactionsValue.count {
-                        for key in reactionsValue[i].keys {
-                            reactions.append([key: reactionsValue[i][key]!])
-                        }
-                    }
+                    var reactions = data["reactions"] as? [[String: String]] ?? []
                     reactions.append(newReaction)
                     document.reference.updateData(["reactions": reactions])
                 }
@@ -246,20 +247,22 @@ class FirestoreManager: ObservableObject {
                     tags: [String]) {
         let today = Date.now
         
-        var documentRef: DocumentReference
-        var storageManager = StorageManager()
+        let documentRef = db.collection("Families").document(familyCode).collection("Meals")
+        let storageManager = StorageManager()
         let imageName: String = "img_\(today.dateText)_\(today.timeNumberText).jpeg"
-        documentRef = db.collection("Families").document(familyCode).collection("Meals").addDocument(data: [
-            "mealImageIndex": imageName,
-            "uploadUser": userEmail,
-            "uploadDate": Date().dateText,
-            "uploadTime": Date().timeNumberText,
-            "tags": ["0": tags[0],
-                     "1": tags[1],
-                     "2": tags[2]
-                    ]])
         
-        storageManager.uploadMealImage(image: image, familyCode: familyCode, imageName: imageName)
+        storageManager.uploadMealImage(image: image, familyCode: familyCode, imageName: imageName) {
+            documentRef.addDocument(data: [
+                "mealImageIndex": imageName,
+                "uploadUser": userEmail,
+                "uploadDate": Date().dateText,
+                "uploadTime": Date().timeNumberText,
+                "tags": ["0": tags[0],
+                         "1": tags[1],
+                         "2": tags[2]
+                        ],
+                "reactions": []])
+        }
     }
     
     func addFamily(roomCode: String, userEmail: String) {
@@ -267,7 +270,7 @@ class FirestoreManager: ObservableObject {
     }
 
     func addFamilyMember(roomCode: String, userEmail: String) {
-            db.collection("Families").document(roomCode).getDocument { document, error in
+            db.collection("Families").document(roomCode).getDocument { document, _ in
                 let data = document?.data()
                 var users: [String] = data?["users"] as? [String] ?? []
                 users.append(userEmail)

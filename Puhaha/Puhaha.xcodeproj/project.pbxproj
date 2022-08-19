@@ -8,19 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		551CD2DE28850A800037487D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CD2DD28850A800037487D /* SignInViewController.swift */; };
-		554B7799289526F900216D30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 554B7798289526F900216D30 /* GoogleService-Info.plist */; };
 		55599E3C2886362900C05E81 /* CustomedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55599E3B2886362900C05E81 /* CustomedButton.swift */; };
 		556AADA62896654100A40F0B /* PokeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556AADA52896654100A40F0B /* PokeState.swift */; };
-		559D06B7289BAB2400338782 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 559D06B6289BAB2400338782 /* FirebaseStorage */; };
 		559D06BB289BAD0E00338782 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559D06BA289BAD0E00338782 /* User.swift */; };
 		559D06C0289BAD7300338782 /* UITextField+SetUnderLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559D06BF289BAD7300338782 /* UITextField+SetUnderLine.swift */; };
 		559D06C2289BAD7900338782 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559D06C1289BAD7900338782 /* UILabel+Extension.swift */; };
 		559D06C4289BB30A00338782 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559D06C3289BB30A00338782 /* SceneDelegate.swift */; };
 		559D06C6289BB97300338782 /* JoinFamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559D06C5289BB97300338782 /* JoinFamilyViewController.swift */; };
-
-		551CD2E528850C6A0037487D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E428850C6A0037487D /* FirebaseFirestore */; };
-		551CD2E328850C6A0037487D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E228850C6A0037487D /* FirebaseAuth */; };
-		551CD2E128850C6A0037487D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 551CD2E028850C6A0037487D /* FirebaseAnalytics */; };
 		55C02311288A940D001511E3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C02310288A940D001511E3 /* SettingViewController.swift */; };
 		55CF4C8F288BE81A0020DACC /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF4C8E288BE81A0020DACC /* AccountSettingViewController.swift */; };
 		55DCB98728958EDE00C83E1D /* SingInViewControllerASDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCB98628958EDE00C83E1D /* SingInViewControllerASDelegate.swift */; };
@@ -39,10 +33,6 @@
 		A48C93AC288F74D500BA09EF /* BigFork.obj in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A4288F74D500BA09EF /* BigFork.obj */; };
 		A48C93AD288F74D500BA09EF /* BigSpoonVer2.scn in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A5288F74D500BA09EF /* BigSpoonVer2.scn */; };
 		A48C93AE288F74D500BA09EF /* Spatula.scn in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A6288F74D500BA09EF /* Spatula.scn */; };
-		BF42685328A35674003DB735 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE33B78A2895755E0054F9CD /* FirebaseAnalytics */; };
-		BF42685428A35674003DB735 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CE33B78C2895755E0054F9CD /* FirebaseAuth */; };
-		BF42685528A35674003DB735 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CE33B78E2895755E0054F9CD /* FirebaseFirestore */; };
-		BF42685628A35674003DB735 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE33B7902895755E0054F9CD /* FirebaseFirestoreSwift */; };
 		BF8C5FA9288E5EE0002BF0BD /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FA8288E5EDF002BF0BD /* UploadViewController.swift */; };
 		BF8C5FAD288E655B002BF0BD /* TagContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FAC288E655B002BF0BD /* TagContentCollectionViewCell.swift */; };
 		BF8C5FAF288E6B21002BF0BD /* UploadTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FAE288E6B21002BF0BD /* UploadTag.swift */; };
@@ -52,7 +42,6 @@
 		CE33B7932895755E0054F9CD /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CE33B7922895755E0054F9CD /* FirebaseStorage */; };
 		CE33B79B2896592F0054F9CD /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B79A2896592F0054F9CD /* FirestoreManager.swift */; };
 		CE33B79D2896593F0054F9CD /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B79C2896593F0054F9CD /* StorageManager.swift */; };
-		CE33B79F289662310054F9CD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B79E289662310054F9CD /* User.swift */; };
 		CE33B7A12896632E0054F9CD /* Poke.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B7A02896632E0054F9CD /* Poke.swift */; };
 		CE445BE728A41ABE0084A93F /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE445BE628A41ABE0084A93F /* ArchiveViewController.swift */; };
 		CE445BE928A426C00084A93F /* ArchiveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE445BE828A426C00084A93F /* ArchiveCell.swift */; };
@@ -66,6 +55,11 @@
 		CE5B4F68288E7C6A00111ACC /* ReactionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B4F66288E7C6A00111ACC /* ReactionCollectionViewCell.swift */; };
 		CE5B4F6C288E7C8B00111ACC /* Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B4F6B288E7C8B00111ACC /* Reaction.swift */; };
 		CE5B4F6E288E7C9D00111ACC /* MealDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B4F6D288E7C9D00111ACC /* MealDetailViewController.swift */; };
+		CE66046128AB712500D33A64 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE33B78A2895755E0054F9CD /* FirebaseAnalytics */; };
+		CE66046228AB712500D33A64 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CE33B78C2895755E0054F9CD /* FirebaseAuth */; };
+		CE66046328AB712500D33A64 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CE33B78E2895755E0054F9CD /* FirebaseFirestore */; };
+		CE66046428AB712500D33A64 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE33B7902895755E0054F9CD /* FirebaseFirestoreSwift */; };
+		CE66046C28AC259600D33A64 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE66046B28AC259600D33A64 /* GoogleService-Info.plist */; };
 		CE718850288E849D002CF653 /* EmptyMealCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71884F288E849D002CF653 /* EmptyMealCardView.swift */; };
 		CE73297D28865C8800CA87F1 /* MealCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73297C28865C8800CA87F1 /* MealCardCollectionViewCell.swift */; };
 		CE73297F28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73297E28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift */; };
@@ -84,7 +78,6 @@
 
 /* Begin PBXFileReference section */
 		551CD2DD28850A800037487D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		554B7798289526F900216D30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		55599E3B2886362900C05E81 /* CustomedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomedButton.swift; sourceTree = "<group>"; };
 		556AADA52896654100A40F0B /* PokeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeState.swift; sourceTree = "<group>"; };
 		559D06B8289BAB5D00338782 /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -117,15 +110,11 @@
 		BF8C5FAC288E655B002BF0BD /* TagContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF8C5FAE288E6B21002BF0BD /* UploadTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTag.swift; sourceTree = "<group>"; };
 		BFFB73412897652B00AE3C09 /* Camera+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Camera+Extension.swift"; sourceTree = "<group>"; };
-
-		BFFB73432897C01A00AE3C09 /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		CE33B7762894FF680054F9CD /* CreateFamilyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFamilyViewController.swift; sourceTree = "<group>"; };
 		CE33B7782894FFA40054F9CD /* InviteFamilyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFamilyViewController.swift; sourceTree = "<group>"; };
-		CE33B7A02896632E0054F9CD /* Poke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poke.swift; sourceTree = "<group>"; };
-		CE33B79E289662310054F9CD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		CE33B79C2896593F0054F9CD /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		CE33B79A2896592F0054F9CD /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
-
+		CE33B79C2896593F0054F9CD /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		CE33B7A02896632E0054F9CD /* Poke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poke.swift; sourceTree = "<group>"; };
 		CE445BE628A41ABE0084A93F /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
 		CE445BE828A426C00084A93F /* ArchiveCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveCell.swift; sourceTree = "<group>"; };
 		CE45191628A8E0EC00D1FB21 /* String+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extenstion.swift"; sourceTree = "<group>"; };
@@ -138,6 +127,7 @@
 		CE5B4F66288E7C6A00111ACC /* ReactionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE5B4F6B288E7C8B00111ACC /* Reaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reaction.swift; sourceTree = "<group>"; };
 		CE5B4F6D288E7C9D00111ACC /* MealDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealDetailViewController.swift; sourceTree = "<group>"; };
+		CE66046B28AC259600D33A64 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE71884F288E849D002CF653 /* EmptyMealCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyMealCardView.swift; sourceTree = "<group>"; };
 		CE73297C28865C8800CA87F1 /* MealCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE73297E28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyFilterCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -161,13 +151,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-
-				CE33B78B2895755E0054F9CD /* FirebaseAnalytics in Frameworks */,
-				CE33B78D2895755E0054F9CD /* FirebaseAuth in Frameworks */,
-				CE33B78F2895755E0054F9CD /* FirebaseFirestore in Frameworks */,
+				CE66046428AB712500D33A64 /* FirebaseFirestoreSwift in Frameworks */,
+				CE66046128AB712500D33A64 /* FirebaseAnalytics in Frameworks */,
+				CE66046328AB712500D33A64 /* FirebaseFirestore in Frameworks */,
+				CE66046228AB712500D33A64 /* FirebaseAuth in Frameworks */,
 				CE33B7932895755E0054F9CD /* FirebaseStorage in Frameworks */,
-				CE33B7912895755E0054F9CD /* FirebaseFirestoreSwift in Frameworks */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,8 +266,8 @@
 				CE9F9660287FA66C00783324 /* ViewController.swift */,
 				559D06C3289BB30A00338782 /* SceneDelegate.swift */,
 				CE9F9665287FA66F00783324 /* Assets.xcassets */,
+				CE66046B28AC259600D33A64 /* GoogleService-Info.plist */,
 				CE9F966A287FA66F00783324 /* Info.plist */,
-				554B7798289526F900216D30 /* GoogleService-Info.plist */,
 				CE9F9673287FA8A600783324 /* .swiftlint.yml */,
 			);
 			path = Puhaha;
@@ -322,7 +310,6 @@
 				CE33B7762894FF680054F9CD /* CreateFamilyViewController.swift */,
 				CE33B7782894FFA40054F9CD /* InviteFamilyViewController.swift */,
 				559D06C5289BB97300338782 /* JoinFamilyViewController.swift */,
-
 				CE445BE628A41ABE0084A93F /* ArchiveViewController.swift */,
 			);
 			path = Controllers;
@@ -419,9 +406,9 @@
 				A48C93AC288F74D500BA09EF /* BigFork.obj in Resources */,
 				A48C93A9288F74D500BA09EF /* BigWhisk.scn in Resources */,
 				CE9F9666287FA66F00783324 /* Assets.xcassets in Resources */,
-				554B7799289526F900216D30 /* GoogleService-Info.plist in Resources */,
 				A48C93AE288F74D500BA09EF /* Spatula.scn in Resources */,
 				A48C93AB288F74D500BA09EF /* BigWhisk.obj in Resources */,
+				CE66046C28AC259600D33A64 /* GoogleService-Info.plist in Resources */,
 				A48C93A8288F74D500BA09EF /* Tools.scn in Resources */,
 				A48C93AA288F74D500BA09EF /* BigSpoonVer2.obj in Resources */,
 			);
@@ -465,7 +452,6 @@
 				551CD2DE28850A800037487D /* SignInViewController.swift in Sources */,
 				CE5B4F6E288E7C9D00111ACC /* MealDetailViewController.swift in Sources */,
 				CE73297D28865C8800CA87F1 /* MealCardCollectionViewCell.swift in Sources */,
-				BFFB73442897C01A00AE3C09 /* UILabel+Extension.swift in Sources */,
 				CE46B5702888DB3D0074DEF0 /* TagLabel.swift in Sources */,
 				CEC190A528A27FB4000E239E /* EmoticonCell.swift in Sources */,
 				556AADA62896654100A40F0B /* PokeState.swift in Sources */,
@@ -499,17 +485,14 @@
 				BFFB73422897652B00AE3C09 /* Camera+Extension.swift in Sources */,
 				CE73298128869FA300CA87F1 /* Family.swift in Sources */,
 				CE73297F28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift in Sources */,
-
 				559D06C6289BB97300338782 /* JoinFamilyViewController.swift in Sources */,
 				55DCB98B2895A51E00C83E1D /* NameSettingViewController.swift in Sources */,
-
 				CE445BE728A41ABE0084A93F /* ArchiveViewController.swift in Sources */,
 				CE73297F28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift in Sources */,
 				CE558B192885304500E98909 /* MainViewController.swift in Sources */,
 				CE5B4F68288E7C6A00111ACC /* ReactionCollectionViewCell.swift in Sources */,
 				A445E5F828929C9B00FD31C4 /* UIImage+Extension.swift in Sources */,
 				CE33B7A12896632E0054F9CD /* Poke.swift in Sources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,8 +622,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D9CAJN27UH;
-
+				DEVELOPMENT_TEAM = 744MUUC77P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Puhaha/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 사용권한을 허용해주세요.";
@@ -672,7 +654,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D9CAJN27UH;
+				DEVELOPMENT_TEAM = 744MUUC77P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Puhaha/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 사용권한을 요청합니다.";

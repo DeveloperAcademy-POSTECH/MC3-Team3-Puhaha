@@ -11,8 +11,8 @@ import FirebaseFirestore
 import FirebaseStorage
 
 class MainViewController: UIViewController {
-    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "ipkjw2@gmail.com"
-    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userEmail") ?? "")
+    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "-"
+    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "-")
     
     var filter: String = "모두"
     var selectedCellIndex: Int = 0
@@ -20,10 +20,10 @@ class MainViewController: UIViewController {
     var familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "-"
     var familyMembers: [Family] = []
     
-    var meals: [Meal] = []
+    @Published var baseMeals: [Meal] = []
+    @Published var meals: [Meal] = []
     
     let firestoreManager = FirestoreManager()
-    private var storageManager = StorageManager()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -39,9 +39,8 @@ class MainViewController: UIViewController {
         
         getFamilyMemeber()
         getLoginedUser()
-        fetchMeals()
         
-        [todayDateLabel, /* plusButton, */settingButton, tableLabel, emptyMealCardView, mealCardCollectionView, familyFilterCollectionView].forEach {
+        [todayDateLabel, settingButton, tableLabel, emptyMealCardView, mealCardCollectionView, familyFilterCollectionView].forEach {
             view.addSubview($0)
         }
         todayDateLabel.text = today.dayText
@@ -61,17 +60,6 @@ class MainViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 28)
         return label
     }()
-
-    /*
-    lazy var plusButton: UIButton = {
-        let button = UIButton()
-        button.setBackgroundImage(UIImage(systemName: "plus.circle"), for: .normal)
-        button.sizeThatFits(CGSize(width: 28, height: 28))
-        button.tintColor = .black
-       i
-        return button
-    }()
-    */
      
     lazy var settingButton: UIButton = {
         let button = UIButton()
@@ -126,7 +114,6 @@ class MainViewController: UIViewController {
     func setConstraints() {
         todayDateLabel.translatesAutoresizingMaskIntoConstraints = false
         settingButton.translatesAutoresizingMaskIntoConstraints = false
-        /* plusButton.translatesAutoresizingMaskIntoConstraints = false */
         tableLabel.translatesAutoresizingMaskIntoConstraints = false
         
         emptyMealCardView.translatesAutoresizingMaskIntoConstraints = false
@@ -139,11 +126,6 @@ class MainViewController: UIViewController {
             
             settingButton.centerYAnchor.constraint(equalTo: todayDateLabel.centerYAnchor),
             settingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
-            
-            /*
-            plusButton.centerYAnchor.constraint(equalTo: todayDateLabel.centerYAnchor),
-            plusButton.trailingAnchor.constraint(equalTo: settingButton.leadingAnchor, constant: -20),
-            */
              
             tableLabel.topAnchor.constraint(equalTo: todayDateLabel.bottomAnchor, constant: 91),
             tableLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
@@ -166,12 +148,11 @@ class MainViewController: UIViewController {
             familyFilterCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
-
+    
     func mealCardViewHidden() {
-        if firestoreManager.meals.isEmpty {
+        if meals.isEmpty {
             emptyMealCardView.isHidden = false
             mealCardCollectionView.isHidden = true
-            
             if filter == "모두" {
                 emptyMealCardView.pokeButton.isHidden = true
             } else {
@@ -193,36 +174,9 @@ class MainViewController: UIViewController {
     private func getLoginedUser() {
         firestoreManager.getSignInUser(userEmail: loginedUserEmail) { [self] in
             loginedUser = firestoreManager.loginedUser
-            emptyMealCardView.setButtonImage(toolImage: loginedUser.getToolImage())
+            emptyMealCardView.setButtonImage(toolImage: firestoreManager.loginedUser.getToolImage())
             emptyMealCardView.reloadInputViews()
         }
-    }
-    
-    private func fetchMeals() {
-        firestoreManager.fetchMeals(familyCode: familyCode, date: today) { [self] in
-            mealCardCollectionView.reloadData()
-            
-            for i in 0..<firestoreManager.meals.count {
-                storageManager.getMealImage(familyCode: familyCode, date: meals[i].uploadedDate, imageName: meals[i].mealImageName) { [self] in
-                    firestoreManager.meals[i].mealImage = storageManager.mealImage
-                    firestoreManager.getUploadUser(userEmail: firestoreManager.meals[i].uploadUserEmail) { [self] in
-                        firestoreManager.meals[i].uploadUser = firestoreManager.user.getName()
-                        firestoreManager.meals[i].userIcon = firestoreManager.user.getToolImage()
-                        meals = firestoreManager.meals
-                        mealCardCollectionView.reloadData()
-                    }
-                    
-                    mealCardCollectionView.reloadData()
-                }
-            }
-            meals = firestoreManager.meals
-            mealCardViewHidden()
-        }
-    }
-    
-    @objc func navigateToSettingView() {
-        let settingViewController = SettingViewController()
-        self.navigationController?.pushViewController(settingViewController, animated: true)
     }
 }
 

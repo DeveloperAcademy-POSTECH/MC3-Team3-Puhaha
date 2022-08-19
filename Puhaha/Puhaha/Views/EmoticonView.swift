@@ -107,8 +107,6 @@ extension EmoticonView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if loginedUser != "" {
             firebaseManager.addReaction(familyCode: familyCode, meal: meal, newReaction: [loginedUser: emoji[indexPath.row]])
-            print(emoji[indexPath.row])
-            collectionView.reloadData()
         }
         
         self.isHidden = true

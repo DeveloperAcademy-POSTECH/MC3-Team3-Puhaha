@@ -45,11 +45,25 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
+        navigationController?.navigationBar.backgroundColor = .white
         
         getToolDataTry()
         navigationItem.title = "설정"
         navigationController?.setNavigationBarHidden(false, animated: false)
         view.addSubview(self.tableView)
+        
+        configureConstraints()
+    }
+    
+    private func configureConstraints() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
 }
 

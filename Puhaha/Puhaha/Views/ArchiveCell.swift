@@ -8,12 +8,15 @@
 import UIKit
 
 class ArchiveCell: UICollectionViewCell {
+    let size: CGFloat = UIScreen.main.bounds.height / 6
+    
     static let identifier: String = "ArchiveCell"
     
     private let mealImageView: UIImageView = {
         let imageView: UIImageView = UIImageView()
         imageView.layer.cornerRadius = 6
         imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -66,7 +69,7 @@ class ArchiveCell: UICollectionViewCell {
         
         configureConstraints()
         
-        setShadow(radius: 6, opacity: 0.1, offset: CGSize(width: 0.0, height: 1.0), pathSize: CGSize(width: 150, height: 150))
+        setShadow(radius: 6, opacity: 0.1, offset: CGSize(width: 0.0, height: 1.0), pathSize: CGSize(width: size, height: size))
     }
     
     required init?(coder: NSCoder) {
@@ -81,7 +84,7 @@ class ArchiveCell: UICollectionViewCell {
             mealImageView.topAnchor.constraint(equalTo: topAnchor),
             mealImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             mealImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            mealImageView.bottomAnchor.constraint(equalTo: topAnchor, constant: 150),
+            mealImageView.bottomAnchor.constraint(equalTo: topAnchor, constant: size),
             
             titleStack.topAnchor.constraint(equalTo: mealImageView.bottomAnchor, constant: 12),
             titleStack.leadingAnchor.constraint(equalTo: leadingAnchor),

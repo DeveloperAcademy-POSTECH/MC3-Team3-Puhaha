@@ -34,7 +34,13 @@ class MealCardCollectionViewCell: UICollectionViewCell {
     
     var tagLabels: [TagLabel] = []
     
-    var mealCardTagStackView: UIStackView!
+    var mealCardTagStackView: UIStackView = {
+        let stackView: UIStackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 6
+        stackView.distribution = .equalSpacing
+        return stackView
+    }()
     
     var gradient: UIImageView = {
         var imageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width / 1.86, height: UIScreen.main.bounds.height / 3.32))
@@ -45,13 +51,9 @@ class MealCardCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        mealCardTagStackView = {
-            let stackView: UIStackView = UIStackView()
-            stackView.axis = .horizontal
-            stackView.spacing = 6
-            stackView.distribution = .equalSpacing
-            return stackView
-        }()
+        for _ in 0..<3 {
+            mealCardTagStackView.addArrangedSubview(TagLabel())
+        }
         
         layer.cornerRadius = 33
         layer.masksToBounds = true
@@ -63,37 +65,17 @@ class MealCardCollectionViewCell: UICollectionViewCell {
         setConstraints()
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        mealCardTagStackView = {
-            let stackView: UIStackView = UIStackView()
-            stackView.axis = .horizontal
-            stackView.spacing = 6
-            stackView.alignment = .fill
-            return stackView
-        }()
-        
-        tagLabels = []
-    }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureMealCard(with meal: Meal, familyCode: String, date: Date) {
+    func configureMealCard(with meal: Meal) {
         mealImageView.image = meal.mealImage
         userIconImageView.image = meal.userIcon
         userNameLabel.text = meal.uploadUser
         
-        for tag in meal.tags {
-            let tagLabel = TagLabel()
-            tagLabel.setTextAndBackgroundColor(tag: tag, fontSize: 10)
-            tagLabels.append(tagLabel)
-        }
-        
-        tagLabels.forEach {
-            mealCardTagStackView.addArrangedSubview($0)
+        for i in 0..<mealCardTagStackView.subviews.count {
+            (mealCardTagStackView.subviews[i] as? TagLabel ?? TagLabel()).setTextAndBackgroundColor(tag: meal.tags[i], fontSize: 10)
         }
     }
     
@@ -125,7 +107,7 @@ class MealCardCollectionViewCell: UICollectionViewCell {
             
             mealCardTagStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
             mealCardTagStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-            mealCardTagStackView.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: contentView.bounds.height / 17.67)
+            mealCardTagStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -(contentView.bounds.height / 13.7))
         ])
     }
 }

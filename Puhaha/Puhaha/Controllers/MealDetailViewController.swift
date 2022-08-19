@@ -94,15 +94,11 @@ class MealDetailViewController: UIViewController {
         reactionSelectView.familyCode = familyCode
         mealImageView.image = meal.mealImage
         
-        var uploadedTimeNum = Int(meal.uploadedTime)!
-        if uploadedTimeNum > 1200 {
-            uploadedMeridianLabel.text = "오후"
-            uploadedTimeNum -= 1200
-        } else {
-            uploadedMeridianLabel.text = "오전"
-        }
-        let uploadedTimeText = String(uploadedTimeNum).transferStringToDate()!.transferDateToStringDay()
-        uploadedTimeLabel.text = uploadedTimeText
+        var uploadedTimeText = meal.uploadedTime.transferStringToDate()
+        
+        uploadedMeridianLabel.text = uploadedTimeText?.meridiem
+        
+        uploadedTimeLabel.text = uploadedTimeText?.transferDateToStringDay()
         
         for tag in meal.tags {
             let tagLabel = TagLabel()

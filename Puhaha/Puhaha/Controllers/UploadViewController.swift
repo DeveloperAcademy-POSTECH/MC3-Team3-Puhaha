@@ -13,19 +13,8 @@ class UploadViewController: UIViewController {
     private let storageManager = StorageManager()
 
     var loginedUserEmail: String = UserDefaults.standard.string(forKey: "loginedUserEmail") ?? String()
-    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "loginedUserEmail") ?? String())
     
     let familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "-"
-    
-    var meal = Meal.init(mealImage: UIImage(),
-                        mealImageName: "-",
-                         uploadUser: "-",
-                         uploadUserEmail: "-",
-                         userIcon: UIImage(),
-                         tags: [Tag.init(content: ""), Tag.init(content: ""), Tag.init(content: "")],
-                         uploadedDate: Date().dateText,
-                         uploadedTime: Date().timeText,
-                         reactions: [])
     
     let tagContentsArray = UploadTag.uploadTags
     var selectedTags: [String: String] = ["time": "", "menu": "", "emotion": ""]
@@ -35,7 +24,7 @@ class UploadViewController: UIViewController {
     lazy var pictureImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.clipsToBounds = true
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -153,8 +142,6 @@ class UploadViewController: UIViewController {
         let fetchedTimeTag = selectedTags["time"] ?? String()
         let fetchedMenuTag = selectedTags["menu"] ?? String()
         let fetchedEmotionTag = selectedTags["emotion"] ?? String()
-        
-        //        storageManager.uploadMealImage(image: pictureImageView.image ?? UIImage(),
         
         firestoreManager.setUpMeals(image: pictureImageView.image ?? UIImage(),
                                     userEmail: loginedUserEmail,
