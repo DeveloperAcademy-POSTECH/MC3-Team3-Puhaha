@@ -12,6 +12,12 @@ class UploadViewController: UIViewController {
     private let firestoreManager = FirestoreManager()
     private let storageManager = StorageManager()
 
+    private let customWidth22 = UIScreen.main.bounds.width / 17.73
+    private let customHeight22 = UIScreen.main.bounds.height / 38.36
+    private let systemFrame = UIScreen.main.bounds
+    
+    var tagLabel: TagLabel = TagLabel()
+    
     var loginedUserEmail: String = UserDefaults.standard.string(forKey: "loginedUserEmail") ?? String()
     
     let familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "-"
@@ -32,7 +38,7 @@ class UploadViewController: UIViewController {
     private var tagTimeLabel: UILabel = {
        let label = UILabel()
         label.text = "시간"
-        label.font = .systemFont(ofSize: 18, weight: .semibold)
+        label.font = .boldSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .title3).pointSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -40,7 +46,7 @@ class UploadViewController: UIViewController {
     private var tagMenuLabel: UILabel = {
        let label = UILabel()
         label.text = "메뉴"
-        label.font = .systemFont(ofSize: 18, weight: .semibold)
+        label.font = .boldSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .title3).pointSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -48,7 +54,7 @@ class UploadViewController: UIViewController {
     private var tagEmotionLabel: UILabel = {
        let label = UILabel()
         label.text = "기분"
-        label.font = .systemFont(ofSize: 18, weight: .semibold)
+        label.font = .boldSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .title3).pointSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -59,7 +65,7 @@ class UploadViewController: UIViewController {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 11
         layout.minimumInteritemSpacing = 0
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: systemFrame.width / 17.73, bottom: 0, right: UIScreen.main.bounds.width / 17.73)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(TagContentCollectionViewCell.self, forCellWithReuseIdentifier: TagContentCollectionViewCell.reuseIdentifier)
@@ -76,7 +82,8 @@ class UploadViewController: UIViewController {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 11
         layout.minimumInteritemSpacing = 0
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width / 17.73, bottom: 0, right: UIScreen.main.bounds.width / 17.73)
+        
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(TagContentCollectionViewCell.self, forCellWithReuseIdentifier: TagContentCollectionViewCell.reuseIdentifier)
@@ -107,7 +114,7 @@ class UploadViewController: UIViewController {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 11
         layout.minimumInteritemSpacing = 0
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width / 17.73, bottom: 0, right: UIScreen.main.bounds.width / 17.73)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(TagContentCollectionViewCell.self, forCellWithReuseIdentifier: TagContentCollectionViewCell.reuseIdentifier)
@@ -124,7 +131,7 @@ class UploadViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        [pictureImageView, tagTimeLabel, tagTimeContentCollectionView, firstDividerView, tagMenuLabel, tagMenuContentCollectionView, secondDividerView, tagEmotionLabel, tagEmotionContentCollectionView].forEach { view.addSubview($0) }
+        [pictureImageView, tagLabel, tagTimeLabel, tagTimeContentCollectionView, firstDividerView, tagMenuLabel, tagMenuContentCollectionView, secondDividerView, tagEmotionLabel, tagEmotionContentCollectionView].forEach { view.addSubview($0) }
         
         tagTimeContentCollectionView.dataSource = self
         tagTimeContentCollectionView.delegate = self
@@ -152,46 +159,47 @@ class UploadViewController: UIViewController {
     private func configureConstraints() {
         NSLayoutConstraint.activate([
         pictureImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        pictureImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+        pictureImageView.widthAnchor.constraint(equalToConstant: systemframe.width),
         pictureImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-        pictureImageView.bottomAnchor.constraint(equalTo: tagTimeLabel.topAnchor, constant: -26),
+        pictureImageView.bottomAnchor.constraint(equalTo: tagTimeLabel.topAnchor, constant: -systemframe.height / 32.46),
         
-        tagTimeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
-        tagTimeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height / 1.76),
+        tagTimeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: systemframe.width / 17.73),
+        tagTimeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: systemframe.height / 1.76),
         
-        tagTimeContentCollectionView.topAnchor.constraint(equalTo: tagTimeLabel.bottomAnchor, constant: 14),
+        tagTimeContentCollectionView.topAnchor.constraint(equalTo: tagTimeLabel.bottomAnchor, constant: systemframe.height / 60.29),
         tagTimeContentCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        tagTimeContentCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
+        tagTimeContentCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
         tagTimeContentCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        tagTimeContentCollectionView.heightAnchor.constraint(equalToConstant: 30),
-        tagTimeContentCollectionView.bottomAnchor.constraint(equalTo: firstDividerView.topAnchor, constant: -34),
+        tagTimeContentCollectionView.heightAnchor.constraint(equalToConstant: systemframe.height / 28.13),
+        tagTimeContentCollectionView.bottomAnchor.constraint(equalTo: firstDividerView.topAnchor, constant: -systemframe.height / 24.82),
         
-        firstDividerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
-        firstDividerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
-        firstDividerView.heightAnchor.constraint(equalToConstant: 1),
-        firstDividerView.bottomAnchor.constraint(equalTo: tagMenuLabel.topAnchor, constant: -26),
+        firstDividerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: customWidth22),
+        firstDividerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -customWidth22),
+        firstDividerView.heightAnchor.constraint(equalToConstant: systemframe.height / 844),
+        firstDividerView.bottomAnchor.constraint(equalTo: tagMenuLabel.topAnchor, constant: -systemframe.height / 32.46),
         
-        tagMenuLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
+        tagMenuLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: customWidth22),
         
         tagMenuContentCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        tagMenuContentCollectionView.topAnchor.constraint(equalTo: tagMenuLabel.bottomAnchor, constant: 14),
-        tagMenuContentCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
+        tagMenuContentCollectionView.topAnchor.constraint(equalTo: tagMenuLabel.bottomAnchor, constant: systemframe.height / 60.28),
+        tagMenuContentCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
         tagMenuContentCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        tagMenuContentCollectionView.heightAnchor.constraint(equalToConstant: 30),
-        tagMenuContentCollectionView.bottomAnchor.constraint(equalTo: secondDividerView.topAnchor, constant: -34),
+        tagMenuContentCollectionView.heightAnchor.constraint(equalToConstant: systemframe.height / 28.13),
+        tagMenuContentCollectionView.bottomAnchor.constraint(equalTo: secondDividerView.topAnchor, constant: -systemframe.height / 24.82),
         
-        secondDividerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
-        secondDividerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
-        secondDividerView.heightAnchor.constraint(equalToConstant: 1),
-        secondDividerView.bottomAnchor.constraint(equalTo: tagEmotionLabel.topAnchor, constant: -26),
+        secondDividerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: customWidth22),
+        secondDividerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -customWidth22),
+        secondDividerView.heightAnchor.constraint(equalToConstant: systemframe.height / 844),
+        secondDividerView.bottomAnchor.constraint(equalTo: tagEmotionLabel.topAnchor, constant: -systemframe.height / 34.46),
         
-        tagEmotionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
+        tagEmotionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: customWidth22),
         
         tagEmotionContentCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        tagEmotionContentCollectionView.topAnchor.constraint(equalTo: tagEmotionLabel.bottomAnchor, constant: 14),
-        tagEmotionContentCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
+        tagEmotionContentCollectionView.topAnchor.constraint(equalTo: tagEmotionLabel.bottomAnchor, constant: systemframe.height / 60.28),
+        tagEmotionContentCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
         tagEmotionContentCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        tagEmotionContentCollectionView.heightAnchor.constraint(equalToConstant: 30)
+        tagEmotionContentCollectionView.heightAnchor.constraint(equalToConstant: systemframe.height / 28.13),
+        tagEmotionContentCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -systemframe.height / 30)
         ])
     }
 }
@@ -213,31 +221,20 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagContentCollectionViewCell.reuseIdentifier, for: indexPath) as? TagContentCollectionViewCell else { return UICollectionViewCell() }
-        
-        cell.contentLabel.textColor = UIColor.customBlack
-        cell.layer.borderWidth = 1
-        cell.layer.cornerRadius = 16
-        cell.layer.masksToBounds = true
-        
+ 
         switch collectionView {
         case tagTimeContentCollectionView:
-            cell.contentLabel.textColor = .black
-            cell.contentLabel.text = tagContentsArray[0].tagContents[indexPath.row].content
-            cell.layer.borderColor = tagContentsArray[0].tagContents[indexPath.row].backgroundColor?.cgColor
-            print(tagContentsArray[0].tagContents[indexPath.row])
-            
+
+            cell.tagLabel.setSelectedTextAndBackground(tag: tagContentsArray[0].tagContents[indexPath.row], fontSize: 16, isSelected: false)
+
         case tagMenuContentCollectionView:
-            cell.contentLabel.textColor = .black
-            cell.contentLabel.text = tagContentsArray[1].tagContents[indexPath.row].content
-            cell.layer.borderColor = tagContentsArray[1].tagContents[indexPath.row].backgroundColor?.cgColor
-            print(tagContentsArray[1].tagContents[indexPath.row])
+
+                cell.tagLabel.setSelectedTextAndBackground(tag: tagContentsArray[1].tagContents[indexPath.row], fontSize: 16, isSelected: false)
         
         case tagEmotionContentCollectionView:
-            cell.contentLabel.textColor = .black
-            cell.contentLabel.text = tagContentsArray[2].tagContents[indexPath.row].content
-            cell.layer.borderColor = tagContentsArray[2].tagContents[indexPath.row].backgroundColor?.cgColor
-            print(tagContentsArray[2].tagContents[indexPath.row])
-            
+
+                cell.tagLabel.setSelectedTextAndBackground(tag: tagContentsArray[2].tagContents[indexPath.row], fontSize: 16, isSelected: false)
+    
         default:
             break
         }
@@ -248,8 +245,8 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionView {
         case tagTimeContentCollectionView, tagMenuContentCollectionView, tagEmotionContentCollectionView:
-            let width = 80
-            let height = 30
+            let width = systemframe.width / 5.87
+            let height = systemframe.height / 28.13
             return CGSize(width: width, height: height)
         default:
             return CGSize(width: 0, height: 0)
@@ -261,24 +258,22 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
             
             switch collectionView {
             case tagTimeContentCollectionView:
-                cell.contentLabel.textColor = .white
-                cell.layer.backgroundColor = tagContentsArray[0].tagContents[indexPath.row].backgroundColor?.cgColor
-                    selectedTags.updateValue(cell.contentLabel.text ?? String(), forKey: "time")
+                    cell.tagLabel.setSelectedTextAndBackground(tag: tagContentsArray[0].tagContents[indexPath.row], fontSize: 16, isSelected: true)
+
+                    selectedTags.updateValue(cell.tagLabel.getTagContent(), forKey: "time")
                     print(selectedTags)
             
             case tagMenuContentCollectionView:
-                cell.contentLabel.textColor = .white
-                cell.layer.backgroundColor = tagContentsArray[1].tagContents[indexPath.row].backgroundColor?.cgColor
-                    selectedTags.updateValue(cell.contentLabel.text ?? String(), forKey: "menu")
+                    cell.tagLabel.setSelectedTextAndBackground(tag: tagContentsArray[1].tagContents[indexPath.row], fontSize: 16, isSelected: true)
+
+                    selectedTags.updateValue(cell.tagLabel.getTagContent(), forKey: "menu")
                     print(selectedTags)
-                print(tagContentsArray[1].tagContents[indexPath.row])
             
             case tagEmotionContentCollectionView:
-                cell.contentLabel.textColor = .white
-                cell.layer.backgroundColor = tagContentsArray[2].tagContents[indexPath.row].backgroundColor?.cgColor
-                    selectedTags.updateValue(cell.contentLabel.text ?? String(), forKey: "emotion")
+                    cell.tagLabel.setSelectedTextAndBackground(tag: tagContentsArray[2].tagContents[indexPath.row], fontSize: 16, isSelected: true)
+
+                    selectedTags.updateValue(cell.tagLabel.getTagContent(), forKey: "emotion")
                     print(selectedTags)
-                print(tagContentsArray[2].tagContents[indexPath.row])
                 
             default:
                 break
@@ -288,15 +283,16 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? TagContentCollectionViewCell {
-            cell.backgroundColor = .white
-            cell.contentLabel.textColor = .black
             
             switch collectionView {
             case tagTimeContentCollectionView:
+                    cell.tagLabel.setSelectedTextAndBackground(tag: tagContentsArray[0].tagContents[indexPath.row], fontSize: 16, isSelected: false)
                 selectedTags.removeValue(forKey: "time")
             case tagMenuContentCollectionView:
+                    cell.tagLabel.setSelectedTextAndBackground(tag: tagContentsArray[1].tagContents[indexPath.row], fontSize: 16, isSelected: false)
                 selectedTags.removeValue(forKey: "menu")
             case tagEmotionContentCollectionView:
+                    cell.tagLabel.setSelectedTextAndBackground(tag: tagContentsArray[2].tagContents[indexPath.row], fontSize: 16, isSelected: false)
                 selectedTags.removeValue(forKey: "emotion")
             default:
                 break

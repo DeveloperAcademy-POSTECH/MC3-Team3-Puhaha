@@ -12,7 +12,7 @@
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.addSubview(contentLabel)
+        contentView.addSubview(tagLabel)
         contentView.backgroundColor = .clear
         contentView.clipsToBounds = true
     }
@@ -26,27 +26,17 @@
         configureCellConstraints()
     }
 
-    lazy var contentLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .regular)
-        label.textAlignment = .center
-        label.sizeToFit()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+     lazy var tagLabel: TagLabel = {
+         let label = TagLabel(frame: .zero)
+         label.translatesAutoresizingMaskIntoConstraints = false
+
+         return label
+     }()
 
      private func configureCellConstraints() {
          NSLayoutConstraint.activate([
-            contentLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            contentLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            tagLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            tagLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
          ])
      }
-     
-     public func toggleSelectedButtonState() {
-         if isSelected {
-             backgroundColor = UIColor.customPurple
-         } else {
-             backgroundColor = UIColor.white
-         }
-     }
- }
+}

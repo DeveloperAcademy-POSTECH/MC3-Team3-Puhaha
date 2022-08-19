@@ -59,4 +59,37 @@ class TagLabel: UIView {
         tagBackground.backgroundColor = tag.backgroundColor
         tagBackground.frame = CGRect(x: 0, y: 0, width: tagLabel.font.pointSize / 0.6 + tagLabel.intrinsicContentSize.width, height: tagLabel.intrinsicContentSize.height + tagLabel.font.pointSize / 1.3)
     }
+    
+    /// tagContentCollectionView용
+    func setSelectedTextAndBackground(tag: Tag, fontSize: CGFloat, isSelected: Bool) {
+        if tag.content == "" {
+            return
+        }
+        
+        tagLabel.font = UIFont.systemFont(ofSize: fontSize)
+        if isSelected {
+            tagLabel.textColor = .white
+        } else {
+            tagLabel.textColor = .customBlack
+        }
+        
+        tagLabel.text = tag.content
+        tagLabel.frame = CGRect(x: 0, y: 0, width: systemFrame.width / 5.87, height: systemFrame.height / 28.13)
+
+        
+        tagBackground.layer.cornerRadius = fontSize * 0.8
+        if isSelected {
+            tagBackground.backgroundColor = tag.backgroundColor
+        } else {
+            tagBackground.backgroundColor = .white
+        }
+        tagBackground.layer.borderColor = tag.backgroundColor?.cgColor
+        tagBackground.layer.borderWidth = 1
+
+        tagBackground.frame = CGRect(x: 0, y: 0, width: systemFrame.width / 5.87, height: systemFrame.height / 28.13)
+    }
+    
+    public func getTagContent() -> String {
+        return tagLabel.text ?? String()
+    }
 }
