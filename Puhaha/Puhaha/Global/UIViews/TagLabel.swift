@@ -74,7 +74,7 @@ class TagLabel: UIView {
         }
         
         tagLabel.text = tag.content
-        tagLabel.frame = CGRect(x: 0, y: 0, width: systemFrame.width / 5.87, height: systemFrame.height / 28.13)
+        tagLabel.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width / 5.87, height: UIScreen.main.bounds.height / 28.13)
 
         
         tagBackground.layer.cornerRadius = fontSize * 0.8
@@ -86,7 +86,7 @@ class TagLabel: UIView {
         tagBackground.layer.borderColor = tag.backgroundColor?.cgColor
         tagBackground.layer.borderWidth = 1
 
-        tagBackground.frame = CGRect(x: 0, y: 0, width: systemFrame.width / 5.87, height: systemFrame.height / 28.13)
+        tagBackground.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width / 5.87, height: UIScreen.main.bounds.height / 28.13)
     }
     
     public func getTagContent() -> String {
