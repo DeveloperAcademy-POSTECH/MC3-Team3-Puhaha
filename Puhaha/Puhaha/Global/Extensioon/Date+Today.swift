@@ -55,4 +55,10 @@ extension Date {
         dateFormatter.dateFormat = "h시 m분"
         return dateFormatter.string(from: self)
     }
+    
+    func secondsText() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "ss"
+        return dateFormatter.string(from: self)
+    }
 }
