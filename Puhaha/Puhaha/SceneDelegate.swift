@@ -21,20 +21,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
         
-//        UserDefaults.standard.set("", forKey: "name")
-//        UserDefaults.standard.set("", forKey: "roomCode")
-//        UserDefaults.standard.set("", forKey: "loginedUserEmail")
-//        UserDefaults.standard.set("", forKey: "forUserID")
+        var viewController: UIViewController!
         
-        window?.rootViewController = UINavigationController(rootViewController: SignInViewController())
-        
-        if userDefaultsName == "" && userDefaultsRoomCode != "" {
-            window?.rootViewController?.navigationController?.pushViewController(NameSettingViewController(), animated: true)
-        } else if userDefaultsName != "" && userDefaultsRoomCode != "" {
-            window?.rootViewController?.navigationController?.pushViewController(MainTabViewController(), animated: true)
-        }
-        
-        
+        if userDefaultsName == "-" && userDefaultsRoomCode != "-" {
+             viewController = NameSettingViewController()
+         } else if userDefaultsName == "-" && userDefaultsRoomCode == "-" {
+             viewController = SignInViewController()
+         } else {
+             viewController = MainTabViewController()
+         }
+        window?.rootViewController = UINavigationController(rootViewController: viewController)
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
