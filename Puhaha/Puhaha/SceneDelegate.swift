@@ -20,14 +20,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
-
+        
+        var viewController: UIViewController!
+        
         if userDefaultsName == "-" && userDefaultsRoomCode != "-" {
-            viewController = NameSettingViewController()
-        } else if userDefaultsName == "-" && userDefaultsRoomCode == "-" {
-            viewController = SignInViewController()
-        } else {
-            viewController = MainTabViewController()
-        }
+             viewController = NameSettingViewController()
+         } else if userDefaultsName == "-" && userDefaultsRoomCode == "-" {
+             viewController = SignInViewController()
+         } else {
+             viewController = MainTabViewController()
+         }
         window?.rootViewController = UINavigationController(rootViewController: viewController)
     }
     

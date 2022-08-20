@@ -11,9 +11,9 @@ class SettingViewController: UIViewController {
     
     // 유저의 값을 가지고 있는 변수들
     // MARK: User Data
-    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "userEmail") ?? "-"
+    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "-"
     //    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userEmail") ?? "")
-    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userEmail") ?? "-")
+    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "-")
     
     let firestoreManager = FirestoreManager()
     
