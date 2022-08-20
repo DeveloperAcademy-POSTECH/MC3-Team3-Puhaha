@@ -73,7 +73,7 @@ class MealDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationController?.isNavigationBarHidden = false
-        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.tintColor = .clear
         navigationController?.navigationBar.backItem?.title = ""
     }
     

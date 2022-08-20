@@ -33,6 +33,7 @@
 		A48C93AC288F74D500BA09EF /* BigFork.obj in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A4288F74D500BA09EF /* BigFork.obj */; };
 		A48C93AD288F74D500BA09EF /* BigSpoonVer2.scn in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A5288F74D500BA09EF /* BigSpoonVer2.scn */; };
 		A48C93AE288F74D500BA09EF /* Spatula.scn in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A6288F74D500BA09EF /* Spatula.scn */; };
+		BF63A84828AF6F5800C4BED9 /* NameEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF63A84728AF6F5800C4BED9 /* NameEditingViewController.swift */; };
 		BF8C5FA9288E5EE0002BF0BD /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FA8288E5EDF002BF0BD /* UploadViewController.swift */; };
 		BF8C5FAD288E655B002BF0BD /* TagContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FAC288E655B002BF0BD /* TagContentCollectionViewCell.swift */; };
 		BF8C5FAF288E6B21002BF0BD /* UploadTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FAE288E6B21002BF0BD /* UploadTag.swift */; };
@@ -105,6 +106,7 @@
 		A48C93A4288F74D500BA09EF /* BigFork.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BigFork.obj; sourceTree = "<group>"; };
 		A48C93A5288F74D500BA09EF /* BigSpoonVer2.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = BigSpoonVer2.scn; sourceTree = "<group>"; };
 		A48C93A6288F74D500BA09EF /* Spatula.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Spatula.scn; sourceTree = "<group>"; };
+		BF63A84728AF6F5800C4BED9 /* NameEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEditingViewController.swift; sourceTree = "<group>"; };
 		BF7F91182886530A009D3809 /* ActionSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetView.swift; sourceTree = "<group>"; };
 		BF8C5FA8288E5EDF002BF0BD /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		BF8C5FAC288E655B002BF0BD /* TagContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagContentCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				CE33B7782894FFA40054F9CD /* InviteFamilyViewController.swift */,
 				559D06C5289BB97300338782 /* JoinFamilyViewController.swift */,
 				CE445BE628A41ABE0084A93F /* ArchiveViewController.swift */,
+				BF63A84728AF6F5800C4BED9 /* NameEditingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				CE558B1528852DF800E98909 /* Tag.swift in Sources */,
 				A48C939B288F747100BA09EF /* PokingTool.swift in Sources */,
 				BF8C5FAF288E6B21002BF0BD /* UploadTag.swift in Sources */,
+				BF63A84828AF6F5800C4BED9 /* NameEditingViewController.swift in Sources */,
 				CE9F9661287FA66C00783324 /* ViewController.swift in Sources */,
 				55DCB98728958EDE00C83E1D /* SingInViewControllerASDelegate.swift in Sources */,
 				A40C3F5F2890048B004465D5 /* PokeToolViewController.swift in Sources */,
@@ -619,10 +623,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Puhaha/Puhaha.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 744MUUC77P;
+				DEVELOPMENT_TEAM = D9CAJN27UH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Puhaha/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 사용권한을 허용해주세요.";
@@ -636,9 +640,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mc3.puhaha.whatdidyoueat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.puhahaa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = WhatDidYouEat;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -651,14 +655,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Puhaha/Puhaha.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 744MUUC77P;
+				DEVELOPMENT_TEAM = D9CAJN27UH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Puhaha/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 사용권한을 요청합니다.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "캘러리 사용권한을 요청합니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 사용권한을 허용해주세요.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진앨범 사용권한을 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -668,9 +672,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mc3.puhaha.whatdidyoueat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.puhahaa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "WhatDidYouEat-adHoc";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

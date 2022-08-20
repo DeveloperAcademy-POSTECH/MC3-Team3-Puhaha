@@ -14,7 +14,6 @@ class UploadViewController: UIViewController {
 
     private let customWidth22 = UIScreen.main.bounds.width / 17.73
     private let customHeight22 = UIScreen.main.bounds.height / 38.36
-    private let systemFrame = UIScreen.main.bounds
     
     var tagLabel: TagLabel = TagLabel()
     
@@ -65,7 +64,7 @@ class UploadViewController: UIViewController {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 11
         layout.minimumInteritemSpacing = 0
-        layout.sectionInset = UIEdgeInsets(top: 0, left: systemFrame.width / 17.73, bottom: 0, right: UIScreen.main.bounds.width / 17.73)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width / 17.73, bottom: 0, right: UIScreen.main.bounds.width / 17.73)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(TagContentCollectionViewCell.self, forCellWithReuseIdentifier: TagContentCollectionViewCell.reuseIdentifier)
@@ -159,47 +158,47 @@ class UploadViewController: UIViewController {
     private func configureConstraints() {
         NSLayoutConstraint.activate([
         pictureImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        pictureImageView.widthAnchor.constraint(equalToConstant: systemframe.width),
+        pictureImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
         pictureImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-        pictureImageView.bottomAnchor.constraint(equalTo: tagTimeLabel.topAnchor, constant: -systemframe.height / 32.46),
+        pictureImageView.bottomAnchor.constraint(equalTo: tagTimeLabel.topAnchor, constant: -UIScreen.main.bounds.height / 32.46),
         
-        tagTimeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: systemframe.width / 17.73),
-        tagTimeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: systemframe.height / 1.76),
+        tagTimeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIScreen.main.bounds.width / 17.73),
+        tagTimeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height / 1.76),
         
-        tagTimeContentCollectionView.topAnchor.constraint(equalTo: tagTimeLabel.bottomAnchor, constant: systemframe.height / 60.29),
+        tagTimeContentCollectionView.topAnchor.constraint(equalTo: tagTimeLabel.bottomAnchor, constant: UIScreen.main.bounds.height / 60.29),
         tagTimeContentCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         tagTimeContentCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
         tagTimeContentCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        tagTimeContentCollectionView.heightAnchor.constraint(equalToConstant: systemframe.height / 28.13),
-        tagTimeContentCollectionView.bottomAnchor.constraint(equalTo: firstDividerView.topAnchor, constant: -systemframe.height / 24.82),
+        tagTimeContentCollectionView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 28.13),
+        tagTimeContentCollectionView.bottomAnchor.constraint(equalTo: firstDividerView.topAnchor, constant: -UIScreen.main.bounds.height / 24.82),
         
         firstDividerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: customWidth22),
         firstDividerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -customWidth22),
-        firstDividerView.heightAnchor.constraint(equalToConstant: systemframe.height / 844),
-        firstDividerView.bottomAnchor.constraint(equalTo: tagMenuLabel.topAnchor, constant: -systemframe.height / 32.46),
+        firstDividerView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 844),
+        firstDividerView.bottomAnchor.constraint(equalTo: tagMenuLabel.topAnchor, constant: -UIScreen.main.bounds.height / 32.46),
         
         tagMenuLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: customWidth22),
         
         tagMenuContentCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        tagMenuContentCollectionView.topAnchor.constraint(equalTo: tagMenuLabel.bottomAnchor, constant: systemframe.height / 60.28),
+        tagMenuContentCollectionView.topAnchor.constraint(equalTo: tagMenuLabel.bottomAnchor, constant: UIScreen.main.bounds.height / 60.28),
         tagMenuContentCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
         tagMenuContentCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        tagMenuContentCollectionView.heightAnchor.constraint(equalToConstant: systemframe.height / 28.13),
-        tagMenuContentCollectionView.bottomAnchor.constraint(equalTo: secondDividerView.topAnchor, constant: -systemframe.height / 24.82),
+        tagMenuContentCollectionView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 28.13),
+        tagMenuContentCollectionView.bottomAnchor.constraint(equalTo: secondDividerView.topAnchor, constant: -UIScreen.main.bounds.height / 24.82),
         
         secondDividerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: customWidth22),
         secondDividerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -customWidth22),
-        secondDividerView.heightAnchor.constraint(equalToConstant: systemframe.height / 844),
-        secondDividerView.bottomAnchor.constraint(equalTo: tagEmotionLabel.topAnchor, constant: -systemframe.height / 34.46),
+        secondDividerView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 844),
+        secondDividerView.bottomAnchor.constraint(equalTo: tagEmotionLabel.topAnchor, constant: -UIScreen.main.bounds.height / 34.46),
         
         tagEmotionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: customWidth22),
         
         tagEmotionContentCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        tagEmotionContentCollectionView.topAnchor.constraint(equalTo: tagEmotionLabel.bottomAnchor, constant: systemframe.height / 60.28),
+        tagEmotionContentCollectionView.topAnchor.constraint(equalTo: tagEmotionLabel.bottomAnchor, constant: UIScreen.main.bounds.height / 60.28),
         tagEmotionContentCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
         tagEmotionContentCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        tagEmotionContentCollectionView.heightAnchor.constraint(equalToConstant: systemframe.height / 28.13),
-        tagEmotionContentCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -systemframe.height / 30)
+        tagEmotionContentCollectionView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 28.13),
+        tagEmotionContentCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -UIScreen.main.bounds.height / 30)
         ])
     }
 }
@@ -245,8 +244,8 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionView {
         case tagTimeContentCollectionView, tagMenuContentCollectionView, tagEmotionContentCollectionView:
-            let width = systemframe.width / 5.87
-            let height = systemframe.height / 28.13
+            let width = UIScreen.main.bounds.width / 5.87
+            let height = UIScreen.main.bounds.height / 28.13
             return CGSize(width: width, height: height)
         default:
             return CGSize(width: 0, height: 0)

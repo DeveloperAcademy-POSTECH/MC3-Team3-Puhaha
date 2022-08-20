@@ -149,6 +149,11 @@ class MainViewController: UIViewController {
         ])
     }
     
+    @objc func navigateToSettingView() {
+        let settingViewController = SettingViewController()
+        self.navigationController?.pushViewController(settingViewController, animated: true)
+    }
+    
     func mealCardViewHidden() {
         if meals.isEmpty {
             emptyMealCardView.isHidden = false

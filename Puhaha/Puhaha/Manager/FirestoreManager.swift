@@ -249,7 +249,7 @@ class FirestoreManager: ObservableObject {
         
         let documentRef = db.collection("Families").document(familyCode).collection("Meals")
         let storageManager = StorageManager()
-        let imageName: String = "img_\(today.dateText)_\(today.timeNumberText).jpeg"
+        let imageName: String = "img_\(today.dateText)_\(today.timeNumberText)\(today.secondsText()).jpeg"
         
         storageManager.uploadMealImage(image: image, familyCode: familyCode, imageName: imageName) {
             documentRef.addDocument(data: [
@@ -263,6 +263,7 @@ class FirestoreManager: ObservableObject {
                         ],
                 "reactions": []])
         }
+        print("이미지이름: \(imageName)")
     }
     
     func addFamily(roomCode: String, userEmail: String) {
