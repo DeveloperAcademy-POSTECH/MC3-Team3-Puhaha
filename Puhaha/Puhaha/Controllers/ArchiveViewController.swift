@@ -18,7 +18,7 @@ class ArchiveViewController: UIViewController {
     @Published var baseMeals: [Meal] = []
     @Published var meals: [Meal] = []
     
-    private let familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "-"
+    private let familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? ""
     
     private let titleLabel: UILabel = {
         let label: UILabel = UILabel()

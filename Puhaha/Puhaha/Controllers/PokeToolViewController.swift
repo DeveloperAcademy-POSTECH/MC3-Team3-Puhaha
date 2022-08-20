@@ -12,7 +12,7 @@ import FirebaseFirestore
 
 class PokeToolCustomizingViewController: UIViewController {
     
-    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "-"
+    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "loginedUserEmail") ?? ""
     var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "")
     
     var passedUserToolData: PokeTool = PokeTool(tool: Tool.Whisk, color: UIColor.customBlack)
@@ -221,8 +221,8 @@ class PokeToolCustomizingViewController: UIViewController {
         // TODO: Dismiss Poke Tool View Controller View
         setUserToolData()
         
-        let roomCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "-"
-        if roomCode == "-" || roomCode == "" {
+        let roomCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? ""
+        if roomCode == "" {
             navigationController?.pushViewController(CreateFamilyViewController(), animated: true)
         } else {
             navigationController?.popViewController(animated: true)

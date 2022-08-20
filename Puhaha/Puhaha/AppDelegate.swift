@@ -14,15 +14,15 @@ import AuthenticationServices
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    private let userDefaultsRoomCode = UserDefaults.standard.string(forKey: "roomCode") as String? ?? "-"
-    private let userDefaultsName = UserDefaults.standard.string(forKey: "name") as String? ?? "-"
+    private let userDefaultsRoomCode = UserDefaults.standard.string(forKey: "roomCode") as String? ?? ""
+    private let userDefaultsName = UserDefaults.standard.string(forKey: "name") as String? ?? ""
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         
         let appleIDProvider = ASAuthorizationAppleIDProvider()
-        let forUserID = UserDefaults.standard.string(forKey: "forUserID")
-        appleIDProvider.getCredentialState(forUserID: forUserID ?? "") { (credentialState, error) in
+        let forUserID = UserDefaults.standard.string(forKey: "forUserID") ?? ""
+        appleIDProvider.getCredentialState(forUserID: forUserID) { (credentialState, error) in
             switch credentialState {
             case .authorized:
                 DispatchQueue.main.async {

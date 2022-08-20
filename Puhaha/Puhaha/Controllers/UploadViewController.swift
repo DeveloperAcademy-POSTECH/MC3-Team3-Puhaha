@@ -19,7 +19,7 @@ class UploadViewController: UIViewController {
     
     var loginedUserEmail: String = UserDefaults.standard.string(forKey: "loginedUserEmail") ?? String()
     
-    let familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "-"
+    let familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? ""
     
     let tagContentsArray = UploadTag.uploadTags
     var selectedTags: [String: String] = ["time": "", "menu": "", "emotion": ""]

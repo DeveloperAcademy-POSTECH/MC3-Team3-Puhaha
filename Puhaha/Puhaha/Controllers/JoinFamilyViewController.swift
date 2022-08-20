@@ -42,7 +42,7 @@ class JoinFamilyViewController: UIViewController {
     
     @objc private func nextButtonTapped() {
         let joinedRoomCode = familyCodeTextField.text as String? ?? ""
-        let userEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? "-"
+        let userEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? ""
         let firestoreManager = FirestoreManager()
 
         UserDefaults.standard.set(joinedRoomCode, forKey: "roomCode")

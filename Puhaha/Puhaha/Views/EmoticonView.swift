@@ -8,7 +8,7 @@
 import UIKit
 
 class EmoticonView: UIView {
-    var familyCode = "-"
+    var familyCode = ""
     let firebaseManager = FirestoreManager()
     var meal: Meal!
     var loginedUser: String = UserDefaults.standard.string(forKey: "name") ?? ""
