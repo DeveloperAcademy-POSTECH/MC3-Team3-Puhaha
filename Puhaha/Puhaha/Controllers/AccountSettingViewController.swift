@@ -8,7 +8,7 @@
 import UIKit
 
 class AccountSettingViewController: UIViewController {
-    private let SettingSectionNames: [String] = ["이름 변경", "로그아웃", "탈퇴하기"]
+    private let SettingSectionNames: [String] = ["이름 변경", "계정 삭제"]
     
     lazy var tableView: UITableView = {
         let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height * 3
@@ -59,8 +59,7 @@ extension AccountSettingViewController: UITableViewDataSource {
     
     enum AccountSettingLabel: String {
         case changeName = "이름 변경"
-        case logout = "로그아웃"
-        case delete = "탈퇴하기"
+        case logout = "계정 설정"
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -86,20 +85,13 @@ extension AccountSettingViewController: UITableViewDataSource {
 extension AccountSettingViewController {
     @objc func logOutButtonTapped() {
         let alert = UIAlertController(title: "알림",
-                                      message: "계정 삭제를 위해서는 설정 > 프로필 > 암호 및 보안 > Apple ID를 사용하는 앱 > 밥먹언? > Apple ID 사용 중단 버튼을 눌러주세요",
+                                      message: "계정 삭제를 위해서는 \n설정 > 프로필 > 암호 및 보안 > Apple ID를 사용하는 앱 > 밥먹언? > Apple ID 사용 중단 버튼을 눌러주세요",
                                       preferredStyle: .alert)
         
-        let yes = UIAlertAction(title: "Yes", style: .default, handler: { [weak self] _ in
-            UserDefaults.standard.set("", forKey: "name")
-            UserDefaults.standard.set("", forKey: "roomCode")
-            UserDefaults.standard.set("", forKey: "loginedUserEmail")
-            UserDefaults.standard.set("", forKey: "forUserID")
-            
+        let yes = UIAlertAction(title: "확인", style: .default, handler: { [weak self] _ in
             self?.navigationController?.popToRootViewController(animated: true)
         })
-        
-        let no = UIAlertAction(title: "No", style: .destructive, handler: nil)
-        alert.addAction(no)
+
         alert.addAction(yes)
         present(alert, animated: true)
     }
