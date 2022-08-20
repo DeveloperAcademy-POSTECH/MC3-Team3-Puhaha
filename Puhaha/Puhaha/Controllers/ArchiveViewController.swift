@@ -119,11 +119,13 @@ class ArchiveViewController: UIViewController {
         archiveCollectionView.reloadData()
         dateLabel.text = selectedDate.dateTextWithDot
         
+        meals = baseMeals.filter({ $0.uploadedDate == selectedDate.dateText })
+        
         collectionViewHiddenToggle()
     }
     
     func collectionViewHiddenToggle() {
-        if meals.filter({ $0.uploadedDate == selectedDate.dateText }).isEmpty {
+        if meals.isEmpty {
             emptyLabel.isHidden = false
             archiveCollectionView.isHidden = true
         } else {

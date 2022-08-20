@@ -60,6 +60,7 @@ extension MainViewController: UICollectionViewDataSource {
                 firestoreManager.families[indexPath.row].isSelected = true
             }
             mealCardViewHidden()
+            tableLabel.reloadInputViews()
             mealCardCollectionView.reloadData()
             familyFilterCollectionView.reloadData()
             

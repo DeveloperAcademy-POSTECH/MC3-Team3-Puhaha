@@ -10,7 +10,9 @@ import UIKit
 import FirebaseFirestore
 
 class InviteFamilyViewController: UIViewController {
-    private var createdRoomCode: String = UUID().uuidString
+    private var roomCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "-"
+    private var createdRoomCode: String!
+    
     public var db = Firestore.firestore()
     
     private let guideMessageLabel: UILabel = {
@@ -113,6 +115,14 @@ class InviteFamilyViewController: UIViewController {
         
         view.backgroundColor = .white
         
+        if roomCode == "-" {
+            createdRoomCode = UUID().uuidString
+            enterFamilyRoomButton.isHidden = false
+        } else {
+            createdRoomCode = roomCode
+            enterFamilyRoomButton.isHidden = true
+        }
+        
         roomCodeStackView.layoutMargins = UIEdgeInsets(top: 0, left: roomCodeCopyButton.intrinsicContentSize.width / 2 - 8, bottom: 0, right: 0)
         
         [roomCodeLabel, roomCodeCopyButton].forEach {
@@ -123,7 +133,6 @@ class InviteFamilyViewController: UIViewController {
             view.addSubview($0)
         }
         
-        roomCodeLabel.text = createdRoomCode
         roomCodeLabel.text = createdRoomCode
         
         configureConstraints()

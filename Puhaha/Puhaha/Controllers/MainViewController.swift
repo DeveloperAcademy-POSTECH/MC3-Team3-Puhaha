@@ -171,8 +171,21 @@ class MainViewController: UIViewController {
     
     private func getFamilyMemeber() {
         firestoreManager.getFamilyMember(familyCode: familyCode) { [self] in
+            
+            filter = firestoreManager.families[selectedCellIndex].user.getName()
+            tableLabel.text = "\(filter)의 식탁"
+            
+            if filter != "모두" {
+                firestoreManager.families[0].isSelected = false
+            } else {
+                firestoreManager.families[0].isSelected = true
+            }
+            firestoreManager.families[selectedCellIndex].isSelected = true
             familyMembers = firestoreManager.families
+            
+            tableLabel.reloadInputViews()
             familyFilterCollectionView.reloadData()
+            mealCardCollectionView.reloadData()
         }
     }
     
