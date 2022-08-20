@@ -12,25 +12,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
     var viewController: UIViewController!
-    private let userDefaultsRoomCode = UserDefaults.standard.string(forKey: "roomCode") as String? ?? "-"
-    private let userDefaultsName = UserDefaults.standard.string(forKey: "name") as String? ?? "-"
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
-        
-        var viewController: UIViewController!
-        
-        if userDefaultsName == "-" && userDefaultsRoomCode != "-" {
-             viewController = NameSettingViewController()
-         } else if userDefaultsName == "-" && userDefaultsRoomCode == "-" {
-             viewController = SignInViewController()
-         } else {
-             viewController = MainTabViewController()
-         }
-        window?.rootViewController = UINavigationController(rootViewController: viewController)
+        window?.rootViewController = UINavigationController(rootViewController: SignInViewController())
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

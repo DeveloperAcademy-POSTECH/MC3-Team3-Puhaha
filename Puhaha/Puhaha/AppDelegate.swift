@@ -27,24 +27,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             case .authorized:
                 DispatchQueue.main.async {
                     print(UserDefaults.standard.string(forKey: "loginedUserEmail")!)
-                    let mainTabViewController = MainTabViewController()
-                    self.window?.rootViewController = mainTabViewController
+//                    let mainTabViewController = MainTabViewController()
+//                    self.window?.rootViewController = mainTabViewController
                     print("authorized")
                     // The Apple ID credential is valid.
                 }
             case .revoked:
                 DispatchQueue.main.async {
                     print("revoked")
-                    let signInViewController = SignInViewController()
-                    self.window?.rootViewController = signInViewController
+//                    let signInViewController = SignInViewController()
+//                    self.window?.rootViewController = signInViewController
                 }
                     
             case .notFound:
                 // The Apple ID credential is either revoked or was not found, so show the sign-in UI.
                 print("notFound")
                 DispatchQueue.main.async {
-                    let signInViewController = SignInViewController()
-                    self.window?.rootViewController = signInViewController
+//                    let signInViewController = SignInViewController()
+//                    self.window?.rootViewController = signInViewController
                     // self.window?.rootViewController?.showLoginViewController()
                 }
             default:
