@@ -74,12 +74,8 @@ extension AccountSettingViewController: UITableViewDataSource {
             let nameEditingViewController = NameEditingViewController()
             self.navigationController?.pushViewController(nameEditingViewController, animated: true)
             
-        case "로그아웃":
+        case "계정 삭제":
             logOutButtonTapped()
-
-        case "탈퇴하기":
-            // TODO: 탈퇴하기 기능 (유저 지우고, 패밀리에서도 그 유저 지워야 함)
-            return
             
         default:
             return
@@ -90,7 +86,7 @@ extension AccountSettingViewController: UITableViewDataSource {
 extension AccountSettingViewController {
     @objc func logOutButtonTapped() {
         let alert = UIAlertController(title: "알림",
-                                      message: "정말 로그아웃 하시겠습니까?",
+                                      message: "계정 삭제를 위해서는 설정 > 프로필 > 암호 및 보안 > Apple ID를 사용하는 앱 > 밥먹언? > Apple ID 사용 중단 버튼을 눌러주세요",
                                       preferredStyle: .alert)
         
         let yes = UIAlertAction(title: "Yes", style: .default, handler: { [weak self] _ in
