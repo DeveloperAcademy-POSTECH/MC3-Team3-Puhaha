@@ -222,7 +222,7 @@ class PokeToolCustomizingViewController: UIViewController {
         setUserToolData()
         
         let roomCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "-"
-        if roomCode == "-" {
+        if roomCode == "-" || roomCode == "" {
             navigationController?.pushViewController(CreateFamilyViewController(), animated: true)
         } else {
             navigationController?.popViewController(animated: true)

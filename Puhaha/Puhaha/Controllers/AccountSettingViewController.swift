@@ -94,9 +94,12 @@ extension AccountSettingViewController {
                                       preferredStyle: .alert)
         
         let yes = UIAlertAction(title: "Yes", style: .default, handler: { [weak self] _ in
+            UserDefaults.standard.set("", forKey: "name")
+            UserDefaults.standard.set("", forKey: "roomCode")
             UserDefaults.standard.set("", forKey: "loginedUserEmail")
-            let signInViewController = SignInViewController()
-            self?.navigationController?.pushViewController(signInViewController, animated: true)
+            UserDefaults.standard.set("", forKey: "forUserID")
+            
+            self?.navigationController?.popToRootViewController(animated: true)
         })
         
         let no = UIAlertAction(title: "No", style: .destructive, handler: nil)

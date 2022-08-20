@@ -123,7 +123,7 @@ class FirestoreManager: ObservableObject {
     func getSignInUser(userEmail: String, completion: @escaping () -> Void) {
         loginedUser = User(accountId: userEmail)
         
-        db.collection("Users").document(userEmail).getDocument(source: .default) { [self] (document, error) in
+        db.collection("Users").document(userEmail).addSnapshotListener { [self] (document, error) in
             if let document = document {
                 let name = document.data()?["name"] as? String ?? ""
                 let familyCode = document.data()?["familyCode"] as? String ?? ""

@@ -115,7 +115,7 @@ class InviteFamilyViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        if roomCode == "-" {
+        if roomCode == "-" || roomCode == "" {
             createdRoomCode = UUID().uuidString
             enterFamilyRoomButton.isHidden = false
         } else {
