@@ -46,8 +46,8 @@ class NameEditingViewController: UIViewController {
 
         UserDefaults.standard.set(signinUserName, forKey: "name")
         firestoreManager.setUserName(userEmail: signinUserEmail, userName: signinUserName)
-        let accountSettingViewController = AccountSettingViewController()
-        self.navigationController?.pushViewController(accountSettingViewController, animated: true)
+        
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func viewDidLoad() {

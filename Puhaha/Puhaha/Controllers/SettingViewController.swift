@@ -44,8 +44,11 @@ class SettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.backBarButtonItem?.title = ""
+        navigationController?.navigationBar.tintColor = .tintColor
+        navigationItem.title = "설정"
         view.backgroundColor = UIColor.white
-        navigationController?.navigationBar.backgroundColor = .white
+        navigationController?.navigationBar.backgroundColor = .clear
         
         getToolDataTry()
         navigationItem.title = "설정"

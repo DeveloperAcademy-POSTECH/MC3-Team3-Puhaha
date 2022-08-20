@@ -137,12 +137,17 @@ class MainTabViewController: UITabBarController {
             firestoreManager.meals[i].uploadUser = firestoreManager.user.getName()
             firestoreManager.meals[i].userIcon = firestoreManager.user.getToolImage()
             
+            reloadMainView()
             reloadArchiveView()
         }
     }
     
     private func reloadMainView() {
         tableTab.baseMeals = firestoreManager.meals.filter { $0.uploadedDate == today.dateText }
+        
+        tableTab.filter = tableTab.firestoreManager.families[tableTab.selectedCellIndex].user.getName()
+        tableTab.tableLabel.text = "\(tableTab.filter)의 식탁"
+        tableTab.tableLabel.reloadInputViews()
         
         if tableTab.filter == "모두" {
             tableTab.meals = tableTab.baseMeals

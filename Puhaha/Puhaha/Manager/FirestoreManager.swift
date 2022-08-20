@@ -87,16 +87,16 @@ class FirestoreManager: ObservableObject {
     func getUploadUser(userEmail: String, completion: @escaping () -> Void) {
         user = User(accountId: userEmail)
         
-        db.collection("Users").document(userEmail).getDocument(source: .default) { [self] (document, error) in
+        db.collection("Users").document(userEmail).addSnapshotListener { [self] (document, error) in
             if let document = document {
                 let name = document.data()?["name"] as? String ?? ""
                 let familyCode = document.data()?["familyCode"] as? String ?? ""
                 let pokingTool = document.data()?["pokingTool"] as? [String: String] ?? [:]
                 let pokeStateValue = document.data()?["pokeState"] as? [String: String] ?? [:]
                 
-                let pokingToolColor: String = pokingTool["color"] ?? ""
-                let pokingToolTool: String = pokingTool["tool"] ?? ""
-                let toolImage: UIImage = UIImage(named: "\(pokingToolColor.lowercased())_\(pokingToolTool.lowercased())") ?? UIImage()
+                let pokingToolColor: String = pokingTool["color"]?.lowercased() ?? ""
+                let pokingToolTool: String = pokingTool["tool"]?.lowercased() ?? ""
+                let toolImage: UIImage = UIImage(named: "\(pokingToolColor.lowercased())_\(pokingToolTool)") ?? UIImage()
                 
                 /* Tool enum 사용할 경우
                 let toolType = convertStringToToolType(string: pokingTool["tool"] ?? "")
@@ -130,8 +130,8 @@ class FirestoreManager: ObservableObject {
                 let pokingTool = document.data()?["pokingTool"] as? [String: String] ?? [:]
                 let pokeStateValue = document.data()?["pokeState"] as? [String: String] ?? [:]
                 
-                let pokingToolColor: String = pokingTool["color"] ?? ""
-                let pokingToolType: String = pokingTool["tool"] ?? ""
+                let pokingToolColor: String = pokingTool["color"]?.lowercased() ?? ""
+                let pokingToolType: String = pokingTool["tool"]?.lowercased() ?? ""
                 let toolImage: UIImage = UIImage(named: "\(pokingToolColor)_\(pokingToolType)") ?? UIImage()
                 let pokedBy: String = pokeStateValue["pokedBy"] ?? ""
                 let pokedTime: String = pokeStateValue["pokedTime"] ?? ""
@@ -152,15 +152,22 @@ class FirestoreManager: ObservableObject {
     }
     
     func getFamilyMember(familyCode: String, completion: @escaping () -> Void) {
-        db.collection("Families").document(familyCode).getDocument(source: .default) { [self] (document, error) in
+        db.collection("Families").document(familyCode).addSnapshotListener { [self] (document, error) in
             if let document = document {
                 let userEmails: [String] = document.data()?["users"] as? [String] ?? []
                 memberEmails = userEmails
-                
-                db.collection("Users").whereField("familyCode", isEqualTo: familyCode).getDocuments(source: .default) { [self] (querySnapshot, error) in
+                db.collection("Users").whereField("familyCode", isEqualTo: familyCode).addSnapshotListener { [self] (querySnapshot, _) in/*.getDocuments(source: .default) { [self] (querySnapshot, error) in*/
                     if let error = error {
                         print("Error getting documents: \(error)")
                     } else {
+                        families = [Family(user: User(accountId: "",
+                                                      name: "모두",
+                                                      toolImage: UIImage(named: "IconEveryoneFilter")!,
+                                                      toolType: "",
+                                                      toolColor: "",
+                                                      familyCode: "",
+                                                      pokeState: Poke()),
+                                           isSelected: true)]
                         for document in querySnapshot!.documents {
                             let data = document.data()
                             
@@ -172,8 +179,8 @@ class FirestoreManager: ObservableObject {
                             let pokingTool = data["pokingTool"] as? [String: String] ?? [:]
                             let pokeStateValue = data["pokeState"] as? [String: String] ?? [:]
                             
-                            let pokingToolColor: String = pokingTool["color"] ?? ""
-                            let pokingToolTool: String = pokingTool["tool"] ?? ""
+                            let pokingToolColor: String = pokingTool["color"]?.lowercased() ?? ""
+                            let pokingToolTool: String = pokingTool["tool"]?.lowercased() ?? ""
                             let toolImage: UIImage = UIImage(named: "\(pokingToolColor)_\(pokingToolTool)") ?? UIImage()
                             let pokedBy: String = pokeStateValue["pokedBy"] ?? ""
                             let pokedTime: String = pokeStateValue["pokedTime"] ?? ""
@@ -188,8 +195,8 @@ class FirestoreManager: ObservableObject {
                             
                             families.append(Family(user: user, isSelected: false))
                         }
+                        completion()
                     }
-                    completion()
                 }
             } else {
                 print(error ?? "")

@@ -220,7 +220,13 @@ class PokeToolCustomizingViewController: UIViewController {
         
         // TODO: Dismiss Poke Tool View Controller View
         setUserToolData()
-        navigationController?.pushViewController(CreateFamilyViewController(), animated: true)
+        
+        let roomCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "-"
+        if roomCode == "-" {
+            navigationController?.pushViewController(CreateFamilyViewController(), animated: true)
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     private func configureConstraints() {
