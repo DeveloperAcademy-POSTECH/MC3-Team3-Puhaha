@@ -10,7 +10,7 @@ import UIKit
 import FirebaseFirestore
 
 class InviteFamilyViewController: UIViewController {
-    private var roomCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "-"
+    private var roomCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? ""
     private var createdRoomCode: String!
     
     public var db = Firestore.firestore()
@@ -84,7 +84,7 @@ class InviteFamilyViewController: UIViewController {
     }()
     
     @objc private func enterFamilyRoomButtonTapped() {
-        let userEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? "-"
+        let userEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? ""
         let firestoreManager = FirestoreManager()
         
         firestoreManager.setFamilyCode(userEmail: userEmail, code: createdRoomCode)
@@ -115,7 +115,7 @@ class InviteFamilyViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        if roomCode == "-" || roomCode == "" {
+        if roomCode == "" {
             createdRoomCode = UUID().uuidString
             enterFamilyRoomButton.isHidden = false
         } else {

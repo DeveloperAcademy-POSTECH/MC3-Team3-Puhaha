@@ -17,7 +17,7 @@ class MainTabViewController: UITabBarController {
     public var firestoreManager = FirestoreManager()
     public var storageManager = StorageManager()
     var today: Date = Date.now
-    var roomCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "-"
+    var roomCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? ""
     
     var tableTab: MainViewController!
     var archiveTab: ArchiveViewController!

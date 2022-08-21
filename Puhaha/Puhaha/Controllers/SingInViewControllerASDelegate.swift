@@ -38,7 +38,7 @@ extension SignInViewController: ASAuthorizationControllerDelegate {
                 }
             }
             
-            let signinUserEmail = appleIDCredential.email as String? ?? "-"
+            let signinUserEmail = appleIDCredential.email as String? ?? ""
             UserDefaults.standard.set(appleIDCredential.user, forKey: "forUserID")
             UserDefaults.standard.set(signinUserEmail, forKey: "loginedUserEmail")
 

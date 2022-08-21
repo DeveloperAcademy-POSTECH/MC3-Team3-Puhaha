@@ -42,6 +42,24 @@ class SignInViewController: UIViewController {
                          for: .touchUpInside)
         return button
     }()
+    
+    override func loadView() {
+        super.loadView()
+        
+        let userDefaultsRoomCode = UserDefaults.standard.string(forKey: "roomCode") as String? ?? ""
+        let userDefaultsName = UserDefaults.standard.string(forKey: "name") as String? ?? ""
+        let userDefaultEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? ""
+        
+        if userDefaultEmail != "" {
+            if userDefaultsName == "" {
+                navigationController?.pushViewController(NameSettingViewController(), animated: true)
+            } else if userDefaultsRoomCode == "" {
+                navigationController?.pushViewController(CreateFamilyViewController(), animated: true)
+            } else {
+                navigationController?.pushViewController(MainTabViewController(), animated: true)
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
