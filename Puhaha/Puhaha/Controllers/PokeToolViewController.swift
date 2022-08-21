@@ -218,7 +218,6 @@ class PokeToolCustomizingViewController: UIViewController {
     
     @objc func didTapDone() {
         
-        // todo: Dismiss Poke Tool View Controller View
         setUserToolData()
         
         let roomCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? ""
