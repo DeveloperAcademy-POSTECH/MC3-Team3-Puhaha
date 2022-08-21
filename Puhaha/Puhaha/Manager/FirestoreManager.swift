@@ -173,8 +173,9 @@ class FirestoreManager: ObservableObject {
                             
                             let accountId = data["accountId"] as? String ?? ""
                             let name = data["name"] as? String ?? ""
+                            /* 안드로이드 개발이 되는 경우 0: 애플 계정 로그인, 1: 구글 계정 로그인으로 사용 예정
                             let loginForm = data["loginForm"] as? Int ?? 0
-                            
+                            */
                             let familyCode = data["familyCode"] as? String ?? ""
                             let pokingTool = data["pokingTool"] as? [String: String] ?? [:]
                             let pokeStateValue = data["pokeState"] as? [String: String] ?? [:]

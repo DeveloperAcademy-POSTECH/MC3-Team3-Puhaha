@@ -39,6 +39,8 @@ extension UIColor {
 // MARK: 임의로 넣은 값이라 수정 필요
 extension UIColor {
     
+    static let toolColors = [UIColor.customLightGray, UIColor.customBlue, UIColor.customYellow, UIColor.customBlack, UIColor.customPurple]
+    
     /// 다홍색
     static var customRed: UIColor {
         return UIColor(rgb: 0xE86334)
@@ -103,9 +105,3 @@ extension UIColor {
         return UIColor(rgb: 0x333333)
     }
 }
-
-#if DEBUG
-
-let toolColors = [UIColor.customLightGray, UIColor.customBlue, UIColor.customYellow, UIColor.customBlack, UIColor.customPurple]
-
-#endif

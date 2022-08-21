@@ -82,10 +82,6 @@ class PokeTool {
         self.tool = tool
         self.color = color
     }
+    
+    static let toolImages = ["silver_fork", "silver_spoon", "silver_whisk", "silver_spatula"]
 }
-
-#if DEBUG
-
-let toolImages = ["silver_fork", "silver_spoon", "silver_whisk", "silver_spatula"]
-
-#endif

@@ -116,7 +116,7 @@ extension SettingViewController: UITableViewDataSource {
         let cell = tableView.cellForRow(at: indexPath)
         let cellTextLabel = cell?.textLabel?.text
         
-        // TODO: enum으로 선언
+        // todo: enum으로 선언
         
         switch cellTextLabel {
         case "계정 설정":
