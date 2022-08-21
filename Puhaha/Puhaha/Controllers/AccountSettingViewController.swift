@@ -8,6 +8,7 @@
 import UIKit
 
 class AccountSettingViewController: UIViewController {
+//    private let firestoreManager: FirestoreManager = FirestoreManager()
     private let SettingSectionNames: [String] = ["이름 변경", "계정 삭제"]
     
     lazy var tableView: UITableView = {
@@ -89,6 +90,11 @@ extension AccountSettingViewController {
                                       preferredStyle: .alert)
         
         let yes = UIAlertAction(title: "확인", style: .default, handler: { [weak self] _ in
+//            self?.firestoreManager.deleteFamilyCode(userEmail: UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "")
+            UserDefaults.standard.set("", forKey: "roomCode")
+            UserDefaults.standard.set("", forKey: "name")
+            UserDefaults.standard.set("", forKey: "loginedUserEmail")
+            UserDefaults.standard.set("", forKey: "forUserID")
             self?.navigationController?.popToRootViewController(animated: true)
         })
 

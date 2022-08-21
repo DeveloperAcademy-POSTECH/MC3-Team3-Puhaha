@@ -11,13 +11,13 @@ import FirebaseFirestore
 import FirebaseStorage
 
 class MainViewController: UIViewController {
-    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "-"
-    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "-")
+    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "loginedUserEmail") ?? ""
+    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "")
     
     var filter: String = "모두"
     var selectedCellIndex: Int = 0
     var today: Date = Date.now
-    var familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "-"
+    var familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? ""
     var familyMembers: [Family] = []
     
     @Published var baseMeals: [Meal] = []

@@ -8,7 +8,7 @@
 import UIKit
 
 class CreateFamilyViewController: UIViewController {
-    var userName: String = UserDefaults.standard.string(forKey: "name") as String? ?? "-"
+    var userName: String = UserDefaults.standard.string(forKey: "name") as String? ?? ""
     
     private let userNameLabel: UILabel = {
         let label: UILabel = UILabel()
