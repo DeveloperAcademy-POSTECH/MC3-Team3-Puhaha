@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let forUserID = UserDefaults.standard.string(forKey: "forUserID")
-        appleIDProvider.getCredentialState(forUserID: forUserID ?? "") { (credentialState, error) in
+        appleIDProvider.getCredentialState(forUserID: forUserID ?? "") { (credentialState, _) in
             switch credentialState {
             case .authorized:
                 DispatchQueue.main.async {

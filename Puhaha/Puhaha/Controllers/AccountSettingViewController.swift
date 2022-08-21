@@ -66,7 +66,7 @@ extension AccountSettingViewController: UITableViewDataSource {
         let cell = tableView.cellForRow(at: indexPath)
         let cellTextLabel = cell?.textLabel?.text as? String
         
-        // TODO: enum으로 선언
+        // todo: enum으로 선언
         
         switch cellTextLabel {
         case "이름 변경":

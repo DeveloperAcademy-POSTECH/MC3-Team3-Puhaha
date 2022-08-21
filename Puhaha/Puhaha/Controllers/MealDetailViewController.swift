@@ -95,7 +95,7 @@ class MealDetailViewController: UIViewController {
         reactionSelectView.familyCode = familyCode
         mealImageView.image = meal.mealImage
         
-        var uploadedTimeText = meal.uploadedTime.transferStringToDate()
+        let uploadedTimeText = meal.uploadedTime.transferStringToDate()
         
         uploadedMeridianLabel.text = uploadedTimeText?.meridiem
         

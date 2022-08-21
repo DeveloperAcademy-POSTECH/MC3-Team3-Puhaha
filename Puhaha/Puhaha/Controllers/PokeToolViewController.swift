@@ -83,7 +83,7 @@ class PokeToolCustomizingViewController: UIViewController {
             
             let button = StyleButton(tool: Tool(rawValue: index)!)
             
-            let toolImageName = toolImages[index] + "_straight"
+            let toolImageName = PokeTool.toolImages[index] + "_straight"
             
             button.imageView?.contentMode = .scaleAspectFit
             
@@ -146,7 +146,7 @@ class PokeToolCustomizingViewController: UIViewController {
         
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        for toolColorIndex in 0..<toolColors.count {
+        for toolColorIndex in 0..<UIColor.toolColors.count {
                         
             // MARK: 버튼의 property
             let buttonSize: CGFloat = UIScreen.main.bounds.width / 6.5
@@ -156,9 +156,9 @@ class PokeToolCustomizingViewController: UIViewController {
             button.layer.masksToBounds = true
             button.clipsToBounds = true
             button.backgroundColor = UIColor.white
-            button.layer.borderWidth = { passedUserToolData.color == toolColors[toolColorIndex] ? 12 : 100 }()
+            button.layer.borderWidth = { passedUserToolData.color == UIColor.toolColors[toolColorIndex] ? 12 : 100 }()
             
-            button.layer.borderColor = toolColors[toolColorIndex].cgColor
+            button.layer.borderColor = UIColor.toolColors[toolColorIndex].cgColor
             
             // Button Action
             button.addTarget(self, action: #selector(colorButtonPressed(_ :)), for: .touchUpInside)
@@ -218,7 +218,7 @@ class PokeToolCustomizingViewController: UIViewController {
     
     @objc func didTapDone() {
         
-        // TODO: Dismiss Poke Tool View Controller View
+        // todo: Dismiss Poke Tool View Controller View
         setUserToolData()
         
         let roomCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? "-"
