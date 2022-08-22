@@ -167,6 +167,9 @@ class MainViewController: UIViewController {
             emptyMealCardView.isHidden = true
             mealCardCollectionView.isHidden = false
         }
+        // 콕찌르기 알림 구현 후 아래 코드 지우기
+        emptyMealCardView.pokeButton.isHidden = true
+        // 콕찌르기 알림 구현 후 위 코드 지우기
     }
     
     private func getFamilyMemeber() {

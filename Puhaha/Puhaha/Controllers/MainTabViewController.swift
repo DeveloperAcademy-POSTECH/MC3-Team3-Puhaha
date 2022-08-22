@@ -110,7 +110,16 @@ class MainTabViewController: UITabBarController {
         
         [takePhoto, chooseFromLibrary, cancel].forEach { sheet.addAction($0)}
         
-        self.present(sheet, animated: true)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if let popoverController = sheet.popoverPresentationController {
+                popoverController.sourceView = self.view
+                popoverController.sourceRect = self.view.bounds
+                popoverController.permittedArrowDirections = []
+                self.present(sheet, animated: true)
+            }
+        } else {
+            self.present(sheet, animated: true)
+        }
     }
     
     public func fetchMeals() {
