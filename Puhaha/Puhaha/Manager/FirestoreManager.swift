@@ -21,6 +21,7 @@ class FirestoreManager: ObservableObject {
     @Published var memberEmails: [String]
     @Published var families: [Family]
     @Published var documentsCount = 0
+    @Published var isExistFamily: Bool
     
     init() {
         self.meals = []
@@ -37,6 +38,7 @@ class FirestoreManager: ObservableObject {
                                            pokeState: Poke()),
                                 isSelected: true)]
         
+        self.isExistFamily = false
     }
     
     func fetchMeals(familyCode: String, date: Date?, completion: @escaping () -> Void) {
@@ -251,6 +253,14 @@ class FirestoreManager: ObservableObject {
                                                                           "pokedtime": ""],
                                                             "pokingTool": ["color": "",
                                                                            "tool": ""]])
+    }
+    
+    func isExistFamily(roomCode: String, completion: @escaping () -> Void) {
+        db.collection("Families").document(roomCode).getDocument { document, error in
+            let isExist = document?.exists ?? false
+            self.isExistFamily = isExist
+            completion()
+        }
     }
     
     func setUpMeals(image: UIImage,
