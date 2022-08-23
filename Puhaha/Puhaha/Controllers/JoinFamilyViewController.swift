@@ -122,7 +122,7 @@ class JoinFamilyViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
         familyCodeTextField.becomeFirstResponder()
         
-        [guidingTextLabel, familyCodeTextField, nextButton, familyCodeTextField, resultTextLabel, borderBox].forEach {
+        [guidingTextLabel, familyCodeTextField, nextButton, borderBox, familyCodeTextField, resultTextLabel].forEach {
             view.addSubview($0)
         }
         configureConstraints()
