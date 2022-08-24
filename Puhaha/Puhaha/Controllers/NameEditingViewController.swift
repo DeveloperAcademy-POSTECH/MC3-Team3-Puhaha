@@ -65,7 +65,7 @@ class NameEditingViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         nameTextField.delegate = self
-        nameTextField.setUnderLine()
+        nameTextField.setUnderLine(lineColor: .lightGray)
     }
     
     private func configureConstraints() {
