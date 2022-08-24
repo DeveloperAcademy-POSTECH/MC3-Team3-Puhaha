@@ -64,7 +64,7 @@ class FirestoreManager: ObservableObject {
                     tags.append(Tag(content: tagsString[key] ?? "", backgroundColor: self.tagColor[Int(key) ?? 0]))
                 }
                 
-                let userIdentifier = data["identifier"] as? String ?? ""
+                let userIdentifier = data["uploadUser"] as? String ?? ""
                 let uploadedTime = data["uploadTime"] as? String ?? ""
                 let uploadedDate = data["uploadDate"] as? String ?? ""
                 let reactionsValue = data["reactions"] as? [[String: String]] ?? []
@@ -219,7 +219,7 @@ class FirestoreManager: ObservableObject {
     }
     
     func addReaction(familyCode: String, meal: Meal, newReaction: [String: String]) {
-        db.collection("Families").document(familyCode).collection("Meals").whereField("identifier", isEqualTo: meal.userIdentifier).whereField("uploadDate", isEqualTo: meal.uploadedDate).whereField("uploadTime", isEqualTo: meal.uploadedTime).getDocuments { querySnapshot, error in
+        db.collection("Families").document(familyCode).collection("Meals").whereField("uploadUser", isEqualTo: meal.userIdentifier).whereField("uploadDate", isEqualTo: meal.uploadedDate).whereField("uploadTime", isEqualTo: meal.uploadedTime).getDocuments { querySnapshot, error in
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {
@@ -276,7 +276,7 @@ class FirestoreManager: ObservableObject {
         storageManager.uploadMealImage(image: image, familyCode: familyCode, imageName: imageName) {
             documentRef.addDocument(data: [
                 "mealImageIndex": imageName,
-                "identifier": userIdentifier,
+                "uploadUser": userIdentifier,
                 "uploadDate": Date().dateText,
                 "uploadTime": Date().timeNumberText,
                 "tags": ["0": tags[0],

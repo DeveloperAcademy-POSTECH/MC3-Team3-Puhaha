@@ -92,7 +92,7 @@ class JoinFamilyViewController: UIViewController {
     }
     
     private func setButtonEnable(_ isEnabled: Bool) {
-        self.nextButton.isEnabled = isEnabled
+        self.nextButton.isUserInteractionEnabled = isEnabled
         
         if isEnabled {
             self.nextButton.setTitleColor(UIColor.black, for: .normal)
