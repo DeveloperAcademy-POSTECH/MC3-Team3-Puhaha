@@ -12,8 +12,8 @@ import FirebaseFirestore
 
 class PokeToolCustomizingViewController: UIViewController {
     
-    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "loginedUserEmail") ?? ""
-    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "")
+    var userIdentifier: String = UserDefaults.standard.string(forKey: "userIdentifier") ?? ""
+    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userIdentifier") ?? "")
     
     var passedUserToolData: PokeTool = PokeTool(tool: Tool.Whisk, color: UIColor.customBlack)
     
@@ -294,7 +294,7 @@ class PokeToolCustomizingViewController: UIViewController {
     
     private func setUserToolData() {
         
-        FirestoreManager().setPokingToolData(userEmail: loginedUserEmail, tool: passedUserToolData)
+        FirestoreManager().setPokingToolData(userIdentifier: userIdentifier, tool: passedUserToolData)
         
     }
 }

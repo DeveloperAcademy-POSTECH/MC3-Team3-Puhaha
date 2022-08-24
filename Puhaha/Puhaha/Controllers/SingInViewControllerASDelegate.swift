@@ -38,18 +38,18 @@ extension SignInViewController: ASAuthorizationControllerDelegate {
                 }
             }
             
-            let signinUserEmail = appleIDCredential.email as String? ?? ""
+            let userIdentifier = appleIDCredential.user as String? ?? ""
             UserDefaults.standard.set(appleIDCredential.user, forKey: "forUserID")
-            UserDefaults.standard.set(signinUserEmail, forKey: "loginedUserEmail")
+            UserDefaults.standard.set(userIdentifier, forKey: "userIdentifier")
 
             let firestoreManager = FirestoreManager()
-            firestoreManager.setDefaultUserData(userEmail: signinUserEmail)
+            firestoreManager.setDefaultUserData(userIdentifier: userIdentifier)
             // 얘는 왜 있을까? -> 로그인 과정이 끝나면, 해당 정보로 서버 상에서 유저를 생성한다.
             
             var user = User()
             var destinationViewController: UIViewController = UIViewController()
             
-            firestoreManager.getSignInUser(userEmail: signinUserEmail, completion: {
+            firestoreManager.getSignInUser(userIdentifier: userIdentifier, completion: {
                 user = firestoreManager.loginedUser
             })
             

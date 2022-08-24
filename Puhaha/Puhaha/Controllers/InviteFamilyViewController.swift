@@ -84,16 +84,16 @@ class InviteFamilyViewController: UIViewController {
     }()
     
     @objc private func enterFamilyRoomButtonTapped() {
-        let userEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? ""
+        let userIdentifier = UserDefaults.standard.string(forKey: "userIdentifier") as String? ?? ""
         let firestoreManager = FirestoreManager()
         
-        firestoreManager.setFamilyCode(userEmail: userEmail, code: createdRoomCode)
+        firestoreManager.setFamilyCode(userIdentifier: userIdentifier, code: createdRoomCode)
         UserDefaults.standard.set(createdRoomCode, forKey: "roomCode")
         
         let mainTabViewController = MainTabViewController()
         self.navigationController?.pushViewController(mainTabViewController, animated: true)
         
-        firestoreManager.addFamily(roomCode: createdRoomCode, userEmail: userEmail)
+        firestoreManager.addFamily(roomCode: createdRoomCode, userIdentifier: userIdentifier)
     }
     
     @objc private func copyPasteFamilyRoomCodeTapped() {

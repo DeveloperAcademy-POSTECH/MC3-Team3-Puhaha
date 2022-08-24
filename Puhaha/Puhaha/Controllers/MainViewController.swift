@@ -11,8 +11,8 @@ import FirebaseFirestore
 import FirebaseStorage
 
 class MainViewController: UIViewController {
-    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "loginedUserEmail") ?? ""
-    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "")
+    var userIdentifier: String = UserDefaults.standard.string(forKey: "userIdentifier") ?? ""
+    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userIdentifier") ?? "")
     
     var filter: String = "모두"
     var selectedCellIndex: Int = 0
@@ -193,7 +193,7 @@ class MainViewController: UIViewController {
     }
     
     private func getLoginedUser() {
-        firestoreManager.getSignInUser(userEmail: loginedUserEmail) { [self] in
+        firestoreManager.getSignInUser(userIdentifier: userIdentifier) { [self] in
             loginedUser = firestoreManager.loginedUser
             emptyMealCardView.setButtonImage(toolImage: firestoreManager.loginedUser.getToolImage())
             emptyMealCardView.reloadInputViews()

@@ -8,9 +8,7 @@
 import UIKit
 
 class AccountSettingViewController: UIViewController {
-//    private let firestoreManager: FirestoreManager = FirestoreManager()
-//    private let SettingSectionNames: [String] = ["이름 변경", "계정 삭제"]
-    private let SettingSectionNames: [String] = ["이름 변경"]
+    private let SettingSectionNames: [String] = ["이름 변경", "계정 삭제"]
     
     lazy var tableView: UITableView = {
         let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height * 3
@@ -61,7 +59,7 @@ extension AccountSettingViewController: UITableViewDataSource {
     
     enum AccountSettingLabel: String {
         case changeName = "이름 변경"
-//        case logout = "계정 설정"
+        case logout = "계정 설정"
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -75,8 +73,8 @@ extension AccountSettingViewController: UITableViewDataSource {
             let nameEditingViewController = NameEditingViewController()
             self.navigationController?.pushViewController(nameEditingViewController, animated: true)
             
-//        case "계정 삭제":
-//            logOutButtonTapped()
+        case "계정 삭제":
+            logOutButtonTapped()
             
         default:
             return
@@ -91,10 +89,10 @@ extension AccountSettingViewController {
                                       preferredStyle: .alert)
         
         let yes = UIAlertAction(title: "확인", style: .default, handler: { [weak self] _ in
-//            self?.firestoreManager.deleteFamilyCode(userEmail: UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "")
+//            self?.firestoreManager.deleteFamilyCode(userIdentifier: UserDefaults.standard.string(forKey: "userIdentifier") ?? "")
             UserDefaults.standard.set("", forKey: "roomCode")
             UserDefaults.standard.set("", forKey: "name")
-            UserDefaults.standard.set("", forKey: "loginedUserEmail")
+            UserDefaults.standard.set("", forKey: "userIdentifier")
             UserDefaults.standard.set("", forKey: "forUserID")
             self?.navigationController?.popToRootViewController(animated: true)
         })

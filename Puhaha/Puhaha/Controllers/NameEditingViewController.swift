@@ -41,11 +41,11 @@ class NameEditingViewController: UIViewController {
     
     @objc private func nextButtonTapped() {
         let signinUserName = nameTextField.text as String? ?? ""
-        let signinUserEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? ""
+        let userIdentifier = UserDefaults.standard.string(forKey: "userIdentifier") as String? ?? ""
         let firestoreManager = FirestoreManager()
 
         UserDefaults.standard.set(signinUserName, forKey: "name")
-        firestoreManager.setUserName(userEmail: signinUserEmail, userName: signinUserName)
+        firestoreManager.setUserName(userIdentifier: userIdentifier, userName: signinUserName)
         
         self.navigationController?.popViewController(animated: true)
     }

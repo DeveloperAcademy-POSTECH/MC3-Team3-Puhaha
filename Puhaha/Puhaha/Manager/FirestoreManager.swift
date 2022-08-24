@@ -18,7 +18,7 @@ class FirestoreManager: ObservableObject {
     @Published var meals: [Meal]
     @Published var user: User
     @Published var loginedUser: User
-    @Published var memberEmails: [String]
+    @Published var userIdentifiers: [String]
     @Published var families: [Family]
     @Published var documentsCount = 0
     @Published var isExistFamily: Bool
@@ -27,7 +27,7 @@ class FirestoreManager: ObservableObject {
         self.meals = []
         self.user = User()
         self.loginedUser = User()
-        self.memberEmails = []
+        self.userIdentifiers = []
         
         self.families = [Family(user: User(accountId: "",
                                            name: "모두",
@@ -64,7 +64,7 @@ class FirestoreManager: ObservableObject {
                     tags.append(Tag(content: tagsString[key] ?? "", backgroundColor: self.tagColor[Int(key) ?? 0]))
                 }
                 
-                let uploadUserEmail = data["uploadUser"] as? String ?? ""
+                let userIdentifier = data["identifier"] as? String ?? ""
                 let uploadedTime = data["uploadTime"] as? String ?? ""
                 let uploadedDate = data["uploadDate"] as? String ?? ""
                 let reactionsValue = data["reactions"] as? [[String: String]] ?? []
@@ -75,7 +75,7 @@ class FirestoreManager: ObservableObject {
                     }
                 }
                 
-                let meal = Meal(mealImage: UIImage(), mealImageName: mealImageIndex, uploadUser: "", uploadUserEmail: uploadUserEmail, userIcon: UIImage(), tags: tags, uploadedDate: uploadedDate, uploadedTime: uploadedTime, reactions: reactions)
+                let meal = Meal(mealImage: UIImage(), mealImageName: mealImageIndex, uploadUser: "", userIdentifier: userIdentifier, userIcon: UIImage(), tags: tags, uploadedDate: uploadedDate, uploadedTime: uploadedTime, reactions: reactions)
                 
                 DispatchQueue.main.async {
                     completion()
@@ -86,10 +86,10 @@ class FirestoreManager: ObservableObject {
         }
     }
     
-    func getUploadUser(userEmail: String, completion: @escaping () -> Void) {
-        user = User(accountId: userEmail)
+    func getUploadUser(userIdentifier: String, completion: @escaping () -> Void) {
+        user = User(accountId: userIdentifier)
         
-        db.collection("Users").document(userEmail).addSnapshotListener { [self] (document, error) in
+        db.collection("Users").document(userIdentifier).addSnapshotListener { [self] (document, error) in
             if let document = document {
                 let name = document.data()?["name"] as? String ?? ""
                 let familyCode = document.data()?["familyCode"] as? String ?? ""
@@ -122,10 +122,10 @@ class FirestoreManager: ObservableObject {
         }
     }
     
-    func getSignInUser(userEmail: String, completion: @escaping () -> Void) {
-        loginedUser = User(accountId: userEmail)
+    func getSignInUser(userIdentifier: String, completion: @escaping () -> Void) {
+        loginedUser = User(accountId: userIdentifier)
         
-        db.collection("Users").document(userEmail).addSnapshotListener { [self] (document, error) in
+        db.collection("Users").document(userIdentifier).addSnapshotListener { [self] (document, error) in
             if let document = document {
                 let name = document.data()?["name"] as? String ?? ""
                 let familyCode = document.data()?["familyCode"] as? String ?? ""
@@ -156,8 +156,8 @@ class FirestoreManager: ObservableObject {
     func getFamilyMember(familyCode: String, completion: @escaping () -> Void) {
         db.collection("Families").document(familyCode).addSnapshotListener { [self] (document, error) in
             if let document = document {
-                let userEmails: [String] = document.data()?["users"] as? [String] ?? []
-                memberEmails = userEmails
+                let userIdentifier: [String] = document.data()?["users"] as? [String] ?? []
+                userIdentifiers = userIdentifier
                 db.collection("Users").whereField("familyCode", isEqualTo: familyCode).addSnapshotListener { [self] (querySnapshot, _) in/*.getDocuments(source: .default) { [self] (querySnapshot, error) in*/
                     if let error = error {
                         print("Error getting documents: \(error)")
@@ -207,19 +207,19 @@ class FirestoreManager: ObservableObject {
         }
     }
     
-    func setPokingToolData(userEmail: String, tool passedTool: PokeTool) {
+    func setPokingToolData(userIdentifier: String, tool passedTool: PokeTool) {
         
         let tool = passedTool.tool.imageFileName
         let color = convertUIColorToString(color: passedTool.color)
         
-        db.collection("Users").document(userEmail).updateData([
+        db.collection("Users").document(userIdentifier).updateData([
             "pokingTool.tool": tool,
             "pokingTool.color": color
         ])
     }
     
     func addReaction(familyCode: String, meal: Meal, newReaction: [String: String]) {
-        db.collection("Families").document(familyCode).collection("Meals").whereField("uploadUser", isEqualTo: meal.uploadUserEmail).whereField("uploadDate", isEqualTo: meal.uploadedDate).whereField("uploadTime", isEqualTo: meal.uploadedTime).getDocuments { querySnapshot, error in
+        db.collection("Families").document(familyCode).collection("Meals").whereField("identifier", isEqualTo: meal.userIdentifier).whereField("uploadDate", isEqualTo: meal.uploadedDate).whereField("uploadTime", isEqualTo: meal.uploadedTime).getDocuments { querySnapshot, error in
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {
@@ -234,20 +234,20 @@ class FirestoreManager: ObservableObject {
         }
     }
     
-    func setFamilyCode(userEmail: String, code: String) {
-        db.collection("Users").document(userEmail).updateData(["familyCode": code])
+    func setFamilyCode(userIdentifier: String, code: String) {
+        db.collection("Users").document(userIdentifier).updateData(["familyCode": code])
     }
     
-    func deleteFamilyCode(userEmail: String) {
-        db.collection("Users").document(userEmail).updateData(["familyCode": ""])
+    func deleteFamilyCode(userIdentifier: String) {
+        db.collection("Users").document(userIdentifier).updateData(["familyCode": ""])
     }
     
-    func setUserName(userEmail: String, userName: String) {
-        db.collection("Users").document(userEmail).updateData(["name": userName])
+    func setUserName(userIdentifier: String, userName: String) {
+        db.collection("Users").document(userIdentifier).updateData(["name": userName])
     }
     
-    func setDefaultUserData(userEmail: String) {
-        db.collection("Users").document(userEmail).setData(["familyCode": "",
+    func setDefaultUserData(userIdentifier: String) {
+        db.collection("Users").document(userIdentifier).setData(["familyCode": "",
                                                             "name": "",
                                                             "pokeState": ["pokedBy": "",
                                                                           "pokedtime": ""],
@@ -264,7 +264,7 @@ class FirestoreManager: ObservableObject {
     }
     
     func setUpMeals(image: UIImage,
-                    userEmail: String,
+                    userIdentifier: String,
                     familyCode: String,
                     tags: [String]) {
         let today = Date.now
@@ -276,7 +276,7 @@ class FirestoreManager: ObservableObject {
         storageManager.uploadMealImage(image: image, familyCode: familyCode, imageName: imageName) {
             documentRef.addDocument(data: [
                 "mealImageIndex": imageName,
-                "uploadUser": userEmail,
+                "identifier": userIdentifier,
                 "uploadDate": Date().dateText,
                 "uploadTime": Date().timeNumberText,
                 "tags": ["0": tags[0],
@@ -288,15 +288,15 @@ class FirestoreManager: ObservableObject {
         print("이미지이름: \(imageName)")
     }
     
-    func addFamily(roomCode: String, userEmail: String) {
-        db.collection("Families").document(roomCode).setData(["users": [userEmail]])
+    func addFamily(roomCode: String, userIdentifier: String) {
+        db.collection("Families").document(roomCode).setData(["users": [userIdentifier]])
     }
 
-    func addFamilyMember(roomCode: String, userEmail: String) {
+    func addFamilyMember(roomCode: String, userIdentifier: String) {
             db.collection("Families").document(roomCode).getDocument { document, _ in
                 let data = document?.data()
                 var users: [String] = data?["users"] as? [String] ?? []
-                users.append(userEmail)
+                users.append(userIdentifier)
                 self.db.collection("Families").document(roomCode).updateData(["users": users])
             }
         }

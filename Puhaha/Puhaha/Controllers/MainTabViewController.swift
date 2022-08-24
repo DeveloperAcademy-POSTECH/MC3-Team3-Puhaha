@@ -142,7 +142,7 @@ class MainTabViewController: UITabBarController {
     }
     
     private func getUser(_ i: Int) {
-        firestoreManager.getUploadUser(userEmail: firestoreManager.meals[i].uploadUserEmail) { [self] in
+        firestoreManager.getUploadUser(userIdentifier: firestoreManager.meals[i].userIdentifier) { [self] in
             firestoreManager.meals[i].uploadUser = firestoreManager.user.getName()
             firestoreManager.meals[i].userIcon = firestoreManager.user.getToolImage()
             

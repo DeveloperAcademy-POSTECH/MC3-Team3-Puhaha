@@ -105,15 +105,15 @@ class JoinFamilyViewController: UIViewController {
     
     @objc private func nextButtonTapped() {
         let joinedRoomCode = familyCodeTextField.text as String? ?? ""
-        let userEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? ""
+        let userIdentifier = UserDefaults.standard.string(forKey: "userIdentifier") as String? ?? ""
         let firestoreManager = FirestoreManager()
 
         UserDefaults.standard.set(joinedRoomCode, forKey: "roomCode")
         let mainTabViewController = MainTabViewController()
         self.navigationController?.pushViewController(mainTabViewController, animated: true)
         
-        firestoreManager.addFamilyMember(roomCode: joinedRoomCode, userEmail: userEmail)
-        firestoreManager.setFamilyCode(userEmail: userEmail, code: joinedRoomCode)
+        firestoreManager.addFamilyMember(roomCode: joinedRoomCode, userIdentifier: userIdentifier)
+        firestoreManager.setFamilyCode(userIdentifier: userIdentifier, code: joinedRoomCode)
     }
     
     override func viewDidLoad() {
