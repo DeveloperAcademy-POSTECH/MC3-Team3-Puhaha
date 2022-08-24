@@ -48,9 +48,9 @@ class SignInViewController: UIViewController {
         
         let userDefaultsRoomCode = UserDefaults.standard.string(forKey: "roomCode") as String? ?? ""
         let userDefaultsName = UserDefaults.standard.string(forKey: "name") as String? ?? ""
-        let userDefaultEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? ""
+        let userIdentifier = UserDefaults.standard.string(forKey: "userIdentifier") as String? ?? ""
         
-        if userDefaultEmail != "" {
+        if userIdentifier != "" {
             if userDefaultsName == "" {
                 navigationController?.pushViewController(NameSettingViewController(), animated: true)
             } else if userDefaultsRoomCode == "" {

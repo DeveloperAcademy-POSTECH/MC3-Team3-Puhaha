@@ -10,6 +10,9 @@ import UIKit
 import FirebaseFirestore
 
 class JoinFamilyViewController: UIViewController {
+    private let firestoreManager: FirestoreManager = FirestoreManager()
+    
+    private var isExistedFamily: Bool = false
     public var db = Firestore.firestore()
     
     private let guidingTextLabel: UILabel = {
@@ -21,36 +24,84 @@ class JoinFamilyViewController: UIViewController {
         return label
     }()
     
-    private var familyCodeTextField: UITextField = {
+    private let resultTextLabel: UILabel = {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 10))
+        label.text = "존재하지 않는 가족 코드입니다"
+        label.textColor = .red
+        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.isHidden = true
+        return label
+    }()
+    
+    lazy var familyCodeTextField: UITextField = {
         let textField = UITextField()
         textField.textColor = .black
         textField.backgroundColor = .clear
+        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         return textField
     }()
     
     lazy var nextButton: CustomedButton = {
         let button = CustomedButton()
         button.setTitle("가족 방에 입장하기", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.backgroundColor = UIColor.customYellow
+        button.setTitleColor(UIColor.gray, for: .normal)
+        button.backgroundColor = UIColor.customLightGray
         
         button.addTarget(self,
                          action: #selector(nextButtonTapped),
                          for: .touchUpInside)
+        
+        button.isEnabled = false
         return button
     }()
     
+    @objc private func textFieldDidChange() {
+        if familyCodeTextField.text?.count == 36 {
+            firestoreManager.isExistFamily(roomCode: familyCodeTextField.text!) {
+                self.isExistedFamily = self.firestoreManager.isExistFamily
+                self.resultTextLabel.isHidden = false
+               
+                if self.isExistedFamily {
+                    self.setButtonEnable(true)
+                    self.resultTextLabel.text = "유효한 가족 코드입니다"
+                    self.resultTextLabel.textColor = .systemGreen
+                    self.familyCodeTextField.setUnderLine(lineColor: .systemGreen)
+                } else {
+                    self.setButtonEnable(false)
+                    self.resultTextLabel.text = "존재하지 않는 가족 코드입니다"
+                    self.resultTextLabel.textColor = .red
+                    self.familyCodeTextField.setUnderLine(lineColor: .red)
+                }
+            }
+        } else {
+            self.setButtonEnable(false)
+            self.resultTextLabel.isHidden = true
+        }
+    }
+    
+    private func setButtonEnable(_ isEnabled: Bool) {
+        self.nextButton.isUserInteractionEnabled = isEnabled
+        
+        if isEnabled {
+            self.nextButton.setTitleColor(UIColor.black, for: .normal)
+            self.nextButton.backgroundColor = .customYellow
+        } else {
+            self.nextButton.backgroundColor = .customLightGray
+            self.nextButton.setTitleColor(UIColor.gray, for: .normal)
+        }
+    }
+    
     @objc private func nextButtonTapped() {
         let joinedRoomCode = familyCodeTextField.text as String? ?? ""
-        let userEmail = UserDefaults.standard.string(forKey: "loginedUserEmail") as String? ?? ""
+        let userIdentifier = UserDefaults.standard.string(forKey: "userIdentifier") as String? ?? ""
         let firestoreManager = FirestoreManager()
 
         UserDefaults.standard.set(joinedRoomCode, forKey: "roomCode")
         let mainTabViewController = MainTabViewController()
         self.navigationController?.pushViewController(mainTabViewController, animated: true)
         
-        firestoreManager.addFamilyMember(roomCode: joinedRoomCode, userEmail: userEmail)
-        firestoreManager.setFamilyCode(userEmail: userEmail, code: joinedRoomCode)
+        firestoreManager.addFamilyMember(roomCode: joinedRoomCode, userIdentifier: userIdentifier)
+        firestoreManager.setFamilyCode(userIdentifier: userIdentifier, code: joinedRoomCode)
     }
     
     override func viewDidLoad() {
@@ -59,7 +110,7 @@ class JoinFamilyViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
         familyCodeTextField.becomeFirstResponder()
         
-        [guidingTextLabel, familyCodeTextField, nextButton].forEach {
+        [guidingTextLabel, familyCodeTextField, nextButton, familyCodeTextField, resultTextLabel].forEach {
             view.addSubview($0)
         }
         configureConstraints()
@@ -68,13 +119,14 @@ class JoinFamilyViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         familyCodeTextField.delegate = self
-        familyCodeTextField.setUnderLine()
+        familyCodeTextField.setUnderLine(lineColor: .lightGray)
     }
     
     private func configureConstraints() {
         guidingTextLabel.translatesAutoresizingMaskIntoConstraints = false
         familyCodeTextField.translatesAutoresizingMaskIntoConstraints = false
         nextButton.translatesAutoresizingMaskIntoConstraints = false
+        resultTextLabel.translatesAutoresizingMaskIntoConstraints = false
         
         guidingTextLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         guidingTextLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.2).isActive = true
@@ -86,8 +138,10 @@ class JoinFamilyViewController: UIViewController {
         
         nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         nextButton.topAnchor.constraint(equalTo: familyCodeTextField.bottomAnchor, constant: view.bounds.height * 0.55).isActive = true
+        
+        resultTextLabel.topAnchor.constraint(equalTo: familyCodeTextField.bottomAnchor, constant: 10).isActive = true
+        resultTextLabel.leadingAnchor.constraint(equalTo: familyCodeTextField.leadingAnchor).isActive = true
     }
-    
 }
 
 extension JoinFamilyViewController: UITextFieldDelegate {

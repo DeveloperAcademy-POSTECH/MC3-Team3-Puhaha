@@ -11,9 +11,9 @@ class SettingViewController: UIViewController {
     
     // 유저의 값을 가지고 있는 변수들
     // MARK: User Data
-    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "loginedUserEmail") ?? ""
-    //    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userEmail") ?? "")
-    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "")
+    var userIdentifier: String = UserDefaults.standard.string(forKey: "userIdentifier") ?? ""
+    //    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userIdentifier") ?? "")
+    var loginedUser: User = User(accountId: UserDefaults.standard.string(forKey: "userIdentifier") ?? "")
     
     let firestoreManager = FirestoreManager()
     
@@ -138,7 +138,7 @@ extension SettingViewController: UITableViewDataSource {
     }
     
     private func getToolDataTry() {
-        firestoreManager.getSignInUser(userEmail: loginedUserEmail) { [self] in
+        firestoreManager.getSignInUser(userIdentifier: userIdentifier) { [self] in
             loginedUser = firestoreManager.loginedUser
             
             let fetchedToolType = loginedUser.getToolType()

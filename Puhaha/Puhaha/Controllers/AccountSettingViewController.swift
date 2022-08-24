@@ -8,8 +8,7 @@
 import UIKit
 
 class AccountSettingViewController: UIViewController {
-//    private let firestoreManager: FirestoreManager = FirestoreManager()
-    private let SettingSectionNames: [String] = ["이름 변경", "계정 삭제"]
+    private let SettingSectionNames: [String] = ["이름 변경", "로그아웃"]
     
     lazy var tableView: UITableView = {
         let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height * 3
@@ -60,7 +59,7 @@ extension AccountSettingViewController: UITableViewDataSource {
     
     enum AccountSettingLabel: String {
         case changeName = "이름 변경"
-        case logout = "계정 설정"
+        case logout = "로그아웃"
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -74,7 +73,7 @@ extension AccountSettingViewController: UITableViewDataSource {
             let nameEditingViewController = NameEditingViewController()
             self.navigationController?.pushViewController(nameEditingViewController, animated: true)
             
-        case "계정 삭제":
+        case "로그아웃":
             logOutButtonTapped()
             
         default:
@@ -86,19 +85,21 @@ extension AccountSettingViewController: UITableViewDataSource {
 extension AccountSettingViewController {
     @objc func logOutButtonTapped() {
         let alert = UIAlertController(title: "알림",
-                                      message: "계정 삭제를 위해서는 \n설정 > 프로필 > 암호 및 보안 > Apple ID를 사용하는 앱 > 밥먹언? > Apple ID 사용 중단 버튼을 눌러주세요",
+                                      message: "로그아웃 하시겠습니까?",
                                       preferredStyle: .alert)
         
-        let yes = UIAlertAction(title: "확인", style: .default, handler: { [weak self] _ in
-//            self?.firestoreManager.deleteFamilyCode(userEmail: UserDefaults.standard.string(forKey: "loginedUserEmail") ?? "")
+        let yes = UIAlertAction(title: "예", style: .default, handler: { [weak self] _ in
+//            self?.firestoreManager.deleteFamilyCode(userIdentifier: UserDefaults.standard.string(forKey: "userIdentifier") ?? "")
             UserDefaults.standard.set("", forKey: "roomCode")
             UserDefaults.standard.set("", forKey: "name")
-            UserDefaults.standard.set("", forKey: "loginedUserEmail")
+            UserDefaults.standard.set("", forKey: "userIdentifier")
             UserDefaults.standard.set("", forKey: "forUserID")
             self?.navigationController?.popToRootViewController(animated: true)
         })
+        let no = UIAlertAction(title: "아니오", style: .default, handler: nil)
 
         alert.addAction(yes)
+        alert.addAction(no)
         present(alert, animated: true)
     }
 }

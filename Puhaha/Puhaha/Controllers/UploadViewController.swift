@@ -17,7 +17,7 @@ class UploadViewController: UIViewController {
     
     var tagLabel: TagLabel = TagLabel()
     
-    var loginedUserEmail: String = UserDefaults.standard.string(forKey: "loginedUserEmail") ?? String()
+    var userIdentifier: String = UserDefaults.standard.string(forKey: "userIdentifier") ?? String()
     
     let familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? ""
     
@@ -146,7 +146,7 @@ class UploadViewController: UIViewController {
     
     public func setMealInfo() {
         firestoreManager.setUpMeals(image: pictureImageView.image ?? UIImage(),
-                                    userEmail: loginedUserEmail,
+                                    userIdentifier: userIdentifier,
                                     familyCode: familyCode,
                                     tags: Array(selectedTags.values))
     }

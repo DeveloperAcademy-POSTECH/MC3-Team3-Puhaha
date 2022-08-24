@@ -11,18 +11,18 @@ struct Meal {
     var mealImage: UIImage
     let mealImageName: String
     var uploadUser: String
-    var uploadUserEmail: String
+    var userIdentifier: String
     var userIcon: UIImage
     var tags: [Tag]
     let uploadedDate: String
     let uploadedTime: String
     var reactions: [Reaction?]
     
-    init(mealImage: UIImage, mealImageName: String, uploadUser: String, uploadUserEmail: String, userIcon: UIImage, tags: [Tag], uploadedDate: String, uploadedTime: String, reactions: [Reaction?]) {
+    init(mealImage: UIImage, mealImageName: String, uploadUser: String, userIdentifier: String, userIcon: UIImage, tags: [Tag], uploadedDate: String, uploadedTime: String, reactions: [Reaction?]) {
         self.mealImage = mealImage
         self.mealImageName = mealImageName
         self.uploadUser = uploadUser
-        self.uploadUserEmail = uploadUserEmail
+        self.userIdentifier = userIdentifier
         self.userIcon = userIcon
         self.tags = tags
         self.uploadedDate = uploadedDate
