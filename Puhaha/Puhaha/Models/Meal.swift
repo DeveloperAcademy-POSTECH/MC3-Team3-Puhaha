@@ -16,7 +16,7 @@ class Meal: ObservableObject {
     var tags: [Tag]
     let uploadedDate: String
     let uploadedTime: String
-    var reactions: [Reaction?]
+    @Published var reactions: [Reaction?]
     
     init(mealImage: UIImage, mealImageName: String, uploadUser: String, userIdentifier: String, userIcon: UIImage, tags: [Tag], uploadedDate: String, uploadedTime: String, reactions: [Reaction?]) {
         self.mealImage = mealImage
