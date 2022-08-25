@@ -31,10 +31,10 @@ extension UploadTag {
                                 Tag(content: "중식", backgroundColor: .customBlue),
                                 Tag(content: "일식", backgroundColor: .customBlue),
                                 Tag(content: "디저트", backgroundColor: .customBlue),
-                                Tag(content: "양식", backgroundColor: .customBlue)]),
-        UploadTag(tagContents: [Tag(content: "꿀맛", backgroundColor: .customGreen),
-                                Tag(content: "최고에요", backgroundColor: .customGreen),
-                                Tag(content: "별로에요", backgroundColor: .customGreen),
-                                Tag(content: "맛없엉", backgroundColor: .customGreen)])
+                                Tag(content: "양식", backgroundColor: .customBlue),
+                                Tag(content: "간식", backgroundColor: .customBlue)]),
+        UploadTag(tagContents: [Tag(content: "최고의맛", backgroundColor: .customGreen),
+                                Tag(content: "그저그래요", backgroundColor: .customGreen),
+                                Tag(content: "별로에요", backgroundColor: .customGreen)])
     ]
 }
