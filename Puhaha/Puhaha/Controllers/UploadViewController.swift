@@ -228,7 +228,7 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
         
         case tagEmotionContentCollectionView:
 
-                cell.tagLabel.setSelectedTextAndBackground(tag: tagContentsArray[2].tagContents[indexPath.row], fontSize: 16, isSelected: false)
+                cell.tagLabel.setSelectedTextAndBackground(tag: tagContentsArray[2].tagContents[indexPath.row], fontSize: 14, isSelected: false)
     
         default:
             break
@@ -239,10 +239,16 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionView {
-        case tagTimeContentCollectionView, tagMenuContentCollectionView, tagEmotionContentCollectionView:
+        case tagTimeContentCollectionView, tagMenuContentCollectionView:
             let width = UIScreen.main.bounds.width / 5.87
             let height = UIScreen.main.bounds.height / 28.13
             return CGSize(width: width, height: height)
+                
+        case tagEmotionContentCollectionView:
+            let width = UIScreen.main.bounds.width / 5.3
+            let height = UIScreen.main.bounds.height / 28.13
+            return CGSize(width: width, height: height)
+                
         default:
             return CGSize(width: 0, height: 0)
         }
@@ -265,7 +271,7 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
                     print(selectedTags)
             
             case tagEmotionContentCollectionView:
-                    cell.tagLabel.setSelectedTextAndBackground(tag: tagContentsArray[2].tagContents[indexPath.row], fontSize: 16, isSelected: true)
+                    cell.tagLabel.setSelectedTextAndBackground(tag: tagContentsArray[2].tagContents[indexPath.row], fontSize: 14, isSelected: true)
 
                     selectedTags.updateValue(cell.tagLabel.getTagContent(), forKey: "emotion")
                     print(selectedTags)
@@ -287,7 +293,7 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
                     cell.tagLabel.setSelectedTextAndBackground(tag: tagContentsArray[1].tagContents[indexPath.row], fontSize: 16, isSelected: false)
                 selectedTags.removeValue(forKey: "menu")
             case tagEmotionContentCollectionView:
-                    cell.tagLabel.setSelectedTextAndBackground(tag: tagContentsArray[2].tagContents[indexPath.row], fontSize: 16, isSelected: false)
+                    cell.tagLabel.setSelectedTextAndBackground(tag: tagContentsArray[2].tagContents[indexPath.row], fontSize: 14, isSelected: false)
                 selectedTags.removeValue(forKey: "emotion")
             default:
                 break
