@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Meal {
+class Meal: ObservableObject {
     var mealImage: UIImage
     let mealImageName: String
     var uploadUser: String
