@@ -46,7 +46,6 @@ class SettingViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.backBarButtonItem?.title = ""
         navigationController?.navigationBar.tintColor = .tintColor
-        navigationItem.title = "설정"
         view.backgroundColor = UIColor.white
         navigationController?.navigationBar.backgroundColor = .clear
         
