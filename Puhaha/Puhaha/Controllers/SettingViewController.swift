@@ -58,6 +58,11 @@ class SettingViewController: UIViewController {
         configureConstraints()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.isNavigationBarHidden = false
+    }
+    
     private func configureConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
