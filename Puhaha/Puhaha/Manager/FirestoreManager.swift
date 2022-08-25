@@ -34,7 +34,7 @@ class FirestoreManager: ObservableObject {
                                            toolImage: UIImage(named: "IconEveryoneFilter")!,
                                            toolType: "",
                                            toolColor: "",
-                                           familyCode: "",
+                                           familyCodes: [String()],
                                            pokeState: Poke()),
                                 isSelected: true)]
         
@@ -92,7 +92,7 @@ class FirestoreManager: ObservableObject {
         db.collection("Users").document(userIdentifier).addSnapshotListener { [self] (document, error) in
             if let document = document {
                 let name = document.data()?["name"] as? String ?? ""
-                let familyCode = document.data()?["familyCode"] as? String ?? ""
+                let familyCodes = document.data()?["familyCode"] as? [String] ?? []
                 let pokingTool = document.data()?["pokingTool"] as? [String: String] ?? [:]
                 let pokeStateValue = document.data()?["pokeState"] as? [String: String] ?? [:]
                 
@@ -113,7 +113,7 @@ class FirestoreManager: ObservableObject {
                 user.setToolImage(toolImage: toolImage)
                 user.setToolType(with: pokingToolTool)
                 user.setToolColor(with: pokingToolColor)
-                user.setFamilyCode(code: familyCode)
+                user.setFamilyCodes(code: familyCodes)
                 user.setPoke(poke: Poke(pokedBy: pokedBy, pokedTime: pokedTime))
                 completion()
             } else {
@@ -128,7 +128,7 @@ class FirestoreManager: ObservableObject {
         db.collection("Users").document(userIdentifier).addSnapshotListener { [self] (document, error) in
             if let document = document {
                 let name = document.data()?["name"] as? String ?? ""
-                let familyCode = document.data()?["familyCode"] as? String ?? ""
+                let familyCodes = document.data()?["familyCode"] as? [String] ?? []
                 let pokingTool = document.data()?["pokingTool"] as? [String: String] ?? [:]
                 let pokeStateValue = document.data()?["pokeState"] as? [String: String] ?? [:]
                 
@@ -142,7 +142,7 @@ class FirestoreManager: ObservableObject {
                 loginedUser.setToolImage(toolImage: toolImage)
                 loginedUser.setToolType(with: pokingToolType)
                 loginedUser.setToolColor(with: pokingToolColor)
-                loginedUser.setFamilyCode(code: familyCode)
+                loginedUser.setFamilyCodes(code: familyCodes)
                 loginedUser.setPoke(poke: Poke(pokedBy: pokedBy, pokedTime: pokedTime))
                 
                 completion()
@@ -167,7 +167,7 @@ class FirestoreManager: ObservableObject {
                                                       toolImage: UIImage(named: "IconEveryoneFilter")!,
                                                       toolType: "",
                                                       toolColor: "",
-                                                      familyCode: "",
+                                                      familyCodes: [String()],
                                                       pokeState: Poke()),
                                            isSelected: true)]
                         for document in querySnapshot!.documents {
@@ -178,7 +178,7 @@ class FirestoreManager: ObservableObject {
                             /* 안드로이드 개발이 되는 경우 0: 애플 계정 로그인, 1: 구글 계정 로그인으로 사용 예정
                             let loginForm = data["loginForm"] as? Int ?? 0
                             */
-                            let familyCode = data["familyCode"] as? String ?? ""
+                            let familyCodes = data["familyCode"] as? [String] ?? []
                             let pokingTool = data["pokingTool"] as? [String: String] ?? [:]
                             let pokeStateValue = data["pokeState"] as? [String: String] ?? [:]
                             
@@ -193,7 +193,7 @@ class FirestoreManager: ObservableObject {
                                             toolImage: toolImage,
                                             toolType: pokingToolTool,
                                             toolColor: pokingToolColor,
-                                            familyCode: familyCode,
+                                            familyCodes: familyCodes,
                                             pokeState: Poke(pokedBy: pokedBy, pokedTime: pokedTime))
                             
                             families.append(Family(user: user, isSelected: false))
@@ -235,11 +235,12 @@ class FirestoreManager: ObservableObject {
     }
     
     func setFamilyCode(userIdentifier: String, code: String) {
-        db.collection("Users").document(userIdentifier).updateData(["familyCode": code])
+        db.collection("Users").document(userIdentifier).updateData(["familyCodes": [code]])
     }
     
+    // TODO: 특정 코드를 지우기 위해 parameter로 code를 받아야 하나?
     func deleteFamilyCode(userIdentifier: String) {
-        db.collection("Users").document(userIdentifier).updateData(["familyCode": ""])
+        db.collection("Users").document(userIdentifier).updateData(["familyCodes": ""])
     }
     
     func setUserName(userIdentifier: String, userName: String) {
@@ -269,6 +270,7 @@ class FirestoreManager: ObservableObject {
                     tags: [String]) {
         let today = Date.now
         
+        // TODO: familycode .document(roomCode) array
         let documentRef = db.collection("Families").document(familyCode).collection("Meals")
         let storageManager = StorageManager()
         let imageName: String = "img_\(today.dateText)_\(today.timeNumberText)\(today.secondsText()).jpeg"
@@ -289,10 +291,12 @@ class FirestoreManager: ObservableObject {
     }
     
     func addFamily(roomCode: String, userIdentifier: String) {
+        // TODO: familycode .document(roomCode) array
         db.collection("Families").document(roomCode).setData(["users": [userIdentifier]])
     }
 
     func addFamilyMember(roomCode: String, userIdentifier: String) {
+        // TODO: familycode .document(roomCode) array
             db.collection("Families").document(roomCode).getDocument { document, _ in
                 let data = document?.data()
                 var users: [String] = data?["users"] as? [String] ?? []

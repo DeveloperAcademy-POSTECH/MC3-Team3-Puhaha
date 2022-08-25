@@ -88,6 +88,7 @@ class InviteFamilyViewController: UIViewController {
         let firestoreManager = FirestoreManager()
         
         firestoreManager.setFamilyCode(userIdentifier: userIdentifier, code: createdRoomCode)
+        // TODO: UserDefaults roomcode 값 변경 추가 (main에서 특정 가족이 눌릴 때)
         UserDefaults.standard.set(createdRoomCode, forKey: "roomCode")
         
         let mainTabViewController = MainTabViewController()

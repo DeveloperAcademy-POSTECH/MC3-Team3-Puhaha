@@ -54,11 +54,11 @@ extension SignInViewController: ASAuthorizationControllerDelegate {
             })
             
             let name = user.getName()
-            let familyCode = user.getFamilyCode()
+            let familyCodes = user.getFamilyCodes()
             
             if name == "" {
                 destinationViewController = NameSettingViewController()
-            } else if familyCode == "" {
+            } else if familyCodes == [] {
                 destinationViewController = CreateFamilyViewController()
             } else {
                 destinationViewController = MainTabViewController()

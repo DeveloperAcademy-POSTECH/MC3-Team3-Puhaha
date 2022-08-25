@@ -96,6 +96,7 @@ class JoinFamilyViewController: UIViewController {
         let userIdentifier = UserDefaults.standard.string(forKey: "userIdentifier") as String? ?? ""
         let firestoreManager = FirestoreManager()
 
+        // TODO: UserDefaults roomcode 값 변경 추가 (main에서 특정 가족이 눌릴 때)
         UserDefaults.standard.set(joinedRoomCode, forKey: "roomCode")
         let mainTabViewController = MainTabViewController()
         self.navigationController?.pushViewController(mainTabViewController, animated: true)
