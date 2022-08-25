@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             switch credentialState {
             case .authorized:
                 DispatchQueue.main.async {
-                    print(UserDefaults.standard.string(forKey: "userIdentifier")!)
 //                    let mainTabViewController = MainTabViewController()
 //                    self.window?.rootViewController = mainTabViewController
                     print("authorized")
