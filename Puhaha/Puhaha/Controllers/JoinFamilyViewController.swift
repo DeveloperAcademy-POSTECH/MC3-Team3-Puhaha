@@ -41,6 +41,13 @@ class JoinFamilyViewController: UIViewController {
         return textField
     }()
     
+    private let dividerView: UIView = {
+       let view = UIView()
+        view.backgroundColor = UIColor.lightGray
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     lazy var nextButton: CustomedButton = {
         let button = CustomedButton()
         button.setTitle("가족 방에 입장하기", for: .normal)
@@ -65,17 +72,18 @@ class JoinFamilyViewController: UIViewController {
                     self.setButtonEnable(true)
                     self.resultTextLabel.text = "유효한 가족 코드입니다"
                     self.resultTextLabel.textColor = .systemGreen
-                    self.familyCodeTextField.setUnderLine(lineColor: .systemGreen)
+                    self.dividerView.backgroundColor = UIColor.systemGreen
                 } else {
                     self.setButtonEnable(false)
                     self.resultTextLabel.text = "존재하지 않는 가족 코드입니다"
                     self.resultTextLabel.textColor = .red
-                    self.familyCodeTextField.setUnderLine(lineColor: .red)
+                    self.dividerView.backgroundColor = UIColor.red
                 }
             }
         } else {
             self.setButtonEnable(false)
             self.resultTextLabel.isHidden = true
+            self.dividerView.backgroundColor = UIColor.lightGray
         }
     }
     
@@ -110,7 +118,7 @@ class JoinFamilyViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
         familyCodeTextField.becomeFirstResponder()
         
-        [guidingTextLabel, familyCodeTextField, nextButton, familyCodeTextField, resultTextLabel].forEach {
+        [guidingTextLabel, familyCodeTextField, dividerView, nextButton, resultTextLabel].forEach {
             view.addSubview($0)
         }
         configureConstraints()
@@ -119,7 +127,6 @@ class JoinFamilyViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         familyCodeTextField.delegate = self
-        familyCodeTextField.setUnderLine(lineColor: .lightGray)
     }
     
     private func configureConstraints() {
@@ -135,6 +142,11 @@ class JoinFamilyViewController: UIViewController {
         familyCodeTextField.widthAnchor.constraint(equalTo: nextButton.widthAnchor).isActive = true
         familyCodeTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         familyCodeTextField.topAnchor.constraint(equalTo: guidingTextLabel.bottomAnchor, constant: view.bounds.height * 0.04).isActive = true
+        
+        dividerView.leadingAnchor.constraint(equalTo: familyCodeTextField.leadingAnchor).isActive = true
+        dividerView.trailingAnchor.constraint(equalTo: familyCodeTextField.trailingAnchor).isActive = true
+        dividerView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 844).isActive = true
+        dividerView.bottomAnchor.constraint(equalTo: familyCodeTextField.bottomAnchor, constant: UIScreen.main.bounds.height / 100).isActive = true
         
         nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         nextButton.topAnchor.constraint(equalTo: familyCodeTextField.bottomAnchor, constant: view.bounds.height * 0.55).isActive = true
