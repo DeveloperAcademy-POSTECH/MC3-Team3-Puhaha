@@ -97,7 +97,6 @@ extension AccountSettingViewController {
                                       preferredStyle: .alert)
         
         let yes = UIAlertAction(title: "예", style: .default, handler: { [weak self] _ in
-            //            self?.firestoreManager.deleteFamilyCode(userIdentifier: UserDefaults.standard.string(forKey: "userIdentifier") ?? "")
             UserDefaults.standard.set("", forKey: "roomCode")
             UserDefaults.standard.set("", forKey: "name")
             UserDefaults.standard.set("", forKey: "userIdentifier")
@@ -113,46 +112,27 @@ extension AccountSettingViewController {
     
     @objc func deleteAccountButtonTapped() {
         let familyCode = UserDefaults.standard.value(forKey: "roomCode") as? String ?? ""
-        
         let uploadUser = UserDefaults.standard.value(forKey: "userIdentifier") as? String ?? ""
         
-        
         let alert = UIAlertController(title: "알림",
-                                      message: "정말 탈퇴하시겠습니까? \n유저 정보와 업로드한 모든 사진이 삭제됩니다.",
+                                      message: "정말 탈퇴하시겠습니까?",
                                       preferredStyle: .alert)
         
         let yes = UIAlertAction(title: "예", style: .destructive, handler: { [weak self] _ in
             
-            self?.searchDeletedUser(familyCode: familyCode,
-                                    uploadUser: uploadUser)
+            self?.firestoreManager.deleteAccount(roomCode: familyCode, userIdentifier: uploadUser)
             
-//            self?.firestoreManager.deleteFamilyCode(userIdentifier: UserDefaults.standard.string(forKey: "userIdentifier") ?? "")
-            
-//            self?.navigationController?.popToRootViewController(animated: true)
+            UserDefaults.standard.set("", forKey: "roomCode")
+            UserDefaults.standard.set("", forKey: "name")
+            UserDefaults.standard.set("", forKey: "userIdentifier")
+            UserDefaults.standard.set("", forKey: "forUserID")
+            self?.navigationController?.popToRootViewController(animated: true)
         })
+        
         let no = UIAlertAction(title: "아니오", style: .default)
         
-        alert.addAction(yes)
         alert.addAction(no)
+        alert.addAction(yes)
         present(alert, animated: true)
-    }
-    
-    /*
-     1. 해당 유저가 올린 사진을 다 찾아야돼
-     1-1. 해당 가족 코드 > Meals > 모든 문서를 돌면서 uploadUser가 해당 유저인 것을 찾는다 >
-     1-2. 해당 유저이면 mealImageIndex값을 받아온다
-     1-3. storageManager에서 해당 mealImageIndex 번호를 찾아 삭제한다
-     
-     */
-    
-    func searchDeletedUser(familyCode: String, uploadUser: String) {
-
-        let meals: [Meal] = firestoreManager.meals
-        
-        for meal in meals {
-            let mealImageIndex = meal.mealImageName
-            print("나는 meals 배열안에서 찾은 mealImageName이지롱: \(mealImageIndex)")
-            storageManager.deleteMealImage(familyCode: familyCode, mealImageIndex: mealImageIndex)
-        }
     }
 }
