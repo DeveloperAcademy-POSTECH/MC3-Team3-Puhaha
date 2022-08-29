@@ -101,10 +101,10 @@ class FirestoreManager: ObservableObject {
                 let toolImage: UIImage = UIImage(named: "\(pokingToolColor.lowercased())_\(pokingToolTool)") ?? UIImage()
                 
                 /* Tool enum 사용할 경우
-                let toolType = convertStringToToolType(string: pokingTool["tool"] ?? "")
-                let toolColor = convertStringToToolColor(string: pokingTool["color"] ?? "")
-                let toolImage: UIImage = UIImage(named: "\(toolColor)_\(toolType.imageFileName)") ?? UIImage()
-                */
+                 let toolType = convertStringToToolType(string: pokingTool["tool"] ?? "")
+                 let toolColor = convertStringToToolColor(string: pokingTool["color"] ?? "")
+                 let toolImage: UIImage = UIImage(named: "\(toolColor)_\(toolType.imageFileName)") ?? UIImage()
+                 */
                 
                 let pokedBy: String = pokeStateValue["pokedBy"] ?? ""
                 let pokedTime: String = pokeStateValue["pokedTime"] ?? ""
@@ -176,8 +176,8 @@ class FirestoreManager: ObservableObject {
                             let accountId = data["accountId"] as? String ?? ""
                             let name = data["name"] as? String ?? ""
                             /* 안드로이드 개발이 되는 경우 0: 애플 계정 로그인, 1: 구글 계정 로그인으로 사용 예정
-                            let loginForm = data["loginForm"] as? Int ?? 0
-                            */
+                             let loginForm = data["loginForm"] as? Int ?? 0
+                             */
                             let familyCode = data["familyCode"] as? String ?? ""
                             let pokingTool = data["pokingTool"] as? [String: String] ?? [:]
                             let pokeStateValue = data["pokeState"] as? [String: String] ?? [:]
@@ -248,11 +248,11 @@ class FirestoreManager: ObservableObject {
     
     func setDefaultUserData(userIdentifier: String) {
         db.collection("Users").document(userIdentifier).setData(["familyCode": "",
-                                                            "name": "",
-                                                            "pokeState": ["pokedBy": "",
-                                                                          "pokedtime": ""],
-                                                            "pokingTool": ["color": "",
-                                                                           "tool": ""]])
+                                                                 "name": "",
+                                                                 "pokeState": ["pokedBy": "",
+                                                                               "pokedtime": ""],
+                                                                 "pokingTool": ["color": "",
+                                                                                "tool": ""]])
     }
     
     func isExistFamily(roomCode: String, completion: @escaping () -> Void) {
@@ -291,13 +291,44 @@ class FirestoreManager: ObservableObject {
     func addFamily(roomCode: String, userIdentifier: String) {
         db.collection("Families").document(roomCode).setData(["users": [userIdentifier]])
     }
-
+    
     func addFamilyMember(roomCode: String, userIdentifier: String) {
-            db.collection("Families").document(roomCode).getDocument { document, _ in
-                let data = document?.data()
-                var users: [String] = data?["users"] as? [String] ?? []
-                users.append(userIdentifier)
-                self.db.collection("Families").document(roomCode).updateData(["users": users])
-            }
+        db.collection("Families").document(roomCode).getDocument { document, _ in
+            let data = document?.data()
+            var users: [String] = data?["users"] as? [String] ?? []
+            users.append(userIdentifier)
+            self.db.collection("Families").document(roomCode).updateData(["users": users])
         }
     }
+    
+    func deleteAccount(roomCode: String, userIdentifier: String) {
+        db.collection("Families").document(roomCode).collection("Meals").whereField("uploadUser", isEqualTo: userIdentifier).getDocuments { snapshot, error in
+            
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                for document in snapshot!.documents {
+                    
+                    document.reference.delete()
+                }
+            }
+        }
+        db.collection("Users").document(userIdentifier).delete()
+        print("successfully deleted")
+        
+        
+        db.collection("Families").document(roomCode).getDocument { document, _ in
+            
+            let data = document?.data()
+            let users: [String] = data?["users"] as? [String] ?? []
+            var newUsers: [String] = []
+
+            for user in users where user != userIdentifier {
+                newUsers.append(user)
+            }
+            
+            self.db.collection("Families").document(roomCode).updateData(["users": newUsers])
+        }
+    }
+
+}
