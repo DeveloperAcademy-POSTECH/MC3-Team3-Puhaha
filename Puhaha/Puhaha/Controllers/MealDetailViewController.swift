@@ -10,7 +10,7 @@ import UIKit
 import FirebaseStorage
 
 class MealDetailViewController: UIViewController {
-    @Published var meal: Meal!
+    var meal: Meal!
     var familyCode: String!
     private let storageRef = Storage.storage().reference()
     
@@ -55,7 +55,7 @@ class MealDetailViewController: UIViewController {
         return collectionView
     }()
     
-    private let reactionCollectionView: UICollectionView = {
+    public let reactionCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
         layout.scrollDirection = .horizontal
@@ -81,7 +81,7 @@ class MealDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+        reactionSelectView.setMeal(meal: &meal, controller: self)
         view.layer.masksToBounds = true
         
         reactionCollectionView.delegate = self

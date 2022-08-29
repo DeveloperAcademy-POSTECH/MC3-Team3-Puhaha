@@ -46,7 +46,6 @@ class SettingViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.backBarButtonItem?.title = ""
         navigationController?.navigationBar.tintColor = .tintColor
-        navigationItem.title = "설정"
         view.backgroundColor = UIColor.white
         navigationController?.navigationBar.backgroundColor = .clear
         
@@ -56,6 +55,11 @@ class SettingViewController: UIViewController {
         view.addSubview(self.tableView)
         
         configureConstraints()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.isNavigationBarHidden = false
     }
     
     private func configureConstraints() {

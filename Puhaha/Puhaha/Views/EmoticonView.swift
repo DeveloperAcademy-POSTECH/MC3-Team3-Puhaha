@@ -8,6 +8,7 @@
 import UIKit
 
 class EmoticonView: UIView {
+    var controller: MealDetailViewController!
     var familyCode = ""
     let firebaseManager = FirestoreManager()
     var meal: Meal!
@@ -84,6 +85,11 @@ class EmoticonView: UIView {
             emoticonCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
+    
+    func setMeal(meal: inout Meal, controller: MealDetailViewController) {
+        self.meal = meal
+        self.controller = controller
+    }
 }
 
 extension EmoticonView: UICollectionViewDelegateFlowLayout {
@@ -107,7 +113,9 @@ extension EmoticonView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if loginedUser != "" {
             firebaseManager.addReaction(familyCode: familyCode, meal: meal, newReaction: [loginedUser: emoji[indexPath.row]])
+            meal.reactions.append(Reaction(reactionEmojiString: emoji[indexPath.row], reactedUserName: loginedUser))
         }
+        self.controller.reactionCollectionView.reloadData()
         
         self.isHidden = true
     }
