@@ -9,10 +9,7 @@ import UIKit
 
 class AccountSettingViewController: UIViewController {
     private let firestoreManager =  FirestoreManager()
-    private let storageManager = StorageManager()
     private let SettingSectionNames: [String] = ["이름 변경", "로그아웃", "회원탈퇴"]
-    
-
     
     lazy var tableView: UITableView = {
         let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height * 3
