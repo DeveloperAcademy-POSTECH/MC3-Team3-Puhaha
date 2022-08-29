@@ -330,5 +330,4 @@ class FirestoreManager: ObservableObject {
             self.db.collection("Families").document(roomCode).updateData(["users": newUsers])
         }
     }
-
 }
