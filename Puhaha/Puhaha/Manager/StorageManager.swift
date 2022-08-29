@@ -53,4 +53,18 @@ class StorageManager {
         }
 
     }
+    
+    func deleteMealImage(familyCode: String, mealImageIndex: String) {
+        
+        let fileLocation = "Families/\(familyCode)/Meals/\(mealImageIndex)"
+        
+        storageRef.child(fileLocation).delete {
+            error in
+            if let error = error {
+                print(error)
+            } else {
+                print("deleted successfully")
+            }
+        }
+    }
 }
