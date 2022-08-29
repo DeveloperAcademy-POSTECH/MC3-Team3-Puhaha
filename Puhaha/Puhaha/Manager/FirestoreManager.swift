@@ -313,9 +313,8 @@ class FirestoreManager: ObservableObject {
                 }
             }
         }
+
         db.collection("Users").document(userIdentifier).delete()
-        print("successfully deleted")
-        
         
         db.collection("Families").document(roomCode).getDocument { document, _ in
             
