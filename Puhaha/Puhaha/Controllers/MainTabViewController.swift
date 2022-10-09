@@ -125,7 +125,10 @@ class MainTabViewController: UITabBarController {
     public func fetchMeals() {
         firestoreManager.fetchMeals(familyCode: roomCode, date: nil) { [self] in
             for i in 0..<firestoreManager.meals.count {
-                getMealImage(date: firestoreManager.meals[i].uploadedDate, imageName: firestoreManager.meals[i].mealImageName, index: i)
+                if firestoreManager.meals[i].uploadedDate == Date.now.dateText {
+                    getMealImage(date: firestoreManager.meals[i].uploadedDate, imageName: firestoreManager.meals[i].mealImageName, index: i)
+                }
+                getUser(i)
             }
         }
     }
@@ -135,7 +138,6 @@ class MainTabViewController: UITabBarController {
                                     date: date,
                                     imageName: imageName) { [self] in
             firestoreManager.meals[index].mealImage = storageManager.mealImage
-            getUser(index)
             reloadMainView()
             reloadArchiveView()
         }
