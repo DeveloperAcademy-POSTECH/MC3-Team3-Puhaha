@@ -520,7 +520,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "'밥먹언?'이 회원님의 기기의 카메라를 사용하여 사진을 찍고 공유할 수 있도록 지원합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "'밥먹언?'이 회원님의 갤러리 사진을 공유할 수 있도록 지원합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -560,7 +560,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "'밥먹언?'이 회원님의 기기의 카메라를 사용하여 사진을 찍고 공유할 수 있도록 지원합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "'밥먹언?'이 회원님의 갤러리 사진을 공유할 수 있도록 지원합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
