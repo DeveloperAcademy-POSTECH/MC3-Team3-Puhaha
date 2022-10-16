@@ -7,75 +7,75 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		551CD2DE28850A800037487D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CD2DD28850A800037487D /* SignInViewController.swift */; };
-		55599E3C2886362900C05E81 /* CustomedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55599E3B2886362900C05E81 /* CustomedButton.swift */; };
-		556AADA62896654100A40F0B /* PokeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556AADA52896654100A40F0B /* PokeState.swift */; };
-		559D06BB289BAD0E00338782 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559D06BA289BAD0E00338782 /* User.swift */; };
-		559D06C0289BAD7300338782 /* UITextField+SetUnderLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559D06BF289BAD7300338782 /* UITextField+SetUnderLine.swift */; };
-		559D06C2289BAD7900338782 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559D06C1289BAD7900338782 /* UILabel+Extension.swift */; };
-		559D06C4289BB30A00338782 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559D06C3289BB30A00338782 /* SceneDelegate.swift */; };
-		559D06C6289BB97300338782 /* JoinFamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559D06C5289BB97300338782 /* JoinFamilyViewController.swift */; };
-		55C02311288A940D001511E3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C02310288A940D001511E3 /* SettingViewController.swift */; };
-		55CF4C8F288BE81A0020DACC /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF4C8E288BE81A0020DACC /* AccountSettingViewController.swift */; };
-		55DCB98728958EDE00C83E1D /* SingInViewControllerASDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCB98628958EDE00C83E1D /* SingInViewControllerASDelegate.swift */; };
-		55DCB98B2895A51E00C83E1D /* NameSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCB98A2895A51E00C83E1D /* NameSettingViewController.swift */; };
-		A402AAF12893B56D00425BC0 /* PokingToolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A402AAF02893B56D00425BC0 /* PokingToolButton.swift */; };
-		A40C3F5F2890048B004465D5 /* PokeToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40C3F5E2890048B004465D5 /* PokeToolViewController.swift */; };
-		A40C3F61289012D9004465D5 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40C3F60289012D9004465D5 /* DividerView.swift */; };
-		A419810F288508EC00CCFDBA /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A419810D288508EC00CCFDBA /* UIColor+Extension.swift */; };
-		A445E5F828929C9B00FD31C4 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A445E5F728929C9B00FD31C4 /* UIImage+Extension.swift */; };
-		A48C939B288F747100BA09EF /* PokingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48C939A288F747100BA09EF /* PokingTool.swift */; };
-		A48C93A7288F74D500BA09EF /* BigFork.scn in Resources */ = {isa = PBXBuildFile; fileRef = A48C939F288F74D500BA09EF /* BigFork.scn */; };
-		A48C93A8288F74D500BA09EF /* Tools.scn in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A0288F74D500BA09EF /* Tools.scn */; };
-		A48C93A9288F74D500BA09EF /* BigWhisk.scn in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A1288F74D500BA09EF /* BigWhisk.scn */; };
-		A48C93AA288F74D500BA09EF /* BigSpoonVer2.obj in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A2288F74D500BA09EF /* BigSpoonVer2.obj */; };
-		A48C93AB288F74D500BA09EF /* BigWhisk.obj in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A3288F74D500BA09EF /* BigWhisk.obj */; };
-		A48C93AC288F74D500BA09EF /* BigFork.obj in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A4288F74D500BA09EF /* BigFork.obj */; };
-		A48C93AD288F74D500BA09EF /* BigSpoonVer2.scn in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A5288F74D500BA09EF /* BigSpoonVer2.scn */; };
-		A48C93AE288F74D500BA09EF /* Spatula.scn in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A6288F74D500BA09EF /* Spatula.scn */; };
-		BF63A84828AF6F5800C4BED9 /* NameEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF63A84728AF6F5800C4BED9 /* NameEditingViewController.swift */; };
-		BF8C5FA9288E5EE0002BF0BD /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FA8288E5EDF002BF0BD /* UploadViewController.swift */; };
-		BF8C5FAD288E655B002BF0BD /* TagContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FAC288E655B002BF0BD /* TagContentCollectionViewCell.swift */; };
-		BF8C5FAF288E6B21002BF0BD /* UploadTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FAE288E6B21002BF0BD /* UploadTag.swift */; };
-		BFFB73422897652B00AE3C09 /* Camera+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB73412897652B00AE3C09 /* Camera+Extension.swift */; };
-		CE33B7772894FF680054F9CD /* CreateFamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B7762894FF680054F9CD /* CreateFamilyViewController.swift */; };
-		CE33B7792894FFA40054F9CD /* InviteFamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B7782894FFA40054F9CD /* InviteFamilyViewController.swift */; };
-		CE33B7932895755E0054F9CD /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CE33B7922895755E0054F9CD /* FirebaseStorage */; };
-		CE33B79B2896592F0054F9CD /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B79A2896592F0054F9CD /* FirestoreManager.swift */; };
-		CE33B79D2896593F0054F9CD /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B79C2896593F0054F9CD /* StorageManager.swift */; };
-		CE33B7A12896632E0054F9CD /* Poke.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B7A02896632E0054F9CD /* Poke.swift */; };
-		CE42A72A28B37CAA00A516F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE42A72928B37CAA00A516F3 /* LaunchScreen.storyboard */; };
-		CE445BE728A41ABE0084A93F /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE445BE628A41ABE0084A93F /* ArchiveViewController.swift */; };
-		CE445BE928A426C00084A93F /* ArchiveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE445BE828A426C00084A93F /* ArchiveCell.swift */; };
-		CE45191728A8E0EC00D1FB21 /* String+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45191628A8E0EC00D1FB21 /* String+Extenstion.swift */; };
-		CE46B5702888DB3D0074DEF0 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE46B56F2888DB3D0074DEF0 /* TagLabel.swift */; };
-		CE558B1528852DF800E98909 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE558B1428852DF800E98909 /* Tag.swift */; };
-		CE558B1728852DFB00E98909 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE558B1628852DFB00E98909 /* Meal.swift */; };
-		CE558B192885304500E98909 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE558B182885304500E98909 /* MainViewController.swift */; };
-		CE558B1D288530BC00E98909 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE558B1C288530BC00E98909 /* Date+Today.swift */; };
-		CE5B4F67288E7C6A00111ACC /* ReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B4F65288E7C6A00111ACC /* ReactionView.swift */; };
-		CE5B4F68288E7C6A00111ACC /* ReactionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B4F66288E7C6A00111ACC /* ReactionCollectionViewCell.swift */; };
-		CE5B4F6C288E7C8B00111ACC /* Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B4F6B288E7C8B00111ACC /* Reaction.swift */; };
-		CE5B4F6E288E7C9D00111ACC /* MealDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B4F6D288E7C9D00111ACC /* MealDetailViewController.swift */; };
-		CE66046128AB712500D33A64 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE33B78A2895755E0054F9CD /* FirebaseAnalytics */; };
-		CE66046228AB712500D33A64 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CE33B78C2895755E0054F9CD /* FirebaseAuth */; };
-		CE66046328AB712500D33A64 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CE33B78E2895755E0054F9CD /* FirebaseFirestore */; };
-		CE66046428AB712500D33A64 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE33B7902895755E0054F9CD /* FirebaseFirestoreSwift */; };
-		CE66046C28AC259600D33A64 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE66046B28AC259600D33A64 /* GoogleService-Info.plist */; };
-		CE718850288E849D002CF653 /* EmptyMealCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71884F288E849D002CF653 /* EmptyMealCardView.swift */; };
-		CE73297D28865C8800CA87F1 /* MealCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73297C28865C8800CA87F1 /* MealCardCollectionViewCell.swift */; };
-		CE73297F28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73297E28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift */; };
-		CE73298128869FA300CA87F1 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73298028869FA300CA87F1 /* Family.swift */; };
-		CE9AE1912891270500F4253D /* MainViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AE1902891270500F4253D /* MainViewController+Delegate.swift */; };
-		CE9AE1932891271700F4253D /* MainViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AE1922891271700F4253D /* MainViewController+DataSource.swift */; };
-		CE9D233B28877E1F00D53332 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D233A28877E1F00D53332 /* MainTabViewController.swift */; };
-		CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F965C287FA66C00783324 /* AppDelegate.swift */; };
-		CE9F9661287FA66C00783324 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F9660287FA66C00783324 /* ViewController.swift */; };
-		CE9F9666287FA66F00783324 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9F9665287FA66F00783324 /* Assets.xcassets */; };
-		CE9F9674287FA8A600783324 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE9F9673287FA8A600783324 /* .swiftlint.yml */; };
-		CEC190A528A27FB4000E239E /* EmoticonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC190A428A27FB4000E239E /* EmoticonCell.swift */; };
-		CEE6DDAB28A14AA300D58230 /* EmoticonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE6DDAA28A14AA300D58230 /* EmoticonView.swift */; };
-		CEE92FDB28A63E0000AEE539 /* ShadowUIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE92FDA28A63E0000AEE539 /* ShadowUIViewExtension.swift */; };
+		CE6A233728FBDD06004E7EA7 /* CustomedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55599E3B2886362900C05E81 /* CustomedButton.swift */; };
+		CE6A233828FBDD06004E7EA7 /* String+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45191628A8E0EC00D1FB21 /* String+Extenstion.swift */; };
+		CE6A233928FBDD06004E7EA7 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B79A2896592F0054F9CD /* FirestoreManager.swift */; };
+		CE6A233A28FBDD06004E7EA7 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FA8288E5EDF002BF0BD /* UploadViewController.swift */; };
+		CE6A233B28FBDD06004E7EA7 /* MainViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AE1922891271700F4253D /* MainViewController+DataSource.swift */; };
+		CE6A233C28FBDD06004E7EA7 /* MainViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AE1902891270500F4253D /* MainViewController+Delegate.swift */; };
+		CE6A233D28FBDD06004E7EA7 /* EmptyMealCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71884F288E849D002CF653 /* EmptyMealCardView.swift */; };
+		CE6A233E28FBDD06004E7EA7 /* EmoticonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE6DDAA28A14AA300D58230 /* EmoticonView.swift */; };
+		CE6A233F28FBDD06004E7EA7 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CD2DD28850A800037487D /* SignInViewController.swift */; };
+		CE6A234028FBDD06004E7EA7 /* MealDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B4F6D288E7C9D00111ACC /* MealDetailViewController.swift */; };
+		CE6A234128FBDD06004E7EA7 /* MealCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73297C28865C8800CA87F1 /* MealCardCollectionViewCell.swift */; };
+		CE6A234228FBDD06004E7EA7 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE46B56F2888DB3D0074DEF0 /* TagLabel.swift */; };
+		CE6A234328FBDD06004E7EA7 /* EmoticonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC190A428A27FB4000E239E /* EmoticonCell.swift */; };
+		CE6A234428FBDD06004E7EA7 /* PokeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556AADA52896654100A40F0B /* PokeState.swift */; };
+		CE6A234528FBDD06004E7EA7 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE558B1428852DF800E98909 /* Tag.swift */; };
+		CE6A234628FBDD06004E7EA7 /* PokingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48C939A288F747100BA09EF /* PokingTool.swift */; };
+		CE6A234728FBDD06004E7EA7 /* UploadTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FAE288E6B21002BF0BD /* UploadTag.swift */; };
+		CE6A234828FBDD06004E7EA7 /* NameEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF63A84728AF6F5800C4BED9 /* NameEditingViewController.swift */; };
+		CE6A234928FBDD06004E7EA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F9660287FA66C00783324 /* ViewController.swift */; };
+		CE6A234A28FBDD06004E7EA7 /* SingInViewControllerASDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCB98628958EDE00C83E1D /* SingInViewControllerASDelegate.swift */; };
+		CE6A234B28FBDD06004E7EA7 /* PokeToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40C3F5E2890048B004465D5 /* PokeToolViewController.swift */; };
+		CE6A234C28FBDD06004E7EA7 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE558B1628852DFB00E98909 /* Meal.swift */; };
+		CE6A234D28FBDD06004E7EA7 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B79C2896593F0054F9CD /* StorageManager.swift */; };
+		CE6A234E28FBDD06004E7EA7 /* InviteFamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B7782894FFA40054F9CD /* InviteFamilyViewController.swift */; };
+		CE6A234F28FBDD06004E7EA7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559D06BA289BAD0E00338782 /* User.swift */; };
+		CE6A235028FBDD06004E7EA7 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE558B1C288530BC00E98909 /* Date+Today.swift */; };
+		CE6A235128FBDD06004E7EA7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559D06C3289BB30A00338782 /* SceneDelegate.swift */; };
+		CE6A235228FBDD06004E7EA7 /* ShadowUIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE92FDA28A63E0000AEE539 /* ShadowUIViewExtension.swift */; };
+		CE6A235328FBDD06004E7EA7 /* ReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B4F65288E7C6A00111ACC /* ReactionView.swift */; };
+		CE6A235428FBDD06004E7EA7 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D233A28877E1F00D53332 /* MainTabViewController.swift */; };
+		CE6A235528FBDD06004E7EA7 /* TagContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C5FAC288E655B002BF0BD /* TagContentCollectionViewCell.swift */; };
+		CE6A235628FBDD06004E7EA7 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559D06C1289BAD7900338782 /* UILabel+Extension.swift */; };
+		CE6A235728FBDD06004E7EA7 /* PokingToolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A402AAF02893B56D00425BC0 /* PokingToolButton.swift */; };
+		CE6A235828FBDD06004E7EA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F965C287FA66C00783324 /* AppDelegate.swift */; };
+		CE6A235928FBDD06004E7EA7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C02310288A940D001511E3 /* SettingViewController.swift */; };
+		CE6A235A28FBDD06004E7EA7 /* CreateFamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B7762894FF680054F9CD /* CreateFamilyViewController.swift */; };
+		CE6A235B28FBDD06004E7EA7 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A419810D288508EC00CCFDBA /* UIColor+Extension.swift */; };
+		CE6A235C28FBDD06004E7EA7 /* ArchiveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE445BE828A426C00084A93F /* ArchiveCell.swift */; };
+		CE6A235D28FBDD06004E7EA7 /* UITextField+SetUnderLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559D06BF289BAD7300338782 /* UITextField+SetUnderLine.swift */; };
+		CE6A235E28FBDD06004E7EA7 /* Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B4F6B288E7C8B00111ACC /* Reaction.swift */; };
+		CE6A235F28FBDD06004E7EA7 /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF4C8E288BE81A0020DACC /* AccountSettingViewController.swift */; };
+		CE6A236028FBDD06004E7EA7 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40C3F60289012D9004465D5 /* DividerView.swift */; };
+		CE6A236128FBDD06004E7EA7 /* Camera+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB73412897652B00AE3C09 /* Camera+Extension.swift */; };
+		CE6A236228FBDD06004E7EA7 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73298028869FA300CA87F1 /* Family.swift */; };
+		CE6A236328FBDD06004E7EA7 /* FamilyFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73297E28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift */; };
+		CE6A236428FBDD06004E7EA7 /* JoinFamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559D06C5289BB97300338782 /* JoinFamilyViewController.swift */; };
+		CE6A236528FBDD06004E7EA7 /* NameSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCB98A2895A51E00C83E1D /* NameSettingViewController.swift */; };
+		CE6A236628FBDD06004E7EA7 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE445BE628A41ABE0084A93F /* ArchiveViewController.swift */; };
+		CE6A236728FBDD06004E7EA7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE558B182885304500E98909 /* MainViewController.swift */; };
+		CE6A236828FBDD06004E7EA7 /* ReactionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B4F66288E7C6A00111ACC /* ReactionCollectionViewCell.swift */; };
+		CE6A236928FBDD06004E7EA7 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A445E5F728929C9B00FD31C4 /* UIImage+Extension.swift */; };
+		CE6A236A28FBDD06004E7EA7 /* Poke.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B7A02896632E0054F9CD /* Poke.swift */; };
+		CE6A236C28FBDD06004E7EA7 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE6A233328FBDD06004E7EA7 /* FirebaseFirestoreSwift */; };
+		CE6A236D28FBDD06004E7EA7 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE6A232F28FBDD06004E7EA7 /* FirebaseAnalytics */; };
+		CE6A236E28FBDD06004E7EA7 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CE6A233228FBDD06004E7EA7 /* FirebaseFirestore */; };
+		CE6A236F28FBDD06004E7EA7 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CE6A233128FBDD06004E7EA7 /* FirebaseAuth */; };
+		CE6A237028FBDD06004E7EA7 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CE6A233428FBDD06004E7EA7 /* FirebaseStorage */; };
+		CE6A237228FBDD06004E7EA7 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = CE9F9673287FA8A600783324 /* .swiftlint.yml */; };
+		CE6A237328FBDD06004E7EA7 /* BigFork.scn in Resources */ = {isa = PBXBuildFile; fileRef = A48C939F288F74D500BA09EF /* BigFork.scn */; };
+		CE6A237428FBDD06004E7EA7 /* BigSpoonVer2.scn in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A5288F74D500BA09EF /* BigSpoonVer2.scn */; };
+		CE6A237528FBDD06004E7EA7 /* BigFork.obj in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A4288F74D500BA09EF /* BigFork.obj */; };
+		CE6A237628FBDD06004E7EA7 /* BigWhisk.scn in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A1288F74D500BA09EF /* BigWhisk.scn */; };
+		CE6A237728FBDD06004E7EA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9F9665287FA66F00783324 /* Assets.xcassets */; };
+		CE6A237828FBDD06004E7EA7 /* Spatula.scn in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A6288F74D500BA09EF /* Spatula.scn */; };
+		CE6A237928FBDD06004E7EA7 /* BigWhisk.obj in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A3288F74D500BA09EF /* BigWhisk.obj */; };
+		CE6A237A28FBDD06004E7EA7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE66046B28AC259600D33A64 /* GoogleService-Info.plist */; };
+		CE6A237B28FBDD06004E7EA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE42A72928B37CAA00A516F3 /* LaunchScreen.storyboard */; };
+		CE6A237C28FBDD06004E7EA7 /* Tools.scn in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A0288F74D500BA09EF /* Tools.scn */; };
+		CE6A237D28FBDD06004E7EA7 /* BigSpoonVer2.obj in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A2288F74D500BA09EF /* BigSpoonVer2.obj */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,7 +88,6 @@
 		559D06C1289BAD7900338782 /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		559D06C3289BB30A00338782 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		559D06C5289BB97300338782 /* JoinFamilyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinFamilyViewController.swift; sourceTree = "<group>"; };
-		55AA34B228854CB800C2D6D6 /* Puhaha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puhaha.entitlements; sourceTree = "<group>"; };
 		55C02310288A940D001511E3 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		55CF4C8E288BE81A0020DACC /* AccountSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
 		55DCB98628958EDE00C83E1D /* SingInViewControllerASDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInViewControllerASDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +131,8 @@
 		CE5B4F6B288E7C8B00111ACC /* Reaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reaction.swift; sourceTree = "<group>"; };
 		CE5B4F6D288E7C9D00111ACC /* MealDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealDetailViewController.swift; sourceTree = "<group>"; };
 		CE66046B28AC259600D33A64 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CE6A238128FBDD06004E7EA7 /* Puhaha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puhaha.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE6A23D828FBDF6A004E7EA7 /* 밥먹언?.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "밥먹언?.entitlements"; sourceTree = "<group>"; };
 		CE71884F288E849D002CF653 /* EmptyMealCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyMealCardView.swift; sourceTree = "<group>"; };
 		CE73297C28865C8800CA87F1 /* MealCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE73297E28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyFilterCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -139,7 +140,6 @@
 		CE9AE1902891270500F4253D /* MainViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Delegate.swift"; sourceTree = "<group>"; };
 		CE9AE1922891271700F4253D /* MainViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+DataSource.swift"; sourceTree = "<group>"; };
 		CE9D233A28877E1F00D53332 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
-		CE9F9659287FA66C00783324 /* 밥먹언?.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "밥먹언?.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9F965C287FA66C00783324 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9F9660287FA66C00783324 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CE9F9665287FA66F00783324 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -151,15 +151,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		CE9F9656287FA66C00783324 /* Frameworks */ = {
+		CE6A236B28FBDD06004E7EA7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE66046428AB712500D33A64 /* FirebaseFirestoreSwift in Frameworks */,
-				CE66046128AB712500D33A64 /* FirebaseAnalytics in Frameworks */,
-				CE66046328AB712500D33A64 /* FirebaseFirestore in Frameworks */,
-				CE66046228AB712500D33A64 /* FirebaseAuth in Frameworks */,
-				CE33B7932895755E0054F9CD /* FirebaseStorage in Frameworks */,
+				CE6A236C28FBDD06004E7EA7 /* FirebaseFirestoreSwift in Frameworks */,
+				CE6A236D28FBDD06004E7EA7 /* FirebaseAnalytics in Frameworks */,
+				CE6A236E28FBDD06004E7EA7 /* FirebaseFirestore in Frameworks */,
+				CE6A236F28FBDD06004E7EA7 /* FirebaseAuth in Frameworks */,
+				CE6A237028FBDD06004E7EA7 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,7 +251,7 @@
 		CE9F965A287FA66C00783324 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CE9F9659287FA66C00783324 /* 밥먹언?.app */,
+				CE6A238128FBDD06004E7EA7 /* Puhaha.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -259,9 +259,9 @@
 		CE9F965B287FA66C00783324 /* Puhaha */ = {
 			isa = PBXGroup;
 			children = (
+				CE6A23D828FBDF6A004E7EA7 /* 밥먹언?.entitlements */,
 				CE33B77A289519E50054F9CD /* Manager */,
 				A48C939E288F74BE00BA09EF /* Resources */,
-				55AA34B228854CB800C2D6D6 /* Puhaha.entitlements */,
 				A4198110288508FA00CCFDBA /* Global */,
 				CE9F9672287FA69400783324 /* Models */,
 				CE9F9671287FA68C00783324 /* Controllers */,
@@ -340,29 +340,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CE9F9658287FA66C00783324 /* 밥먹언? */ = {
+		CE6A232E28FBDD06004E7EA7 /* Puhaha */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CE9F966D287FA66F00783324 /* Build configuration list for PBXNativeTarget "밥먹언?" */;
+			buildConfigurationList = CE6A237E28FBDD06004E7EA7 /* Build configuration list for PBXNativeTarget "Puhaha" */;
 			buildPhases = (
-				CE9F9675287FA8E900783324 /* ShellScript */,
-				CE9F9655287FA66C00783324 /* Sources */,
-				CE9F9656287FA66C00783324 /* Frameworks */,
-				CE9F9657287FA66C00783324 /* Resources */,
+				CE6A233528FBDD06004E7EA7 /* ShellScript */,
+				CE6A233628FBDD06004E7EA7 /* Sources */,
+				CE6A236B28FBDD06004E7EA7 /* Frameworks */,
+				CE6A237128FBDD06004E7EA7 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "밥먹언?";
+			name = Puhaha;
 			packageProductDependencies = (
-				CE33B78A2895755E0054F9CD /* FirebaseAnalytics */,
-				CE33B78C2895755E0054F9CD /* FirebaseAuth */,
-				CE33B78E2895755E0054F9CD /* FirebaseFirestore */,
-				CE33B7902895755E0054F9CD /* FirebaseFirestoreSwift */,
-				CE33B7922895755E0054F9CD /* FirebaseStorage */,
+				CE6A232F28FBDD06004E7EA7 /* FirebaseAnalytics */,
+				CE6A233128FBDD06004E7EA7 /* FirebaseAuth */,
+				CE6A233228FBDD06004E7EA7 /* FirebaseFirestore */,
+				CE6A233328FBDD06004E7EA7 /* FirebaseFirestoreSwift */,
+				CE6A233428FBDD06004E7EA7 /* FirebaseStorage */,
 			);
 			productName = Puhaha;
-			productReference = CE9F9659287FA66C00783324 /* 밥먹언?.app */;
+			productReference = CE6A238128FBDD06004E7EA7 /* Puhaha.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -372,13 +372,8 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1340;
-				TargetAttributes = {
-					CE9F9658287FA66C00783324 = {
-						CreatedOnToolsVersion = 13.4.1;
-					};
-				};
 			};
 			buildConfigurationList = CE9F9654287FA66C00783324 /* Build configuration list for PBXProject "Puhaha" */;
 			compatibilityVersion = "Xcode 13.0";
@@ -387,6 +382,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = CE9F9650287FA66C00783324;
 			packageReferences = (
@@ -396,35 +392,35 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CE9F9658287FA66C00783324 /* 밥먹언? */,
+				CE6A232E28FBDD06004E7EA7 /* Puhaha */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		CE9F9657287FA66C00783324 /* Resources */ = {
+		CE6A237128FBDD06004E7EA7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE9F9674287FA8A600783324 /* .swiftlint.yml in Resources */,
-				A48C93A7288F74D500BA09EF /* BigFork.scn in Resources */,
-				A48C93AD288F74D500BA09EF /* BigSpoonVer2.scn in Resources */,
-				A48C93AC288F74D500BA09EF /* BigFork.obj in Resources */,
-				A48C93A9288F74D500BA09EF /* BigWhisk.scn in Resources */,
-				CE9F9666287FA66F00783324 /* Assets.xcassets in Resources */,
-				A48C93AE288F74D500BA09EF /* Spatula.scn in Resources */,
-				A48C93AB288F74D500BA09EF /* BigWhisk.obj in Resources */,
-				CE66046C28AC259600D33A64 /* GoogleService-Info.plist in Resources */,
-				CE42A72A28B37CAA00A516F3 /* LaunchScreen.storyboard in Resources */,
-				A48C93A8288F74D500BA09EF /* Tools.scn in Resources */,
-				A48C93AA288F74D500BA09EF /* BigSpoonVer2.obj in Resources */,
+				CE6A237228FBDD06004E7EA7 /* .swiftlint.yml in Resources */,
+				CE6A237328FBDD06004E7EA7 /* BigFork.scn in Resources */,
+				CE6A237428FBDD06004E7EA7 /* BigSpoonVer2.scn in Resources */,
+				CE6A237528FBDD06004E7EA7 /* BigFork.obj in Resources */,
+				CE6A237628FBDD06004E7EA7 /* BigWhisk.scn in Resources */,
+				CE6A237728FBDD06004E7EA7 /* Assets.xcassets in Resources */,
+				CE6A237828FBDD06004E7EA7 /* Spatula.scn in Resources */,
+				CE6A237928FBDD06004E7EA7 /* BigWhisk.obj in Resources */,
+				CE6A237A28FBDD06004E7EA7 /* GoogleService-Info.plist in Resources */,
+				CE6A237B28FBDD06004E7EA7 /* LaunchScreen.storyboard in Resources */,
+				CE6A237C28FBDD06004E7EA7 /* Tools.scn in Resources */,
+				CE6A237D28FBDD06004E7EA7 /* BigSpoonVer2.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		CE9F9675287FA8E900783324 /* ShellScript */ = {
+		CE6A233528FBDD06004E7EA7 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -444,69 +440,149 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		CE9F9655287FA66C00783324 /* Sources */ = {
+		CE6A233628FBDD06004E7EA7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55599E3C2886362900C05E81 /* CustomedButton.swift in Sources */,
-				CE45191728A8E0EC00D1FB21 /* String+Extenstion.swift in Sources */,
-				CE33B79B2896592F0054F9CD /* FirestoreManager.swift in Sources */,
-				BF8C5FA9288E5EE0002BF0BD /* UploadViewController.swift in Sources */,
-				CE9AE1932891271700F4253D /* MainViewController+DataSource.swift in Sources */,
-				CE9AE1912891270500F4253D /* MainViewController+Delegate.swift in Sources */,
-				CE718850288E849D002CF653 /* EmptyMealCardView.swift in Sources */,
-				CEE6DDAB28A14AA300D58230 /* EmoticonView.swift in Sources */,
-				551CD2DE28850A800037487D /* SignInViewController.swift in Sources */,
-				CE5B4F6E288E7C9D00111ACC /* MealDetailViewController.swift in Sources */,
-				CE73297D28865C8800CA87F1 /* MealCardCollectionViewCell.swift in Sources */,
-				CE46B5702888DB3D0074DEF0 /* TagLabel.swift in Sources */,
-				CEC190A528A27FB4000E239E /* EmoticonCell.swift in Sources */,
-				556AADA62896654100A40F0B /* PokeState.swift in Sources */,
-				CE558B1528852DF800E98909 /* Tag.swift in Sources */,
-				A48C939B288F747100BA09EF /* PokingTool.swift in Sources */,
-				BF8C5FAF288E6B21002BF0BD /* UploadTag.swift in Sources */,
-				BF63A84828AF6F5800C4BED9 /* NameEditingViewController.swift in Sources */,
-				CE9F9661287FA66C00783324 /* ViewController.swift in Sources */,
-				55DCB98728958EDE00C83E1D /* SingInViewControllerASDelegate.swift in Sources */,
-				A40C3F5F2890048B004465D5 /* PokeToolViewController.swift in Sources */,
-				CE558B1728852DFB00E98909 /* Meal.swift in Sources */,
-				CE33B79D2896593F0054F9CD /* StorageManager.swift in Sources */,
-				CE33B7792894FFA40054F9CD /* InviteFamilyViewController.swift in Sources */,
-				559D06BB289BAD0E00338782 /* User.swift in Sources */,
-				CE558B1D288530BC00E98909 /* Date+Today.swift in Sources */,
-				559D06C4289BB30A00338782 /* SceneDelegate.swift in Sources */,
-				CEE92FDB28A63E0000AEE539 /* ShadowUIViewExtension.swift in Sources */,
-				CE5B4F67288E7C6A00111ACC /* ReactionView.swift in Sources */,
-				CE9D233B28877E1F00D53332 /* MainTabViewController.swift in Sources */,
-				BF8C5FAD288E655B002BF0BD /* TagContentCollectionViewCell.swift in Sources */,
-				559D06C2289BAD7900338782 /* UILabel+Extension.swift in Sources */,
-				A402AAF12893B56D00425BC0 /* PokingToolButton.swift in Sources */,
-				CE9F965D287FA66C00783324 /* AppDelegate.swift in Sources */,
-				55C02311288A940D001511E3 /* SettingViewController.swift in Sources */,
-				CE33B7772894FF680054F9CD /* CreateFamilyViewController.swift in Sources */,
-				A419810F288508EC00CCFDBA /* UIColor+Extension.swift in Sources */,
-				CE445BE928A426C00084A93F /* ArchiveCell.swift in Sources */,
-				559D06C0289BAD7300338782 /* UITextField+SetUnderLine.swift in Sources */,
-				CE5B4F6C288E7C8B00111ACC /* Reaction.swift in Sources */,
-				55CF4C8F288BE81A0020DACC /* AccountSettingViewController.swift in Sources */,
-				A40C3F61289012D9004465D5 /* DividerView.swift in Sources */,
-				BFFB73422897652B00AE3C09 /* Camera+Extension.swift in Sources */,
-				CE73298128869FA300CA87F1 /* Family.swift in Sources */,
-				CE73297F28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift in Sources */,
-				559D06C6289BB97300338782 /* JoinFamilyViewController.swift in Sources */,
-				55DCB98B2895A51E00C83E1D /* NameSettingViewController.swift in Sources */,
-				CE445BE728A41ABE0084A93F /* ArchiveViewController.swift in Sources */,
-				CE73297F28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift in Sources */,
-				CE558B192885304500E98909 /* MainViewController.swift in Sources */,
-				CE5B4F68288E7C6A00111ACC /* ReactionCollectionViewCell.swift in Sources */,
-				A445E5F828929C9B00FD31C4 /* UIImage+Extension.swift in Sources */,
-				CE33B7A12896632E0054F9CD /* Poke.swift in Sources */,
+				CE6A233728FBDD06004E7EA7 /* CustomedButton.swift in Sources */,
+				CE6A233828FBDD06004E7EA7 /* String+Extenstion.swift in Sources */,
+				CE6A233928FBDD06004E7EA7 /* FirestoreManager.swift in Sources */,
+				CE6A233A28FBDD06004E7EA7 /* UploadViewController.swift in Sources */,
+				CE6A233B28FBDD06004E7EA7 /* MainViewController+DataSource.swift in Sources */,
+				CE6A233C28FBDD06004E7EA7 /* MainViewController+Delegate.swift in Sources */,
+				CE6A233D28FBDD06004E7EA7 /* EmptyMealCardView.swift in Sources */,
+				CE6A233E28FBDD06004E7EA7 /* EmoticonView.swift in Sources */,
+				CE6A233F28FBDD06004E7EA7 /* SignInViewController.swift in Sources */,
+				CE6A234028FBDD06004E7EA7 /* MealDetailViewController.swift in Sources */,
+				CE6A234128FBDD06004E7EA7 /* MealCardCollectionViewCell.swift in Sources */,
+				CE6A234228FBDD06004E7EA7 /* TagLabel.swift in Sources */,
+				CE6A234328FBDD06004E7EA7 /* EmoticonCell.swift in Sources */,
+				CE6A234428FBDD06004E7EA7 /* PokeState.swift in Sources */,
+				CE6A234528FBDD06004E7EA7 /* Tag.swift in Sources */,
+				CE6A234628FBDD06004E7EA7 /* PokingTool.swift in Sources */,
+				CE6A234728FBDD06004E7EA7 /* UploadTag.swift in Sources */,
+				CE6A234828FBDD06004E7EA7 /* NameEditingViewController.swift in Sources */,
+				CE6A234928FBDD06004E7EA7 /* ViewController.swift in Sources */,
+				CE6A234A28FBDD06004E7EA7 /* SingInViewControllerASDelegate.swift in Sources */,
+				CE6A234B28FBDD06004E7EA7 /* PokeToolViewController.swift in Sources */,
+				CE6A234C28FBDD06004E7EA7 /* Meal.swift in Sources */,
+				CE6A234D28FBDD06004E7EA7 /* StorageManager.swift in Sources */,
+				CE6A234E28FBDD06004E7EA7 /* InviteFamilyViewController.swift in Sources */,
+				CE6A234F28FBDD06004E7EA7 /* User.swift in Sources */,
+				CE6A235028FBDD06004E7EA7 /* Date+Today.swift in Sources */,
+				CE6A235128FBDD06004E7EA7 /* SceneDelegate.swift in Sources */,
+				CE6A235228FBDD06004E7EA7 /* ShadowUIViewExtension.swift in Sources */,
+				CE6A235328FBDD06004E7EA7 /* ReactionView.swift in Sources */,
+				CE6A235428FBDD06004E7EA7 /* MainTabViewController.swift in Sources */,
+				CE6A235528FBDD06004E7EA7 /* TagContentCollectionViewCell.swift in Sources */,
+				CE6A235628FBDD06004E7EA7 /* UILabel+Extension.swift in Sources */,
+				CE6A235728FBDD06004E7EA7 /* PokingToolButton.swift in Sources */,
+				CE6A235828FBDD06004E7EA7 /* AppDelegate.swift in Sources */,
+				CE6A235928FBDD06004E7EA7 /* SettingViewController.swift in Sources */,
+				CE6A235A28FBDD06004E7EA7 /* CreateFamilyViewController.swift in Sources */,
+				CE6A235B28FBDD06004E7EA7 /* UIColor+Extension.swift in Sources */,
+				CE6A235C28FBDD06004E7EA7 /* ArchiveCell.swift in Sources */,
+				CE6A235D28FBDD06004E7EA7 /* UITextField+SetUnderLine.swift in Sources */,
+				CE6A235E28FBDD06004E7EA7 /* Reaction.swift in Sources */,
+				CE6A235F28FBDD06004E7EA7 /* AccountSettingViewController.swift in Sources */,
+				CE6A236028FBDD06004E7EA7 /* DividerView.swift in Sources */,
+				CE6A236128FBDD06004E7EA7 /* Camera+Extension.swift in Sources */,
+				CE6A236228FBDD06004E7EA7 /* Family.swift in Sources */,
+				CE6A236328FBDD06004E7EA7 /* FamilyFilterCollectionViewCell.swift in Sources */,
+				CE6A236428FBDD06004E7EA7 /* JoinFamilyViewController.swift in Sources */,
+				CE6A236528FBDD06004E7EA7 /* NameSettingViewController.swift in Sources */,
+				CE6A236628FBDD06004E7EA7 /* ArchiveViewController.swift in Sources */,
+				CE6A236328FBDD06004E7EA7 /* FamilyFilterCollectionViewCell.swift in Sources */,
+				CE6A236728FBDD06004E7EA7 /* MainViewController.swift in Sources */,
+				CE6A236828FBDD06004E7EA7 /* ReactionCollectionViewCell.swift in Sources */,
+				CE6A236928FBDD06004E7EA7 /* UIImage+Extension.swift in Sources */,
+				CE6A236A28FBDD06004E7EA7 /* Poke.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		CE6A237F28FBDD06004E7EA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Puhaha/밥먹언?.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.1;
+				DEVELOPMENT_TEAM = 744MUUC77P;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Puhaha/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "밥먹언?";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSCameraUsageDescription = "'밥먹언?'이 회원님의 기기의 카메라를 사용하여 사진을 찍고 공유할 수 있도록 지원합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "'밥먹언?'이 회원님의 갤러리 사진을 공유할 수 있도록 지원합니다.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mc3.puhaha.whatdidyoueat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CE6A238028FBDD06004E7EA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Puhaha/밥먹언?.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.1;
+				DEVELOPMENT_TEAM = 744MUUC77P;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Puhaha/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "밥먹언?";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSCameraUsageDescription = "'밥먹언?'이 회원님의 기기의 카메라를 사용하여 사진을 찍고 공유할 수 있도록 지원합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "'밥먹언?'이 회원님의 갤러리 사진을 공유할 수 있도록 지원합니다.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mc3.puhaha.whatdidyoueat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		CE9F966B287FA66F00783324 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -621,91 +697,23 @@
 			};
 			name = Release;
 		};
-		CE9F966E287FA66F00783324 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Puhaha/Puhaha.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.0.1;
-				DEVELOPMENT_TEAM = 744MUUC77P;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Puhaha/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "밥먹언?";
-				INFOPLIST_KEY_NSCameraUsageDescription = "'밥먹언?'이 회원님의 기기의 카메라를 사용하여 사진을 찍고 공유할 수 있도록 지원합니다.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "'밥먹언?'이 회원님의 갤러리 사진을 공유할 수 있도록 지원합니다.";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mc3.puhaha.whatdidyoueat;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = dev_what_did_you_eat;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		CE9F966F287FA66F00783324 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Puhaha/Puhaha.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.0.1;
-				DEVELOPMENT_TEAM = 744MUUC77P;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Puhaha/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "밥먹언?";
-				INFOPLIST_KEY_NSCameraUsageDescription = "'밥먹언?'이 회원님의 기기의 카메라를 사용하여 사진을 찍고 공유할 수 있도록 지원합니다.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "'밥먹언?'이 회원님의 갤러리 사진을 공유할 수 있도록 지원합니다.";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mc3.puhaha.whatdidyoueat;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = dev_what_did_you_eat;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CE6A237E28FBDD06004E7EA7 /* Build configuration list for PBXNativeTarget "Puhaha" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE6A237F28FBDD06004E7EA7 /* Debug */,
+				CE6A238028FBDD06004E7EA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CE9F9654287FA66C00783324 /* Build configuration list for PBXProject "Puhaha" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CE9F966B287FA66F00783324 /* Debug */,
 				CE9F966C287FA66F00783324 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CE9F966D287FA66F00783324 /* Build configuration list for PBXNativeTarget "밥먹언?" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CE9F966E287FA66F00783324 /* Debug */,
-				CE9F966F287FA66F00783324 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -721,32 +729,40 @@
 				kind = branch;
 			};
 		};
+		CE6A233028FBDD06004E7EA7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CE33B78A2895755E0054F9CD /* FirebaseAnalytics */ = {
+		CE6A232F28FBDD06004E7EA7 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CE33B7892895755E0054F9CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = CE6A233028FBDD06004E7EA7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
-		CE33B78C2895755E0054F9CD /* FirebaseAuth */ = {
+		CE6A233128FBDD06004E7EA7 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CE33B7892895755E0054F9CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = CE6A233028FBDD06004E7EA7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		CE33B78E2895755E0054F9CD /* FirebaseFirestore */ = {
+		CE6A233228FBDD06004E7EA7 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CE33B7892895755E0054F9CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = CE6A233028FBDD06004E7EA7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
-		CE33B7902895755E0054F9CD /* FirebaseFirestoreSwift */ = {
+		CE6A233328FBDD06004E7EA7 /* FirebaseFirestoreSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CE33B7892895755E0054F9CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = CE6A233028FBDD06004E7EA7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
 		};
-		CE33B7922895755E0054F9CD /* FirebaseStorage */ = {
+		CE6A233428FBDD06004E7EA7 /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CE33B7892895755E0054F9CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = CE6A233028FBDD06004E7EA7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
