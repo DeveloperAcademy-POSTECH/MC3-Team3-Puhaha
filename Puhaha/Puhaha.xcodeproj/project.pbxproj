@@ -139,6 +139,7 @@
 		CE73297C28865C8800CA87F1 /* MealCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE73297E28869EB200CA87F1 /* FamilyFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyFilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE73298028869FA300CA87F1 /* Family.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Family.swift; sourceTree = "<group>"; };
+		CE8D9ABA291A30400084A6ED /* PokeNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeNotification.swift; sourceTree = "<group>"; };
 		CE9AE1902891270500F4253D /* MainViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Delegate.swift"; sourceTree = "<group>"; };
 		CE9AE1922891271700F4253D /* MainViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+DataSource.swift"; sourceTree = "<group>"; };
 		CE9D233A28877E1F00D53332 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
@@ -336,6 +337,7 @@
 				BF8C5FAE288E6B21002BF0BD /* UploadTag.swift */,
 				CE5B4F6B288E7C8B00111ACC /* Reaction.swift */,
 				CE33B7A02896632E0054F9CD /* Poke.swift */,
+				CE8D9ABA291A30400084A6ED /* PokeNotification.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -465,6 +467,7 @@
 				CE6A234528FBDD06004E7EA7 /* Tag.swift in Sources */,
 				CE6A234628FBDD06004E7EA7 /* PokingTool.swift in Sources */,
 				CE6A234728FBDD06004E7EA7 /* UploadTag.swift in Sources */,
+				CE8D9ABB291A30400084A6ED /* PokeNotification.swift in Sources */,
 				CE6A234828FBDD06004E7EA7 /* NameEditingViewController.swift in Sources */,
 				CE6A234928FBDD06004E7EA7 /* ViewController.swift in Sources */,
 				CE6A234A28FBDD06004E7EA7 /* SingInViewControllerASDelegate.swift in Sources */,

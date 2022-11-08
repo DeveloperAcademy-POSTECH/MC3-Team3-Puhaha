@@ -31,6 +31,7 @@ class FirestoreManager: ObservableObject {
         
         self.families = [Family(user: User(accountId: "",
                                            name: "모두",
+                                           notificationToken: "",
                                            toolImage: UIImage(named: "IconEveryoneFilter")!,
                                            toolType: "",
                                            toolColor: "",
@@ -164,6 +165,7 @@ class FirestoreManager: ObservableObject {
                     } else {
                         families = [Family(user: User(accountId: "",
                                                       name: "모두",
+                                                      notificationToken: "",
                                                       toolImage: UIImage(named: "IconEveryoneFilter")!,
                                                       toolType: "",
                                                       toolColor: "",
@@ -178,6 +180,7 @@ class FirestoreManager: ObservableObject {
                             /* 안드로이드 개발이 되는 경우 0: 애플 계정 로그인, 1: 구글 계정 로그인으로 사용 예정
                              let loginForm = data["loginForm"] as? Int ?? 0
                              */
+                            let notificationToken = data["notificationToken"] as? String ?? ""
                             let familyCode = data["familyCode"] as? String ?? ""
                             let pokingTool = data["pokingTool"] as? [String: String] ?? [:]
                             let pokeStateValue = data["pokeState"] as? [String: String] ?? [:]
@@ -190,6 +193,7 @@ class FirestoreManager: ObservableObject {
                             
                             let user = User(accountId: accountId,
                                             name: name,
+                                            notificationToken: notificationToken,
                                             toolImage: toolImage,
                                             toolType: pokingToolTool,
                                             toolColor: pokingToolColor,
@@ -252,7 +256,8 @@ class FirestoreManager: ObservableObject {
                                                                  "pokeState": ["pokedBy": "",
                                                                                "pokedtime": ""],
                                                                  "pokingTool": ["color": "",
-                                                                                "tool": ""]])
+                                                                                "tool": ""],
+                                                                "notificationToken": ""])
     }
     
     func isExistFamily(roomCode: String, completion: @escaping () -> Void) {

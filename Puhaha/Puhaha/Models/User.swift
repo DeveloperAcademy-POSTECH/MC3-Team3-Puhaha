@@ -11,6 +11,7 @@ class User {
     private let accountId: String?
     private var name: String?
     private var loginForm: Int?
+    var notificationToken: String?
 
     private var toolImage: UIImage?
     private var toolType: String?
@@ -22,6 +23,7 @@ class User {
         self.accountId = nil
         self.name = nil
         self.loginForm = 0
+        self.notificationToken = nil
 
         self.toolImage = nil
         self.toolType = nil
@@ -34,6 +36,7 @@ class User {
         self.accountId = accountId
         self.name = nil
         self.loginForm = 0
+        self.notificationToken = nil
 
         self.toolImage = nil
         self.toolType = nil
@@ -46,6 +49,7 @@ class User {
         self.accountId = accountId
         self.name = name
         self.loginForm = 0
+        self.notificationToken = nil
 
         self.toolImage = nil
         self.toolType = nil
@@ -54,11 +58,12 @@ class User {
         self.pokeState = nil
     }
 
-    init(accountId: String, name: String, toolImage: UIImage, toolType: String, toolColor: String, familyCode: String, pokeState: Poke) {
+    init(accountId: String, name: String, notificationToken: String, toolImage: UIImage, toolType: String, toolColor: String, familyCode: String, pokeState: Poke) {
         
         self.accountId = accountId
         self.name = name
         self.loginForm = 0
+        self.notificationToken = notificationToken
 
         self.toolImage = toolImage
         self.toolType = toolType
