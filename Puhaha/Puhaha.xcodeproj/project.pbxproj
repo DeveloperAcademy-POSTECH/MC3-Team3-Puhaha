@@ -76,6 +76,8 @@
 		CE6A237B28FBDD06004E7EA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE42A72928B37CAA00A516F3 /* LaunchScreen.storyboard */; };
 		CE6A237C28FBDD06004E7EA7 /* Tools.scn in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A0288F74D500BA09EF /* Tools.scn */; };
 		CE6A237D28FBDD06004E7EA7 /* BigSpoonVer2.obj in Resources */ = {isa = PBXBuildFile; fileRef = A48C93A2288F74D500BA09EF /* BigSpoonVer2.obj */; };
+		CE869DCD29191D8A00DC93E6 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = CE869DCC29191D8A00DC93E6 /* FirebaseMessaging */; };
+		CE8D9ABB291A30400084A6ED /* PokeNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D9ABA291A30400084A6ED /* PokeNotification.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -160,6 +162,7 @@
 				CE6A236E28FBDD06004E7EA7 /* FirebaseFirestore in Frameworks */,
 				CE6A236F28FBDD06004E7EA7 /* FirebaseAuth in Frameworks */,
 				CE6A237028FBDD06004E7EA7 /* FirebaseStorage in Frameworks */,
+				CE869DCD29191D8A00DC93E6 /* FirebaseMessaging in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +363,7 @@
 				CE6A233228FBDD06004E7EA7 /* FirebaseFirestore */,
 				CE6A233328FBDD06004E7EA7 /* FirebaseFirestoreSwift */,
 				CE6A233428FBDD06004E7EA7 /* FirebaseStorage */,
+				CE869DCC29191D8A00DC93E6 /* FirebaseMessaging */,
 			);
 			productName = Puhaha;
 			productReference = CE6A238128FBDD06004E7EA7 /* Puhaha.app */;
@@ -761,6 +765,11 @@
 			productName = FirebaseFirestoreSwift;
 		};
 		CE6A233428FBDD06004E7EA7 /* FirebaseStorage */ = {
+		CE869DCC29191D8A00DC93E6 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE869DC329191D8A00DC93E6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
 			isa = XCSwiftPackageProductDependency;
 			package = CE6A233028FBDD06004E7EA7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
