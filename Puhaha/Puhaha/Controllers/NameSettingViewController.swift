@@ -8,9 +8,12 @@
 import UIKit
 
 import FirebaseFirestore
+import FirebaseMessaging
 
 class NameSettingViewController: UIViewController {
     private var db = Firestore.firestore()
+    private var firestoreManager: FirestoreManager = FirestoreManager()
+    private var userIdentifier: String = ""
     
     private let guidingTextLabel: UILabel = {
         let label = UILabel()
@@ -42,7 +45,6 @@ class NameSettingViewController: UIViewController {
     
     @objc private func nextButtonTapped() {
         let signinUserName = nameTextField.text as String? ?? ""
-        let userIdentifier = UserDefaults.standard.string(forKey: "userIdentifier") as String? ?? ""
         let firestoreManager = FirestoreManager()
 
         UserDefaults.standard.set(signinUserName, forKey: "name")
@@ -50,6 +52,21 @@ class NameSettingViewController: UIViewController {
         
         let pokeToolCustomizingViewController = PokeToolCustomizingViewController()
         self.navigationController?.pushViewController(pokeToolCustomizingViewController, animated: true)
+    }
+    
+    override func loadView() {
+        super.loadView()
+        Messaging.messaging().delegate = self
+        userIdentifier = UserDefaults.standard.string(forKey: "userIdentifier") as String? ?? ""
+        
+        Messaging.messaging().token { token, error in
+            if let error = error {
+                print("Error fetching FCM registration token: \(error)")
+            } else if let token = token {
+                print("FCM registration token: \(token)")
+                self.firestoreManager.setNotificationToken(userIdentifier: self.userIdentifier, notificationToken: token)
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -89,13 +106,29 @@ class NameSettingViewController: UIViewController {
 }
 
 extension NameSettingViewController: UITextFieldDelegate {
-     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-         view.endEditing(true)
-         return false
-     }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return false
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        let isNameEmpty = nameTextField.text == ""
+        nextButton.isEnabled = !isNameEmpty
+    }
+}
 
-     func textFieldDidEndEditing(_ textField: UITextField) {
-         let isNameEmpty = nameTextField.text == ""
-         nextButton.isEnabled = !isNameEmpty
-     }
- }
+extension NameSettingViewController: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+      print("Firebase registration token: \(String(describing: fcmToken))")
+
+      let dataDict: [String: String] = ["token": fcmToken ?? ""]
+      NotificationCenter.default.post(
+        name: Notification.Name("FCMToken"),
+        object: nil,
+        userInfo: dataDict
+      )
+      // TODO: If necessary send token to application server.
+      // Note: This callback is fired at each app startup and whenever a new token is generated.
+    }
+
+}
