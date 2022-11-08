@@ -260,6 +260,11 @@ class FirestoreManager: ObservableObject {
                                                                 "notificationToken": ""])
     }
     
+    func setNotificationToken(userIdentifier: String, notificationToken: String) {
+        db.collection("Users").document(userIdentifier).updateData(["notificationToken": notificationToken])
+    }
+
+    
     func isExistFamily(roomCode: String, completion: @escaping () -> Void) {
         db.collection("Families").document(roomCode).getDocument { document, error in
             let isExist = document?.exists ?? false

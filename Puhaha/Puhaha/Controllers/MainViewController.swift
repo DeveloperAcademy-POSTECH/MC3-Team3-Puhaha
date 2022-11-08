@@ -53,6 +53,8 @@ class MainViewController: UIViewController {
         
         familyFilterCollectionView.delegate = self
         familyFilterCollectionView.dataSource = self
+        
+        emptyMealCardView.pokeButton.addTarget(self, action: #selector(pokeTo), for: .touchUpInside)
     }
     
     private var todayDateLabel: UILabel = {
@@ -196,6 +198,45 @@ class MainViewController: UIViewController {
             emptyMealCardView.reloadInputViews()
         }
     }
+    
+    /**
+     Firebase Cloud Messaging을 이용한 알림 전송 요청 함수
+     */
+    @objc func pokeTo() {
+        // MARK: - 메시지 전송 용 데이터
+        let pokedTo: User = firestoreManager.families.filter { $0.isSelected }.first!.user
+
+        let urlString = "https://fcm.googleapis.com/fcm/send"
+//        let serverKey = "AAAA06fd7qs:APA91bHe8fNGaBbSKzuwlhobl-pU2LY8qjykDD-r5ayYi5hc3zQ1QD_o7tocLSM5llHD4qHkbgLbfAwek8hYw_u87ltP9zV9WGWhcNIE64E1EUFCdSnq1749OLhudOWAxEWh_U8mdsPA" // TODO: 서버 키는 어딘가 따로 빼놓고 깃허브에 올리지도 말아야 함 설정 필요
+        let serverKey = "server-key"
+        let tokenOfReciever: String = pokedTo.notificationToken!
+        print("받는 사람의 토큰", tokenOfReciever)
+        let pokedBy: String = loginedUser.getName()
+        let param = PokeNotification(to: tokenOfReciever, notification: PokeNotificationData(body: "\(pokedBy)(이)가 콕 찔렀어요."))
+
+
+        // MARK: - URLSession을 이용하여 서버에 메시지 전송 요청
+
+        let url = URL(string: urlString)
+
+        var request = URLRequest(url: url!)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONEncoder().encode(param)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("key=\(serverKey)", forHTTPHeaderField: "Authorization")
+
+        let task = URLSession.shared.dataTask(with: request) { (data, _, error) in
+            do {
+                if let jsonData = data {
+                    if let jsonDataDict = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: Any] {
+                        NSLog("Recieved data:\n\(jsonDataDict)")
+                    }
+                }
+            } catch {
+                print(error)
+            }
+        }
+
+        task.resume()
+    }
 }
-
-
