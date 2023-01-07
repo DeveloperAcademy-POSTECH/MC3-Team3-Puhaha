@@ -20,6 +20,8 @@ class ArchiveViewController: UIViewController {
     
     private let familyCode: String = UserDefaults.standard.string(forKey: "roomCode") ?? ""
     
+    let storageManager = StorageManager()
+    
     private let titleLabel: UILabel = {
         let label: UILabel = UILabel()
         label.text = "모아보기"
@@ -124,9 +126,23 @@ class ArchiveViewController: UIViewController {
         archiveCollectionView.reloadData()
         dateLabel.text = selectedDate.dateTextWithDot
         
+        for i in 0..<baseMeals.count where baseMeals[i].uploadedDate == selectedDate.dateText {
+            getMealImage(date: selectedDate.dateText, imageName: baseMeals[i].mealImageName, index: i)
+        }
+        
         meals = baseMeals.filter({ $0.uploadedDate == selectedDate.dateText })
         
         collectionViewHiddenToggle()
+    }
+    
+    private func getMealImage(date: String, imageName: String, index: Int) {
+        storageManager.getMealImage(familyCode: familyCode,
+                                    date: date,
+                                    imageName: imageName) { [self] in
+            baseMeals[index].mealImage = storageManager.mealImage
+            
+            archiveCollectionView.reloadData()
+        }
     }
     
     func collectionViewHiddenToggle() {
