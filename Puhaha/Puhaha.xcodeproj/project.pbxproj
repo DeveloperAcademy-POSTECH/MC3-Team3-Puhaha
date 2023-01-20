@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE222D6A297AB6EE00272A37 /* TagContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE222D69297AB6EE00272A37 /* TagContentCollectionViewCell.swift */; };
 		CE6A233728FBDD06004E7EA7 /* CustomedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55599E3B2886362900C05E81 /* CustomedButton.swift */; };
 		CE6A233828FBDD06004E7EA7 /* String+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45191628A8E0EC00D1FB21 /* String+Extenstion.swift */; };
 		CE6A233928FBDD06004E7EA7 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE33B79A2896592F0054F9CD /* FirestoreManager.swift */; };
@@ -108,6 +109,7 @@
 		BF8C5FA8288E5EDF002BF0BD /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		BF8C5FAE288E6B21002BF0BD /* UploadTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTag.swift; sourceTree = "<group>"; };
 		BFFB73412897652B00AE3C09 /* UploadViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UploadViewController+Delegate.swift"; sourceTree = "<group>"; };
+		CE222D69297AB6EE00272A37 /* TagContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE33B7762894FF680054F9CD /* CreateFamilyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFamilyViewController.swift; sourceTree = "<group>"; };
 		CE33B7782894FFA40054F9CD /* InviteFamilyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFamilyViewController.swift; sourceTree = "<group>"; };
 		CE33B79A2896592F0054F9CD /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 		CE222D64297AAF0200272A37 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CE222D6B297AB72100272A37 /* Cell */,
 				BF7F91182886530A009D3809 /* ActionSheetView.swift */,
 			);
 			path = View;
@@ -370,6 +373,14 @@
 			isa = PBXGroup;
 			children = (
 				CE445BE828A426C00084A93F /* ArchiveCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		CE222D6B297AB72100272A37 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CE222D69297AB6EE00272A37 /* TagContentCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -599,6 +610,7 @@
 				CE6A235928FBDD06004E7EA7 /* SettingViewController.swift in Sources */,
 				CE6A235A28FBDD06004E7EA7 /* CreateFamilyViewController.swift in Sources */,
 				CE6A235B28FBDD06004E7EA7 /* UIColor+Extension.swift in Sources */,
+				CE222D6A297AB6EE00272A37 /* TagContentCollectionViewCell.swift in Sources */,
 				CE6A235C28FBDD06004E7EA7 /* ArchiveCell.swift in Sources */,
 				CE6A235D28FBDD06004E7EA7 /* UITextField+Extension.swift in Sources */,
 				CE6A235E28FBDD06004E7EA7 /* Reaction.swift in Sources */,
