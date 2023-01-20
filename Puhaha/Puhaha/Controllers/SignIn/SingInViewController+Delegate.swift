@@ -1,5 +1,5 @@
 //
-//  SingInViewControllerASDelegate.swift
+//  SingInViewController+Delegate.swift
 //  Puhaha
 //
 //  Created by 김소현 on 2022/07/31.
