@@ -177,12 +177,12 @@
 				CE33B77A289519E50054F9CD /* Server */,
 				A48C939E288F74BE00BA09EF /* Resources */,
 				CE46B56E2888DB230074DEF0 /* UIViews */,
-				A41981112885090300CCFDBA /* Extensioon */,
+				A41981112885090300CCFDBA /* Extension */,
 			);
 			path = Global;
 			sourceTree = "<group>";
 		};
-		A41981112885090300CCFDBA /* Extensioon */ = {
+		A41981112885090300CCFDBA /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				559D06C1289BAD7900338782 /* UILabel+Extension.swift */,
@@ -192,7 +192,7 @@
 				A445E5F728929C9B00FD31C4 /* UIImage+Extension.swift */,
 				CE45191628A8E0EC00D1FB21 /* String+Extenstion.swift */,
 			);
-			path = Extensioon;
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		A48C939E288F74BE00BA09EF /* Resources */ = {
